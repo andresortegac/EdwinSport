@@ -30,7 +30,7 @@
         <p class="mt-6 text-xl text-gray-600 max-w-2xl">
             Explora eventos, rankings, escuelas deportivas y toda la actividad de tu ciudad.
         </p>
-        <a href="{{ route('eventos.index') }}" class="mt-8 px-8 py-4 rounded-2xl bg-[#1DE4D1] text-[#003233] text-lg font-semibold shadow-md hover:opacity-90">
+        <a href="/" class="mt-8 px-8 py-4 rounded-2xl bg-[#1DE4D1] text-[#003233] text-lg font-semibold shadow-md hover:opacity-90">
             Explorar ahora
         </a>
     </section>
@@ -55,7 +55,7 @@
 
     {{-- FOOTER --}}
     <footer class="text-center py-10 text-gray-600">
-        © 2025 SportFlow — Todos los derechos reservados
+       Todos los derechos reservados
     </footer>
 
 </body>
