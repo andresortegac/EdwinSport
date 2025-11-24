@@ -1,5 +1,3 @@
-{{-- Vista principal en Laravel Blade utilizando la paleta de colores seleccionada --}}
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
