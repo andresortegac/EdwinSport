@@ -7,7 +7,7 @@ use App\Http\Controllers\LoginController;
 
 
 Route::controller(PrincipalController::class)->group(function(){
-    Route::get('/', 'index');
+    Route::get('/', 'index')->name('principal');
 });
 
 Route::get('/about', function () {
@@ -16,5 +16,5 @@ Route::get('/about', function () {
 
 
 Route::controller(LoginController::class)->group(function(){
-    Route::get('login', 'show');
+    Route::get('login', 'show')->name('login');
 });
