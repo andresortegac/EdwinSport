@@ -11,4 +11,9 @@ class PrincipalController extends Controller
     {
         return view('PRINCIPAL.principalView');
     }
+
+        public function about()
+    {
+        return view('PRINCIPAL.about');
+    }
 }

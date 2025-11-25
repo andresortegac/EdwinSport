@@ -35,7 +35,7 @@
                         <a class="nav-link" href="/">Inicio</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="{{ url('about') }}">Acerca de</a>
+                        <a class="nav-link active" href="{{ route('about') }}">Acerca de</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Eventos</a>
@@ -62,7 +62,7 @@
         <p class="mt-3 fs-5 text-secondary w-75 mx-auto">
             Explora eventos, rankings, escuelas deportivas y toda la actividad de tu ciudad.
         </p>
-        <a href="{{ route('eventos.index') }}" class="mt-8 px-8 py-4 rounded-2xl bg-[#1DE4D1] text-[#003233] text-lg font-semibold shadow-md hover:opacity-90">
+        <a href="{{ route('about') }}" class="mt-8 px-8 py-4 rounded-2xl bg-[#1DE4D1] text-[#003233] text-lg font-semibold shadow-md hover:opacity-90">
             Explorar ahora
         </a>
     </section>
