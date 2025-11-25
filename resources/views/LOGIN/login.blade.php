@@ -48,7 +48,7 @@
           </form>
 
           <div class="links">
-            <a href="register/show">  <!---Redireccióna a LA RUTA Register/Show--->
+            <a href="register/show">  <!---Redirecciï¿½na a LA RUTA Register/Show--->
               Crear Cuenta
             </a>
           </div>

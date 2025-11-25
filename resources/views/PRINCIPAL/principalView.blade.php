@@ -4,59 +4,105 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SportFlow</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.3.2/dist/tailwind.min.css" rel="stylesheet">
+
+    {{-- Bootstrap 5 --}}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    {{-- Tu CSS personalizado --}}
+    <link rel="stylesheet" href="{{ asset('/principal.css') }}">
 </head>
-<body class="min-h-screen bg-[#EFFEFB] text-gray-800 font-sans">
+
+<body>
 
     {{-- NAVBAR --}}
-    <nav class="flex items-center justify-between px-10 py-6 bg-white shadow-sm">
-        <h1 class="text-2xl font-bold text-[#00A198]">SportFlow</h1>
-        <div class="flex gap-6 text-lg">
-            <a href="#" class="hover:text-[#00A198]">Inicio</a>
-            <a href="#" class="hover:text-[#00A198]">Eventos</a>
-            <a href="#" class="hover:text-[#00A198]">Escuelas</a>
-            <a href="#" class="hover:text-[#00A198]">Contacto</a>
+    <nav class="navbar navbar-expand-lg bg-white shadow-sm py-3 px-4">
+        <div class="container-fluid">
+            <div class="logo">
+                 <img src="{{ asset('img/logo.png') }}" alt="Logo" width="90" height="60" class="me-2" >
+            </div>
+            <a class="navbar-brand brand fs-3" href="#">Edwin Sport</a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+                aria-label="Toggle navigation">
+
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto gap-3 fs-5">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{{ url('about') }}">Acerca de</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Eventos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Contactanos</a>
+                    </li>
+                </ul>
+
+                {{-- Botón de login --}}
+                <a href="{{ url('login') }}" class="btn btn-login">
+                    Ingresar
+                </a>
+            </div>
         </div>
-        <a href="{{ route('login') }}" class="px-5 py-2 rounded-xl bg-[#00A198] text-white shadow-md hover:opacity-90">
-            Ingresar
-        </a>
     </nav>
 
-    {{-- HERO --}}
-    <section class="flex flex-col items-center text-center px-6 py-28">
-        <h2 class="text-5xl font-extrabold text-[#003233] max-w-3xl leading-tight">
+    {{-- HERO SECTION --}}
+    <section class="container text-center hero-section">
+        <h1 class="display-4 fw-bold hero-title">
             Tu mundo deportivo en un solo lugar
-        </h2>
-        <p class="mt-6 text-xl text-gray-600 max-w-2xl">
+        </h1>
+
+        <p class="mt-3 fs-5 text-secondary w-75 mx-auto">
             Explora eventos, rankings, escuelas deportivas y toda la actividad de tu ciudad.
         </p>
-        <a href="{{ route('eventos.index') }}" class="mt-8 px-8 py-4 rounded-2xl bg-[#1DE4D1] text-[#003233] text-lg font-semibold shadow-md hover:opacity-90">
+
+        <a href="#" class="btn btn-explorar mt-4">
             Explorar ahora
         </a>
     </section>
 
     {{-- FEATURES --}}
-    <section class="grid md:grid-cols-3 gap-10 px-10 pb-20">
-        <div class="bg-white rounded-3xl p-8 shadow-lg border-t-4 border-[#00A198]">
-            <h3 class="text-2xl font-bold mb-3 text-[#003233]">Eventos</h3>
-            <p>Conoce todos los torneos y actividades deportivas disponibles.</p>
-        </div>
+    <section class="container py-5">
+        <div class="row g-4">
 
-        <div class="bg-white rounded-3xl p-8 shadow-lg border-t-4 border-[#1DE4D1]">
-            <h3 class="text-2xl font-bold mb-3 text-[#003233]">Escuelas</h3>
-            <p>Encuentra escuelas deportivas certificadas y sus programas.</p>
-        </div>
+            <div class="col-md-4">
+                <div class="p-4 bg-white shadow feature-card feature-1">
+                    <h3 class="fw-bold hero-title">Eventos</h3>
+                    <p>Conoce todos los torneos y actividades deportivas disponibles.</p>
+                </div>
+            </div>
 
-        <div class="bg-white rounded-3xl p-8 shadow-lg border-t-4 border-[#003233]">
-            <h3 class="text-2xl font-bold mb-3 text-[#003233]">Rankings</h3>
-            <p>Revisa resultados oficiales y posiciones actualizadas.</p>
+            <div class="col-md-4">
+                <div class="p-4 bg-white shadow feature-card feature-2">
+                    <h3 class="fw-bold hero-title">Escuelas</h3>
+                    <p>Encuentra escuelas deportivas certificadas y sus programas.</p>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="p-4 bg-white shadow feature-card feature-3">
+                    <h3 class="fw-bold hero-title">Rankings</h3>
+                    <p>Revisa resultados oficiales y posiciones actualizadas.</p>
+                </div>
+            </div>
+
         </div>
     </section>
 
     {{-- FOOTER --}}
-    <footer class="text-center py-10 text-gray-600">
+    <footer class="text-center py-4 text-secondary">
         © 2025 SportFlow — Todos los derechos reservados
     </footer>
+
+    {{-- Bootstrap JS --}}
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 </html>

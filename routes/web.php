@@ -10,6 +10,10 @@ Route::controller(PrincipalController::class)->group(function(){
     Route::get('/', 'index');
 });
 
+Route::get('/about', function () {
+    return view('PRINCIPAL.about');
+})->name('about');
+
 
 Route::controller(LoginController::class)->group(function(){
     Route::get('login', 'show');
