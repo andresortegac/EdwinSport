@@ -150,36 +150,13 @@
     </footer>
 
     {{-- Bootstrap JS --}}
+    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    @include('modal/password-modal')
+    <link rel="stylesheet" href="{{ asset('CSS/password-modal.css') }}">
+    <script src="{{ asset('js/password-modal.js') }}"></script>
 
-    <!-- MODAL DE CONTRASEÑA -->
-    <div class="modal fade" id="passwordModal" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content p-3">
 
-                <div class="modal-header">
-                    <h5 class="modal-title">Ingrese su contraseña</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                </div>
-
-                <form action="{{ url('login') }}" method="GET"> 
-                    <div class="modal-body">
-                        <label class="form-label">Contraseña</label>
-                        <input type="password" class="form-control" required>
-                    </div>
-
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-
-                        <button type="submit" class="btn btn-primary">
-                            Entrar
-                        </button>
-                    </div>
-                </form>
-
-            </div>
-        </div>
-    </div>
 
 </body>
 </html>

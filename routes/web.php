@@ -49,3 +49,9 @@ Route::get('/about/valores', function () {
 })->name('about.valores');
 
 //---------------------fin-----------------------------)
+
+//--------------validar modal--------------)
+Route::get('/usuario-panel', function () {
+    return view('usuario.panel'); // o la vista que tengas
+})->name('usuario.panel');
+//------------------------fin-----------------------------)
