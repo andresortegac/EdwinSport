@@ -1,64 +1,83 @@
 <!DOCTYPE html>
-<html lang="es">
-<head>
+<html lang="en">
+  <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Edwin Sport</title>
 
-    <!-- BOOTSTRAP 5 -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- CSS personalizado -->
-     <link rel="stylesheet" href="{{ asset('/principal.css') }}">
-</head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!--styles end-->
 
-<body>
+    <title>Login</title>
 
-    <div class="container d-flex justify-content-center align-items-center min-vh-100">
+  </head>
+  <body>
+    <div id="wrapper">
+      <div id="left">
+        <div id="signin">
+          <div class="logo">
+            <h2>
+              Ingresar al Sistema
+            </h2>
+          </div>
+          <form action="http://localhost/projects/servientrega/public/" method="POST">
 
-        <div class="card p-4 shadow-lg login-card">
-
-            <div class="text-center mb-4">
-                <img src="{{ asset('img/img2.png') }}" width="370" alt="Logo Empresa">
-                
+            @csrf
+            
+            <div>
+              <label>
+                Usuario
+              </label>
+              <input type="text" class="text-input" name="username"/>
             </div>
 
-            <form>
+            <div>
+              <label>
+                Password
+              </label>
+              <input type="password" class="text-input" name="password"/>
+            </div>
 
-                <!-- Campo Usuario -->
-                <div class="form-group mb-3">
-                    <label for="usuario" class="form-label">Admin</label>
-                    <input type="text" class="form-control" id="usuario" placeholder="Ingrese Admin">
-                </div>
+            <a href="home">
+              <button type="submit" class="primary-btn" >
+                Ingresar
+              </button>
+            </a>
+                       
+          </form>
 
-                <!-- Campo Contraseña con ojito -->
-                <div class="form-group mb-3 position-relative">
-                    <label for="password" class="form-label">Password</label>
-                    <input type="password" id="password" class="form-control" placeholder="Ingrese contraseña">
-                    
-                    <span class="toggle-password" onclick="togglePassword()">
-                        👁️‍🗨️ 
-                    </span>
-                </div>
-
-                <button type="submit" class="btn btn-primary w-100 mt-3">
-                    Iniciar
-                </button>
-
-            </form>
-
+          <div class="links">
+            <a href="register/show">  <!---Redirecci�na a LA RUTA Register/Show--->
+              Crear Cuenta
+            </a>
+          </div>
+          <div class="links">
+            <a href="#">
+              Forgot Password
+            </a>
+          </div>
+          <div class="or">
+            <hr class="bar" />
+            <hr class="bar" />
+          </div>
         </div>
+        <footer id="main-footer">
+            <p>
+              Copyright &copy; 2023 - All Rights Reserved
+            </p>
+            <div>
+              <a href="#">terms of use</a> | <a href="#">Privacy Policy</a>
+            </div>
+        </footer>
+      </div>
+      <div id="right">
+        <div id="showcase">
+          <div class="showcase-content">
+            <h1 class="showcase-text">              
+          </div>
+        </div>
+      </div>
     </div>
-
-    <!-- Script para el ojito -->
-    <script>
-        function togglePassword() {
-            const password = document.getElementById("password");
-            password.type = password.type === "password" ? "text" : "password";
-        }
-    </script>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-
-</body>
+  </body>
 </html>
