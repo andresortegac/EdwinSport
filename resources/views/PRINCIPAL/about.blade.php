@@ -9,7 +9,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Tu CSS personalizado -->
-    <link rel="stylesheet" href="{{ asset('/principal.css') }}">
+    <link rel="stylesheet" href="{{ asset('/CSS/principal.css') }}">
 </head>
 
 <body>
@@ -42,7 +42,7 @@
                         <a class="nav-link" href="{{ route('events.index') }}">Eventos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Contactanos</a>
+                        <a class="nav-link" href="{{ route('contactenos') }}">Contactanos</a>
                     </li>
                 </ul>
 
@@ -66,35 +66,41 @@
 
         <div class="row mt-5 g-4">
 
-            <div class="col-md-4">
-                <div class="p-4 shadow-sm bg-white rounded-3 text-center">
-                    <h3 class="hero-title">Misión</h3>
-                    <p class="mt-2">
-                        Brindar una plataforma moderna y accesible que conecte deportistas, 
-                        instituciones y público en general, promoviendo el crecimiento del deporte.
-                    </p>
-                </div>
+           <div class="col-md-4">
+                <a href="{{ route('about.mision') }}" class="text-decoration-none text-dark">
+                    <div class="p-4 shadow-sm bg-white rounded-3 text-center card-hover">
+                        <h3 class="hero-title">Misión</h3>
+                        <p class="mt-2">
+                            Brindar una plataforma moderna y accesible que conecte deportistas, instituciones y público en general, promoviendo el crecimiento del deporte.
+                        </p>
+                    </div>
+                </a>
             </div>
 
-            <div class="col-md-4">
-                <div class="p-4 shadow-sm bg-white rounded-3 text-center">
-                    <h3 class="hero-title">Visión</h3>
-                    <p class="mt-2">
-                        Convertirnos en el sistema líder de gestión deportiva regional, 
-                        ofreciendo herramientas digitales de alto impacto.
-                    </p>
-                </div>
-            </div>
 
             <div class="col-md-4">
-                <div class="p-4 shadow-sm bg-white rounded-3 text-center">
-                    <h3 class="hero-title">Valores</h3>
-                    <p class="mt-2">
-                        Integridad, pasión deportiva, transparencia, innovación y compromiso 
-                        con la comunidad.
-                    </p>
-                </div>
+                <a href="{{ route('about.vision') }}" class="text-decoration-none text-dark">
+                    <div class="p-4 shadow-sm bg-white rounded-3 text-center card-hover">
+                        <h3 class="hero-title">vision</h3>
+                        <p class="mt-2">
+                            Convertirnos en el sistema líder de gestión deportiva regional, ofreciendo herramientas digitales de alto impacto.
+                        </p>
+                    </div>
+                </a>
             </div>
+
+
+            <div class="col-md-4">
+                <a href="{{ route('about.valores') }}" class="text-decoration-none text-dark">
+                    <div class="p-4 shadow-sm bg-white rounded-3 text-center card-hover">
+                        <h3 class="hero-title">valores</h3>
+                        <p class="mt-2">
+                           Integridad, pasión deportiva, transparencia, innovación y compromiso con la comunidad.
+                        </p>
+                    </div>
+                </a>
+            </div>
+
 
         </div>
     </section>
