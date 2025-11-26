@@ -2,9 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\Principal;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Foundation\Bus\DispatchesJobs;
+use Illuminate\Foundation\Validation\ValidatesRequests;
+use Illuminate\Routing\Controller as BaseController;
 
+class Controller extends BaseController
+{
+    use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+}
 class PrincipalController extends Controller
 {
     public function index()
@@ -16,4 +22,16 @@ class PrincipalController extends Controller
     {
         return view('PRINCIPAL.about');
     }
+
+public function dashboard()
+{
+    return view('LOGIN.login');
+    
+}
+
+
+
+
+
+
 }

@@ -46,9 +46,7 @@
                 </ul>
 
                 {{-- Botón de login --}}
-                <a href="{{ url('login') }}" class="btn btn-login">
-                    Ingresar
-                </a>
+               <a href="{{ route('login') }}" class="btn btn-success">Ingresar</a>
             </div>
         </div>
     </nav>
