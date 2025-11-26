@@ -3,7 +3,7 @@
 use App\Http\Controllers\PrincipalController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
-
+use App\Http\Controllers\EventController;
 
 
 Route::controller(PrincipalController::class)->group(function(){
@@ -15,7 +15,7 @@ Route::controller(PrincipalController::class)->group(function(){
 });
 
 
-
-Route::controller(LoginController::class)->group(function(){
-    Route::get('login', 'show')->name('login');
-});
+Route::get('/eventos', [EventController::class,'index'])->name('events.index');
+Route::get('/eventos/{event}', [EventController::class,'show'])->name('events.show');
+// filtro por deporte (query param o ruta)
+Route::get('/eventos/deporte/{sport}', [EventController::class,'bySport'])->name('events.bySport');

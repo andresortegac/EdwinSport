@@ -16,4 +16,6 @@ class PrincipalController extends Controller
     {
         return view('PRINCIPAL.about');
     }
+
+    
 }

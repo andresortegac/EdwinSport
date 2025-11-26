@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Acerca de Nosotros - SportFlow</title>
+    <title>Edwin Sport</title>
 
     <!-- Bootstrap 5 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -32,14 +32,24 @@
 
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav mx-auto gap-3 fs-5">
-                    <li class="nav-item"><a class="nav-link" href="/">Inicio</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Eventos</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Escuelas</a></li>
-                    <li class="nav-item"><a class="nav-link active" href="{{ url('about') }}">Acerca de</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Contacto</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{{ route('about') }}">Acerca de</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('events.index') }}">Eventos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Contactanos</a>
+                    </li>
                 </ul>
 
-                <a href="{{ url('login') }}" class="btn btn-login">Ingresar</a>
+                {{-- Botón de login --}}
+                <a href="{{ url('login') }}" class="btn btn-login">
+                    Ingresar
+                </a>
             </div>
         </div>
     </nav>

@@ -38,7 +38,7 @@
                         <a class="nav-link active" href="{{ route('about') }}">Acerca de</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Eventos</a>
+                        <a class="nav-link" href="{{ route('events.index') }}">Eventos</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Contactanos</a>
@@ -52,6 +52,52 @@
             </div>
         </div>
     </nav>
+
+    {{-- SLIDER --}}
+<div id="principalSlider" class="carousel slide mb-5" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+        <button type="button" data-bs-target="#principalSlider" data-bs-slide-to="0" class="active"></button>
+        <button type="button" data-bs-target="#principalSlider" data-bs-slide-to="1"></button>
+        <button type="button" data-bs-target="#principalSlider" data-bs-slide-to="2"></button>
+    </div>
+
+    <div class="carousel-inner">
+
+        <div class="carousel-item active">
+            <img src="{{ asset('img/slider/slider0.png') }}" class="d-block w-100" alt="Slide 1" style="height: 420px; object-fit: cover;">
+            <div class="carousel-caption d-none d-md-block">
+                <h5 class="fw-bold">Vive la pasión del deporte</h5>
+                <p>Conoce los mejores torneos de tu ciudad</p>
+            </div>
+        </div>
+
+        <div class="carousel-item">
+            <img src="{{ asset('img/slider/slider1.png') }}" class="d-block w-100" alt="Slide 2" style="height: 420px; object-fit: cover;">
+            <div class="carousel-caption d-none d-md-block">
+                <h5 class="fw-bold">Escuelas deportivas certificadas</h5>
+                <p>Entrena con los mejores</p>
+            </div>
+        </div>
+
+        <div class="carousel-item">
+            <img src="{{ asset('img/slider/slider2.png') }}" class="d-block w-100" alt="Slide 3" style="height: 420px; object-fit: cover;">
+            <div class="carousel-caption d-none d-md-block">
+                <h5 class="fw-bold">Resultados y rankings actualizados</h5>
+                <p>Todo en un solo lugar</p>
+            </div>
+        </div>
+
+    </div>
+
+    <button class="carousel-control-prev" type="button" data-bs-target="#principalSlider" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+    </button>
+
+    <button class="carousel-control-next" type="button" data-bs-target="#principalSlider" data-bs-slide="next">
+        <span class="carousel-control-next-icon"></span>
+    </button>
+</div>
+
 
     {{-- HERO SECTION --}}
     <section class="container text-center hero-section">
