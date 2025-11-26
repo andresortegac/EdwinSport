@@ -10,6 +10,8 @@
 
     {{-- Tu CSS personalizado --}}
     <link rel="stylesheet" href="{{ asset('/CSS/principal.css') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
 </head>
 
 <body>
@@ -46,9 +48,12 @@
                 </ul>
 
                 {{-- Botón de login --}}
-                <a href="{{ url('login') }}" class="btn btn-login">
-                    Ingresar
-                </a>
+                
+                <button class="btn btn-login d-flex align-items-center gap-2" data-bs-toggle="modal" data-bs-target="#passwordModal">
+                    <i class="bi bi-lock-fill"></i> Ingresar
+                </button>
+
+
             </div>
         </div>
     </nav>
@@ -148,6 +153,35 @@
 
     {{-- Bootstrap JS --}}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- MODAL DE CONTRASEÑA -->
+    <div class="modal fade" id="passwordModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content p-3">
+
+                <div class="modal-header">
+                    <h5 class="modal-title">Ingrese su contraseña</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+
+                <form action="{{ url('login') }}" method="GET"> 
+                    <div class="modal-body">
+                        <label class="form-label">Contraseña</label>
+                        <input type="password" class="form-control" required>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+
+                        <button type="submit" class="btn btn-primary">
+                            Entrar
+                        </button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
 
 </body>
 </html>
