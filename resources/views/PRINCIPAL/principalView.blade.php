@@ -48,9 +48,10 @@
                 </ul>
 
                 {{-- Botón de login --}}
-                <a href="{{ url('login') }}" class="btn btn-login">
-                    Ingresar
-                </a>
+                <button class="btn btn-login d-flex align-items-center gap-2" data-bs-toggle="modal" data-bs-target="#passwordModal">
+                    <i class="bi bi-lock-fill"></i> Ingresar
+                </button>
+
             </div>
         </div>
     </nav>
