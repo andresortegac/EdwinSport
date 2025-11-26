@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 
 class ContactenosController extends Controller
 {
+
+    public function contactenos()
+    {
+        return view('CONTACTENOS.contactenos');
+    }
     /**
      * Display a listing of the resource.
      */
