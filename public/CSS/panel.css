@@ -1,0 +1,36 @@
+.panel-container {
+    display: flex;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 220px;
+    background: #1e293b;
+    padding: 20px;
+    min-height: 100vh;
+    color: white;
+}
+
+.sidebar-menu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.sidebar-menu li {
+    margin-bottom: 20px;
+}
+
+.sidebar-menu a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px;
+    display: block;
+    padding: 10px;
+    border-radius: 6px;
+    transition: 0.2s;
+}
+
+.sidebar-menu a:hover {
+    background: #334155;
+}

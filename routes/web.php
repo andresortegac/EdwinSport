@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\PasswordsController;
 use App\Http\Controllers\PrincipalController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ContactenosController;
@@ -26,6 +26,7 @@ Route::get('/eventos', [EventController::class,'index'])->name('events.index');
 Route::get('/eventos/{event}', [EventController::class,'show'])->name('events.show');
 // filtro por deporte (query param o ruta)
 Route::get('/eventos/deporte/{sport}', [EventController::class,'bySport'])->name('events.bySport');
+Route::post('/password/update', [PasswordsController::class, 'update'])->name('password.update');
 //----------------fin------------)
 
 //----contactenos formularios-------)
@@ -55,3 +56,4 @@ Route::get('/usuario-panel', function () {
     return view('usuario.panel'); // o la vista que tengas
 })->name('usuario.panel');
 //------------------------fin-----------------------------)
+

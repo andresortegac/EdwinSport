@@ -9,6 +9,9 @@
   <!-- Tu CSS personalizado -->
     <link rel="stylesheet" href="{{ asset('/CSS/principal.css') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="{{ asset('CSS/panel.css') }}">    
+    
+
 </head>
 <body>
   @include('partials.navbar')
