@@ -22,16 +22,4 @@ class PrincipalController extends Controller
     {
         return view('PRINCIPAL.about');
     }
-
-public function dashboard()
-{
-    return view('LOGIN.login');
-    
-}
-
-
-
-
-
-
 }

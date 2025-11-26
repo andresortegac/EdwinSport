@@ -68,27 +68,54 @@ body {
 
 }
 /*------------css login--------------------------------*/
-.gradient-custom-2 {
-/* fallback for old browsers */
-background: #fccb90;
-
-/* Chrome 10-25, Safari 5.1-6 */
-background: -webkit-linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593);
-
-/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-background: linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593);
+/* Fondo con degradado */
+body {
+    background: linear-gradient(113deg, rgba(13, 110, 253, 0.25), #eff3ff);      
+    height: 100vh;
 }
 
-@media (min-width: 768px) {
-.gradient-form {
-height: 100vh !important;
+/* Card */
+.login-card {
+    width: 100%;
+    max-width: 420px;
+    border-radius: 15px;
 }
+
+/* Ojito */
+.toggle-password {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-5px);
+    cursor: pointer;
+    font-size: 20px;
+    user-select: none;
 }
-@media (min-width: 769px) {
-.gradient-custom-2 {
-border-top-right-radius: .3rem;
-border-bottom-right-radius: .3rem;
+/*funcion hover*/
+.card-hover {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
 }
+
+.card-hover:hover {
+    transform: translateY(-10px) scale(1.03);
+    box-shadow: 0 15px 25px rgba(0,0,0,0.15);
 }
+
+.custom-card {
+    background: white;
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    transition: transform .3s ease, box-shadow .3s ease;
+}
+
+.custom-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+}
+
+
+
 
 
