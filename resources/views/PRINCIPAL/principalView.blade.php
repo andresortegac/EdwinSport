@@ -41,7 +41,7 @@
                         <a class="nav-link" href="{{ route('events.index') }}">Eventos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Contactanos</a>
+                        <a class="nav-link" href="{{ route('contactenos') }}">Contactanos</a>
                     </li>
                 </ul>
 

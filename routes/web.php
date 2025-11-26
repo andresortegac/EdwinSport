@@ -33,15 +33,15 @@ Route::controller(ContactenosController::class)->group(function(){
 //----------------fin---------------------)
 
 //funcion para mision, vision, valores no tocar)
-Route::get('/about/mision', function () {
-    return view('about.mision');
-})->name('about.mision');
+Route::get('/Hover/mision', function () {
+    return view('Hover.mision');
+})->name('Hover.mision');
 
-Route::get('/about/vision', function () {
-    return view('about.vision');
-})->name('about.vision');
+Route::get('/Hover/vision', function () {
+    return view('Hover.vision');
+})->name('Hover.vision');
 
-Route::get('/about/valores', function () {
-    return view('about.valores');
-})->name('about.valores');
+Route::get('/Hover/valores', function () {
+    return view('Hover.valores');
+})->name('Hover.valores');
 //---------------------fin-----------------------------)
