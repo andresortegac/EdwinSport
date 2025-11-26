@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\PrincipalController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\ContactenosController;
+use App\Http\Controllers\EventController;
 
 
 // Principal y About
