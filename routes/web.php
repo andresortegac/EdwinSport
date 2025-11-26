@@ -27,7 +27,7 @@ Route::get('/eventos/deporte/{sport}', [EventController::class,'bySport'])->name
 
 //----contactenos formularios-------)
 Route::controller(ContactenosController::class)->group(function(){
-    Route::get('contactenos', 'show')->name('contactenos');
+    Route::get('contactenos', 'contactenos')->name('contactenos');
 });
 
 //----------------fin---------------------)
