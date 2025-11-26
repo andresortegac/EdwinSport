@@ -6,7 +6,7 @@ use App\Http\Controllers\PrincipalController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ContactenosController;
 use App\Http\Controllers\EventController;
-
+use App\Http\Controllers\RegisterController;
 
 // Principal y About
 Route::controller(PrincipalController::class)->group(function () {
@@ -14,7 +14,9 @@ Route::controller(PrincipalController::class)->group(function () {
     Route::get('/about', 'about')->name('about');
 });
 
-
+Route::get('/register', function () {
+    return view('REGISTER.register');
+})->name('REGISTER.register');
 
 Route::controller(LoginController::class)->group(function(){
     Route::get('login', 'show')->name('login');
