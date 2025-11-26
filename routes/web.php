@@ -14,6 +14,9 @@ Route::controller(PrincipalController::class)->group(function(){
     Route::get('/about', 'about')->name('about');
 });
 
+Route::controller(LoginController::class)->group(function(){
+    Route::get('login', 'show')->name('login');
+});
 
 Route::get('/eventos', [EventController::class,'index'])->name('events.index');
 Route::get('/eventos/{event}', [EventController::class,'show'])->name('events.show');
