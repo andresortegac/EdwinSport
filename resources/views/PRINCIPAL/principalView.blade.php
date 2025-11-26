@@ -37,10 +37,13 @@
                         <a class="nav-link" href="/">Inicio</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="{{ route('about') }}">Acerca de</a>
+                        <a class="nav-link " href="{{ route('about') }}">Acerca de</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('events.index') }}">Eventos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Convenio</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('contactenos') }}">Contactanos</a>
