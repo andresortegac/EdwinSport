@@ -1,10 +1,33 @@
-@extends('layouts.app')
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valores - Edwin Sport</title>
 
-@section('content')
-<div class="container py-5">
-    <h1 class="fw-bold mb-4">Valores</h1>
-    <p style="font-size: 18px;">
-        3.1 Excelencia en el Producto: Compromiso con la calidad, la durabilidad y la funcionalidad, asegurando que cada artículo cumpla con los más altos estándares de rendimiento.
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('/CSS/principal.css') }}">
+
+    <style>
+        .fade-in {
+            animation: fadeIn 0.8s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+
+<body class="bg-light">
+
+    <div class="container py-5 fade-in">
+
+        <h1 class="fw-bold mb-4">Valores</h1>
+
+        <div class="custom-card p-4">
+            <p class="fs-5 mb-0">
+                3.1 Excelencia en el Producto: Compromiso con la calidad, la durabilidad y la funcionalidad, asegurando que cada artículo cumpla con los más altos estándares de rendimiento.
  3.2 Pasión por el Deporte: Vivir y respirar la cultura deportiva, entendiendo profundamente las necesidades de nuestros clientes y las exigencias de cada disciplina.
  3.3 Innovación Constante: Buscar e integrar proactivamente nuevas tecnologías y materiales para ofrecer soluciones de vanguardia en equipos y vestimenta deportiva.
  3.4 Integridad y Transparencia: Actuar con honestidad en todas las interacciones, desde la calidad de los productos hasta la comunicación con los clientes y socios.
@@ -24,8 +47,11 @@
  3.18 Respeto: Promover el respeto hacia los entrenadores, compañeros, rivales y las reglas del juego.
  3.19 Integridad: Inculcar la honestidad y la ética en la competición y en el comportamiento diario.
  3.20 Desarrollo Integral: Valorar el rendimiento académico, el bienestar mental y la responsabilidad social al mismo nivel que el logro deportivo.
-    </p>
+            </p>
+        </div>
 
-    <a href="{{ route('about') }}" class="btn btn-secondary mt-3">Volver</a>
-</div>
-@endsection
+        <a href="{{ route('about') }}" class="btn btn-secondary mt-4">← Volver</a>
+    </div>
+
+</body>
+</html>
