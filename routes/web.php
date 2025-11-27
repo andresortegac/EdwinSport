@@ -61,7 +61,7 @@ Route::get('/usuario-panel', function () {
 
 //-----------convenio-----------------------------------)
 Route::get('/canchas', [CanchaController::class, 'index'])
-    ->name('canchas.index');
+    ->name('canchas.show');
 
 
 Route::post('/reservas', [ReservaController::class, 'store'])
