@@ -33,7 +33,17 @@ class ContactenosController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'tipo' => 'required',
+            'nombre_completo' => 'required',
+            'documento' => 'required',
+            'correo_electronico' => 'required|email',
+            'categoria' => 'required',
+        ]);
+
+        Contactenos::create($request->all());
+
+        return back()->with('success', 'Formulario enviado correctamente.');
     }
 
     /**

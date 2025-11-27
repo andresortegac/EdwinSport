@@ -21,8 +21,9 @@ body{
 
 /* Wrapper */
 .wrap{
-    width:100%;
-    max-width:900px;
+    width: 100%;
+    max-width: 100%;           /* ? antes estaba limitado, ya no */
+    padding: 0 2%;             /* ? margen lateral suave */
     display:flex;
     flex-direction:column;
     align-items:center;
@@ -41,7 +42,8 @@ body{
 
 /* Card */
 .card{
-    width:100%;
+    width: 95%;               /* ? ocupa el 95% del ancho en cualquier pantalla */
+    max-width: 1200px;        /* ? límite opcional para pantallas gigantes */
     background:#fff;
     border-radius:var(--card-radius);
     padding:32px;
@@ -132,7 +134,7 @@ select:focus{
     transform:translateY(0);
 }
 
-/* FIX general para que TODOS los inputs, selects y textarea queden iguales */
+/* FIX general */
 input,
 select,
 textarea {
@@ -142,7 +144,7 @@ textarea {
     box-sizing: border-box !important;
 }
 
-/* Asegura que el input de correo tenga el mismo estilo */
+/* Input correo */
 #correo_electronico {
     background: var(--muted);
     padding: 12px 14px;
@@ -160,4 +162,8 @@ textarea {
     .field.full{
         grid-column:1;
     }
+}
+
+form {
+    max-width: 500px;
 }
