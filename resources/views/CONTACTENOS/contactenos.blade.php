@@ -16,6 +16,9 @@
 
         <div class="card" role="form" aria-label="Formulario reservar cita">
 
+            <h3 class="section-title">Informacion de contacto</h3>
+
+
             <div class="form-grid">
 
                 <div class="field">
