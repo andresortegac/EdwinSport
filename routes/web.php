@@ -31,9 +31,10 @@ Route::get('/eventos/deporte/{sport}', [EventController::class,'bySport'])->name
 Route::post('/password/update', [PasswordsController::class, 'update'])->name('password.update');
 //----------------fin------------)
 
-//----contactenos formularios-------)
+//----contactenos formularios-------
 Route::controller(ContactenosController::class)->group(function(){
     Route::get('contactenos', 'contactenos')->name('contactenos');
+    Route::post('contactenos/guardar', 'store')->name('contactenos.store');
 });
 
 //----------------fin---------------------)
@@ -60,10 +61,8 @@ Route::get('/usuario-panel', function () {
 //------------------------fin-----------------------------)
 
 //-----------convenio-----------------------------------)
-Route::get('/canchas', [CanchaController::class, 'index'])
-    ->name('canchas.show');
+Route::get('/canchas', [CanchaController::class, 'index'])->name('canchas.index');
 
 
-Route::post('/reservas', [ReservaController::class, 'store'])
-    ->name('reservas.store');
+Route::post('/reservas', [ReservaController::class, 'store'])->name('reservas.store');
 //-------------fin------------------------------)

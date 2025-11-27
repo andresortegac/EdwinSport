@@ -1,118 +1,96 @@
-/* === CONTENEDOR PRINCIPAL === */
+/* CONTENEDOR GENERAL */
 .container {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 25px;
-    background: #ffffff;
+    margin-top: 30px;
 }
 
-/* === TÍTULOS === */
+/* TÍTULOS */
 h1 {
-    font-size: 28px;
-    font-weight: 700;
-    margin-bottom: 10px;
+    font-weight: bold;
+    color: #1a1a1a;
 }
 
 h3 {
-    margin-top: 30px;
-    font-size: 22px;
-    font-weight: 600;
+    margin-top: 25px;
+    font-weight: 700;
+    color: #0d6efd;
 }
 
-/* === TABLAS === */
+/* TABLA DE AGENDA */
 .table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-    font-size: 14px;
-}
-
-.table th, .table td {
-    border: 1px solid #dedede;
-    padding: 10px;
-    text-align: center;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
 }
 
 .table th {
-    background: #2d6cdf;
+    background: #0d6efd;
     color: white;
+    text-align: center;
+    font-size: 15px;
 }
 
-.table tr:nth-child(even) {
-    background: #f6f6f6;
+.table td {
+    text-align: center;
+    vertical-align: middle;
+    background: #f8f9fa;
+    font-size: 14px;
+    position: relative;
 }
 
-/* === BADGE OCUPADA === */
-.badge {
-    padding: 5px 12px;
-    border-radius: 5px;
-    font-size: 12px;
-    display: inline-block;
-}
-
-.bg-danger {
-    background: #d9534f;
-    color: white;
-}
-
-/* === FORMULARIO DE RESERVA (dentro de las celdas) === */
-td form {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-}
-
-td form input[type="text"] {
-    height: 28px;
+/* ESTADO OCUPADA */
+.badge.bg-danger {
+    display: block;
+    padding: 6px 8px;
+    border-radius: 6px;
     font-size: 13px;
-    padding: 5px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
 }
 
-td form button {
-    background: #28a745;
-    border: none;
-    padding: 6px 10px;
-    color: white;
-    font-size: 13px;
-    border-radius: 4px;
+/* CUADROS LIBRES (hover) */
+.table td:not(:has(.badge)):hover {
+    background: #e0f1ff;
     cursor: pointer;
     transition: 0.2s;
 }
 
-td form button:hover {
-    background: #1e7c34;
+/* FORMULARIO DENTRO DE LAS CELDAS */
+.table td form {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
 }
 
-/* === RESPONSIVE (MÓVILES) === */
+.table td .form-control {
+    font-size: 13px;
+    padding: 4px 6px;
+    height: 32px;
+}
+
+.table td button {
+    padding: 4px 6px;
+    font-size: 13px;
+}
+
+/* RESPONSIVE PARA CELULAR */
 @media (max-width: 768px) {
-
-    .container {
-        padding: 10px;
-    }
-
-    .table th, .table td {
-        font-size: 12px;
-        padding: 6px;
-    }
-
-    td form {
-        gap: 3px;
-    }
-
-    td form input[type="text"] {
-        font-size: 11px;
-        height: 24px;
-    }
-
-    td form button {
+    th, td {
         font-size: 11px;
         padding: 4px;
     }
-}
 
-/* === RESALTAR DÍA ACTUAL EN AGENDA === */
-.day-today {
-    background: #fff4d1 !important;
+    .table td form .form-control {
+        height: 28px;
+    }
+
+    .table td button {
+        font-size: 11px;
+        padding: 2px;
+    }
+
+    h1 {
+        font-size: 22px;
+    }
+
+    h3 {
+        font-size: 18px;
+    }
 }

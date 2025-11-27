@@ -16,7 +16,7 @@
                             {{ $cancha->hora_apertura }} - {{ $cancha->hora_cierre }}
                         </p>
 
-                        <a href="{{ route('canchas.show', $cancha) }}" class="btn btn-primary">
+                        <a href="{{ route('canchas.index', $cancha) }}" class="btn btn-primary">
                             Ver Agenda
                         </a>
                     </div>
