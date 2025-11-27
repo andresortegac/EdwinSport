@@ -96,6 +96,59 @@
             <button class="btn" type="button">ENVIAR</button>
         </div>
     </div>
+<script>
+    const telInput = document.getElementById("telefono_natural");
+
+    telInput.addEventListener("input", function (e) {
+        const original = this.value;
+        const soloNumeros = original.replace(/[^0-9+\-() ]/g, ""); // permitir números y símbolos comunes
+
+        if (original !== soloNumeros) {
+            alert("Solo se permiten numeros en ste campo");
+            this.value = soloNumeros; // corrige el valor automáticamente
+        }
+    });
+
+    const telInput2 = document.getElementById("documento");
+
+    telInput2.addEventListener("input", function (e) {
+        const original = this.value;
+        const soloNumeros = original.replace(/[^0-9+\-() ]/g, ""); // permitir números y símbolos comunes
+
+        if (original !== soloNumeros) {
+            alert("Solo se permiten numeros en ste campo");
+            this.value = soloNumeros; // corrige el valor automáticamente
+        }
+    });
+
+    // === VALIDACION DEL CORREO ===
+    const emailInput = document.getElementById("correo_electronico");
+
+    // Permitir solo caracteres válidos de correo al escribir
+    emailInput.addEventListener("input", function () {
+        const original = this.value;
+
+        // Solo permite letras, números, puntos, guion, guion bajo y @
+        const permitido = original.replace(/[^a-zA-Z0-9@._-]/g, "");
+
+        if (original !== permitido) {
+            alert("En el campo Correo solo se permiten caracteres validos de correo.");
+            this.value = permitido;
+        }
+    });
+
+    // Validar formato cuando termine de escribir
+    emailInput.addEventListener("blur", function () {
+        const correo = this.value.trim();
+
+        // Expresión regular para validar formato de correo
+        const regexCorreo = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        if (correo !== "" && !regexCorreo.test(correo)) {
+            alert("El correo ingresado no es valido. Ejemplo: usuario@correo.com");
+        }
+    });
+</script>
 
 </body>
 </html>
