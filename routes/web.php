@@ -64,5 +64,10 @@ Route::get('/usuario-panel', function () {
 Route::get('/canchas', [CanchaController::class, 'index'])->name('canchas.index');
 
 
+Route::get('/canchas/{cancha}', [CanchaController::class, 'show'])->name('canchas.show');
+
+
 Route::post('/reservas', [ReservaController::class, 'store'])->name('reservas.store');
+
+
 //-------------fin------------------------------)
