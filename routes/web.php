@@ -7,6 +7,8 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ContactenosController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\CanchaController;
+use App\Http\Controllers\ReservaController;
 
 // Principal y About
 Route::controller(PrincipalController::class)->group(function () {
@@ -57,3 +59,11 @@ Route::get('/usuario-panel', function () {
 })->name('usuario.panel');
 //------------------------fin-----------------------------)
 
+//-----------convenio-----------------------------------)
+Route::get('/canchas', [CanchaController::class, 'index'])
+    ->name('canchas.index');
+
+
+Route::post('/reservas', [ReservaController::class, 'store'])
+    ->name('reservas.store');
+//-------------fin------------------------------)
