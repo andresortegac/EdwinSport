@@ -18,10 +18,13 @@ Route::controller(PrincipalController::class)->group(function () {
 
 Route::get('/register', function () {
     return view('REGISTER.register');
-})->name('REGISTER.register');
+})->name('register');
+
 
 Route::controller(LoginController::class)->group(function(){
-    Route::get('login', 'show')->name('login');
+    Route::get('/login', 'show')->name('login');        // formulario
+    Route::post('/login', 'login')->name('login.post'); // procesa login
+    Route::post('/logout', 'logout')->name('logout');
 });
 //------------Eventos-------------)
 Route::get('/eventos', [EventController::class,'index'])->name('events.index');
