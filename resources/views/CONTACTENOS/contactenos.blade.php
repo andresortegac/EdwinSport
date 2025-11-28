@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="{{ asset('/CSS/contactenos.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <title>Contactenos</title>
 </head>
@@ -157,6 +158,20 @@
     });
 
 </script>
+
+@if (session('success'))
+<script>
+    Swal.fire({
+        icon: 'success',
+        title: '¡Registro exitoso!',
+        text: "{{ session('success') }}",
+        confirmButtonColor: '#3f61ff',
+        timer: 3000,
+        timerProgressBar: true
+    });
+</script>
+@endif
+
 
 </body>
 </html>
