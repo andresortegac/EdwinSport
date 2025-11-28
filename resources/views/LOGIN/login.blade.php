@@ -83,36 +83,38 @@
           </div>
         @endif
 
-        {{-- CAMPOS SOLO VISUALES --}}
-        <div class="form-group">
-          <label class="font-weight-bold">Usuario</label>
-          <input
-            type="text"
-            name="username"
-            class="form-control"
-            placeholder="Ej: organizador"
-            required
-            autocomplete="off"
-            value="{{ old('username') }}"
-          />
-        </div>
+        {{-- FORM LOGIN REAL --}}
+       <form method="POST" action="{{ route('login.post') }}">
+    @csrf
 
-        <div class="form-group">
-          <label class="font-weight-bold">Contraseña / Código</label>
-          <input
-            type="password"
-            name="password"
-            class="form-control"
-            placeholder="Ingresa tu contraseña"
-            required
-          />
-        </div>
+  <div class="form-group">
+    <label class="font-weight-bold">Correo</label>
+    <input
+      type="email"
+      name="email"
+      class="form-control"
+      placeholder="Ej: developer@eventos.com"
+      required
+      autocomplete="off"
+      value="{{ old('email') }}"
+    />
+  </div>
 
-        {{-- BOTÓN QUE VA A REGISTER.register --}}
-        <a href="{{ route('REGISTER.register') }}" class="btn btn-primary btn-block">
-  Entrar
-</a>
+  <div class="form-group">
+    <label class="font-weight-bold">Contraseña / Código</label>
+    <input
+      type="password"
+      name="password"
+      class="form-control"
+      placeholder="Ingresa tu contraseña"
+      required
+    />
+  </div>
 
+  <button type="submit" class="btn btn-primary btn-block">
+    Entrar
+  </button>
+</form>
 
         <div class="small-note">
           Sistema de eventos deportivos ⚽🏀🏐

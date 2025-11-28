@@ -7,6 +7,7 @@
     "content-hash": "e8f549c6c5a8d83bbfc2392bcb0220e7",
     "packages": [
         {
+<<<<<<< HEAD
             "name": "barryvdh/laravel-dompdf",
             "version": "v3.1.1",
             "source": {
@@ -93,6 +94,17 @@
             },
             "dist": {
                 "type": "zip",
+=======
+            "name": "brick/math",
+            "version": "0.14.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/brick/math.git",
+                "reference": "f05858549e5f9d7bb45875a75583240a38a281d0"
+            },
+            "dist": {
+                "type": "zip",
+>>>>>>> 8621feb0b27f44d57ed526e91cca90b70a6e3b60
                 "url": "https://api.github.com/repos/brick/math/zipball/f05858549e5f9d7bb45875a75583240a38a281d0",
                 "reference": "f05858549e5f9d7bb45875a75583240a38a281d0",
                 "shasum": ""
@@ -3085,6 +3097,7 @@
                 }
             ],
             "time": "2025-11-20T02:34:59+00:00"
+<<<<<<< HEAD
         },
         {
             "name": "phpoffice/phpspreadsheet",
@@ -3191,6 +3204,8 @@
                 "source": "https://github.com/PHPOffice/PhpSpreadsheet/tree/5.3.0"
             },
             "time": "2025-11-24T15:47:10+00:00"
+=======
+>>>>>>> 8621feb0b27f44d57ed526e91cca90b70a6e3b60
         },
         {
             "name": "phpoption/phpoption",

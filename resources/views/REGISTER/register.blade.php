@@ -165,7 +165,8 @@
 
             <hr class="my-4">
 
-            <button class="btn btn-danger w-100">
+            <!-- ✅ BOTÓN YA FUNCIONAL -->
+            <button id="btnLogout" class="btn btn-danger w-100">
               Cerrar sesión
             </button>
 
@@ -181,5 +182,24 @@
 
   <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- ✅ Script Logout -->
+  <script>
+    const btnLogout = document.getElementById("btnLogout");
+
+    btnLogout.addEventListener("click", () => {
+      const ok = confirm("¿Seguro que quieres cerrar sesión?");
+      if (!ok) return;
+
+      // Limpia la sesión (ajusta a lo que uses)
+      localStorage.removeItem("usuario");
+      localStorage.removeItem("token");
+      sessionStorage.clear();
+
+      // Redirige al login
+      window.location.href = "login";
+    });
+  </script>
+
 </body>
 </html>

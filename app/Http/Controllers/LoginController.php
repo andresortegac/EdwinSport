@@ -11,10 +11,11 @@ class LoginController extends Controller
     public function show()
     {
         if (Auth::check()) {
-            return redirect()->route('dashboard');
+            return view('LOGIN.login');
+            // si no tienes dashboard: return redirect()->route('principal');
         }
 
-        return view('LOGIN.login');
+         // tu vista actual    
     }
 
     // Procesa el login con usuarios en BD
@@ -22,28 +23,29 @@ class LoginController extends Controller
     {
         $request->validate(
             [
-                'username' => 'required|email',
-                'password' => 'required'
+                'email' => ['required', 'string', 'max:50'],
+                'password' => ['required', 'string', 'min:6', 'max:64'],
             ],
             [
-                'username.required' => 'El usuario es obligatorio.',
-                'username.email' => 'Debe ser un correo válido.',
+                'email.required' => 'El usuario es obligatorio.',
+                'email.string'   => 'El usuario no es válido.',
+                'email.max'      => 'El usuario no debe superar 50 caracteres.',
+
                 'password.required' => 'La contraseña es obligatoria.',
+                'password.min'      => 'La contraseña debe tener mínimo 6 caracteres.',
+                'password.max'      => 'La contraseña no debe superar 64 caracteres.',
             ]
         );
 
         $credentials = [
-            'email' => $request->username,
+            'email' => $request->email,
             'password' => $request->password
         ];
 
-        if (Auth::attempt($credentials)) {
-            $request->session()->regenerate();
-            return redirect()->route('register');
-        }
+       return redirect()->route('register');
 
         return back()->withErrors([
-            'username' => 'Usuario o contraseña incorrectos.'
+            'email' => 'Usuario o contraseña incorrectos.'
         ])->withInput();
     }
 
@@ -54,6 +56,6 @@ class LoginController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect()->route('register');
+        return redirect()->route('login');
     }
 }
