@@ -12,6 +12,8 @@
     <link rel="stylesheet" href="{{ asset('CSS/panel.css') }}">  
     <link rel="stylesheet" href="{{ asset('CSS/canchas.css') }}"> 
     <link rel="stylesheet" href="{{ asset('CSS/tournament.css') }}">
+    <link rel="stylesheet" href="{{ asset('CSS/password.css') }}">
+   <link rel="stylesheet" href="{{ asset('CSS/agenda.css') }}">
   
     
 

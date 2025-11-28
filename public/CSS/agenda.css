@@ -1,0 +1,107 @@
+/* ===== CONTENEDOR ===== */
+.calendar-container {
+    width: 100%;
+    overflow-x: auto;
+    margin-top: 25px;
+}
+
+/* ===== TABLA ===== */
+.calendar-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #ffffff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0,0,0,0.08);
+}
+
+/* ===== HEADER ===== */
+.calendar-table thead th {
+    background: #0984e3;
+    color: #fff;
+    padding: 14px;
+    text-align: center;
+    font-size: 15px;
+    font-weight: bold;
+    border-right: 1px solid rgba(255,255,255,0.2);
+}
+
+.calendar-table thead th:first-child {
+    background: #065a9d;
+}
+
+/* ===== CELDAS ===== */
+.calendar-table td {
+    border: 1px solid #e0e0e0;
+    padding: 8px;
+    vertical-align: middle;
+    min-width: 130px;
+}
+
+/* ===== HORAS ===== */
+.hour-cell {
+    background: #f1f2f6;
+    font-weight: bold;
+    text-align: center;
+    color: #2d3436;
+}
+
+/* ===== CELDA OCUPADA ===== */
+.cell-ocupada {
+    background: #ff7675;
+    color: white;
+    padding: 6px;
+    text-align: center;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+/* ===== FORMULARIO DE RESERVA ===== */
+.reserva-form {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.reserva-form input {
+    font-size: 13px;
+    padding: 6px;
+    border: 1px solid #dcdde1;
+    border-radius: 6px;
+}
+
+.reserva-form input:focus {
+    border-color: #0984e3;
+    outline: none;
+}
+
+/* ===== BOTÓN RESERVAR ===== */
+.btn-reservar {
+    background: #00b894;
+    color: white;
+    border: none;
+    padding: 6px 0;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: 0.2s;
+    width: 100%;
+}
+
+.btn-reservar:hover {
+    background: #009f7a;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+    .calendar-table thead th,
+    .calendar-table td {
+        font-size: 12px;
+        min-width: 100px;
+    }
+
+    .reserva-form input {
+        font-size: 12px;
+    }
+}

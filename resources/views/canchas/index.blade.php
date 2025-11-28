@@ -17,10 +17,17 @@
                         </p>
 
                         <a href="{{ route('canchas.show', $cancha->id) }}" class="btn btn-primary">Ver Agenda</a>
+                        <form action="{{ route('canchas.destroy', $cancha->id) }}" method="POST" onsubmit="return confirm('¿Seguro que deseas eliminar esta cancha?')">
+                            @csrf
+                            @method('DELETE')
+                            <button class="btn btn-danger mt-2">Eliminar</button>
+                        </form>
+
                     </div>
                 </div>
             </div>
         @endforeach
+        
     </div>
 
     <br>
@@ -29,6 +36,8 @@
     <a href="{{ route('canchas.create') }}" class="btn btn-success">
         Agregar Cancha
     </a>
+    
+    
 
 </div>
 @endsection

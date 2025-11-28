@@ -76,10 +76,15 @@ Route::get('/canchas/{cancha}', [CanchaController::class, 'show'])->name('cancha
 Route::post('/reservas', [ReservaController::class, 'store'])->name('reservas.store');
 
 // Mostrar formulario
-Route::get('/canchas/nueva', [NuevaCanchaController::class, 'create'])->name('canchas.create');
+Route::get('/crear/nueva', [NuevaCanchaController::class, 'create'])->name('canchas.create');
 
 // Guardar formulario
 Route::post('/canchas/nueva', [NuevaCanchaController::class, 'store'])->name('canchas.store');
+
+
+//Eliminar Cancha
+Route::delete('/canchas/{cancha}', [CanchaController::class, 'destroy'])->name('canchas.destroy');
+
 
 //-------------fin------------------------------)
 
