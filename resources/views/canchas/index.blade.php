@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    <h1>Canchas Disponibles</h1>
+    <h1>Canchas Asociadas </h1>
 
     <div class="row">
         @foreach ($canchas as $cancha)
@@ -17,11 +17,18 @@
                         </p>
 
                         <a href="{{ route('canchas.show', $cancha->id) }}" class="btn btn-primary">Ver Agenda</a>
-
                     </div>
                 </div>
             </div>
         @endforeach
     </div>
+
+    <br>
+
+    {{-- BOTÓN PARA CREAR CANCHA NUEVA --}}
+    <a href="{{ route('canchas.create') }}" class="btn btn-success">
+        Agregar Cancha
+    </a>
+
 </div>
 @endsection

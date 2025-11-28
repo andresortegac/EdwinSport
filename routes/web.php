@@ -9,6 +9,9 @@ use App\Http\Controllers\EventController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\CanchaController;
 use App\Http\Controllers\ReservaController;
+use App\Http\Controllers\TournamentController;
+use App\Http\Controllers\TeamsController;
+use App\Http\Controllers\NuevaCanchaController;
 
 // Principal y About
 Route::controller(PrincipalController::class)->group(function () {
@@ -18,10 +21,13 @@ Route::controller(PrincipalController::class)->group(function () {
 
 Route::get('/register', function () {
     return view('REGISTER.register');
-})->name('REGISTER.register');
+})->name('register');
+
 
 Route::controller(LoginController::class)->group(function(){
-    Route::get('login', 'show')->name('login');
+    Route::get('/login', 'show')->name('login');        // formulario
+    Route::post('/login', 'login')->name('login.post'); // procesa login
+    Route::post('/logout', 'logout')->name('logout');
 });
 //------------Eventos-------------)
 Route::get('/eventos', [EventController::class,'index'])->name('events.index');
@@ -69,5 +75,31 @@ Route::get('/canchas/{cancha}', [CanchaController::class, 'show'])->name('cancha
 
 Route::post('/reservas', [ReservaController::class, 'store'])->name('reservas.store');
 
+// Mostrar formulario
+Route::get('/canchas/nueva', [NuevaCanchaController::class, 'create'])->name('canchas.create');
+
+// Guardar formulario
+Route::post('/canchas/nueva', [NuevaCanchaController::class, 'store'])->name('canchas.store');
 
 //-------------fin------------------------------)
+
+//-----------sorteo-------------------------------)
+Route::get('/torneo', [TournamentController::class, 'showForm'])
+    ->name('tournament.form');
+
+Route::post('/torneo/generar', [TournamentController::class, 'generate'])
+    ->name('tournament.generate');
+
+Route::post('/torneo/pdf', [TournamentController::class, 'exportPdf'])->name('tournament.pdf');
+
+Route::get('/torneo/grupo/{id}/tabla', [TournamentController::class,'groupStandings'])->name('tournament.standings');
+
+Route::get('/equipos/import', [TeamsController::class, 'importForm'])->name('equipos.import');
+
+Route::post('/equipos/import', [TeamsController::class, 'import'])->name('equipos.import.process');
+
+Route::post('/torneo/pdf', [TournamentController::class, 'exportPdf'])
+    ->name('tournament.pdf');
+
+
+//----------------fin---------------------)

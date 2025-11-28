@@ -1,0 +1,70 @@
+/* Fondo general */
+body {
+    background: linear-gradient(135deg, #dfe9f3 0%, #ffffff 100%);
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Contenedor de cada grupo */
+.tarjeta-grupo {
+    background: #ffffffaa;
+    backdrop-filter: blur(10px);
+    padding: 30px;
+    border-radius: 18px;
+    margin-bottom: 40px;
+    box-shadow: 0 6px 25px rgba(0,0,0,0.12);
+}
+
+/* Título del grupo */
+.titulo-grupo {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    text-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* Tarjetas de cada equipo */
+.tarjeta-equipo {
+    padding: 14px 18px;
+    margin-bottom: 12px;
+    border-radius: 14px;
+    color: #fff;
+    font-weight: 600;
+    font-size: 17px;
+    text-transform: capitalize;
+
+    /* Degradado moderno */
+    background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+
+    /* borde */
+    border: 3px solid transparent;
+    background-clip: padding-box, border-box;
+    background-origin: padding-box, border-box;
+
+    /* sombra */
+    box-shadow: 0 4px 18px rgba(0,0,0,0.15);
+    transition: 0.3s ease;
+}
+
+/* Hover elegante */
+.tarjeta-equipo:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.25);
+    cursor: pointer;
+}
+
+/* Bordes con colores según el grupo */
+.borde-rojo {
+    border-color: #ff4d4d !important;
+}
+
+.borde-verde {
+    border-color: #37c77f !important;
+}
+
+.borde-azul {
+    border-color: #00aaff !important;
+}
+
+.borde-amarillo {
+    border-color: #ffcc00 !important;
+}

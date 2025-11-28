@@ -31,4 +31,8 @@ class CanchaController extends Controller
 
         return view('canchas.show', compact('cancha', 'reservas', 'startOfWeek'));
     }
+
+    
+
 }
+
