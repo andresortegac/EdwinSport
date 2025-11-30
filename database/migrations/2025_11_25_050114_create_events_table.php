@@ -18,7 +18,7 @@ class CreateEventsTable extends Migration
             $table->timestamp('start_at')->nullable();
             $table->timestamp('end_at')->nullable();
             $table->string('image')->nullable();
-            $table->enum('status', ['pending','published','rejected'])->default('pending');
+            $table->enum('status', ['activo','inactivo','cerrado'])->default('activo');
             $table->timestamps();
         });
     }
