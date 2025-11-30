@@ -35,7 +35,7 @@ class EventController extends Controller
 
     public function store(Request $request)
     {
-        // Validación
+        // Validaciï¿½n
         $request->validate([
             'title' => 'required|string|max:255',
             'slug' => 'required|string|max:255|unique:events,slug',
@@ -70,6 +70,9 @@ class EventController extends Controller
         return redirect()->back()->with('success', 'El evento fue creado correctamente.');
     }
 
+    
+
 
 
 }
+

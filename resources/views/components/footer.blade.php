@@ -17,10 +17,10 @@
             <div class="col-md-4 mb-3">
                 <h5 class="text-uppercase">Síguenos</h5>
                 <div class="d-flex gap-3">
-                    <a href="#" class="text-white fs-4"><i class="fab fa-facebook"></i></a>
-                    <a href="#" class="text-white fs-4"><i class="fab fa-twitter"></i></a>
-                    <a href="#" class="text-white fs-4"><i class="fab fa-instagram"></i></a>
-                    <a href="#" class="text-white fs-4"><i class="fab fa-youtube"></i></a>
+                    <a href="https://www.facebook.com/" class="text-white fs-4"><i class="fab fa-facebook"></i></a>
+                    <a href="https://x.com/iniciarsesion?lang=es" class="text-white fs-4"><i class="fab fa-twitter"></i></a>
+                    <a href="https://www.instagram.com/" class="text-white fs-4"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.youtube.com/" class="text-white fs-4"><i class="fab fa-youtube"></i></a>
                 </div>
             </div>
 
