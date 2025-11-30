@@ -1,0 +1,107 @@
+/* ==== CONTENEDOR GENERAL ==== */
+.bracket-container {
+    max-width: 900px;
+    margin: auto;
+    padding: 30px;
+    background: #f5f8ff;
+    border-radius: 15px;
+}
+
+/* ==== TÍTULO PRINCIPAL ==== */
+.title-main {
+    text-align: center;
+    font-weight: 800;
+    font-size: 40px;
+    margin-bottom: 50px;
+    color: #1b1f3b;
+}
+
+/* ==== BLOQUES DE RONDAS ==== */
+.round-block {
+    margin-bottom: 60px;
+}
+
+.round-title {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.round-title.quarter { color: #2463eb; }
+.round-title.semi    { color: #0ea5e9; }
+.round-title.final   { color: #d97706; }
+
+/* ==== TARJETAS DE PARTIDOS ==== */
+.matches {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.match-card {
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    transition: transform .2s;
+}
+
+.match-card:hover {
+    transform: scale(1.03);
+}
+
+.match-number {
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: #334155;
+}
+
+.team-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 20px;
+}
+
+.team-name {
+    font-weight: 600;
+}
+
+.vs {
+    font-weight: 900;
+    color: #ef4444;
+    font-size: 22px;
+}
+
+/* ==== PLACEHOLDER PARA SEMIS / FINAL ==== */
+.placeholder {
+    background: #e2e8f0;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    color: #475569;
+}
+
+/* ==== CAMPEÓN ==== */
+.champion-block {
+    margin-top: 80px;
+    text-align: center;
+}
+
+.champion-title {
+    font-size: 32px;
+    font-weight: 800;
+    color: #10b981;
+}
+
+.champion-name {
+    margin-top: 10px;
+    font-size: 28px;
+    font-weight: 700;
+    color: #0f172a;
+    background: white;
+    padding: 15px 40px;
+    border-radius: 12px;
+    display: inline-block;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}

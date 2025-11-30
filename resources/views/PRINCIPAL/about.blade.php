@@ -109,13 +109,10 @@
         </div>
     </section>
 
-    {{-- FOOTER --}}
-    <footer class="text-center py-4 text-secondary">
-        © 2025 SportFlow — Todos los derechos reservados
-    </footer>
+   
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    @yield('content')
 
+    @include('components.footer')
 </body>
 </html>

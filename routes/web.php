@@ -9,12 +9,23 @@ use App\Http\Controllers\EventController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\CanchaController;
 use App\Http\Controllers\ReservaController;
+use App\Http\Controllers\TournamentController;
+use App\Http\Controllers\TeamsController;
+use App\Http\Controllers\NuevaCanchaController;
+use App\Http\Controllers\GrupoController;
+use App\Http\Controllers\AdminUserController;
+use App\Http\Controllers\ParticipanteController;
+
+
 
 // Principal y About
 Route::controller(PrincipalController::class)->group(function () {
     Route::get('/', 'index')->name('principal');
     Route::get('/about', 'about')->name('about');
+    // Alias opcional
+    Route::get('/panel-principal', 'index')->name('panel_principal');
 });
+
 
 Route::get('/register', function () {
     return view('REGISTER.register');
@@ -32,6 +43,11 @@ Route::get('/eventos/{event}', [EventController::class,'show'])->name('events.sh
 // filtro por deporte (query param o ruta)
 Route::get('/eventos/deporte/{sport}', [EventController::class,'bySport'])->name('events.bySport');
 Route::post('/password/update', [PasswordsController::class, 'update'])->name('password.update');
+
+Route::controller(EventController::class)->group(function(){
+    Route::get('crear-evento', 'create')->name('crear-evento.create');
+    Route::post('crear-evento/guardar', 'store')->name('crear-evento.store');
+});
 //----------------fin------------)
 
 //----contactenos formularios-------
@@ -72,5 +88,85 @@ Route::get('/canchas/{cancha}', [CanchaController::class, 'show'])->name('cancha
 
 Route::post('/reservas', [ReservaController::class, 'store'])->name('reservas.store');
 
+// Mostrar formulario
+Route::get('/crear/nueva', [NuevaCanchaController::class, 'create'])->name('canchas.create');
+
+// Guardar formulario
+Route::post('/canchas/nueva', [NuevaCanchaController::class, 'store'])->name('canchas.store');
+
+
+//Eliminar Cancha
+Route::delete('/canchas/{cancha}', [CanchaController::class, 'destroy'])->name('canchas.destroy');
+
+Route::delete('/reservas/{reserva}', [ReservaController::class, 'destroy'])
+    ->name('reservas.destroy');
+
+
 
 //-------------fin------------------------------)
+
+//-----------sorteo-------------------------------)
+Route::get('/torneo', [TournamentController::class, 'showForm'])
+    ->name('tournament.form');
+
+Route::post('/torneo/generar', [TournamentController::class, 'generate'])
+    ->name('tournament.generate');
+
+Route::post('/torneo/pdf', [TournamentController::class, 'exportPdf'])->name('tournament.pdf');
+
+Route::get('/torneo/grupo/{id}/tabla', [TournamentController::class,'groupStandings'])->name('tournament.standings');
+
+Route::get('/equipos/import', [TeamsController::class, 'importForm'])->name('equipos.import');
+
+Route::post('/equipos/import', [TeamsController::class, 'import'])->name('equipos.import.process');
+
+Route::post('/torneo/pdf', [TournamentController::class, 'exportPdf'])
+    ->name('tournament.pdf');
+
+Route::post('/sorteo/guardar', [GrupoController::class, 'store'])->name('torneo.guardar');
+
+Route::get('/sorteo/ver', [GrupoController::class, 'index'])->name('torneo.ver');
+
+Route::get('/distribusion/bracket', [TournamentController::class, 'bracket'])
+    ->name('torneo.bracket');
+
+//----------------fin---------------------)
+
+// =======================
+// PARTICIPANTES
+// =======================
+
+// ✅ LISTAR participantes: cualquier usuario logueado
+Route::get('/participantes', [ParticipanteController::class, 'index'])
+    ->middleware('auth')
+    ->name('participantes.index');
+
+// ✅ CREAR + GUARDAR participantes: cualquier usuario logueado
+Route::get('/participantes/crear', [ParticipanteController::class, 'create'])
+    ->middleware('auth')
+    ->name('participantes.create');
+
+Route::post('/participantes', [ParticipanteController::class, 'store'])
+    ->middleware('auth')
+    ->name('participantes.store');
+
+// 🔒 EDITAR / ACTUALIZAR / ELIMINAR: solo admin
+Route::middleware(['auth', 'admin'])->group(function () {
+
+    Route::get('/participantes/{participante}/editar', [ParticipanteController::class, 'edit'])
+        ->name('participantes.edit');
+
+    Route::put('/participantes/{participante}', [ParticipanteController::class, 'update'])
+        ->name('participantes.update');
+
+    Route::delete('/participantes/{participante}', [ParticipanteController::class, 'destroy'])
+        ->name('participantes.destroy');
+});
+
+
+// =======================
+// PASSWORD UPDATE
+// =======================
+Route::post('/password/update', [PasswordsController::class, 'update'])
+    ->middleware('auth')
+    ->name('password.update');

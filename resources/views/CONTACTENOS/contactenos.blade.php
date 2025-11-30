@@ -7,13 +7,69 @@
     <link rel="stylesheet" href="{{ asset('/CSS/contactenos.css') }}">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+        {{-- Bootstrap 5 --}}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    {{-- Tu CSS personalizado --}}
+    <link rel="stylesheet" href="{{ asset('/CSS/principal.css') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
+
     <title>Contactenos</title>
+
+    
 </head>
 
 <body>
 
+    {{-- NAVBAR --}}
+    <nav class="navbar navbar-expand-lg bg-white shadow-sm py-3 px-4">
+        <div class="container-fluid">
+            <div class="logo">
+                 <img src="{{ asset('img/logo.png') }}" alt="Logo" width="90" height="60" class="me-2" >
+            </div>
+            <a class="navbar-brand brand fs-3" href="#">Edwin Sport</a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+                aria-label="Toggle navigation">
+
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto gap-3 fs-5">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " href="{{ route('about') }}">Acerca de</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('events.index') }}">Eventos</a>
+                    </li>
+                   <li class="nav-item">
+                        <a class="nav-link" href="{{ route('canchas.index') }}">Convenio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('contactenos') }}">Contactanos</a>
+                    </li>
+                </ul>
+
+                {{-- BotÃ³n de login --}}
+                <button class="btn btn-login d-flex align-items-center gap-2" data-bs-toggle="modal" data-bs-target="#passwordModal">
+                    <i class="bi bi-lock-fill"></i> Ingresar
+                </button>
+
+            </div>
+        </div>
+    </nav>
+
+    <!-- =========================================== -->
     <div class="wrap">
         <h1 class="hero-title">CONTACTENOS</h1>
+
+        <br>
 
         {{-- FORMULARIO FUNCIONAL --}}
         <form action="{{ route('contactenos.store') }}" method="POST">
@@ -113,6 +169,8 @@
 
             </div>
         </form>
+        <br>
+        <br>
     </div>
 
 <script>
@@ -144,7 +202,7 @@
         const original = this.value;
         const permitido = original.replace(/[^a-zA-Z0-9@._-]/g, "");
         if (original !== permitido) {
-            alert("En el campo Correo solo se permiten caracteres válidos.");
+            alert("En el campo Correo solo se permiten caracteres vï¿½lidos.");
             this.value = permitido;
         }
     });
@@ -153,7 +211,7 @@
         const correo = this.value.trim();
         const regexCorreo = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (correo !== "" && !regexCorreo.test(correo)) {
-            alert("El correo ingresado no es válido. Ejemplo: usuario@correo.com");
+            alert("El correo ingresado no es vï¿½lido. Ejemplo: usuario@correo.com");
         }
     });
 
@@ -163,7 +221,7 @@
 <script>
     Swal.fire({
         icon: 'success',
-        title: '¡Registro exitoso!',
+        title: 'ï¿½Registro exitoso!',
         text: "{{ session('success') }}",
         confirmButtonColor: '#3f61ff',
         timer: 3000,
@@ -172,6 +230,8 @@
 </script>
 @endif
 
+   @yield('content')
 
+    @include('components.footer')
 </body>
 </html>

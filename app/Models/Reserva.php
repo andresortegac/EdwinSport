@@ -18,4 +18,11 @@ class Reserva extends Model
     public function cancha() {
         return $this->belongsTo(Cancha::class);
     }
+        public function subcancha()
+    {
+        return $this->belongsTo(Subcancha::class);
+    }
+
+    
+
 }

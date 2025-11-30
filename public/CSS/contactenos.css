@@ -13,22 +13,19 @@ body{
     background: var(--blue);
     color:#222;
     min-height:100vh;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    padding:40px 20px;
+    padding:0;
 }
 
 /* Wrapper */
-.wrap{
-    width: 100%;
-    max-width: 100%;           /* ? antes estaba limitado, ya no */
-    padding: 0 2%;             /* ? margen lateral suave */
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    gap:18px;
+
+
+.wrap {
+    padding-top: 60px; /* para separarlo del navbar */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
+
 
 .hero-title{
     color:#fff;
@@ -109,7 +106,7 @@ select:focus{
 }
 
 /* Botón */
-.btn{
+form .btn{
     margin-top:10px;
     width:100%;
     padding:12px 16px;
@@ -167,4 +164,39 @@ textarea {
 form {
     width: 75%;
     margin: 0 auto;
+}
+
+/* ======== NAVBAR ======== */
+.navbar {
+    width: 100%;
+    background: white;
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+    position: relative;
+    z-index: 10;
+}
+
+.navbar-menu {
+    display: flex;
+    gap: 25px;
+    font-size: 17px;
+    align-items: center;
+}
+
+/* botón del navbar - NO debe ser 100% */
+.navbar .btn-nav {
+    background: #00a88f;
+    color: white;
+    padding: 10px 22px;
+    border-radius: 12px;
+    border: none;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    width: auto !important;      /* <--- CORRECCIÓN */
 }
