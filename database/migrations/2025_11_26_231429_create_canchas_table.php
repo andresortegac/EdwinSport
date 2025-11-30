@@ -10,6 +10,7 @@ return new class extends Migration {
             $table->id();
             $table->string('nombre');
             $table->text('descripcion')->nullable();
+            $table->integer('num_canchas')->nullable();
             $table->string('ubicacion')->nullable();
             $table->string('telefono_contacto')->nullable();
             $table->time('hora_apertura')->default('07:00:00');
