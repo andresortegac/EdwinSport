@@ -29,4 +29,7 @@
     {{ $events->withQueryString()->links() }}
   </div>
 </div>
+   @yield('content')
+
+    @include('components.footer')
 @endsection

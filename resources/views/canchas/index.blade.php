@@ -40,4 +40,12 @@
     
 
 </div>
+@yield('content')
+
+    @include('components.footer')
+
 @endsection
+
+
+    
+

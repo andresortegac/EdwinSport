@@ -11,6 +11,7 @@
     {{-- Tu CSS personalizado --}}
     <link rel="stylesheet" href="{{ asset('/CSS/principal.css') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
 </head>
 
@@ -147,19 +148,16 @@
         </div>
     </section>
 
-    {{-- FOOTER --}}
-    <footer class="text-center py-10 text-gray-600">
-        © 2025 SportFlow — Todos los derechos reservados
-    </footer>
 
-    {{-- Bootstrap JS --}}
-    
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     @include('modal/password-modal')
     <link rel="stylesheet" href="{{ asset('CSS/password-modal.css') }}">
     <script src="{{ asset('js/password-modal.js') }}"></script>
 
 
+   @yield('content')
 
+    @include('components.footer')
 </body>
 </html>

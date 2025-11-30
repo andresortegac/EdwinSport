@@ -202,7 +202,7 @@
         const original = this.value;
         const permitido = original.replace(/[^a-zA-Z0-9@._-]/g, "");
         if (original !== permitido) {
-            alert("En el campo Correo solo se permiten caracteres válidos.");
+            alert("En el campo Correo solo se permiten caracteres vï¿½lidos.");
             this.value = permitido;
         }
     });
@@ -211,7 +211,7 @@
         const correo = this.value.trim();
         const regexCorreo = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (correo !== "" && !regexCorreo.test(correo)) {
-            alert("El correo ingresado no es válido. Ejemplo: usuario@correo.com");
+            alert("El correo ingresado no es vï¿½lido. Ejemplo: usuario@correo.com");
         }
     });
 
@@ -221,7 +221,7 @@
 <script>
     Swal.fire({
         icon: 'success',
-        title: '¡Registro exitoso!',
+        title: 'ï¿½Registro exitoso!',
         text: "{{ session('success') }}",
         confirmButtonColor: '#3f61ff',
         timer: 3000,
@@ -230,6 +230,8 @@
 </script>
 @endif
 
+   @yield('content')
 
+    @include('components.footer')
 </body>
 </html>
