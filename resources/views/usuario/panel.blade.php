@@ -173,6 +173,12 @@
       font-weight:800;
     }
 
+    /* iconos topbar opcional */
+    .topbar .nav-link i{
+      color: var(--text) !important;
+      font-size: 1.05rem;
+    }
+
     /* ================= CONTENIDO ================= */
     #content-wrapper{ background: transparent !important; }
     .container-fluid{
@@ -328,7 +334,92 @@
           </div>
         </form>
 
+        <!-- ✅ AQUÍ ESTÁN LAS CAMPANITAS Y MENSAJES -->
         <ul class="navbar-nav ml-auto">
+
+          <!-- 🔔 Notificaciones -->
+          <li class="nav-item dropdown no-arrow mx-1">
+            <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown"
+               role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="fas fa-bell fa-fw"></i>
+              <span class="badge badge-danger badge-counter">
+                {{ $notificacionesCount ?? 0 }}
+              </span>
+            </a>
+
+            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                 aria-labelledby="alertsDropdown">
+              <h6 class="dropdown-header">Notificaciones</h6>
+
+              @forelse($notificaciones ?? [] as $n)
+                <a class="dropdown-item d-flex align-items-center" href="{{ $n['url'] ?? '#' }}">
+                  <div class="mr-3">
+                    <div class="icon-circle bg-primary">
+                      <i class="{{ $n['icon'] ?? 'fas fa-info text-white' }}"></i>
+                    </div>
+                  </div>
+                  <div>
+                    <div class="small text-gray-500">{{ $n['fecha'] ?? '' }}</div>
+                    <span class="font-weight-bold">{{ $n['texto'] ?? 'Notificación nueva' }}</span>
+                  </div>
+                </a>
+              @empty
+                <div class="dropdown-item text-center small text-gray-500 py-3">
+                  No tienes notificaciones
+                </div>
+              @endforelse
+
+              <a class="dropdown-item text-center small text-gray-500" href="#">
+                Ver todas
+              </a>
+            </div>
+          </li>
+
+          <!-- 💬 Mensajes -->
+          <li class="nav-item dropdown no-arrow mx-1">
+            <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown"
+               role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="fas fa-envelope fa-fw"></i>
+              <span class="badge badge-danger badge-counter">
+                {{ $mensajesCount ?? 0 }}
+              </span>
+            </a>
+
+            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                 aria-labelledby="messagesDropdown">
+              <h6 class="dropdown-header">Mensajes</h6>
+
+              @forelse($mensajes ?? [] as $m)
+                <a class="dropdown-item d-flex align-items-center" href="{{ $m['url'] ?? '#' }}">
+                  <div class="dropdown-list-image mr-3">
+                    <img class="rounded-circle"
+                         src="{{ $m['avatar'] ?? asset('img/undraw_profile.svg') }}"
+                         style="width:40px;height:40px;object-fit:cover;">
+                    <div class="status-indicator bg-success"></div>
+                  </div>
+                  <div class="font-weight-bold">
+                    <div class="text-truncate">{{ $m['texto'] ?? 'Mensaje nuevo' }}</div>
+                    <div class="small text-gray-500">
+                      {{ $m['nombre'] ?? 'Usuario' }} · {{ $m['fecha'] ?? '' }}
+                    </div>
+                  </div>
+                </a>
+              @empty
+                <div class="dropdown-item text-center small text-gray-500 py-3">
+                  No tienes mensajes
+                </div>
+              @endforelse
+
+              <a class="dropdown-item text-center small text-gray-500" href="#">
+                Ver todos
+              </a>
+            </div>
+          </li>
+
+          <!-- divisor opcional -->
+          <div class="topbar-divider d-none d-sm-block"></div>
+
+          <!-- 👤 Usuario (tu bloque original) -->
           <li class="nav-item dropdown no-arrow">
             <a class="nav-link dropdown-toggle d-flex align-items-center gap-2 px-2" href="#"
                id="userDropdown" role="button" data-toggle="dropdown">
@@ -348,6 +439,7 @@
               </a>
             </div>
           </li>
+
         </ul>
       </nav>
 
