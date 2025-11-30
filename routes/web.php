@@ -13,13 +13,19 @@ use App\Http\Controllers\TournamentController;
 use App\Http\Controllers\TeamsController;
 use App\Http\Controllers\NuevaCanchaController;
 use App\Http\Controllers\GrupoController;
+use App\Http\Controllers\AdminUserController;
+use App\Http\Controllers\ParticipanteController;
+
 
 
 // Principal y About
 Route::controller(PrincipalController::class)->group(function () {
     Route::get('/', 'index')->name('principal');
     Route::get('/about', 'about')->name('about');
+    // Alias opcional
+    Route::get('/panel-principal', 'index')->name('panel_principal');
 });
+
 
 Route::get('/register', function () {
     return view('REGISTER.register');
@@ -126,3 +132,41 @@ Route::get('/distribusion/bracket', [TournamentController::class, 'bracket'])
 
 //----------------fin---------------------)
 
+// =======================
+// PARTICIPANTES
+// =======================
+
+// ✅ LISTAR participantes: cualquier usuario logueado
+Route::get('/participantes', [ParticipanteController::class, 'index'])
+    ->middleware('auth')
+    ->name('participantes.index');
+
+// ✅ CREAR + GUARDAR participantes: cualquier usuario logueado
+Route::get('/participantes/crear', [ParticipanteController::class, 'create'])
+    ->middleware('auth')
+    ->name('participantes.create');
+
+Route::post('/participantes', [ParticipanteController::class, 'store'])
+    ->middleware('auth')
+    ->name('participantes.store');
+
+// 🔒 EDITAR / ACTUALIZAR / ELIMINAR: solo admin
+Route::middleware(['auth', 'admin'])->group(function () {
+
+    Route::get('/participantes/{participante}/editar', [ParticipanteController::class, 'edit'])
+        ->name('participantes.edit');
+
+    Route::put('/participantes/{participante}', [ParticipanteController::class, 'update'])
+        ->name('participantes.update');
+
+    Route::delete('/participantes/{participante}', [ParticipanteController::class, 'destroy'])
+        ->name('participantes.destroy');
+});
+
+
+// =======================
+// PASSWORD UPDATE
+// =======================
+Route::post('/password/update', [PasswordsController::class, 'update'])
+    ->middleware('auth')
+    ->name('password.update');
