@@ -39,12 +39,16 @@
         <div class="w-full flex justify-center mt-8 mb-12">
             <button 
                 type="submit"
-                class="px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 
-                       text-white font-semibold rounded-xl shadow-lg hover:scale-105 
-                       transition duration-300">
+                class="btn btn-success">
                 Descargar PDF
             </button>
-        </div>
+        </div>  
+
+    </form>
+    <form action="{{ route('torneo.guardar') }}" method="POST">
+        @csrf
+        <input type="hidden" name="groups" value="{{ json_encode($groups) }}">
+        <button class="btn btn-success mt-3">Guardar Sorteo</button>
     </form>
 </div>
 @endsection

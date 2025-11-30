@@ -15,7 +15,7 @@
                         <p><strong>Horario:</strong> 
                             {{ $cancha->hora_apertura }} - {{ $cancha->hora_cierre }}
                         </p>
-
+                        <p><strong>N.º de canchas:</strong> {{ $cancha->num_canchas ?? 1 }}</p>
                         <a href="{{ route('canchas.show', $cancha->id) }}" class="btn btn-primary">Ver Agenda</a>
                         <form action="{{ route('canchas.destroy', $cancha->id) }}" method="POST" onsubmit="return confirm('¿Seguro que deseas eliminar esta cancha?')">
                             @csrf

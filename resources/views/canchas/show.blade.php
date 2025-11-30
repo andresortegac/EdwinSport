@@ -27,18 +27,39 @@
                         <td class="hour-cell">{{ $hora }}</td>
 
                         @foreach ($dias as $dia)
+
+                            {{-- Buscar si esta celda ya tiene una reserva --}}
                             @php
-                                $ocupada = $reservas->contains(function ($r) use ($dia, $hora) {
-                                    return $r->fecha == $dia->toDateString()
-                                        && \Carbon\Carbon::parse($r->hora_inicio)->format('H:i') == $hora;
+                                $res = $reservas->first(function($r) use($dia,$hora) {
+                                    return $r->fecha == $dia->toDateString() &&
+                                           \Carbon\Carbon::parse($r->hora_inicio)->format('H:i') == $hora;
                                 });
+
+                                $ocupada = $res !== null;
                             @endphp
 
                             <td>
+
                                 {{-- Celda ocupada --}}
                                 @if ($ocupada)
                                     <div class="cell-ocupada">
-                                        OCUPADA
+                                        <strong>{{ $res->nombre_cliente }}</strong><br>
+                                        <small>{{ $res->telefono_cliente }}</small><br>
+                                        <small>
+                                            {{ $res->subcancha ? $res->subcancha->nombre : 'Sin subcancha' }}
+                                        </small>
+
+                                        {{-- BOTÓN CANCELAR --}}
+                                        <form action="{{ route('reservas.destroy', $res->id) }}"
+                                            method="POST"
+                                            class="mt-2">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button class="btn btn-danger btn-sm w-100">
+                                                Cancelar
+                                            </button>
+                                        </form>
+
                                     </div>
 
                                 {{-- Celda disponible --}}
@@ -66,7 +87,9 @@
                                         </button>
                                     </form>
                                 @endif
+
                             </td>
+
                         @endforeach
 
                     </tr>

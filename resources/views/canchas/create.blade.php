@@ -30,6 +30,16 @@
         <label>Descripción:</label>
         <input type="text" name="descripcion" class="form-control" required>
 
+        <div class="form-group mb-3">
+            <label for="num_canchas">Número de canchas internas (1-4)</label>
+            <select name="num_canchas" id="num_canchas" class="form-control" required>
+                @for ($i = 1; $i <= 4; $i++)
+                    <option value="{{ $i }}" {{ old('num_canchas', 1) == $i ? 'selected' : '' }}>{{ $i }}</option>
+                @endfor
+            </select>
+        </div>
+
+
         <label>Ubicación:</label>
         <input type="text" name="ubicacion" class="form-control" required>
 

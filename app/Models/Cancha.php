@@ -12,10 +12,21 @@ class Cancha extends Model
         'ubicacion',
         'telefono_contacto',
         'hora_apertura',
-        'hora_cierre'
+        'hora_cierre',
+        'num_canchas'
     ];
 
-    public function reservas() {
-        return $this->hasMany(Reserva::class);
-    }
+   public function subcanchas()
+{
+    return $this->hasMany(Subcancha::class);
 }
+
+public function reservas()
+{
+    return $this->hasMany(Reserva::class);
+}
+
+
+}
+
+

@@ -16,55 +16,59 @@ class CanchaController extends Controller
         return view('canchas.index', compact('canchas'));
     }
 
-    // MOSTRAR UNA CANCHA + AGENDA + RESERVAS
-   public function show(Cancha $cancha)
-{
-    $startOfWeek = Carbon::now()->startOfWeek(); 
+    // MOSTRAR UNA CANCHA + AGENDA + RESERVAS + SUBCANCHAS
+    public function show(Cancha $cancha)
+    {
+        // Obtener subcanchas de la cancha
+        $subcanchas = $cancha->subcanchas;  // ← relación belongsTo
 
-    // Generar los 7 días de la semana
-    $dias = [];
-    for ($d = 0; $d < 7; $d++) {
-        $dias[] = $startOfWeek->copy()->addDays($d);
+        // Semana actual
+        $startOfWeek = Carbon::now()->startOfWeek();
+        $endOfWeek   = Carbon::now()->endOfWeek();
+
+        // Generar días de la semana
+        $dias = [];
+        for ($d = 0; $d < 7; $d++) {
+            $dias[] = $startOfWeek->copy()->addDays($d);
+        }
+
+        // Generar horas entre apertura y cierre
+        $horaInicio = Carbon::parse($cancha->hora_apertura);
+        $horaFin    = Carbon::parse($cancha->hora_cierre);
+
+        $hours = [];
+        for ($h = $horaInicio->copy(); $h->lt($horaFin); $h->addHour()) {
+            $hours[] = $h->format('H:i');
+        }
+
+        // Obtener reservas de esta semana con SUBCANCHA
+        $reservas = Reserva::with('subcancha')
+            ->where('cancha_id', $cancha->id)
+            ->whereBetween('fecha', [
+                $startOfWeek->toDateString(),
+                $endOfWeek->toDateString()
+            ])
+            ->get();
+
+        return view('canchas.show', compact(
+            'cancha',
+            'subcanchas',
+            'reservas',
+            'dias',
+            'hours'
+        ));
     }
 
-    // Generar horas entre apertura y cierre
-    $horaInicio = Carbon::parse($cancha->hora_apertura);
-    $horaFin    = Carbon::parse($cancha->hora_cierre);
-
-    $hours = [];
-    for ($h = $horaInicio->copy(); $h->lt($horaFin); $h->addHour()) {
-        $hours[] = $h->format('H:i');
-    }
-
-    // Obtener reservas de esta semana
-    $reservas = Reserva::where('cancha_id', $cancha->id)
-        ->whereBetween('fecha', [
-            $startOfWeek->toDateString(),
-            $startOfWeek->copy()->endOfWeek()->toDateString()
-        ])
-        ->get();
-
-    return view('canchas.show', compact(
-        'cancha',
-        'reservas',
-        'startOfWeek',
-        'dias',
-        'hours'
-    ));
-}
-
+    
     public function destroy(Cancha $cancha)
-{
-    // Primero eliminar reservas asociadas (si existen)
-    $cancha->reservas()->delete();
+    {
+        // Eliminar reservas asociadas
+        $cancha->reservas()->delete();
 
-    // Luego eliminar la cancha
-    $cancha->delete();
+        // Eliminar la cancha
+        $cancha->delete();
 
-    return redirect()->route('canchas.index')
-        ->with('success', 'La cancha se eliminó correctamente');
+        return redirect()->route('canchas.index')
+            ->with('success', 'La cancha se eliminó correctamente');
+    }
 }
-
-
-}
-

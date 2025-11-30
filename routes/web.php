@@ -12,6 +12,8 @@ use App\Http\Controllers\ReservaController;
 use App\Http\Controllers\TournamentController;
 use App\Http\Controllers\TeamsController;
 use App\Http\Controllers\NuevaCanchaController;
+use App\Http\Controllers\GrupoController;
+
 
 // Principal y About
 Route::controller(PrincipalController::class)->group(function () {
@@ -85,6 +87,10 @@ Route::post('/canchas/nueva', [NuevaCanchaController::class, 'store'])->name('ca
 //Eliminar Cancha
 Route::delete('/canchas/{cancha}', [CanchaController::class, 'destroy'])->name('canchas.destroy');
 
+Route::delete('/reservas/{reserva}', [ReservaController::class, 'destroy'])
+    ->name('reservas.destroy');
+
+
 
 //-------------fin------------------------------)
 
@@ -106,5 +112,12 @@ Route::post('/equipos/import', [TeamsController::class, 'import'])->name('equipo
 Route::post('/torneo/pdf', [TournamentController::class, 'exportPdf'])
     ->name('tournament.pdf');
 
+Route::post('/sorteo/guardar', [GrupoController::class, 'store'])->name('torneo.guardar');
+
+Route::get('/sorteo/ver', [GrupoController::class, 'index'])->name('torneo.ver');
+
+Route::get('/distribusion/bracket', [TournamentController::class, 'bracket'])
+    ->name('torneo.bracket');
 
 //----------------fin---------------------)
+
