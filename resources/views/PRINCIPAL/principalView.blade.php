@@ -50,11 +50,11 @@
                         <a class="nav-link" href="{{ route('contactenos') }}">Contactanos</a>
                     </li>
                 </ul>
-
+                
                 {{-- Botón de login --}}
-                <button class="btn btn-login d-flex align-items-center gap-2" data-bs-toggle="modal" data-bs-target="#passwordModal">
-                    <i class="bi bi-lock-fill"></i> Ingresar
-                </button>
+                <a href="{{ url('login') }}" class="btn btn-login">
+                    Ingresar
+                </a>
 
             </div>
         </div>
@@ -150,11 +150,8 @@
 
 
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    @include('modal/password-modal')
-    <link rel="stylesheet" href="{{ asset('CSS/password-modal.css') }}">
-    <script src="{{ asset('js/password-modal.js') }}"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>    
+    <link rel="stylesheet" href="{{ asset('CSS/password-modal.css') }}">   
 
    @yield('content')
 

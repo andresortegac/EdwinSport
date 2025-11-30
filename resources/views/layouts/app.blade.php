@@ -9,6 +9,7 @@
   <!-- Tu CSS personalizado -->
     <link rel="stylesheet" href="{{ asset('/CSS/principal.css') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="{{ asset('CSS/panel.css') }}">  
     <link rel="stylesheet" href="{{ asset('CSS/canchas.css') }}"> 
     <link rel="stylesheet" href="{{ asset('CSS/tournament.css') }}">

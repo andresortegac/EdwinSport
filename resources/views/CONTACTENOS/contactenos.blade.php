@@ -13,6 +13,8 @@
     {{-- Tu CSS personalizado --}}
     <link rel="stylesheet" href="{{ asset('/CSS/principal.css') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
 
 
     <title>Contactenos</title>
@@ -57,9 +59,9 @@
                 </ul>
 
                 {{-- Botón de login --}}
-                <button class="btn btn-login d-flex align-items-center gap-2" data-bs-toggle="modal" data-bs-target="#passwordModal">
-                    <i class="bi bi-lock-fill"></i> Ingresar
-                </button>
+                <a href="{{ url('login') }}" class="btn btn-login">
+                    Ingresar
+                </a>
 
             </div>
         </div>
