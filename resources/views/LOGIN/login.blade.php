@@ -271,9 +271,10 @@
       </button>
 
       <!-- ✅ VOLVER DEBAJO DE ENTRAR -->
-     <a href="{{ url('/') }}" class="btn-soft w-100 mt-3">
+    <a href="{{ url('/') }}" class="btn-soft w-100 mt-3">
   ← Volver
 </a>
+
 
     </form>
 

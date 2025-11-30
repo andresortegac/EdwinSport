@@ -17,8 +17,9 @@ use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\ParticipanteController;
 
 
-
-// Principal y About
+// =======================
+// PRINCIPAL Y ABOUT
+// =======================
 Route::controller(PrincipalController::class)->group(function () {
     Route::get('/', 'index')->name('principal');
     Route::get('/about', 'about')->name('about');
@@ -27,38 +28,51 @@ Route::controller(PrincipalController::class)->group(function () {
 });
 
 
+// =======================
+// REGISTER (VISTA)
+// =======================
 Route::get('/register', function () {
     return view('REGISTER.register');
 })->name('register');
 
 
+// =======================
+// LOGIN / LOGOUT
+// =======================
 Route::controller(LoginController::class)->group(function(){
-    Route::get('/login', 'show')->name('login');        // formulario
-    Route::post('/login', 'login')->name('login.post'); // procesa login
+    Route::get('/login', 'show')->name('login');          // formulario
+    Route::post('/login', 'login')->name('login.post');  // procesa login
     Route::post('/logout', 'logout')->name('logout');
 });
-//------------Eventos-------------)
+
+
+// =======================
+// EVENTOS
+// =======================
 Route::get('/eventos', [EventController::class,'index'])->name('events.index');
 Route::get('/eventos/{event}', [EventController::class,'show'])->name('events.show');
-// filtro por deporte (query param o ruta)
+
+// filtro por deporte
 Route::get('/eventos/deporte/{sport}', [EventController::class,'bySport'])->name('events.bySport');
-Route::post('/password/update', [PasswordsController::class, 'update'])->name('password.update');
 
 Route::controller(EventController::class)->group(function(){
     Route::get('crear-evento', 'create')->name('crear-evento.create');
     Route::post('crear-evento/guardar', 'store')->name('crear-evento.store');
 });
-//----------------fin------------)
 
-//----contactenos formularios-------
+
+// =======================
+// CONTACTENOS
+// =======================
 Route::controller(ContactenosController::class)->group(function(){
     Route::get('contactenos', 'contactenos')->name('contactenos');
     Route::post('contactenos/guardar', 'store')->name('contactenos.store');
 });
 
-//----------------fin---------------------)
 
-//funcion para mision, vision, valores no tocar)
+// =======================
+// ABOUT: MISION / VISION / VALORES
+// =======================
 Route::get('/about/mision', function () {
     return view('about.mision');
 })->name('about.mision');
@@ -71,77 +85,75 @@ Route::get('/about/valores', function () {
     return view('about.valores');
 })->name('about.valores');
 
-//---------------------fin-----------------------------)
 
-//--------------validar modal--------------)
+// =======================
+// PANEL USUARIO
+// =======================
 Route::get('/usuario-panel', function () {
-    return view('usuario.panel'); // o la vista que tengas
+    return view('usuario.panel');
 })->name('usuario.panel');
-//------------------------fin-----------------------------)
 
-//-----------convenio-----------------------------------)
+
+// =======================
+// CANCHAS / RESERVAS
+// =======================
 Route::get('/canchas', [CanchaController::class, 'index'])->name('canchas.index');
-
-
 Route::get('/canchas/{cancha}', [CanchaController::class, 'show'])->name('canchas.show');
-
 
 Route::post('/reservas', [ReservaController::class, 'store'])->name('reservas.store');
 
-// Mostrar formulario
+// Mostrar formulario nueva cancha
 Route::get('/crear/nueva', [NuevaCanchaController::class, 'create'])->name('canchas.create');
 
-// Guardar formulario
+// Guardar cancha
 Route::post('/canchas/nueva', [NuevaCanchaController::class, 'store'])->name('canchas.store');
 
-
-//Eliminar Cancha
+// Eliminar cancha
 Route::delete('/canchas/{cancha}', [CanchaController::class, 'destroy'])->name('canchas.destroy');
 
+// Eliminar reserva
 Route::delete('/reservas/{reserva}', [ReservaController::class, 'destroy'])
     ->name('reservas.destroy');
 
 
-
-//-------------fin------------------------------)
-
-//-----------sorteo-------------------------------)
+// =======================
+// TORNEO / SORTEO
+// =======================
 Route::get('/torneo', [TournamentController::class, 'showForm'])
     ->name('tournament.form');
 
 Route::post('/torneo/generar', [TournamentController::class, 'generate'])
     ->name('tournament.generate');
 
-Route::post('/torneo/pdf', [TournamentController::class, 'exportPdf'])->name('tournament.pdf');
-
-Route::get('/torneo/grupo/{id}/tabla', [TournamentController::class,'groupStandings'])->name('tournament.standings');
-
-Route::get('/equipos/import', [TeamsController::class, 'importForm'])->name('equipos.import');
-
-Route::post('/equipos/import', [TeamsController::class, 'import'])->name('equipos.import.process');
-
 Route::post('/torneo/pdf', [TournamentController::class, 'exportPdf'])
     ->name('tournament.pdf');
 
-Route::post('/sorteo/guardar', [GrupoController::class, 'store'])->name('torneo.guardar');
+Route::get('/torneo/grupo/{id}/tabla', [TournamentController::class,'groupStandings'])
+    ->name('tournament.standings');
 
-Route::get('/sorteo/ver', [GrupoController::class, 'index'])->name('torneo.ver');
+Route::get('/equipos/import', [TeamsController::class, 'importForm'])
+    ->name('equipos.import');
+
+Route::post('/equipos/import', [TeamsController::class, 'import'])
+    ->name('equipos.import.process');
+
+Route::post('/sorteo/guardar', [GrupoController::class, 'store'])
+    ->name('torneo.guardar');
+
+Route::get('/sorteo/ver', [GrupoController::class, 'index'])
+    ->name('torneo.ver');
 
 Route::get('/distribusion/bracket', [TournamentController::class, 'bracket'])
     ->name('torneo.bracket');
 
-//----------------fin---------------------)
 
 // =======================
 // PARTICIPANTES
 // =======================
-
-// ✅ LISTAR participantes: cualquier usuario logueado
 Route::get('/participantes', [ParticipanteController::class, 'index'])
     ->middleware('auth')
     ->name('participantes.index');
 
-// ✅ CREAR + GUARDAR participantes: cualquier usuario logueado
 Route::get('/participantes/crear', [ParticipanteController::class, 'create'])
     ->middleware('auth')
     ->name('participantes.create');
@@ -150,7 +162,7 @@ Route::post('/participantes', [ParticipanteController::class, 'store'])
     ->middleware('auth')
     ->name('participantes.store');
 
-// 🔒 EDITAR / ACTUALIZAR / ELIMINAR: solo admin
+// solo admin
 Route::middleware(['auth', 'admin'])->group(function () {
 
     Route::get('/participantes/{participante}/editar', [ParticipanteController::class, 'edit'])
@@ -165,7 +177,27 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
 
 // =======================
-// PASSWORD UPDATE
+// ADMINS / USUARIOS ADMIN
+// (esto arregla route('crear_usuario'))
+// =======================
+Route::middleware(['auth', 'admin'])->group(function () {
+
+    // formulario crear admin
+    Route::get('/admins/crear', [AdminUserController::class, 'create'])
+        ->name('crear_usuario');
+
+    // guardar admin
+    Route::post('/admins', [AdminUserController::class, 'store'])
+        ->name('guardar_usuario');
+
+    // listar admins (opcional)
+    Route::get('/admins', [AdminUserController::class, 'index'])
+        ->name('admins.index');
+});
+
+
+// =======================
+// PASSWORD UPDATE (solo una vez)
 // =======================
 Route::post('/password/update', [PasswordsController::class, 'update'])
     ->middleware('auth')
