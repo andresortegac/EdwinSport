@@ -7,55 +7,59 @@ use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
-    // Muestra el formulario login
+    // ✅ Muestra el formulario login
     public function show()
     {
+        // Si ya está logueado, redirige según rol
         if (Auth::check()) {
-            return view('LOGIN.login');
-            // si no tienes dashboard: return redirect()->route('principal');
+
+            // ✅ Admins a usuario-panel
+            if (in_array(Auth::user()->role, ['admin', 'superadmin'])) {
+                return redirect()->route('usuario.panel');
+            }
+
+            // ✅ Developers (y cualquier otro) a register
+            return redirect()->route('register');
         }
 
-         // tu vista actual    
+        // Si no está logueado muestra login
+        return view('LOGIN.login');
     }
 
-    // Procesa el login con usuarios en BD
+    // ✅ Procesa login
     public function login(Request $request)
     {
-        $request->validate(
-            [
-                'email' => ['required', 'string', 'max:50'],
-                'password' => ['required', 'string', 'min:6', 'max:64'],
-            ],
-            [
-                'email.required' => 'El usuario es obligatorio.',
-                'email.string'   => 'El usuario no es válido.',
-                'email.max'      => 'El usuario no debe superar 50 caracteres.',
+        $request->validate([
+            'email' => ['required', 'email', 'max:255'],
+            'password' => ['required', 'string', 'min:6', 'max:64'],
+        ]);
 
-                'password.required' => 'La contraseña es obligatoria.',
-                'password.min'      => 'La contraseña debe tener mínimo 6 caracteres.',
-                'password.max'      => 'La contraseña no debe superar 64 caracteres.',
-            ]
-        );
+        $credentials = $request->only('email', 'password');
 
-        $credentials = [
-            'email' => $request->email,
-            'password' => $request->password
-        ];
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
 
-       return redirect()->route('register');
+            // ✅ Admins a usuario-panel
+            if (in_array(Auth::user()->role, ['admin', 'superadmin'])) {
+                return redirect()->route('usuario.panel');
+            }
+
+            // ✅ Developers (y cualquier otro) a register
+            return redirect()->route('register');
+        }
 
         return back()->withErrors([
             'email' => 'Usuario o contraseña incorrectos.'
         ])->withInput();
     }
 
-    // Cierra sesión
+    // ✅ Logout
     public function logout(Request $request)
     {
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect()->route('login');
+        return redirect()->route('principal');
     }
 }

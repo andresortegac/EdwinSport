@@ -11,6 +11,10 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 }
+
+
+namespace App\Http\Controllers;
+
 class PrincipalController extends Controller
 {
     public function index()
@@ -18,7 +22,7 @@ class PrincipalController extends Controller
         return view('PRINCIPAL.principalView');
     }
 
-        public function about()
+    public function about()
     {
         return view('PRINCIPAL.about');
     }

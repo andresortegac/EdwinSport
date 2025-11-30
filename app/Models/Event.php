@@ -11,4 +11,5 @@ class Event extends Model
         'title','sport','description','start_at','location','category','capacity','price','image','status'
     ];
     protected $dates = ['start_at'];
+    
 }

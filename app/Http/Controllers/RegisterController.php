@@ -11,26 +11,28 @@ class RegisterController extends Controller
 {
     /**
      * Mostrar formulario de registro
+     * GET /crear-usuario
      */
     public function index()
     {
-        // Asegúrate que exista:
-        // resources/views/REGISTER/register.blade.php
-        return view('REGISTER.register');
+        // ✅ Vista corregida (minúsculas)
+        // Debe existir: resources/views/register/register.blade.php
+        return view('register.register');
     }
 
     /**
      * Guardar usuario registrado
+     * POST /crear-usuario
      */
     public function store(Request $request)
     {
-        // ✅ Validación básica (ajusta campos según tu form)
+        // ✅ Validación
         $request->validate([
             'name' => ['required', 'string', 'max:120'],
             'username' => ['required', 'string', 'max:60', 'unique:users,username'],
             'email' => ['required', 'email', 'max:120', 'unique:users,email'],
             'password' => ['required', 'confirmed', 'min:8'],
-            // si tienes role en el form, descomenta:
+            // Si usas roles en el formulario, descomenta:
             // 'role' => ['required', 'in:admin,developer'],
         ]);
 
@@ -40,14 +42,20 @@ class RegisterController extends Controller
             'username' => $request->username,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            // si manejas roles, puedes poner default:
+
+            /**
+             * ⚠️ IMPORTANTE:
+             * Deja esta línea SOLO si tu tabla "users"
+             * tiene columna "role".
+             * Si NO la tienes, bórrala.
+             */
             'role' => $request->role ?? 'admin',
         ]);
 
-        // ✅ Auto-login después de registrar
+        // ✅ Login automático
         Auth::login($user);
 
-        // ✅ Redirección final (ajusta a tu ruta)
+        // ✅ Redirección final
         return redirect()->route('dashboard')
             ->with('status', 'Registro exitoso. ¡Bienvenido!');
     }
