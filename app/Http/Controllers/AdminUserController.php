@@ -8,6 +8,16 @@ use Illuminate\Support\Facades\Auth;
 
 class AdminUserController extends Controller
 {
+
+ public function create()
+{
+    $admins = User::whereIn('role', ['admin', 'superadmin', 'developer'])
+                  ->orderBy('created_at', 'desc')
+                  ->get();
+
+    return view('crear_admin.crear_usuario', compact('admins'));
+}
+
    public function index()
     {
         $admins = User::whereIn('role', ['admin', 'superadmin'])

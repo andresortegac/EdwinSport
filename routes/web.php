@@ -193,6 +193,13 @@ Route::middleware(['auth', 'admin'])->group(function () {
     // listar admins (opcional)
     Route::get('/admins', [AdminUserController::class, 'index'])
         ->name('admins.index');
+
+    Route::delete('/admins/{id}', [AdminUserController::class, 'destroy'])
+    ->name('crear_usuario.destroy');  // ✅ esta es la que falta
+
+    // ✅ ESTA ES LA QUE FALTA
+    Route::patch('/admins/{id}/password', [AdminUserController::class, 'updatePassword'])
+        ->name('crear_usuario.updatePassword');
 });
 
 

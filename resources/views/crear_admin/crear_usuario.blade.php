@@ -235,7 +235,7 @@
             </div>
           @endif
 
-          <form method="POST" action="{{ route('crear_usuario.store') }}" class="mt-3">
+          <form method="POST" action="{{ route('guardar_usuario') }}" class="mt-3">
             @csrf
 
             <div class="mb-3">
