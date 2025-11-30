@@ -37,6 +37,11 @@ Route::get('/eventos/{event}', [EventController::class,'show'])->name('events.sh
 // filtro por deporte (query param o ruta)
 Route::get('/eventos/deporte/{sport}', [EventController::class,'bySport'])->name('events.bySport');
 Route::post('/password/update', [PasswordsController::class, 'update'])->name('password.update');
+
+Route::controller(EventController::class)->group(function(){
+    Route::get('crear-evento', 'create')->name('crear-evento.create');
+    Route::post('crear-evento/guardar', 'store')->name('crear-evento.store');
+});
 //----------------fin------------)
 
 //----contactenos formularios-------
