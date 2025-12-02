@@ -211,3 +211,11 @@ Route::middleware(['auth', 'admin'])->group(function () {
 Route::post('/password/update', [PasswordsController::class, 'update'])
     ->middleware('auth')
     ->name('password.update');
+
+//=============================    
+//Ver notificaciones 
+
+
+Route::get('/contactos/{id}', [ContactenosController::class, 'show'])->name('contactos.show');
+
+//=============================

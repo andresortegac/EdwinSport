@@ -20,5 +20,6 @@ class Contactenos extends Model
         'descripcion',
         'fecha_inicial',
         'fecha_final',
+        'leido',
     ];
 }

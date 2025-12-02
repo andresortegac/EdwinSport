@@ -21,6 +21,8 @@ return new class extends Migration {
             $table->date('fecha_inicial')->nullable();
             $table->date('fecha_final')->nullable();
             $table->timestamps();
+            $table->boolean('leido')->default(false);
+
         });
     }
 

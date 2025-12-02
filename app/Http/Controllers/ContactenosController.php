@@ -4,28 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\Contactenos;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\ContactoNotificacion;
 
 class ContactenosController extends Controller
 {
-
     public function contactenos()
     {
         return view('CONTACTENOS.contactenos');
-    }
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
     }
 
     /**
@@ -33,6 +19,7 @@ class ContactenosController extends Controller
      */
     public function store(Request $request)
     {
+        // Validación
         $request->validate([
             'tipo' => 'required',
             'nombre_completo' => 'required',
@@ -41,40 +28,32 @@ class ContactenosController extends Controller
             'categoria' => 'required',
         ]);
 
-        Contactenos::create($request->all());
+        // Guardar datos + marcar como NO leído
+        $datos = $request->all();
+        $datos['leido'] = false;
+
+        $contacto = Contactenos::create($datos);
+
+        // Enviar correo
+        Mail::to('edwinsport310@gmail.com')->send(new ContactoNotificacion($datos));
 
         return back()->with('success', 'Formulario enviado correctamente.');
     }
 
     /**
-     * Display the specified resource.
+     * Show the selected contact entry (and mark it as read)
      */
-    public function show(Contactenos $contactenos)
+    public function show($id)
     {
-        //
+        $contacto = Contactenos::findOrFail($id);
+
+        // Marcar como leído
+        if (!$contacto->leido) {
+            $contacto->leido = true;
+            $contacto->save();
+        }
+
+        return view('admin.contactos.show', compact('contacto'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Contactenos $contactenos)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Contactenos $contactenos)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Contactenos $contactenos)
-    {
-        //
-    }
 }
