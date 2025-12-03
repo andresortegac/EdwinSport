@@ -223,7 +223,7 @@
 <script>
     Swal.fire({
         icon: 'success',
-        title: '�Registro exitoso!',
+        title: 'Registro exitoso!',
         text: "{{ session('success') }}",
         confirmButtonColor: '#3f61ff',
         timer: 3000,

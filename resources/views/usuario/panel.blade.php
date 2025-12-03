@@ -225,6 +225,120 @@
       color:#fff !important;
       box-shadow: 0 10px 22px rgba(212,160,23,.35);
     }
+
+    /* --- SOLO AFECTA AL FORMULARIO DE CREAR EVENTO --- */
+
+    #contenedor-formulario {
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        padding: 20px;
+    }
+
+    /* Caja del formulario */
+    .formulario-evento {
+        width: 100%;
+        max-width: 700px;
+        background: #ffffff;
+        padding: 25px;
+        border-radius: 1.2rem;
+        border: 1px solid rgba(0,0,0,0.08);
+        box-shadow: 0 12px 26px rgba(11,16,32,.08);
+    }
+
+    /* Inputs redondeados */
+    .formulario-evento input,
+    .formulario-evento select,
+    .formulario-evento textarea {
+        border-radius: 0.8rem !important;
+        border: 1px solid rgba(11,16,32,.18) !important;
+        padding: 10px 14px !important;
+    }
+
+    /* Título del formulario */
+    .formulario-evento h2,
+    .formulario-evento h3 {
+        font-family: Oswald, sans-serif;
+        font-weight: 600;
+        color: var(--text);
+    }
+
+    /* Botón */
+    .formulario-evento button {
+        border-radius: 1rem !important;
+        padding: 10px 20px;
+        font-weight: 800;
+    }
+
+    /* --- CENTRAR FORMULARIO --- */
+    #contenedor-formulario {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        padding: 30px 0;
+    }
+
+    /* --- FORMULARIO --- */
+
+    /* ✔ Padding interno para separar los campos de los bordes */
+    .formulario-evento form .card{
+        padding: 35px !important;
+    }
+
+    /* ✔ Campos ocupan el 100% del contenedor */
+    .formulario-evento input,
+    .formulario-evento select,
+    .formulario-evento textarea {
+        width: 100% !important;
+        box-sizing: border-box !important;
+    }
+
+    /* ✔ Espaciado entre campos */
+    .formulario-evento .form-group,
+    .formulario-evento div {
+        margin-bottom: 18px;
+    }
+
+    /* Centrar únicamente el título principal del formulario */
+    .formulario-evento h1 {
+        text-align: center !important;
+        width: 100%;
+    }
+
+    .formulario-evento {
+        width: 100%;
+        background: #ffffff;
+        padding: 35px;
+        border-radius: 1.4rem;
+        border: 1px solid rgba(0,0,0,0.08);
+        box-shadow: 0 12px 26px rgba(11,16,32,.08);
+    }
+
+    /* --- SEPARAR LOS CAMPOS --- */
+    .formulario-evento .field {
+        margin-bottom: 18px !important;
+    }
+
+    .formulario-evento .full {
+        margin-bottom: 22px !important;
+    }
+
+    /* Inputs redondeados */
+    .formulario-evento input,
+    .formulario-evento select,
+    .formulario-evento textarea {
+        border-radius: 0.8rem !important;
+        border: 1px solid rgba(11,16,32,.18) !important;
+        padding: 12px 14px !important;
+    }
+
+    /* Títulos */
+    .formulario-evento h2,
+    .formulario-evento h3 {
+        font-family: Oswald, sans-serif;
+        margin-bottom: 20px;
+    }
+    
   </style>
 
 </head>
@@ -255,8 +369,8 @@
       </a>
       <div id="collapseEventos" class="collapse show">
         <div class="py-2 collapse-inner rounded">
-          <h6 class="collapse-header">Gestión de eventos</h6>
-          <a class="collapse-item" href="#">Crear evento</a>
+          <h6 class="collapse-header">Gestion de eventos</h6>
+          <a id="btn-crear-evento" class="collapse-item" href="#">Crear evento</a>
           <a class="collapse-item" href="#">Listado de eventos</a>
           <a class="collapse-item" href="#">Resultados</a>
         </div>
@@ -451,31 +565,9 @@
         <!-- Cards ejemplo con acentos -->
         <div class="row">
 
-          <div class="col-lg-4">
-            <div class="card accent-gold mb-4">
-              <div class="card-header">🏆 Eventos activos</div>
-              <div class="card-body">
-                Tienes 12 eventos en curso esta semana.
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4">
-            <div class="card accent-blue mb-4">
-              <div class="card-header">🎟️ Inscripciones</div>
-              <div class="card-body">
-                1,284 inscripciones registradas en total.
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4">
-            <div class="card accent-gold mb-4">
-              <div class="card-header">📅 Próximos torneos</div>
-              <div class="card-body">
-                5 torneos programados próximamente.
-              </div>
-            </div>
+          <!-- CONTENEDOR DEL FORMULARIO (OCULTO AL INICIO) -->
+          <div id="contenedor-formulario" style="display:none;">
+              @include('events.crear-evento') 
           </div>
 
         </div>
@@ -524,6 +616,18 @@
 <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 <script src="{{ asset('vendor/jquery-easing/jquery.easing.min.js') }}"></script>
 <script src="{{ asset('js/sb-admin-2.min.js') }}"></script>
+<script>
+document.getElementById('btn-crear-evento').addEventListener('click', function (e) {
+    e.preventDefault();
+
+    const cards = document.getElementById('contenedor-cards');
+    const formulario = document.getElementById('contenedor-formulario');
+
+    if (cards) cards.style.display = "none";
+    if (formulario) formulario.style.display = "block";
+});
+</script>
+
 
 </body>
 </html>
