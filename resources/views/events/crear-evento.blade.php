@@ -71,15 +71,15 @@
 
                         {{-- UBICACIÓN --}}
                         <div class="field">
-                            <label for="location">Lugar / Direcci�n</label>
+                            <label for="location">Lugar / Dirección</label>
                             <input id="location" type="text" name="location"
                                 placeholder="Ej: Coliseo Municipal"
                                 value="{{ old('location') }}" required>
                         </div>
 
-                        {{-- DESCRIPCI�N --}}
+                        {{-- DESCRIPCIÓN --}}
                         <div class="field full">
-                            <label for="description">Descripci�n</label>
+                            <label for="description">Descripción</label>
                             <br>
                             <textarea id="description" name="description" rows="5"
                                     placeholder="Detalles del evento">{{ old('description') }}</textarea>

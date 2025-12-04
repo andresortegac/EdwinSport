@@ -338,6 +338,24 @@
         font-family: Oswald, sans-serif;
         margin-bottom: 20px;
     }
+
+    /* ✔ Botón GUARDAR EVENTO con borde oscuro */
+    .formulario-evento button[type="submit"] {
+        border: 2px solid #0B1020 !important; /* borde oscuro */
+        background: var(--primary) !important; /* mantiene tu dorado */
+        color: #000000ff !important;
+        font-weight: 800;
+        border-radius: 1rem !important;
+        padding: 12px 22px;
+        transition: 0.2s ease;
+    }
+
+    /* Hover más elegante */
+    .formulario-evento button[type="submit"]:hover {
+        background: #e2cb00ff !important;   /* azul oscuro */
+        border-color: #0B1020 !important;
+        transform: translateY(-2px);
+    }
     
   </style>
 
