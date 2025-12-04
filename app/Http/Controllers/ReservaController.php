@@ -10,6 +10,17 @@ use Illuminate\Support\Facades\DB;
 
 class ReservaController extends Controller
 {
+    public function serv(reserva $cancha)
+    {
+        return view('canchas.serv', compact('cancha'));
+    }
+
+    public function preserva(Request $request)
+    {
+        // Aquí guardas la reserva
+    }
+
+   
     public function store(Request $request)
     {
         $data = $request->validate([

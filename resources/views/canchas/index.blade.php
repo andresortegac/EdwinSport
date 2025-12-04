@@ -5,10 +5,15 @@
     <h1>Canchas Asociadas </h1>
 
     <div class="row">
+        
         @foreach ($canchas as $cancha)
+        
             <div class="col-md-4 mt-3">
                 <div class="card shadow-sm">
                     <div class="card-body">
+                        <div>
+                            <img src="{{ asset('/img/cancha.jpg') }}" width="330px" height="170px" />
+                        </div>
                         <h4>{{ $cancha->nombre }}</h4>
 
                         <p><strong>Ubicación:</strong> {{ $cancha->ubicacion }}</p>
@@ -16,7 +21,9 @@
                             {{ $cancha->hora_apertura }} - {{ $cancha->hora_cierre }}
                         </p>
                         <p><strong>N.º de canchas:</strong> {{ $cancha->num_canchas ?? 1 }}</p>
-                        <a href="{{ route('canchas.show', $cancha->id) }}" class="btn btn-primary">Ver Agenda</a>
+                        <a href="{{ route('reservas.serv', $cancha->id) }}" class="btn btn-primary">RESERVA</a>
+
+
                         <form action="{{ route('canchas.destroy', $cancha->id) }}" method="POST" onsubmit="return confirm('¿Seguro que deseas eliminar esta cancha?')">
                             @csrf
                             @method('DELETE')

@@ -117,6 +117,11 @@ Route::delete('/canchas/{cancha}', [CanchaController::class, 'destroy'])->name('
 Route::delete('/reservas/{reserva}', [ReservaController::class, 'destroy'])
     ->name('reservas.destroy');
 
+Route::get('/separar', [ReservaController::class, 'serv'])->name('reservas.serv');
+
+Route::post('/separarlo', [ReservaController::class, 'preserva'])->name('reservas.preserva');
+
+
 
 // =======================
 // TORNEO / SORTEO
