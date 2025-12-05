@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg bg-white shadow-sm py-3 px-4">
+<nav id="menu-principal-top" class="navbar navbar-expand-lg bg-white shadow-sm py-3 px-4">
         <div class="container-fluid">
             <div class="logo">
                  <img src="{{ asset('img/logo.png') }}" alt="Logo" width="90" height="60" class="me-2" >

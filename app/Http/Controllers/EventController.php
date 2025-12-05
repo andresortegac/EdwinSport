@@ -28,6 +28,13 @@ class EventController extends Controller
         return view('events.show', compact('event'));
     }
 
+    public function listado()
+    {
+        $eventos = Event::all(); // O con paginación ->paginate(10)
+
+        return view('events.listado-eventos', compact('eventos'));
+    }
+
     public function create()
     {
         return view('events.crear-evento');

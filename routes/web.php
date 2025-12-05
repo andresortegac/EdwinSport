@@ -14,6 +14,7 @@ use App\Http\Controllers\TeamsController;
 use App\Http\Controllers\NuevaCanchaController;
 use App\Http\Controllers\GrupoController;
 use App\Http\Controllers\AdminUserController;
+use App\Http\Controllers\PanelController;
 use App\Http\Controllers\ParticipanteController;
 use App\Http\Controllers\UserReservaController;
 
@@ -92,12 +93,13 @@ Route::get('/about/valores', function () {
 // =======================
 // PANEL USUARIO
 // =======================
-Route::get('/usuario-panel', function () {
-    return view('usuario.panel');
-})->name('usuario.panel');
 
-
-
+Route::controller(PanelController::class)->group(function(){
+    Route::get('/usuario-panel', 'index')->name('usuario.panel');
+    Route::get('/{id}/editar-evento', 'index')->name('editar-evento.edit');
+    Route::put('/{id}/actualizar-evento', 'update')->name('actualizar-evento.update');
+    Route::delete('/{id}/eliminar-evento', 'destroy')->name('eliminar-evento.destroy');
+});
 
 // =======================
 // CANCHAS / RESERVAS
@@ -209,9 +211,9 @@ Route::middleware(['auth', 'admin'])->group(function () {
         ->name('admins.index');
 
     Route::delete('/admins/{id}', [AdminUserController::class, 'destroy'])
-    ->name('crear_usuario.destroy');  // ✅ esta es la que falta
+    ->name('crear_usuario.destroy');  // 
 
-    // ✅ ESTA ES LA QUE FALTA
+    // 
     Route::patch('/admins/{id}/password', [AdminUserController::class, 'updatePassword'])
         ->name('crear_usuario.updatePassword');
 });
