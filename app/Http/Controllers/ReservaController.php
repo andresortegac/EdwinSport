@@ -7,20 +7,11 @@ use App\Models\Subcancha;
 use Illuminate\Http\Request;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\DB;
+use App\Models\Cancha;
 
 class ReservaController extends Controller
 {
-    public function serv(reserva $cancha)
-    {
-        return view('canchas.serv', compact('cancha'));
-    }
-
-    public function preserva(Request $request)
-    {
-        // Aquí guardas la reserva
-    }
-
-   
+       
     public function store(Request $request)
     {
         $data = $request->validate([

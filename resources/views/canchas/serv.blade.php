@@ -46,29 +46,29 @@
         {{-- COLUMNA DERECHA: Formulario --}}
         <div class="col-md-6">
             <div class="reserva-card">
-                <form action="{{ route('reservas.preserva') }}" method="POST">
-                    @csrf
+                <form action="{{ route('reservas.store') }}" method="POST">
+                        @csrf
 
-                    <input type="hidden" name="cancha_id" value="{{ $cancha->id }}">
+                        <input type="hidden" name="cancha_id" value="{{ $cancha->id }}">
 
-                    <div class="mb-3">
-                        <label class="form-label">Nombre</label>
-                        <input type="text" name="nombre" class="form-control" required>
-                    </div>
+                        <label>Nombre</label>
+                        <input type="text" name="nombre_cliente" class="form-control" required>
 
-                    <div class="mb-3">
-                        <label class="form-label">Teléfono</label>
-                        <input type="text" name="telefono" class="form-control" required>
-                    </div>
+                        <label>Teléfono</label>
+                        <input type="text" name="telefono_cliente" class="form-control">
 
-                    <div class="mb-3">
-                        <label class="form-label">Hora de reserva</label>
+                        <label>Número de canchas internas (1-4)</label>
+                        <input type="number" name="numero_subcancha" class="form-control" min="1" max="4" required>
+
+                        <label>Fecha</label>
+                        <input type="date" name="fecha" class="form-control" required>
+
+                        <label>Hora de reserva</label>
                         <input type="time" name="hora" class="form-control" required>
-                    </div>
 
-                    <button class="btn btn-dark w-100 mt-2">Confirmar Reserva</button>
-
+                        <button class="btn btn-success w-100 mt-3">Reservar</button>
                 </form>
+
             </div>
         </div>
 

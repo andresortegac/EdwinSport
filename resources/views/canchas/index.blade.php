@@ -21,7 +21,7 @@
                             {{ $cancha->hora_apertura }} - {{ $cancha->hora_cierre }}
                         </p>
                         <p><strong>N.º de canchas:</strong> {{ $cancha->num_canchas ?? 1 }}</p>
-                        <a href="{{ route('reservas.serv', $cancha->id) }}" class="btn btn-primary">RESERVA</a>
+                        <a href="{{ route('reservas.store', $cancha->id) }}" class="btn btn-primary">RESERVA</a>
 
 
                         <form action="{{ route('canchas.destroy', $cancha->id) }}" method="POST" onsubmit="return confirm('¿Seguro que deseas eliminar esta cancha?')">
