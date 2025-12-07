@@ -15,16 +15,18 @@
                 <div class="card accent-gold p-0" style="border-radius:1rem; overflow:hidden;">
 
                     {{-- Imagen del evento --}}
+                    
                     @if($evento->image)
-                        <img src="{{ asset('storage/' . $evento->image) }}" 
-                             class="img-fluid" 
-                             alt="{{ $evento->title }}"
-                             style="height: 180px; object-fit: cover;">
+                        <img src="{{ asset('storage/' . $evento->image) }}"
+                            class="img-fluid"
+                            alt="{{ $evento->title }}"
+                            style="height: 180px; object-fit: cover;">
                     @else
                         <div style="height:180px; background:#eee; display:flex; align-items:center; justify-content:center;">
                             <span style="color:#999;">Sin imagen</span>
                         </div>
-                    @endif
+@endif
+
 
                     <div class="card-body">
 
