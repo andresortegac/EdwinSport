@@ -14,6 +14,7 @@ use App\Http\Controllers\TeamsController;
 use App\Http\Controllers\NuevaCanchaController;
 use App\Http\Controllers\GrupoController;
 use App\Http\Controllers\AdminUserController;
+use App\Http\Controllers\PanelController;
 use App\Http\Controllers\ParticipanteController;
 
 
@@ -89,12 +90,10 @@ Route::get('/about/valores', function () {
 // =======================
 // PANEL USUARIO
 // =======================
-Route::get('/usuario-panel', function () {
-    return view('usuario.panel');
-})->name('usuario.panel');
 
-
-
+Route::controller(PanelController::class)->group(function(){
+    Route::get('/usuario-panel', 'index')->name('usuario.panel');
+});
 
 // =======================
 // CANCHAS / RESERVAS

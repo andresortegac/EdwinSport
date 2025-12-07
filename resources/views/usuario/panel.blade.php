@@ -356,6 +356,12 @@
         border-color: #0B1020 !important;
         transform: translateY(-2px);
     }
+
+
+    #menu-principal-top {
+        display: none !important;
+    }
+
     
   </style>
 
@@ -389,7 +395,7 @@
         <div class="py-2 collapse-inner rounded">
           <h6 class="collapse-header">Gestion de eventos</h6>
           <a id="btn-crear-evento" class="collapse-item" href="#">Crear evento</a>
-          <a class="collapse-item" href="#">Listado de eventos</a>
+          <a id="btn-listado-eventos" class="collapse-item" href="#">Listado de eventos</a>
           <a class="collapse-item" href="#">Resultados</a>
         </div>
       </div>
@@ -584,8 +590,13 @@
         <div class="row">
 
           <!-- CONTENEDOR DEL FORMULARIO (OCULTO AL INICIO) -->
-          <div id="contenedor-formulario" style="display:none;">
+          <div id="contenedor-formulario" class="col-12" style="display:none;">
               @include('events.crear-evento') 
+          </div>
+
+          <!-- CONTENEDOR DEL LISTADO (OCULTO AL INICIO) -->
+          <div id="contenedor-listado" class="col-12" style="display:none;">
+              @include('events.listado-eventos') 
           </div>
 
         </div>
@@ -634,18 +645,22 @@
 <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 <script src="{{ asset('vendor/jquery-easing/jquery.easing.min.js') }}"></script>
 <script src="{{ asset('js/sb-admin-2.min.js') }}"></script>
+
 <script>
-document.getElementById('btn-crear-evento').addEventListener('click', function (e) {
+document.getElementById('btn-crear-evento').addEventListener('click', function(e) {
     e.preventDefault();
 
-    const cards = document.getElementById('contenedor-cards');
-    const formulario = document.getElementById('contenedor-formulario');
+    document.getElementById('contenedor-formulario').style.display = "block";
+    document.getElementById('contenedor-listado').style.display = "none";
+});
 
-    if (cards) cards.style.display = "none";
-    if (formulario) formulario.style.display = "block";
+document.getElementById('btn-listado-eventos').addEventListener('click', function(e) {
+    e.preventDefault();
+
+    document.getElementById('contenedor-formulario').style.display = "none";
+    document.getElementById('contenedor-listado').style.display = "block";
 });
 </script>
-
 
 </body>
 </html>

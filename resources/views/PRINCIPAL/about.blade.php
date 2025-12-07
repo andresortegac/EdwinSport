@@ -15,7 +15,7 @@
 
 <body>
 
-    {{-- NAVBAR (TAL COMO LA P√ÅGINA PRINCIPAL) --}}
+    {{-- NAVBAR (TAL COMO LA P¡GINA PRINCIPAL) --}}
     <nav class="navbar navbar-expand-lg bg-white shadow-sm py-3 px-4">
         <div class="container-fluid">
             
@@ -50,7 +50,7 @@
                     </li>
                 </ul>
 
-                {{-- Bot√≥n de login --}}
+                {{-- BotÛn de login --}}
                 <a href="{{ url('login') }}" class="btn btn-login">
                     Ingresar
                 </a>
@@ -58,7 +58,7 @@
         </div>
     </nav>
 
-    {{-- SECCI√ìN PRINCIPAL --}}
+    {{-- SECCI”N PRINCIPAL --}}
     <section class="container py-5">
         <h1 class="text-center fw-bold hero-title mb-4">Acerca de Nosotros</h1>
 
