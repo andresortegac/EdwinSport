@@ -6,11 +6,13 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;       // <-- IMPORT NECESARIO
 use Carbon\Carbon; 
 
+
+
 class EventController extends Controller
 {
     public function index(Request $request)
     {
-        $sport = $request->query('sport'); // ?sport=futbol
+        $sport = $request->query('sport'); // sport=futbol
         $query = Event::query();
         if($sport) $query->where('sport', $sport);
         $events = $query->orderBy('start_at','asc')->paginate(12);
@@ -30,7 +32,7 @@ class EventController extends Controller
 
     public function listado()
     {
-        $eventos = Event::all(); // O con paginación ->paginate(10)
+        $eventos = Event::all(); 
 
         return view('events.listado-eventos', compact('eventos'));
     }
@@ -42,7 +44,7 @@ class EventController extends Controller
 
     public function store(Request $request)
     {
-        // Validaciï¿½n
+        // Validacion
         $request->validate([
             'title' => 'required|string|max:255',
             'slug' => 'required|string|max:255|unique:events,slug',
@@ -77,7 +79,8 @@ class EventController extends Controller
         return redirect()->back()->with('success', 'El evento fue creado correctamente.');
     }
 
-    
+
+
 
 
 

@@ -117,7 +117,7 @@
 <script>
     Swal.fire({
         icon: 'success',
-        title: '�Evento creado!',
+        title: 'Operacion exitosa',
         text: "{{ session('success') }}",
         confirmButtonColor: '#3f61ff',
         timer: 3000,
