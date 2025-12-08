@@ -25,7 +25,7 @@
                         <div style="height:180px; background:#eee; display:flex; align-items:center; justify-content:center;">
                             <span style="color:#999;">Sin imagen</span>
                         </div>
-@endif
+                    @endif
 
 
                     <div class="card-body">
@@ -38,8 +38,8 @@
                             {{ Str::limit($evento->description, 70) }}
                         </p>
 
-                        <p><strong>Categor�a:</strong> {{ ucfirst($evento->category) }}</p>
-                        <p><strong>Ubicaci�n:</strong> {{ $evento->location }}</p>
+                        <p><strong>Categoría:</strong> {{ ucfirst($evento->category) }}</p>
+                        <p><strong>Ubicación:</strong> {{ $evento->location }}</p>
 
                         <p>
                             <strong>Inicio:</strong> 
@@ -56,6 +56,28 @@
                         ">
                             {{ strtoupper($evento->status) }}
                         </span>
+
+                        <div class="d-flex justify-content-between mt-3">
+
+                            {{-- Boton Editar --}}
+                            <a id="btn-listado-eventos" href="{{ route('editar-evento.edit', $evento->id) }}" 
+                                class="btn btn-warning btn-sm mt-2 btn-editar-evento"
+                                data-id="{{ $evento->id }}">
+                                Editar
+                            </a>
+
+                            {{-- Botón Eliminar --}}
+                            <form action="{{ route('eliminar-evento.destroy', $evento->id) }}" method="POST"
+                                onsubmit="return confirm('¿Seguro que deseas eliminar este evento?');">
+                                @csrf
+                                @method('DELETE')
+                                <button class="btn btn-danger btn-sm">
+                                    Eliminar
+                                </button>
+                            </form>
+
+                        </div>
+
 
                     </div>
                 </div>

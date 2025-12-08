@@ -93,6 +93,9 @@ Route::get('/about/valores', function () {
 
 Route::controller(PanelController::class)->group(function(){
     Route::get('/usuario-panel', 'index')->name('usuario.panel');
+    Route::get('/{id}/editar-evento', 'index')->name('editar-evento.edit');
+    Route::put('/{id}/actualizar-evento', 'update')->name('actualizar-evento.update');
+    Route::delete('/{id}/eliminar-evento', 'destroy')->name('eliminar-evento.destroy');
 });
 
 // =======================
@@ -201,9 +204,9 @@ Route::middleware(['auth', 'admin'])->group(function () {
         ->name('admins.index');
 
     Route::delete('/admins/{id}', [AdminUserController::class, 'destroy'])
-    ->name('crear_usuario.destroy');  // ✅ esta es la que falta
+    ->name('crear_usuario.destroy');  // 
 
-    // ✅ ESTA ES LA QUE FALTA
+    // 
     Route::patch('/admins/{id}/password', [AdminUserController::class, 'updatePassword'])
         ->name('crear_usuario.updatePassword');
 });
