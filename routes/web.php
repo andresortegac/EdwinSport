@@ -16,6 +16,9 @@ use App\Http\Controllers\GrupoController;
 use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\PanelController;
 use App\Http\Controllers\ParticipanteController;
+use App\Http\Controllers\UserReservaController;
+
+
 
 
 // =======================
@@ -119,9 +122,13 @@ Route::delete('/canchas/{cancha}', [CanchaController::class, 'destroy'])->name('
 Route::delete('/reservas/{reserva}', [ReservaController::class, 'destroy'])
     ->name('reservas.destroy');
 
-Route::get('/separar', [ReservaController::class, 'serv'])->name('reservas.serv');
+Route::post('/separar/{cancha}', [UserReservaController::class, 'create'])
+    ->name('user_reservas.create');   // nombre único
 
-Route::post('/separarlo', [ReservaController::class, 'preserva'])->name('reservas.preserva');
+Route::post('/sepaarweb', [UserReservaController::class, 'store'])
+    ->name('user_reservas.store');    // nombre único
+
+
 
 
 
