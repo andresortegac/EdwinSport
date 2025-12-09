@@ -122,7 +122,7 @@ Route::delete('/canchas/{cancha}', [CanchaController::class, 'destroy'])->name('
 Route::delete('/reservas/{reserva}', [ReservaController::class, 'destroy'])
     ->name('reservas.destroy');
 
-Route::post('/separar/{cancha}', [UserReservaController::class, 'create'])
+Route::get('/separar/{cancha}', [UserReservaController::class, 'create'])
     ->name('user_reservas.create');   // nombre único
 
 Route::post('/sepaarweb', [UserReservaController::class, 'store'])

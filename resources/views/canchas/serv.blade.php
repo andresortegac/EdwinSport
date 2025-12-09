@@ -37,16 +37,14 @@
                     <p><strong>Ubicación:</strong> {{ $cancha->ubicacion }}</p>
                     <p><strong>Contacto:</strong> {{ $cancha->telefono_contacto }}</p>           
 
-                {{-- Calendario --}}
-                <label for="fecha"><strong>Seleccionar fecha:</strong></label>
-                <input type="date" class="form-control" id="fecha">
+                
             </div>
         </div>
 
         {{-- COLUMNA DERECHA: Formulario --}}
         <div class="col-md-6">
             <div class="reserva-card">
-                <form action="{{ route('reservas.store') }}" method="POST">
+                <form action="{{ route('user_reservas.store') }}" method="POST">
                         @csrf
 
                         <input type="hidden" name="cancha_id" value="{{ $cancha->id }}">
@@ -74,5 +72,16 @@
 
     </div>
 </div>
-
+ @if (session('success'))
+<script>
+    Swal.fire({
+        icon: 'success',
+        title: 'Operacion exitosa',
+        text: "{{ session('success') }}",
+        confirmButtonColor: '#3f61ff',
+        timer: 3000,
+        timerProgressBar: true
+    });
+</script>
+@endif
 @endsection
