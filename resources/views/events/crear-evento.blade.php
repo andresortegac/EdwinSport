@@ -21,13 +21,13 @@
 
                 <div class="card" role="form">
 
-                    <h3 class="section-title">Información del evento</h3>
+                    <h3 class="section-title">Informacion del evento</h3>
 
                     <div class="form-grid">
 
                         {{-- TITULO --}}
                         <div class="field">
-                            <label for="title">Título del evento</label>
+                            <label for="title">Ti�tulo del evento</label>
                             <input id="title" type="text" name="title"
                                 placeholder="Ej: Torneo Interbarrios 2026"
                                 value="{{ old('title') }}" required>
@@ -41,11 +41,11 @@
                                 value="{{ old('slug') }}" required>
                         </div>
 
-                        {{-- CATEGORíA --}}
+                        {{-- CATEGORI�A --}}
                         <div class="field">
-                            <label for="category">Categoría</label>
+                            <label for="category">Categori�a</label>
                             <select id="category" name="category" required>
-                                <option value="" hidden selected>Seleccione categoría...</option>
+                                <option value="" hidden selected>Seleccione categori�a...</option>
                                 <option value="hombres">Hombres</option>
                                 <option value="mujeres">Mujeres</option>
                                 <option value="mixto">Mixto</option>
@@ -71,15 +71,15 @@
 
                         {{-- UBICACIÓN --}}
                         <div class="field">
-                            <label for="location">Lugar / Dirección</label>
+                            <label for="location">Lugar / Direccion</label>
                             <input id="location" type="text" name="location"
                                 placeholder="Ej: Coliseo Municipal"
                                 value="{{ old('location') }}" required>
                         </div>
 
-                        {{-- DESCRIPCIÓN --}}
+                        {{-- DESCRIPCION --}}
                         <div class="field full">
-                            <label for="description">Descripción</label>
+                            <label for="description">Descripcion</label>
                             <br>
                             <textarea id="description" name="description" rows="5"
                                     placeholder="Detalles del evento">{{ old('description') }}</textarea>

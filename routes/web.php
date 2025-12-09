@@ -96,7 +96,7 @@ Route::get('/about/valores', function () {
 
 Route::controller(PanelController::class)->group(function(){
     Route::get('/usuario-panel', 'index')->name('usuario.panel');
-    Route::get('/{id}/editar-evento', 'index')->name('editar-evento.edit');
+    Route::get('/{id}/editar-evento', 'edit')->name('editar-evento.edit');
     Route::put('/{id}/actualizar-evento', 'update')->name('actualizar-evento.update');
     Route::delete('/{id}/eliminar-evento', 'destroy')->name('eliminar-evento.destroy');
 });
