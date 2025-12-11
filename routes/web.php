@@ -17,6 +17,7 @@ use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\PanelController;
 use App\Http\Controllers\ParticipanteController;
 use App\Http\Controllers\UserReservaController;
+use App\Http\Controllers\CompeticionesController;
 
 // ✅ IMPORT DEL CONTROLADOR NUEVO (SOLO IMPORT, NO CLASE AQUÍ)
 use App\Http\Controllers\CrearEventoDeveloperController;
@@ -271,3 +272,14 @@ Route::post('/password/update', [PasswordsController::class, 'update'])
 // =======================
 Route::get('/contactos/{id}', [ContactenosController::class, 'show'])
     ->name('contactos.show');
+
+
+    // =======================
+// PASSWORD UPDATE (solo una vez)
+// =======================
+
+Route::controller(CompeticionesController::class)->group(function () {
+    // Rutas del menu
+    Route::get('/competicion', 'competicion')->name('competicion');
+    Route::get('/partidos', 'partidos')->name('partidos');
+});
