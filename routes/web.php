@@ -18,7 +18,11 @@ use App\Http\Controllers\PanelController;
 use App\Http\Controllers\ParticipanteController;
 use App\Http\Controllers\UserReservaController;
 
+// ✅ IMPORT DEL CONTROLADOR NUEVO (SOLO IMPORT, NO CLASE AQUÍ)
+use App\Http\Controllers\CrearEventoDeveloperController;
 
+// ✅ IMPORT PARA EQUIPOS (NUEVO)
+use App\Http\Controllers\EquipoController;
 
 
 // =======================
@@ -53,6 +57,12 @@ Route::controller(LoginController::class)->group(function(){
 // =======================
 // EVENTOS
 // =======================
+
+// ✅ RUTA NUEVA PARA TU VISTA VACÍA
+// IMPORTANTE: VA ANTES DE /eventos/{event}
+Route::get('/eventos/crear-evento-developer', [CrearEventoDeveloperController::class, 'index'])
+    ->name('events.crear-evento-developer');
+
 Route::get('/eventos', [EventController::class,'index'])->name('events.index');
 Route::get('/eventos/{event}', [EventController::class,'show'])->name('events.show');
 
@@ -93,13 +103,13 @@ Route::get('/about/valores', function () {
 // =======================
 // PANEL USUARIO
 // =======================
-
 Route::controller(PanelController::class)->group(function(){
     Route::get('/usuario-panel', 'index')->name('usuario.panel');
     Route::get('/{id}/editar-evento', 'edit')->name('editar-evento.edit');
     Route::put('/{id}/actualizar-evento', 'update')->name('actualizar-evento.update');
     Route::delete('/{id}/eliminar-evento', 'destroy')->name('eliminar-evento.destroy');
 });
+
 
 // =======================
 // CANCHAS / RESERVAS
@@ -127,8 +137,6 @@ Route::get('/separar/{cancha}', [UserReservaController::class, 'create'])
 
 Route::post('/sepaarweb', [UserReservaController::class, 'store'])
     ->name('user_reservas.store');    // nombre único
-
-
 
 
 
@@ -164,6 +172,39 @@ Route::get('/distribusion/bracket', [TournamentController::class, 'bracket'])
 
 
 // =======================
+// ✅ EQUIPOS (NUEVO PARA CRUD)
+// =======================
+// Se pone DESPUÉS de /equipos/import para evitar choque con /equipos/{equipo}
+Route::resource('equipos', EquipoController::class)
+    ->middleware('auth');
+
+
+// =======================
+// ✅ EXPORT / IMPORT PARTICIPANTES
+// =======================
+// IMPORTANTE: van antes de /participantes/{participante} para evitar conflicto
+
+// Export general a Excel (si lo sigues usando)
+Route::get('/participantes/export', [ParticipanteController::class, 'exportExcel'])
+    ->middleware('auth')
+    ->name('participantes.export');
+
+// ✅ NUEVO: Exportar planilla por equipo (Excel)
+Route::get('/participantes/planilla-excel', [ParticipanteController::class, 'exportPlanillaExcel'])
+    ->middleware('auth')
+    ->name('participantes.planilla.excel');
+
+// ✅ NUEVO: Exportar planilla por equipo (PDF)
+Route::get('/participantes/planilla-pdf', [ParticipanteController::class, 'exportPlanillaPdf'])
+    ->middleware('auth')
+    ->name('participantes.planilla.pdf');
+
+Route::post('/participantes/import', [ParticipanteController::class, 'importExcel'])
+    ->middleware('auth')
+    ->name('participantes.import');
+
+
+// =======================
 // PARTICIPANTES
 // =======================
 Route::get('/participantes', [ParticipanteController::class, 'index'])
@@ -194,7 +235,6 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
 // =======================
 // ADMINS / USUARIOS ADMIN
-// (esto arregla route('crear_usuario'))
 // =======================
 Route::middleware(['auth', 'admin'])->group(function () {
 
@@ -211,9 +251,8 @@ Route::middleware(['auth', 'admin'])->group(function () {
         ->name('admins.index');
 
     Route::delete('/admins/{id}', [AdminUserController::class, 'destroy'])
-    ->name('crear_usuario.destroy');  // 
+        ->name('crear_usuario.destroy');  
 
-    // 
     Route::patch('/admins/{id}/password', [AdminUserController::class, 'updatePassword'])
         ->name('crear_usuario.updatePassword');
 });
@@ -226,10 +265,9 @@ Route::post('/password/update', [PasswordsController::class, 'update'])
     ->middleware('auth')
     ->name('password.update');
 
-//=============================    
-//Ver notificaciones 
 
-
-Route::get('/contactos/{id}', [ContactenosController::class, 'show'])->name('contactos.show');
-
-//=============================
+// =======================
+// VER NOTIFICACIONES
+// =======================
+Route::get('/contactos/{id}', [ContactenosController::class, 'show'])
+    ->name('contactos.show');
