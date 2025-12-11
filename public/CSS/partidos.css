@@ -1,0 +1,58 @@
+/* Imagen superior */
+.header-image {
+    width: 100%;
+    height: 40vh;
+    overflow: hidden;
+}
+
+.header-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Menú */
+.menu {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    padding: 15px 0;
+    background: #fff;
+    border-bottom: 1px solid #ddd;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.menu a {
+    text-decoration: none;
+    color: #333;
+}
+
+.menu a.active {
+    color: #007bff;
+    border-bottom: 2px solid #007bff;
+}
+
+/* Contenido */
+.content {
+    padding: 20px;
+    text-align: center;
+}
+
+.top-bar {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    z-index: 10; /* Para que quede arriba de la imagen */
+}
+
+.top-bar button {
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
