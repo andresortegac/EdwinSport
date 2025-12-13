@@ -249,6 +249,17 @@ Route::post('/password/update', [PasswordsController::class, 'update'])
 // COMPETICIONES
 // =======================
 Route::controller(CompeticionesController::class)->group(function () {
-    Route::get('/competicion', 'competicion')->name('competicion');
-    Route::get('/partidos', 'partidos')->name('partidos');
+
+    // Ver competición de un evento
+    Route::get('/competicion/{evento}', 'show')
+        ->name('competicion');
+
+    // Crear competición (una por evento)
+    Route::post('/competicion/{evento}/crear', 'store')
+        ->name('competicion.crear');
+
+    // Generar grupos automáticamente
+    Route::post('/competicion/{competicion}/grupos', 'generarGrupos')
+        ->name('competicion.grupos');
+
 });

@@ -28,4 +28,22 @@ class Event extends Model
         'start_at' => 'datetime',
         'end_at'   => 'datetime',
     ];
+
+        /**
+     * Equipos inscritos en el evento
+     * campo FK: equipos.evento
+     */
+    public function equipos()
+    {
+        return $this->hasMany(Equipo::class, 'evento');
+    }
+
+    /**
+     * Competición del evento (UNA sola)
+     * campo FK: competiciones.evento
+     */
+    public function competicion()
+    {
+        return $this->hasOne(Competicion::class, 'evento');
+    }
 }

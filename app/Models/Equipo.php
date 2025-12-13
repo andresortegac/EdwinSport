@@ -27,4 +27,9 @@ class Equipo extends Model
     {
         return $this->hasMany(Participante::class);
     }
+
+    public function evento()
+    {
+        return $this->belongsTo(Event::class, 'evento');
+    }
 }
