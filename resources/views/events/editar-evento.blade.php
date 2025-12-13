@@ -3,9 +3,19 @@
 @section('content')
 <div class="container">
 
-    <h2 class="text-center mb-4" style="font-family: Oswald; font-weight:700;">
-        Editar Evento
-    </h2>
+    {{-- Barra superior: Volver + Título --}}
+    <div class="d-flex align-items-center justify-content-between mb-4">
+        <a href="{{ url()->previous() }}" class="btn btn-outline-dark">
+            ← Volver
+        </a>
+
+        <h2 class="m-0 text-center flex-grow-1" style="font-family: Oswald; font-weight:700;">
+            Editar Evento
+        </h2>
+
+        {{-- Espaciador para centrar el título (mismo ancho que el botón) --}}
+        <div style="width: 96px;"></div>
+    </div>
 
     <form action="{{ route('actualizar-evento.update', $evento->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
@@ -73,10 +83,16 @@
             <small class="text-muted">Si subes una imagen nueva, reemplazará la actual.</small>
         </div>
 
-        {{-- Botones --}}
-        <div class="d-flex gap-3">
-            <button type="submit" class="btn btn-primary">Guardar Cambios</button>
-            <a href="{{ route('usuario.panel') }}" class="btn btn-secondary">Cancelar</a>
+        {{-- Botones del formulario --}}
+        <div class="d-flex gap-3 mt-4">
+            <button type="submit" class="btn btn-primary">
+                Guardar Cambios
+            </button>
+
+            {{-- Cancelar: se queda en la página y revierte cambios --}}
+            <button type="reset" class="btn btn-secondary">
+                Cancelar edición
+            </button>
         </div>
 
     </form>

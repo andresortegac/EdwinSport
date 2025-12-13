@@ -15,19 +15,17 @@
   <!-- SB Admin base -->
   <link href="{{ asset('CSS/sb-admin-2.min.css') }}" rel="stylesheet">
 
-  <!-- ✅ OPCIÓN C APLICADA -->
   <style>
     :root{
-      /* Paleta opción C */
-      --bg: #F6F1E7;          /* arena claro */
-      --card: #FFFFFF;
-      --sidebar: #10131A;     /* negro suave/carbón */
-      --primary: #D4A017;     /* dorado */
-      --secondary: #1E3A8A;   /* azul oscuro */
-      --text: #0B1020;
-      --muted: #7A8594;
+      --bg: #020617;          /* fondo oscuro general del contenido */
+      --card: #020924;
+      --sidebar: #020617;
+      --primary: #D4A017;
+      --secondary: #1E3A8A;
+      --text: #E5E7EB;        /* texto claro para fondo oscuro */
+      --muted: #CBD5F5;
 
-      --line: rgba(11,16,32,.12);
+      --line: rgba(148,163,184,.35);
       --white-line: rgba(255,255,255,.08);
     }
 
@@ -35,24 +33,28 @@
       font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif !important;
       color: var(--text);
       background:
-        radial-gradient(1200px 600px at 5% -10%, rgba(212,160,23,.18), transparent 60%),
-        radial-gradient(900px 600px at 110% 0%, rgba(30,58,138,.10), transparent 55%),
-        linear-gradient(180deg, var(--bg), #F2EBDD);
+        radial-gradient(1200px 600px at 5% -10%, rgba(212,160,23,.30), transparent 60%),
+        radial-gradient(900px 600px at 110% 0%, rgba(30,64,175,.40), transparent 55%),
+        linear-gradient(180deg, #020617, #020617);
       min-height:100vh;
     }
 
-    /* ================= SIDEBAR PREMIUM OSCURO ================= */
+    /* textos “muted” más claros para que se vean sobre el fondo oscuro */
+    .text-muted{
+      color: var(--muted) !important;
+    }
+
+    /* ================= SIDEBAR ================= */
     .sidebar{
-      background: linear-gradient(180deg, #0d1016, var(--sidebar)) !important;
+      background: linear-gradient(180deg, #020617, #020617) !important;
       border-right: 1px solid var(--white-line);
-      box-shadow: 10px 0 25px rgba(0,0,0,.35);
+      box-shadow: 10px 0 25px rgba(0,0,0,.60);
       padding-top: .6rem;
     }
 
     .sidebar .sidebar-brand{
       padding: 1rem 1rem;
-      background:
-        linear-gradient(135deg, rgba(212,160,23,.15), rgba(30,58,138,.12));
+      background: linear-gradient(135deg, rgba(212,160,23,.25), rgba(30,64,175,.25));
       border-bottom:1px solid var(--white-line);
     }
 
@@ -66,7 +68,7 @@
     }
 
     .sidebar-heading{
-      color: rgba(255,255,255,.6) !important;
+      color: rgba(148,163,184,.85) !important;
       letter-spacing: 1px;
       font-weight:800;
       text-transform:uppercase;
@@ -90,11 +92,10 @@
       transition: all .12s ease;
     }
 
-    /* activo dorado */
     .sidebar .nav-item.active .nav-link{
-      background: rgba(212,160,23,.13) !important;
+      background: rgba(212,160,23,.15) !important;
       color:#fff !important;
-      box-shadow: inset 0 0 0 1px rgba(212,160,23,.35);
+      box-shadow: inset 0 0 0 1px rgba(212,160,23,.45);
     }
     .sidebar .nav-item.active .nav-link::before{
       content:"";
@@ -105,11 +106,11 @@
       width:4px;
       border-radius:999px;
       background: var(--primary);
-      box-shadow: 0 0 10px rgba(212,160,23,.8);
+      box-shadow: 0 0 10px rgba(212,160,23,.9);
     }
 
     .sidebar .nav-item .nav-link:hover{
-      background: rgba(255,255,255,.06) !important;
+      background: rgba(148,163,184,.28) !important;
       color:#fff !important;
       transform: translateX(3px);
     }
@@ -120,43 +121,42 @@
       opacity:.9;
     }
 
-    /* dropdown interno claro */
     .collapse-inner{
       border-radius: 1rem !important;
-      background: rgba(255,255,255,.98) !important;
-      border:1px solid var(--line) !important;
-      box-shadow: 0 8px 18px rgba(11,16,32,.15);
+      background: rgba(15,23,42,1) !important;
+      border:1px solid var(--white-line) !important;
+      box-shadow: 0 8px 18px rgba(15,23,42,.9);
       padding:.35rem;
     }
     .collapse-item{
       border-radius: .7rem !important;
       font-weight:700 !important;
-      color:var(--text) !important;
+      color:#e5e7eb !important;
       padding: .55rem .8rem !important;
     }
     .collapse-item:hover{
-      background: rgba(212,160,23,.12) !important;
-      color:var(--text) !important;
+      background: rgba(212,160,23,.18) !important;
+      color:#f9fafb !important;
     }
 
-    /* ================= TOPBAR CLARA PREMIUM ================= */
+    /* ================= TOPBAR ================= */
     .topbar{
-      background: rgba(255,255,255,.95) !important;
-      border:1px solid var(--line);
+      background: rgba(15,23,42,.98) !important;
+      border:1px solid var(--white-line);
       border-radius: 1rem;
       margin: 1rem 1rem 1.2rem 1rem !important;
-      box-shadow: 0 10px 25px rgba(11,16,32,.10);
+      box-shadow: 0 18px 40px rgba(0,0,0,.65);
     }
 
     .topbar .navbar-search .form-control{
-      background: #fff !important;
-      color:var(--text) !important;
-      border:1px solid var(--line) !important;
+      background: #0b1220 !important;
+      color:#e5e7eb !important;
+      border:1px solid rgba(148,163,184,.6) !important;
       border-radius: 999px !important;
       padding-left: 1.1rem;
     }
     .topbar .navbar-search .form-control::placeholder{
-      color:var(--muted) !important;
+      color:#94a3b8 !important;
     }
     .topbar .navbar-search .btn{
       border-radius: 999px !important;
@@ -164,18 +164,16 @@
       background: linear-gradient(135deg, var(--secondary), #0f245f) !important;
       border:none !important;
       color: #fff !important;
-      box-shadow: 0 8px 18px rgba(30,58,138,.30);
+      box-shadow: 0 8px 18px rgba(30,64,175,.60);
     }
 
-    /* usuario derecha */
     .topbar .dropdown-toggle span{
-      color:var(--text) !important;
+      color:#e5e7eb !important;
       font-weight:800;
     }
 
-    /* iconos topbar opcional */
     .topbar .nav-link i{
-      color: var(--text) !important;
+      color: #e5e7eb !important;
       font-size: 1.05rem;
     }
 
@@ -188,36 +186,38 @@
       font-family: Oswald, Inter, sans-serif;
       letter-spacing:.4px;
       font-weight:600;
-      color:var(--text);
+      color:#f9fafb;
     }
 
-    /* ================= CARDS BLANCAS CON ACCENTO TROFEO ================= */
+    /* ================= CARDS OSCURAS ================= */
     .card{
-      background: var(--card) !important;
-      border:1px solid var(--line) !important;
+      background: #020924 !important;
+      border:1px solid rgba(15,23,42,.9) !important;
       border-radius: 1.1rem !important;
-      box-shadow: 0 12px 26px rgba(11,16,32,.08) !important;
-      color:var(--text);
+      box-shadow: 0 16px 40px rgba(0,0,0,.80) !important;
+      color:#e5e7eb !important;
       position:relative;
       overflow:hidden;
     }
     .card-header{
-      background: transparent !important;
-      border-bottom:1px solid var(--line) !important;
+      background: linear-gradient(90deg, rgba(15,23,42,1), rgba(15,23,42,.6)) !important;
+      border-bottom:1px solid rgba(15,23,42,.9) !important;
       font-weight:900;
-      color:var(--text) !important;
+      color:#f9fafb !important;
     }
 
-    /* acentos arriba por color */
+    /* Evita texto blanco “apagado” dentro de cards */
+    #content .card .text-white{
+      color: #f9fafb !important;
+    }
+
     .accent-gold{ border-top:4px solid var(--primary) !important; }
     .accent-blue{ border-top:4px solid var(--secondary) !important; }
 
-    /* Footer claro */
     footer.sticky-footer{
-      background: rgba(255,255,255,.95) !important;
-      color:var(--muted) !important;
-      border-top:1px solid var(--line);
-      backdrop-filter: blur(6px);
+      background: #020617 !important;
+      color:#9ca3af !important;
+      border-top:1px solid rgba(15,23,42,.9);
     }
 
     .scroll-to-top{
@@ -226,143 +226,129 @@
       box-shadow: 0 10px 22px rgba(212,160,23,.35);
     }
 
-    /* --- SOLO AFECTA AL FORMULARIO DE CREAR EVENTO --- */
+    /* ================= FORMULARIO CREAR EVENTO ================= */
 
     #contenedor-formulario {
-        display: flex;
-        justify-content: center;
-        align-items: flex-start;
-        padding: 20px;
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      padding: 30px 0;
     }
 
-    /* Caja del formulario */
     .formulario-evento {
-        width: 100%;
-        max-width: 700px;
-        background: #ffffff;
-        padding: 25px;
-        border-radius: 1.2rem;
-        border: 1px solid rgba(0,0,0,0.08);
-        box-shadow: 0 12px 26px rgba(11,16,32,.08);
+      width: 100%;
+      max-width: 900px;
+      background: #020b1c;
+      padding: 35px;
+      border-radius: 1.4rem;
+      border: 1px solid rgba(15,23,42,.9);
+      box-shadow: 0 16px 40px rgba(0,0,0,.85);
     }
 
-    /* Inputs redondeados */
-    .formulario-evento input,
-    .formulario-evento select,
-    .formulario-evento textarea {
-        border-radius: 0.8rem !important;
-        border: 1px solid rgba(11,16,32,.18) !important;
-        padding: 10px 14px !important;
-    }
-
-    /* Título del formulario */
-    .formulario-evento h2,
-    .formulario-evento h3 {
-        font-family: Oswald, sans-serif;
-        font-weight: 600;
-        color: var(--text);
-    }
-
-    /* Botón */
-    .formulario-evento button {
-        border-radius: 1rem !important;
-        padding: 10px 20px;
-        font-weight: 800;
-    }
-
-    /* --- CENTRAR FORMULARIO --- */
-    #contenedor-formulario {
-        display: flex;
-        justify-content: center;
-        width: 100%;
-        padding: 30px 0;
-    }
-
-    /* --- FORMULARIO --- */
-
-    /* ✔ Padding interno para separar los campos de los bordes */
     .formulario-evento form .card{
-        padding: 35px !important;
+      padding: 35px !important;
+      background:#020b1c !important;
+      border:none !important;
+      box-shadow:none !important;
     }
 
-    /* ✔ Campos ocupan el 100% del contenedor */
     .formulario-evento input,
     .formulario-evento select,
     .formulario-evento textarea {
-        width: 100% !important;
-        box-sizing: border-box !important;
+      width: 100% !important;
+      box-sizing: border-box !important;
+      border-radius: 0.8rem !important;
+      border: 1px solid rgba(148,163,184,.6) !important;
+      padding: 12px 14px !important;
+      background:#020617 !important;
+      color:#e5e7eb !important;
     }
 
-    /* ✔ Espaciado entre campos */
     .formulario-evento .form-group,
+    .formulario-evento .field,
+    .formulario-evento .full,
     .formulario-evento div {
-        margin-bottom: 18px;
+      margin-bottom: 18px;
     }
 
-    /* Centrar únicamente el título principal del formulario */
     .formulario-evento h1 {
-        text-align: center !important;
-        width: 100%;
+      text-align: center !important;
+      width: 100%;
     }
 
-    .formulario-evento {
-        width: 100%;
-        background: #ffffff;
-        padding: 35px;
-        border-radius: 1.4rem;
-        border: 1px solid rgba(0,0,0,0.08);
-        box-shadow: 0 12px 26px rgba(11,16,32,.08);
-    }
-
-    /* --- SEPARAR LOS CAMPOS --- */
-    .formulario-evento .field {
-        margin-bottom: 18px !important;
-    }
-
-    .formulario-evento .full {
-        margin-bottom: 22px !important;
-    }
-
-    /* Inputs redondeados */
-    .formulario-evento input,
-    .formulario-evento select,
-    .formulario-evento textarea {
-        border-radius: 0.8rem !important;
-        border: 1px solid rgba(11,16,32,.18) !important;
-        padding: 12px 14px !important;
-    }
-
-    /* Títulos */
     .formulario-evento h2,
     .formulario-evento h3 {
-        font-family: Oswald, sans-serif;
-        margin-bottom: 20px;
+      font-family: Oswald, sans-serif;
+      margin-bottom: 20px;
+      color: #f9fafb;
     }
 
-    /* ✔ Botón GUARDAR EVENTO con borde oscuro */
     .formulario-evento button[type="submit"] {
-        border: 2px solid #0B1020 !important; /* borde oscuro */
-        background: var(--primary) !important; /* mantiene tu dorado */
-        color: #000000ff !important;
-        font-weight: 800;
-        border-radius: 1rem !important;
-        padding: 12px 22px;
-        transition: 0.2s ease;
+      border: 0 !important;
+      background: linear-gradient(90deg,#2563eb,#22c55e) !important;
+      color: #f9fafb !important;
+      font-weight: 800;
+      border-radius: 999px !important;
+      padding: 12px 26px;
+      transition: 0.2s ease;
+      box-shadow: 0 14px 30px rgba(37,99,235,.55);
     }
 
-    /* Hover más elegante */
     .formulario-evento button[type="submit"]:hover {
-        background: #e2cb00ff !important;   /* azul oscuro */
-        border-color: #0B1020 !important;
-        transform: translateY(-2px);
+      transform: translateY(-2px);
+      box-shadow: 0 18px 40px rgba(37,99,235,.75);
     }
-
 
     #menu-principal-top {
-        display: none !important;
+      display: none !important;
     }
 
-    
+    /* =========================================================
+       *****  ARREGLO DURO PARA QUE LAS TABLAS SE VEAN  *****
+       Cualquier tabla .table quedará con fondo claro
+       y texto oscuro, sin opacidades.
+       Esto afecta tu tabla de “Equipos Registrados”.
+       ========================================================= */
+
+    .table{
+      background-color:#ffffff !important;
+      color:#020617 !important;
+      border-radius: 1rem !important;
+      overflow: hidden;
+    }
+
+    .table th,
+    .table td{
+      color:#020617 !important;
+      opacity:1 !important;
+      background-color:#ffffff !important;
+      border-top:1px solid rgba(148,163,184,.45) !important;
+      vertical-align: middle !important;
+    }
+
+    .table thead th{
+      background:#E5E7EB !important;
+      color:#020617 !important;
+      font-weight:700 !important;
+      border-bottom:1px solid rgba(148,163,184,.8) !important;
+    }
+
+    .table-striped tbody tr:nth-of-type(odd){
+      background-color:#ffffff !important;
+    }
+    .table-striped tbody tr:nth-of-type(even){
+      background-color:#F9FAFB !important;
+    }
+
+    .table-hover tbody tr:hover{
+      background-color:#E0ECFF !important;
+    }
+
+    .table .btn{
+      border-radius:.8rem !important;
+      font-weight:600 !important;
+    }
+
   </style>
 
 </head>
@@ -410,9 +396,11 @@
       <div id="collapseParticipantes" class="collapse">
         <div class="py-2 collapse-inner rounded">
           <h6 class="collapse-header">Equipos y atletas</h6>
-          <a class="collapse-item" href="#">Registrar participante</a>
-          <a class="collapse-item" href="#">Lista de participantes</a>
-          <a class="collapse-item" href="#">Categorías</a>
+
+          <a class="collapse-item" href="#" id="btn-registrar-participante">
+            Registrar participantes
+          </a>
+
         </div>
       </div>
     </li>
@@ -472,10 +460,10 @@
           </div>
         </form>
 
-        <!-- ✅ AQUÍ ESTÁN LAS CAMPANITAS Y MENSAJES -->
+        <!-- Notificaciones, mensajes y usuario -->
         <ul class="navbar-nav ml-auto">
 
-          <!-- 🔔 Notificaciones -->
+          <!-- Notificaciones -->
           <li class="nav-item dropdown no-arrow mx-1">
             <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown"
                role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -513,7 +501,7 @@
             </div>
           </li>
 
-          <!-- 💬 Mensajes -->
+          <!-- Mensajes -->
           <li class="nav-item dropdown no-arrow mx-1">
             <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown"
                role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -554,10 +542,9 @@
             </div>
           </li>
 
-          <!-- divisor opcional -->
           <div class="topbar-divider d-none d-sm-block"></div>
 
-          <!-- 👤 Usuario (tu bloque original) -->
+          <!-- Usuario -->
           <li class="nav-item dropdown no-arrow">
             <a class="nav-link dropdown-toggle d-flex align-items-center gap-2 px-2" href="#"
                id="userDropdown" role="button" data-toggle="dropdown">
@@ -583,20 +570,24 @@
 
       <!-- Content -->
       <div class="container-fluid">
-        <h1 class="h3 mb-4">Panel del Usuario</h1>
-        <p class="text-muted">Bienvenido: {{ auth()->user()->email ?? '' }}</p>
+        <h1 class="h3 mb-1">Panel del Usuario</h1>
+        <p class="mb-4 text-muted">Bienvenido: {{ auth()->user()->email ?? '' }}</p>
 
-        <!-- Cards ejemplo con acentos -->
         <div class="row">
 
-          <!-- CONTENEDOR DEL FORMULARIO (OCULTO AL INICIO) -->
+          <!-- FORMULARIO EVENTO -->
           <div id="contenedor-formulario" class="col-12" style="display:none;">
-              @include('events.crear-evento') 
+            @include('events.crear-evento')
           </div>
 
-          <!-- CONTENEDOR DEL LISTADO (OCULTO AL INICIO) -->
+          <!-- LISTADO EVENTOS -->
           <div id="contenedor-listado" class="col-12" style="display:none;">
-              @include('events.listado-eventos') 
+            @include('events.listado-eventos')
+          </div>
+
+          <!-- PARTICIPANTES -->
+          <div id="contenedor-participantes" class="col-12" style="display:none;">
+            @include('REGISTER.participantes', ['hideBackButton' => true])
           </div>
 
         </div>
@@ -646,19 +637,27 @@
 <script src="{{ asset('vendor/jquery-easing/jquery.easing.min.js') }}"></script>
 <script src="{{ asset('js/sb-admin-2.min.js') }}"></script>
 
+<!-- JS PARA CAMBIAR ENTRE VISTAS -->
 <script>
 document.getElementById('btn-crear-evento').addEventListener('click', function(e) {
     e.preventDefault();
-
     document.getElementById('contenedor-formulario').style.display = "block";
     document.getElementById('contenedor-listado').style.display = "none";
+    document.getElementById('contenedor-participantes').style.display = "none";
 });
 
 document.getElementById('btn-listado-eventos').addEventListener('click', function(e) {
     e.preventDefault();
-
     document.getElementById('contenedor-formulario').style.display = "none";
     document.getElementById('contenedor-listado').style.display = "block";
+    document.getElementById('contenedor-participantes').style.display = "none";
+});
+
+document.getElementById('btn-registrar-participante').addEventListener('click', function(e) {
+    e.preventDefault();
+    document.getElementById('contenedor-formulario').style.display = "none";
+    document.getElementById('contenedor-listado').style.display = "none";
+    document.getElementById('contenedor-participantes').style.display = "block";
 });
 </script>
 

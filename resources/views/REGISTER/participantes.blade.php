@@ -73,6 +73,11 @@
 </head>
 <body>
 
+@php
+    // Si no viene definida desde el include, por defecto es false
+    $hideBackButton = $hideBackButton ?? false;
+@endphp
+
 <div class="container py-5">
   <div class="pro-card">
 
@@ -109,8 +114,11 @@
         <p class="muted mb-0">Registra el equipo primero, luego agrega jugadores.</p>
       </div>
 
-      {{-- ✅ ESTE botón vuelve al register --}}
-      <a href="{{ route('register') }}" class="btn btn-soft">← Volver</a>
+      {{-- ✅ ESTE botón vuelve al register
+           Se oculta SOLO cuando $hideBackButton == true (desde usuario.panel) --}}
+      @if (! $hideBackButton)
+        <a href="{{ route('register') }}" class="btn btn-soft">← Volver</a>
+      @endif
     </div>
 
     @php $isEditEquipo = isset($equipo); @endphp

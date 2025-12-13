@@ -2,17 +2,15 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Sponsor extends Model
 {
-    use HasFactory;
+    protected $table = 'sponsors'; // opcional
 
-    protected $fillable = ['nombre', 'logo', 'url'];
-
-    public function events()
-    {
-        return $this->belongsToMany(Event::class, 'event_sponsor');
-    }
+    protected $fillable = [
+        'nombre',   // nombre del sponsor
+        'logo',     // ruta de la imagen
+        'url',      // enlace opcional
+    ];
 }

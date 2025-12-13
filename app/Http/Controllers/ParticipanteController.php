@@ -20,7 +20,10 @@ use Barryvdh\DomPDF\Facade\Pdf;
 
 class ParticipanteController extends Controller
 {
-    public function index()
+    /**
+     * Carga los datos comunes que necesita la vista REGISTER.participantes
+     */
+    private function getDatosFormulario(Participante $participante = null): array
     {
         $equipos = Equipo::orderBy('nombre_equipo')->get();
 
@@ -30,12 +33,25 @@ class ParticipanteController extends Controller
 
         $eventos = Event::orderBy('start_at', 'desc')->get();
 
-        return view('REGISTER.participantes', compact('participantes', 'equipos', 'eventos'));
+        // compact crea array con las variables
+        return compact('participantes', 'equipos', 'eventos', 'participante');
     }
 
+    /**
+     * Lista de participantes + formulario (vista principal)
+     */
+    public function index()
+    {
+        return view('REGISTER.participantes', $this->getDatosFormulario());
+    }
+
+    /**
+     * Mostrar formulario de registro (la usaremos para /registrar-participantes)
+     * En tu caso, muestra lo mismo que index.
+     */
     public function create()
     {
-        return redirect()->route('participantes.index');
+        return view('REGISTER.participantes', $this->getDatosFormulario());
     }
 
     public function store(Request $request)
@@ -61,15 +77,8 @@ class ParticipanteController extends Controller
 
     public function edit(Participante $participante)
     {
-        $equipos = Equipo::orderBy('nombre_equipo')->get();
-
-        $participantes = Participante::with('equipo')
-            ->orderBy('id', 'desc')
-            ->get();
-
-        $eventos = Event::orderBy('start_at', 'desc')->get();
-
-        return view('REGISTER.participantes', compact('participantes', 'participante', 'equipos', 'eventos'));
+        // misma vista pero con $participante para editar
+        return view('REGISTER.participantes', $this->getDatosFormulario($participante));
     }
 
     public function update(Request $request, Participante $participante)
@@ -125,32 +134,29 @@ class ParticipanteController extends Controller
     // ✅ NUEVO: EXPORTAR PLANILLA POR EQUIPO (EXCEL)
     // =========================
     public function exportPlanillaExcel(Request $request)
-{
-    $equipoId = $request->input('equipo_id');
-    $equipo   = Equipo::with('participantes')->findOrFail($equipoId);
+    {
+        $equipoId = $request->input('equipo_id');
+        $equipo   = Equipo::with('participantes')->findOrFail($equipoId);
 
-    return Excel::download(
-        new PlanillaEquipoExport($equipo),
-        'planilla_'.$equipo->nombre_equipo.'.xlsx' // ← este nombre puede ser largo
-    );
-}
+        return Excel::download(
+            new PlanillaEquipoExport($equipo),
+            'planilla_' . $equipo->nombre_equipo . '.xlsx'
+        );
+    }
 
     // =========================
     // ✅ NUEVO: EXPORTAR PLANILLA POR EQUIPO (PDF)
     // =========================
-   public function exportPlanillaPdf(Request $request)
-{
-    $equipoId = $request->input('equipo_id');
+    public function exportPlanillaPdf(Request $request)
+    {
+        $equipoId = $request->input('equipo_id');
 
-    $equipo = Equipo::with('participantes')->findOrFail($equipoId);
+        $equipo = Equipo::with('participantes')->findOrFail($equipoId);
 
-    // ANTES: 'planillas.planilla_equipo'
-    $pdf = Pdf::loadView('events.planilla_equipo', [
-        'equipo' => $equipo,
-    ]);
+        $pdf = Pdf::loadView('events.planilla_equipo', [
+            'equipo' => $equipo,
+        ]);
 
-    return $pdf->download('planilla_'.$equipo->nombre_equipo.'.pdf');
-}
-
-
+        return $pdf->download('planilla_' . $equipo->nombre_equipo . '.pdf');
+    }
 }

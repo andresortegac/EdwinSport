@@ -1,87 +1,129 @@
 {{-- resources/views/events/crear-evento.blade.php --}}
 
 <style>
-/* ====== CENTRADO FORM CREAR EVENTO ====== */
-.wrap.formulario-evento{
+/* Estilo de la sección de "Agregar Jugadores / Participantes" */
+.wrap.participantes {
     width: 100%;
-    max-width: 950px;  /* ancho del formulario */
-    margin: 0 auto;    /* ✅ centra horizontalmente */
+    max-width: 950px;
+    margin: 0 auto;
     padding: 24px;
-}
-
-/* el form ocupa todo el contenedor */
-.wrap.formulario-evento form{
-    width: 100%;
-}
-
-/* tarjeta */
-.wrap.formulario-evento .card{
-    width: 100%;
-    background: #fff;
+    background: #1c2331;
     border-radius: 12px;
-    padding: 24px;
     box-shadow: 0 4px 14px rgba(0,0,0,0.08);
 }
 
-/* grid del formulario */
-.form-grid{
+/* Títulos de la sección */
+.wrap.participantes .section-title {
+    color: #eaf0ff;
+    font-weight: 700;
+    margin-bottom: 10px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+/* Estilo de los campos dentro de "Agregar Jugadores / Participantes" */
+.wrap.participantes .form-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 16px;
-    margin-top: 16px;
 }
 
-.field{
+.wrap.participantes .field {
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: 8px;
 }
 
-.field.full{
-    grid-column: 1 / -1;
-}
-
-.field input,
-.field select,
-.field textarea{
+/* input y select */
+.wrap.participantes .field input,
+.wrap.participantes .field select,
+.wrap.participantes .field textarea {
     width: 100%;
-    padding: 10px 12px;
-    border: 1px solid #dcdcdc;
+    padding: 12px;
     border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(8, 16, 32, 0.7);
+    color: #eaf0ff;
     outline: none;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
 }
 
-.field input:focus,
-.field select:focus,
-.field textarea:focus{
-    border-color: #3f61ff;
+/* inputs on focus */
+.wrap.participantes .field input:focus,
+.wrap.participantes .field select:focus,
+.wrap.participantes .field textarea:focus {
+    border-color: rgba(63,97,255,0.75);
     box-shadow: 0 0 0 2px rgba(63,97,255,0.15);
 }
 
-/* botón */
-.btn{
+/* Botón de guardar jugador */
+.wrap.participantes .btn {
     margin-top: 20px;
     width: 100%;
     padding: 12px;
-    background: #3f61ff;
+    background: linear-gradient(180deg, #3f61ff 0%, #2f4be0 100%);
     color: white;
     border: none;
     border-radius: 8px;
     cursor: pointer;
+    font-weight: 700;
+    letter-spacing: 0.4px;
+    box-shadow: 0 10px 24px rgba(63,97,255,0.25);
 }
 
-.btn:hover{
-    background: #2f4be0;
+.wrap.participantes .btn:hover {
+    filter: brightness(1.1);
+    box-shadow: 0 12px 26px rgba(63,97,255,0.3);
 }
 
-/* responsive */
-@media (max-width: 768px){
-    .form-grid{
+.wrap.participantes .btn:active {
+    transform: translateY(1px);
+}
+
+/* Estilo de la sección de equipos registrados */
+.wrap.participantes .table {
+    width: 100%;
+    margin-top: 20px;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.wrap.participantes .table th, .wrap.participantes .table td {
+    padding: 12px 16px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    text-align: left;
+}
+
+.wrap.participantes .table th {
+    background-color: #2b3746;
+    color: #eaf0ff;
+    font-weight: bold;
+}
+
+.wrap.participantes .table tr:hover {
+    background-color: rgba(63, 97, 255, 0.1);
+}
+
+/* Ajuste para dispositivos móviles */
+@media (max-width: 768px) {
+    .wrap.participantes .form-grid {
         grid-template-columns: 1fr;
+    }
+    .wrap.participantes .btn {
+        width: 100%;
     }
 }
 </style>
 
+
+
+@if ($errors->any())
+  <div style="background:#fee;border:1px solid #f99;padding:12px;border-radius:8px;margin-bottom:12px;">
+    <strong>Errores:</strong>
+    <ul>
+      @foreach ($errors->all() as $e) <li>{{ $e }}</li> @endforeach
+    </ul>
+  </div>
+@endif
 
 <div class="wrap formulario-evento">
 
@@ -176,7 +218,7 @@
             </div>
 
             <button class="btn" type="submit">GUARDAR EVENTO</button>
-
+          
         </div>
     </form>
 
