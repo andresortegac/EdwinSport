@@ -15,7 +15,7 @@ class UserReservaController extends Controller
             'fecha' => 'required|date',
             'hora' => 'required',
             'numero_subcancha' => 'required|integer|min=1|max:4',
-        ]);
+        ]); 
 
         UserReserva::create($data);
 
