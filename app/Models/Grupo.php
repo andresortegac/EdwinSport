@@ -12,6 +12,9 @@ class Grupo extends Model
 
     public function equipos()
     {
-        return $this->hasMany(Team::class, 'grupo_id');
+        return $this->belongsToMany(Equipo::class, 'grupo_equipo');
     }
+
+
+    
 }

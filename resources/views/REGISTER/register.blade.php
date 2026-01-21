@@ -8,6 +8,9 @@
   <!-- Bootstrap -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
 
+  <!-- ✅ FontAwesome (para lupa, campana y sobre) -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -255,6 +258,105 @@
 
     .divider{ border-color: rgba(148,163,184,.2); }
     .muted{ color:var(--muted); }
+
+    /* ================== ✅ SOLO LO QUE PEDISTE ================== */
+
+    /* Buscador topbar */
+    .search-pro{
+      display:flex;
+      align-items:center;
+      gap:.5rem;
+      width: 100%;
+      max-width: 520px;
+    }
+    .search-pro .form-control{
+      background: rgba(255,255,255,.06) !important;
+      color: var(--text) !important;
+      border:1px solid var(--line) !important;
+      border-radius: 999px !important;
+      padding: .55rem 1.1rem;
+      height: 44px;
+    }
+    .search-pro .form-control::placeholder{
+      color: var(--muted) !important;
+    }
+    .search-pro .btn-search{
+      height: 44px;
+      width: 44px;
+      border-radius: 999px !important;
+      font-weight:800;
+      background: linear-gradient(135deg, var(--c2), #1e40af) !important;
+      border:none !important;
+      color: #fff !important;
+      display:grid;
+      place-items:center;
+      box-shadow: 0 8px 18px rgba(59,130,246,.35);
+    }
+
+    /* Iconos para notificaciones/mensajes */
+    .top-icon-btn{
+      position:relative;
+      width:40px;height:40px;border-radius:999px;
+      display:grid;place-items:center;
+      color:#e5e7eb !important;
+      background: rgba(255,255,255,.04);
+      border:1px solid var(--line);
+      transition:.12s ease;
+      text-decoration:none;
+    }
+    .top-icon-btn:hover{
+      background: rgba(255,255,255,.08);
+      color:#fff !important;
+      transform: translateY(-1px);
+    }
+    .top-icon-btn .badge-counter{
+      position:absolute; top:-6px; right:-6px;
+      font-size:.68rem; font-weight:900;
+      padding:.25rem .38rem;
+      border-radius:999px;
+      background:#ef4444;
+      color:#fff;
+      border:2px solid #0b1020;
+      line-height:1;
+      min-width: 18px;
+      text-align:center;
+    }
+
+    /* Dropdown oscuro pro */
+    .dropdown-pro{
+      background: rgba(8,17,38,.98) !important;
+      border:1px solid var(--line) !important;
+      color: var(--text) !important;
+      border-radius: 1rem;
+      min-width: 320px;
+      overflow:hidden;
+      box-shadow: 0 18px 40px rgba(0,0,0,.6);
+    }
+    .dropdown-pro .dropdown-header{
+      background: rgba(255,255,255,.04);
+      color:#fff;font-weight:900;letter-spacing:.5px;
+      border-bottom:1px solid var(--line);
+      padding:.75rem 1rem;
+    }
+    .dropdown-pro .dropdown-item{
+      color: var(--text) !important;
+      white-space: normal;
+      padding:.75rem 1rem;
+      border-bottom:1px solid var(--line);
+    }
+    .dropdown-pro .dropdown-item:hover{
+      background: rgba(34,211,238,.08);
+    }
+    .dropdown-pro .small-muted{ color: var(--muted); font-size:.8rem; }
+
+    .icon-circle{
+      width:38px;height:38px;border-radius:999px;
+      display:grid;place-items:center;
+      background: rgba(14,165,233,.18);
+      border:1px solid rgba(14,165,233,.45);
+      color:#fff;
+      flex-shrink:0;
+    }
   </style>
 </head>
 
@@ -275,12 +377,90 @@
       </button>
 
       <div class="collapse navbar-collapse" id="navMain">
-        <ul class="navbar-nav ms-auto gap-lg-2">
+
+        <!-- ✅ BUSCADOR -->
+        <form class="search-pro me-lg-auto my-2 my-lg-0" role="search">
+          <input type="text" class="form-control" placeholder="Buscar eventos, participantes...">
+          <button class="btn-search" type="button" aria-label="Buscar">
+            <i class="fas fa-search"></i>
+          </button>
+        </form>
+
+        <ul class="navbar-nav ms-auto gap-lg-2 align-items-lg-center">
           <li class="nav-item"><a class="nav-link" href="{{ route('principal') }}">Dashboard</a></li>
           <li class="nav-item"><a class="nav-link" href="{{ route('events.index') }}">Eventos</a></li>
           <li class="nav-item"><a class="nav-link" href="{{ route('participantes.index') }}">Participantes</a></li>
           <li class="nav-item"><a class="nav-link" href="#">Reportes</a></li>
           <li class="nav-item"><a class="nav-link" href="{{ route('crear_usuario') }}">Admins</a></li>
+
+          <!-- 🔔 NOTIFICACIONES -->
+          <li class="nav-item dropdown ms-lg-2">
+            <a class="top-icon-btn dropdown-toggle"
+               href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="fas fa-bell"></i>
+              <span class="badge-counter">{{ $notificacionesCount ?? 0 }}</span>
+            </a>
+
+            <div class="dropdown-menu dropdown-menu-end dropdown-pro">
+              <div class="dropdown-header">Notificaciones</div>
+
+              @forelse($notificaciones ?? [] as $n)
+                <a class="dropdown-item d-flex align-items-start gap-2" href="{{ $n['url'] ?? '#' }}">
+                  <div class="icon-circle">
+                    <i class="{{ $n['icon'] ?? 'fas fa-info' }}"></i>
+                  </div>
+                  <div>
+                    <div class="small-muted">{{ $n['fecha'] ?? '' }}</div>
+                    <div class="fw-bold">{{ $n['texto'] ?? 'Notificación nueva' }}</div>
+                  </div>
+                </a>
+              @empty
+                <div class="dropdown-item text-center small-muted py-3">
+                  No tienes notificaciones
+                </div>
+              @endforelse
+
+              <a class="dropdown-item text-center small-muted" href="#">
+                Ver todas
+              </a>
+            </div>
+          </li>
+
+          <!-- 💬 MENSAJES -->
+          <li class="nav-item dropdown ms-lg-2">
+            <a class="top-icon-btn dropdown-toggle"
+               href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="fas fa-envelope"></i>
+              <span class="badge-counter">{{ $mensajesCount ?? 0 }}</span>
+            </a>
+
+            <div class="dropdown-menu dropdown-menu-end dropdown-pro">
+              <div class="dropdown-header">Mensajes</div>
+
+              @forelse($mensajes ?? [] as $m)
+                <a class="dropdown-item d-flex align-items-center gap-2" href="{{ $m['url'] ?? '#' }}">
+                  <img class="rounded-circle"
+                       src="{{ $m['avatar'] ?? asset('img/undraw_profile.svg') }}"
+                       style="width:42px;height:42px;object-fit:cover;">
+                  <div class="flex-grow-1">
+                    <div class="fw-bold text-truncate">{{ $m['texto'] ?? 'Mensaje nuevo' }}</div>
+                    <div class="small-muted">
+                      {{ $m['nombre'] ?? 'Usuario' }} · {{ $m['fecha'] ?? '' }}
+                    </div>
+                  </div>
+                </a>
+              @empty
+                <div class="dropdown-item text-center small-muted py-3">
+                  No tienes mensajes
+                </div>
+              @endforelse
+
+              <a class="dropdown-item text-center small-muted" href="#">
+                Ver todos
+              </a>
+            </div>
+          </li>
+
         </ul>
       </div>
     </div>
@@ -362,8 +542,11 @@
                 <div class="icon-box mb-3">🏟️</div>
                 <h5>Crear evento</h5>
                 <p>Registra competencias con calendario, sede y categorías.</p>
-                <!-- No tienes ruta create, te mando a lista -->
-                <a href="{{ route('events.index') }}" class="btn btn-brand w-100">Nuevo evento</a>
+
+                <!-- ✅ CAMBIO AQUÍ: ahora sí te lleva a tu vista nueva -->
+                <a href="{{ route('events.crear-evento-developer') }}" class="btn btn-brand w-100">
+                  Nuevo evento
+                </a>
               </div>
             </div>
 
@@ -382,7 +565,6 @@
                 <h5>Participantes</h5>
                 <p>Administra equipos, atletas, edades y divisiones.</p>
 
-                <!-- ✅ AQUÍ ESTABA EL PROBLEMA -->
                 <a href="{{ route('participantes.index') }}" class="btn btn-soft w-100"
                    style="border-color:rgba(34,197,94,.6);color:#bbf7d0;">
                   Gestionar

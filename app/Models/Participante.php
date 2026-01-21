@@ -9,20 +9,36 @@ class Participante extends Model
 {
     use HasFactory;
 
-    // ✅ nombre real de la tabla en tu BD
+    // Nombre real de la tabla en tu BD
     protected $table = 'participantes';
 
-    // ✅ si tu tabla NO tiene created_at / updated_at
+    // Si tu tabla NO tiene created_at / updated_at
     public $timestamps = false;
 
-    // ✅ campos permitidos para create() y update()
+    // Clave primaria (solo cambia esto si tu PK no es "id")
+    // protected $primaryKey = 'id'; 
+
+    // Campos permitidos para create() y update()
     protected $fillable = [
-        'nombre',
-        'evento',
-        'edad',
-        'equipo',
-        'division',
-        'email',
-        'telefono',
-    ];
+    'equipo_id',
+    'nombre',
+    'numero_camisa',
+    'evento',
+    'edad',
+    'division',
+    'email',
+    'telefono'
+];
+
+
+    /**
+     * Relación: un Participante pertenece a un Equipo
+     */
+    public function equipo()
+    {
+        return $this->belongsTo(Equipo::class, 'equipo_id');
+        // 👆 Si tu columna FK en participantes se llama "equipo" en vez de "equipo_id",
+        // entonces cambia la línea a:
+        // return $this->belongsTo(Equipo::class, 'equipo');
+    }
 }
