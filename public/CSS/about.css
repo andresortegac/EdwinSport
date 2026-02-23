@@ -1,0 +1,171 @@
+﻿.about-page {
+    background: linear-gradient(160deg, #f5f8fc, #e9f1fb);
+}
+
+.about-hero h1 {
+    font-size: clamp(2rem, 4.5vw, 3.2rem);
+    font-weight: 800;
+    color: #0e2747;
+    line-height: 1.15;
+}
+
+.lead-text {
+    color: #5a6679;
+    font-size: 1.05rem;
+    max-width: 680px;
+}
+
+.about-hero-panel {
+    background: linear-gradient(165deg, #0f2d53, #0d3e67);
+    border-radius: 18px;
+    color: #eff8ff;
+    padding: 1.5rem;
+    box-shadow: 0 20px 35px rgba(8, 20, 38, 0.24);
+}
+
+.about-hero-panel h4 {
+    font-weight: 800;
+}
+
+.impact-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.impact-list li {
+    padding: 0.55rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.impact-list li:last-child {
+    border-bottom: 0;
+}
+
+.about-card {
+    background: #fff;
+    border: 1px solid #dbe4ef;
+    border-radius: 16px;
+    padding: 1.35rem;
+    box-shadow: 0 12px 24px rgba(17, 31, 50, 0.06);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.about-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 32px rgba(17, 31, 50, 0.1);
+}
+
+.pill {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 1.2px;
+    color: #0b6d67;
+    background: rgba(11, 109, 103, 0.12);
+    padding: 0.2rem 0.6rem;
+    border-radius: 99px;
+    margin-bottom: 0.8rem;
+}
+
+.about-card h3 {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: #123156;
+    margin-bottom: 0.6rem;
+}
+
+.about-card p {
+    color: #5a6679;
+    margin-bottom: 0.9rem;
+}
+
+.about-link {
+    color: #0b6d67;
+    font-weight: 700;
+}
+
+.about-services {
+    background: rgba(255, 255, 255, 0.6);
+    border-top: 1px solid rgba(17, 31, 50, 0.06);
+    border-bottom: 1px solid rgba(17, 31, 50, 0.06);
+}
+
+.service-box {
+    background: #ffffff;
+    border: 1px solid #d9e2ee;
+    border-radius: 15px;
+    padding: 1.25rem;
+    box-shadow: 0 10px 22px rgba(17, 31, 50, 0.05);
+}
+
+.service-box i {
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+    display: grid;
+    place-items: center;
+    font-size: 1.2rem;
+    color: #084f4b;
+    background: rgba(11, 109, 103, 0.14);
+    margin-bottom: 0.8rem;
+}
+
+.service-box h3 {
+    font-size: 1.12rem;
+    font-weight: 800;
+    color: #133056;
+    margin-bottom: 0.5rem;
+}
+
+.service-box p {
+    color: #5a6679;
+    margin: 0;
+}
+
+.roadmap-box {
+    background: linear-gradient(170deg, #ffffff, #f6f9fd);
+    border: 1px solid #dbe4ef;
+    border-radius: 18px;
+    padding: 1.5rem;
+}
+
+.step-card {
+    background: #fff;
+    border: 1px solid #dde6f1;
+    border-radius: 14px;
+    padding: 1rem;
+}
+
+.step-card span {
+    display: inline-block;
+    color: #0b6d67;
+    font-weight: 800;
+    margin-bottom: 0.45rem;
+}
+
+.step-card h4 {
+    font-size: 1.05rem;
+    font-weight: 800;
+    color: #123156;
+    margin-bottom: 0.4rem;
+}
+
+.step-card p {
+    margin: 0;
+    color: #5a6679;
+}
+
+.about-cta {
+    padding-top: 1.5rem;
+}
+
+.about-page .footer-premium {
+    margin-top: 0;
+}
+
+@media (max-width: 768px) {
+    .about-hero {
+        padding-top: 2rem;
+    }
+}

@@ -10,6 +10,7 @@
 
   {{-- Tu CSS principal --}}
   <link rel="stylesheet" href="{{ asset('CSS/principal.css') }}">
+  <link rel="stylesheet" href="{{ asset('CSS/principal-home.css') }}">
 
   {{-- Iconos y otros estilos --}}
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
@@ -49,6 +50,8 @@
   <main class="py-4">
     @yield('content')
   </main>
+
+  @include('components.footer')
 
   {{-- (Opcional) JS de Bootstrap si no lo cargas en otro lado --}}
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>

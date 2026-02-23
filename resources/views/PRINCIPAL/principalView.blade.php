@@ -1,160 +1,248 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SportFlow</title>
-
-    {{-- Bootstrap 5 --}}
+    <title>Edwin Sport | Plataforma Deportiva</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    {{-- Tu CSS personalizado --}}
-    <link rel="stylesheet" href="{{ asset('/CSS/principal.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-
+    <link rel="stylesheet" href="{{ asset('CSS/principal-home.css') }}">
 </head>
-
 <body>
+    @include('partials.navbar')
 
-    {{-- NAVBAR --}}
-    <nav class="navbar navbar-expand-lg bg-white shadow-sm py-3 px-4">
-        <div class="container-fluid">
-            <div class="logo">
-                 <img src="{{ asset('img/logo.png') }}" alt="Logo" width="90" height="60" class="me-2" >
-            </div>
-            <a class="navbar-brand brand fs-3" href="#">Edwin Sport</a>
-
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
-                aria-label="Toggle navigation">
-
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav mx-auto gap-3 fs-5">
-                    <li class="nav-item">
-                        <a class="nav-link" href="/">Inicio</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link " href="{{ route('about') }}">Acerca de</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('events.index') }}">Eventos</a>
-                    </li>
-                   <li class="nav-item">
-                        <a class="nav-link" href="{{ route('canchas.index') }}">Convenio</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('contactenos') }}">Contactanos</a>
-                    </li>
-                </ul>
-                
-                {{-- Botón de login --}}
-                <a href="{{ url('login') }}" class="btn btn-login">
-                    Ingresar
-                </a>
-
-            </div>
-        </div>
-    </nav>
-
-    {{-- SLIDER --}}
-<div id="principalSlider" class="carousel slide mb-5" data-bs-ride="carousel">
-    <div class="carousel-indicators">
-        <button type="button" data-bs-target="#principalSlider" data-bs-slide-to="0" class="active"></button>
-        <button type="button" data-bs-target="#principalSlider" data-bs-slide-to="1"></button>
-        <button type="button" data-bs-target="#principalSlider" data-bs-slide-to="2"></button>
-    </div>
-
-    <div class="carousel-inner">
-
-        <div class="carousel-item active">
-            <img src="{{ asset('img/slider/slider0.png') }}" class="d-block w-100" alt="Slide 1" style="height: 420px; object-fit: cover;">
-            <div class="carousel-caption d-none d-md-block">
-                <h5 class="fw-bold">Vive la pasión del deporte</h5>
-                <p>Conoce los mejores torneos de tu ciudad</p>
-            </div>
-        </div>
-
-        <div class="carousel-item">
-            <img src="{{ asset('img/slider/slider1.png') }}" class="d-block w-100" alt="Slide 2" style="height: 420px; object-fit: cover;">
-            <div class="carousel-caption d-none d-md-block">
-                <h5 class="fw-bold">Escuelas deportivas certificadas</h5>
-                <p>Entrena con los mejores</p>
-            </div>
-        </div>
-
-        <div class="carousel-item">
-            <img src="{{ asset('img/slider/slider2.png') }}" class="d-block w-100" alt="Slide 3" style="height: 420px; object-fit: cover;">
-            <div class="carousel-caption d-none d-md-block">
-                <h5 class="fw-bold">Resultados y rankings actualizados</h5>
-                <p>Todo en un solo lugar</p>
-            </div>
-        </div>
-
-    </div>
-
-    <button class="carousel-control-prev" type="button" data-bs-target="#principalSlider" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon"></span>
-    </button>
-
-    <button class="carousel-control-next" type="button" data-bs-target="#principalSlider" data-bs-slide="next">
-        <span class="carousel-control-next-icon"></span>
-    </button>
-</div>
-
-
-    {{-- HERO SECTION --}}
-    <section class="container text-center hero-section">
-        <h1 class="display-4 fw-bold hero-title">
-            Tu mundo deportivo en un solo lugar
-        </h1>
-
-        <p class="mt-3 fs-5 text-secondary w-75 mx-auto">
-            Explora eventos, rankings, escuelas deportivas y toda la actividad de tu ciudad.
-        </p>
-        <a href="{{ route('about') }}" class="mt-8 px-8 py-4 rounded-2xl bg-[#1DE4D1] text-[#003233] text-lg font-semibold shadow-md hover:opacity-90">
-            Explorar ahora
-        </a>
-    </section>
-
-    {{-- FEATURES --}}
-    <section class="container py-5">
-        <div class="row g-4">
-
-            <div class="col-md-4">
-                <div class="p-4 bg-white shadow feature-card feature-1">
-                    <h3 class="fw-bold hero-title">Eventos</h3>
-                    <p>Conoce todos los torneos y actividades deportivas disponibles.</p>
+    <header class="hero-section">
+        <div class="hero-shape hero-shape-1"></div>
+        <div class="hero-shape hero-shape-2"></div>
+        <div class="container position-relative">
+            <div class="row align-items-center gy-4">
+                <div class="col-lg-7">
+                    <p class="eyebrow mb-3">GESTION DEPORTIVA PROFESIONAL</p>
+                    <h1 class="hero-title mb-4">Organiza torneos, reservas y rendimiento en una sola plataforma.</h1>
+                    <p class="hero-subtitle mb-4">Centraliza la operacion deportiva de tu comunidad con una experiencia moderna, clara y escalable.</p>
+                    <div class="d-flex flex-wrap gap-3">
+                        <a href="{{ route('events.index') }}" class="btn btn-brand btn-lg">Ver eventos</a>
+                        <a href="{{ route('about') }}" class="btn btn-outline-brand btn-lg">Conocer mas</a>
+                    </div>
+                    <div class="stats-grid mt-5">
+                        <div class="stat-card">
+                            <h3>+120</h3>
+                            <p>Eventos gestionados</p>
+                        </div>
+                        <div class="stat-card">
+                            <h3>+45</h3>
+                            <p>Escuelas afiliadas</p>
+                        </div>
+                        <div class="stat-card">
+                            <h3>98%</h3>
+                            <p>Satisfaccion de usuarios</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-5">
+                    <div class="hero-panel">
+                        <h4 class="mb-3">Panel ejecutivo</h4>
+                        <ul class="feature-list mb-0">
+                            <li><i class="bi bi-check2-circle"></i> Reservas y canchas en tiempo real</li>
+                            <li><i class="bi bi-check2-circle"></i> Control de participantes por torneo</li>
+                            <li><i class="bi bi-check2-circle"></i> Reportes y rankings centralizados</li>
+                            <li><i class="bi bi-check2-circle"></i> Soporte para competiciones y grupos</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
+        </div>
+    </header>
 
-            <div class="col-md-4">
-                <div class="p-4 bg-white shadow feature-card feature-2">
-                    <h3 class="fw-bold hero-title">Escuelas</h3>
-                    <p>Encuentra escuelas deportivas certificadas y sus programas.</p>
+    <section class="sports-carousel-section pb-5">
+        <div class="container">
+            <div class="carousel-frame">
+                <div id="sportsCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3500">
+                    <div class="carousel-indicators modern-indicators">
+                        <button type="button" data-bs-target="#sportsCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                        <button type="button" data-bs-target="#sportsCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                        <button type="button" data-bs-target="#sportsCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                        <button type="button" data-bs-target="#sportsCarousel" data-bs-slide-to="3" aria-label="Slide 4"></button>
+                        <button type="button" data-bs-target="#sportsCarousel" data-bs-slide-to="4" aria-label="Slide 5"></button>
+                        <button type="button" data-bs-target="#sportsCarousel" data-bs-slide-to="5" aria-label="Slide 6"></button>
+                    </div>
+
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="{{ asset('img/slider/slider0.png') }}" class="d-block w-100" alt="Futbol profesional">
+                            <div class="carousel-caption modern-caption">
+                                <p class="caption-tag">TORNEOS</p>
+                                <h3>Competencia de alto nivel</h3>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <img src="{{ asset('img/slider/slider1.png') }}" class="d-block w-100" alt="Entrenamiento deportivo">
+                            <div class="carousel-caption modern-caption">
+                                <p class="caption-tag">FORMACION</p>
+                                <h3>Escuelas y rendimiento</h3>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <img src="{{ asset('img/slider/slider2.png') }}" class="d-block w-100" alt="Deporte en comunidad">
+                            <div class="carousel-caption modern-caption">
+                                <p class="caption-tag">COMUNIDAD</p>
+                                <h3>Deporte para todos</h3>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <img src="{{ asset('img/cancha.jpg') }}" class="d-block w-100" alt="Cancha deportiva">
+                            <div class="carousel-caption modern-caption">
+                                <p class="caption-tag">INFRAESTRUCTURA</p>
+                                <h3>Canchas listas para jugar</h3>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <img src="{{ asset('img/estadio-de-futbol-lleno-de-gente.jpg') }}" class="d-block w-100" alt="Estadio lleno">
+                            <div class="carousel-caption modern-caption">
+                                <p class="caption-tag">EXPERIENCIA</p>
+                                <h3>Ambiente de estadio real</h3>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <img src="{{ asset('img/cancha vertical.jpg') }}" class="d-block w-100" alt="Cancha vertical">
+                            <div class="carousel-caption modern-caption">
+                                <p class="caption-tag">RESERVAS</p>
+                                <h3>Espacios disponibles todo el ano</h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="carousel-control-prev modern-control" type="button" data-bs-target="#sportsCarousel" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Anterior</span>
+                    </button>
+                    <button class="carousel-control-next modern-control" type="button" data-bs-target="#sportsCarousel" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Siguiente</span>
+                    </button>
                 </div>
             </div>
-
-            <div class="col-md-4">
-                <div class="p-4 bg-white shadow feature-card feature-3">
-                    <h3 class="fw-bold hero-title">Rankings</h3>
-                    <p>Revisa resultados oficiales y posiciones actualizadas.</p>
-                </div>
-            </div>
-
         </div>
     </section>
 
+    <section class="services-section py-5">
+        <div class="container">
+            <div class="section-head text-center mb-5">
+                <p class="eyebrow">NUESTRAS CAPACIDADES</p>
+                <h2>Soluciones para una operacion deportiva eficiente</h2>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <article class="service-card h-100">
+                        <div class="icon-wrap"><i class="bi bi-trophy"></i></div>
+                        <h3>Gestion de Eventos</h3>
+                        <p>Publica, administra y da seguimiento a torneos con informacion siempre actualizada.</p>
+                    </article>
+                </div>
+                <div class="col-md-4">
+                    <article class="service-card h-100">
+                        <div class="icon-wrap"><i class="bi bi-calendar2-check"></i></div>
+                        <h3>Reservas Inteligentes</h3>
+                        <p>Organiza horarios, canchas y disponibilidad para optimizar recursos deportivos.</p>
+                    </article>
+                </div>
+                <div class="col-md-4">
+                    <article class="service-card h-100">
+                        <div class="icon-wrap"><i class="bi bi-bar-chart"></i></div>
+                        <h3>Rendimiento y Reportes</h3>
+                        <p>Consulta tablas, grupos y resultados con una vista profesional para decisiones rapidas.</p>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </section>
 
+    <section class="benefits-section py-5">
+        <div class="container">
+            <div class="row g-4 align-items-stretch">
+                <div class="col-lg-6">
+                    <div class="benefits-card h-100">
+                        <p class="eyebrow mb-2">BENEFICIOS CLAVE</p>
+                        <h3>Control total en cada ciclo deportivo</h3>
+                        <ul class="benefits-list mb-0">
+                            <li><i class="bi bi-shield-check"></i> Operacion centralizada para ligas, escuelas y clubes.</li>
+                            <li><i class="bi bi-clock-history"></i> Menos tiempos de coordinacion y menos errores manuales.</li>
+                            <li><i class="bi bi-people"></i> Mejor experiencia para administradores y deportistas.</li>
+                            <li><i class="bi bi-graph-up-arrow"></i> Datos para tomar decisiones de crecimiento.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="benefits-card h-100">
+                        <p class="eyebrow mb-2">COMO FUNCIONA</p>
+                        <h3>Implementacion en tres pasos</h3>
+                        <div class="steps-grid">
+                            <div class="step-item">
+                                <span>1</span>
+                                <p>Configura tus canchas, categorias y calendarios en minutos.</p>
+                            </div>
+                            <div class="step-item">
+                                <span>2</span>
+                                <p>Publica eventos y abre inscripciones de forma organizada.</p>
+                            </div>
+                            <div class="step-item">
+                                <span>3</span>
+                                <p>Monitorea resultados, grupos y reportes desde tu panel.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>    
-    <link rel="stylesheet" href="{{ asset('CSS/password-modal.css') }}">   
+    <section class="testimonials-section py-5">
+        <div class="container">
+            <div class="section-head text-center mb-4">
+                <p class="eyebrow">CONFIANZA DEL SECTOR</p>
+                <h2>Lo que dicen nuestros usuarios</h2>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <article class="quote-card h-100">
+                        <p>"Mejoramos la planificacion semanal y ahora tenemos trazabilidad completa de reservas."</p>
+                        <h4>Coordinador de Liga</h4>
+                    </article>
+                </div>
+                <div class="col-md-4">
+                    <article class="quote-card h-100">
+                        <p>"La gestion de torneos y participantes es mucho mas rapida que con hojas manuales."</p>
+                        <h4>Director de Escuela</h4>
+                    </article>
+                </div>
+                <div class="col-md-4">
+                    <article class="quote-card h-100">
+                        <p>"Tenemos una imagen mas profesional frente a patrocinadores y comunidad deportiva."</p>
+                        <h4>Administrador de Club</h4>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </section>
 
-   @yield('content')
+    <section class="cta-section py-5">
+        <div class="container">
+            <div class="cta-box">
+                <div>
+                    <p class="eyebrow mb-2">TRANSFORMA TU GESTION DEPORTIVA</p>
+                    <h3 class="mb-0">Impulsa tu comunidad con una plataforma moderna y confiable.</h3>
+                </div>
+                <a href="{{ route('contactenos') }}" class="btn btn-brand btn-lg">Solicitar informacion</a>
+            </div>
+        </div>
+    </section>
 
     @include('components.footer')
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+

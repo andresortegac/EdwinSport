@@ -1,29 +1,33 @@
-<div class="card h-100">
-    {{-- Imagen del evento --}}
-    <img
-        src="{{ $event->image ? asset('storage/'.$event->image) : asset('img/default-event.jpg') }}"
-        class="card-img-top"
-        alt="{{ $event->title }}"
-    >
+﻿<div class="event-card h-100">
+    <div class="event-image-wrap">
+        <img
+            src="{{ $event->image ? asset('storage/'.$event->image) : asset('img/slider/slider0.png') }}"
+            class="event-image"
+            alt="{{ $event->title }}"
+        >
+        <span class="event-category">{{ ucfirst(str_replace('_', ' ', $event->category ?? 'general')) }}</span>
+    </div>
 
-    <div class="card-body d-flex flex-column">
-        {{-- Título --}}
-        <h5 class="card-title">{{ $event->title }}</h5>
+    <div class="event-body d-flex flex-column">
+        <h3 class="event-title">{{ $event->title }}</h3>
 
-        {{-- Fecha y lugar --}}
-        <p class="card-text small text-muted">
-            {{ optional($event->start_at)->format('d M, Y H:i') }} • {{ $event->location }}
+        <p class="event-meta">
+            <i class="bi bi-calendar-event"></i>
+            {{ optional($event->start_at)->format('d M Y H:i') ?: 'Fecha por confirmar' }}
         </p>
 
-        {{-- Descripción corta --}}
-        <p class="card-text">
-            {{ \Illuminate\Support\Str::limit($event->description, 120) }}
+        <p class="event-meta">
+            <i class="bi bi-geo-alt"></i>
+            {{ $event->location ?: 'Ubicacion por confirmar' }}
         </p>
 
-        {{-- Botones (solo lectura para el público) --}}
-        <div class="mt-auto">
-            <a href="{{ route('events.show', $event) }}" class="btn btn-primary btn-sm">Ver más</a>
-            <a href="#" class="btn btn-success btn-sm">Inscribirme</a>
+        <p class="event-desc">
+            {{ \Illuminate\Support\Str::limit($event->description, 130) }}
+        </p>
+
+        <div class="mt-auto d-flex gap-2">
+            <a href="{{ route('events.show', $event) }}" class="btn btn-outline-brand btn-sm">Ver mas</a>
+            <a href="{{ route('contactenos') }}" class="btn btn-brand btn-sm">Inscribirme</a>
         </div>
     </div>
 </div>

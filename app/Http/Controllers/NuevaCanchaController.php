@@ -57,6 +57,11 @@ class NuevaCanchaController extends Controller
             }
         });
 
+        if ($request->filled('redirect_to')) {
+            return redirect()->to($request->input('redirect_to'))
+                ->with('success', 'Cancha creada con subcanchas.');
+        }
+
         return redirect()->route('canchas.index')
             ->with('success', 'Cancha creada con subcanchas.');
     }

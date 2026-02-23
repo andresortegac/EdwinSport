@@ -1,0 +1,175 @@
+﻿.canchas-page {
+    background: linear-gradient(160deg, #f5f8fc, #e9f1fb);
+}
+
+.canchas-page .container {
+    max-width: 1180px;
+}
+
+.canchas-hero h1 {
+    font-size: clamp(2rem, 4.4vw, 3.1rem);
+    line-height: 1.12;
+    font-weight: 800;
+    color: #0f2b4e;
+}
+
+.hero-copy {
+    color: #5a6679;
+    max-width: 680px;
+}
+
+.hero-stats {
+    background: linear-gradient(168deg, #0f2d53, #0d3f68);
+    border-radius: 18px;
+    color: #f0f8ff;
+    padding: 1.4rem;
+    box-shadow: 0 20px 34px rgba(8, 20, 38, 0.24);
+}
+
+.hero-stats h4 {
+    font-weight: 800;
+}
+
+.stats-grid {
+    display: grid;
+    gap: 0.8rem;
+}
+
+.stat-line span {
+    display: block;
+    font-size: 1.2rem;
+    font-weight: 800;
+}
+
+.stat-line p {
+    margin: 0;
+    color: #bdd3ef;
+    font-size: 0.9rem;
+}
+
+.benefit-card {
+    background: #fff;
+    border: 1px solid #dbe4ef;
+    border-radius: 15px;
+    padding: 1.1rem;
+    box-shadow: 0 10px 24px rgba(17, 31, 50, 0.06);
+}
+
+.benefit-card i {
+    width: 42px;
+    height: 42px;
+    display: grid;
+    place-items: center;
+    border-radius: 12px;
+    background: rgba(11, 109, 103, 0.14);
+    color: #084f4b;
+    font-size: 1.2rem;
+    margin-bottom: 0.7rem;
+}
+
+.benefit-card h3 {
+    font-size: 1.05rem;
+    font-weight: 800;
+    color: #14345a;
+    margin-bottom: 0.4rem;
+}
+
+.benefit-card p {
+    color: #5a6679;
+    margin: 0;
+}
+
+.section-head h2 {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #123156;
+}
+
+.cancha-card {
+    background: #fff;
+    border: 1px solid #dbe4ef;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 12px 26px rgba(17, 31, 50, 0.06);
+}
+
+.cancha-cover {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.cancha-body {
+    padding: 1rem;
+}
+
+.cancha-body h3 {
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: #123156;
+    margin-bottom: 0.7rem;
+}
+
+.cancha-meta li {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    color: #54657d;
+    margin-bottom: 0.4rem;
+    font-size: 0.93rem;
+}
+
+.cancha-meta i {
+    color: #0b6d67;
+}
+
+.empty-box {
+    border: 1px dashed #c7d5e7;
+    border-radius: 12px;
+    padding: 1.2rem;
+    background: #f8fbff;
+}
+
+.empty-box h4 {
+    margin: 0 0 0.35rem;
+    color: #16375f;
+    font-size: 1.08rem;
+}
+
+.empty-box p {
+    margin: 0 0 0.7rem;
+    color: #5a6679;
+}
+
+.info-band {
+    background: #ffffff;
+    border: 1px solid #dbe4ef;
+    border-radius: 16px;
+    padding: 1.2rem;
+    box-shadow: 0 10px 24px rgba(17, 31, 50, 0.05);
+}
+
+.info-band h3 {
+    font-size: 1.35rem;
+    font-weight: 800;
+    color: #123156;
+    margin-bottom: 0.5rem;
+}
+
+.info-band p {
+    color: #5a6679;
+}
+
+.canchas-page .footer-premium {
+    margin-top: 2.5rem;
+}
+
+@media (max-width: 768px) {
+    .canchas-hero {
+        margin-bottom: 1.2rem;
+    }
+
+    .cancha-cover {
+        height: 180px;
+    }
+}

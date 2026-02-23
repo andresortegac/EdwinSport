@@ -1,4 +1,4 @@
-@extends('layouts.app')
+﻿@extends('layouts.app')
 
 @section('content')
 
@@ -27,6 +27,28 @@
 
     <h2 class="text-center mb-4">Reserva de Cancha</h2>
 
+    @if(session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
+
+    @if(session('error'))
+        <div class="alert alert-danger">
+            {{ session('error') }}
+        </div>
+    @endif
+
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul class="mb-0">
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
     <div class="row">
 
         {{-- COLUMNA IZQUIERDA: Imagen y fecha --}}
@@ -34,10 +56,8 @@
             <div class="reserva-card mb-3">
                 <img src="{{ asset('/img/cancha vertical.jpg') }}" width="170px" height="200px" />
                    <h1>{{ $cancha->nombre }}</h1>
-                    <p><strong>Ubicación:</strong> {{ $cancha->ubicacion }}</p>
-                    <p><strong>Contacto:</strong> {{ $cancha->telefono_contacto }}</p>           
-
-                
+                    <p><strong>Ubicacion:</strong> {{ $cancha->ubicacion }}</p>
+                    <p><strong>Contacto:</strong> {{ $cancha->telefono_contacto }}</p>
             </div>
         </div>
 
@@ -52,17 +72,37 @@
                         <label>Nombre</label>
                         <input type="text" name="nombre_cliente" class="form-control" required>
 
-                        <label>Teléfono</label>
+                        <label>Telefono</label>
                         <input type="text" name="telefono_cliente" class="form-control">
 
-                        <label>Número de canchas internas (1-4)</label>
-                        <input type="number" name="numero_subcancha" class="form-control" min="1" max="4" required>
+                        <label>Numero de cancha interna</label>
+                        <select name="numero_subcancha" class="form-select" required>
+                            @for ($i = 1; $i <= (int)($cancha->num_canchas ?? 1); $i++)
+                                <option value="{{ $i }}" {{ old('numero_subcancha') == $i ? 'selected' : '' }}>
+                                    Cancha {{ $i }}
+                                </option>
+                            @endfor
+                        </select>
+                        <small class="text-muted">
+                            Esta cancha maneja {{ (int)($cancha->num_canchas ?? 1) }} cancha(s) interna(s).
+                        </small>
 
                         <label>Fecha</label>
                         <input type="date" name="fecha" class="form-control" required>
 
                         <label>Hora de reserva</label>
-                        <input type="time" name="hora" class="form-control" required>
+                        <input type="time"
+                               name="hora"
+                               class="form-control"
+                               min="{{ \Carbon\Carbon::parse($cancha->hora_apertura)->format('H:i') }}"
+                               max="{{ \Carbon\Carbon::parse($cancha->hora_cierre)->subMinute()->format('H:i') }}"
+                               required>
+                        <small class="text-muted">
+                            Horario permitido:
+                            {{ \Carbon\Carbon::parse($cancha->hora_apertura)->format('h:i A') }}
+                            -
+                            {{ \Carbon\Carbon::parse($cancha->hora_cierre)->format('h:i A') }}
+                        </small>
 
                         <button class="btn btn-success w-100 mt-3">Reservar</button>
                 </form>
@@ -72,16 +112,4 @@
 
     </div>
 </div>
- @if (session('success'))
-<script>
-    Swal.fire({
-        icon: 'success',
-        title: 'Operacion exitosa',
-        text: "{{ session('success') }}",
-        confirmButtonColor: '#3f61ff',
-        timer: 3000,
-        timerProgressBar: true
-    });
-</script>
-@endif
 @endsection

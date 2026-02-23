@@ -1,239 +1,144 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+﻿@extends('layouts.app')
 
-    <link rel="stylesheet" href="{{ asset('/CSS/contactenos.css') }}">
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+@push('styles')
+<link rel="stylesheet" href="{{ asset('CSS/contactenos.css') }}">
+@endpush
 
-        {{-- Bootstrap 5 --}}
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    {{-- Tu CSS personalizado --}}
-    <link rel="stylesheet" href="{{ asset('/CSS/principal.css') }}">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-
-
-
-    <title>Contactenos</title>
-
-    
-</head>
-
-<body>
-
-    {{-- NAVBAR --}}
-    <nav class="navbar navbar-expand-lg bg-white shadow-sm py-3 px-4">
-        <div class="container-fluid">
-            <div class="logo">
-                 <img src="{{ asset('img/logo.png') }}" alt="Logo" width="90" height="60" class="me-2" >
+@section('content')
+<div class="contact-page py-4 py-lg-5">
+    <div class="container">
+        <section class="contact-hero mb-4 mb-lg-5">
+            <div class="row g-4 align-items-center">
+                <div class="col-lg-7">
+                    <p class="eyebrow mb-2">CONTACTO COMERCIAL Y DEPORTIVO</p>
+                    <h1>Hablemos de tu evento, torneo o escuela deportiva</h1>
+                    <p class="hero-copy">Completa el formulario y nuestro equipo revisara tu solicitud para ayudarte con organizacion, escenarios, logistica y administracion deportiva.</p>
+                </div>
+                <div class="col-lg-5">
+                    <div class="hero-panel">
+                        <h4 class="mb-2">Respuesta rapida</h4>
+                        <p class="mb-0">Atendemos solicitudes en horario de oficina y priorizamos eventos con fecha cercana.</p>
+                    </div>
+                </div>
             </div>
-            <a class="navbar-brand brand fs-3" href="#">Edwin Sport</a>
+        </section>
 
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
-                aria-label="Toggle navigation">
+        @if(session('success'))
+            <div class="alert alert-success rounded-3">{{ session('success') }}</div>
+        @endif
 
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav mx-auto gap-3 fs-5">
-                    <li class="nav-item">
-                        <a class="nav-link" href="/">Inicio</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link " href="{{ route('about') }}">Acerca de</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('events.index') }}">Eventos</a>
-                    </li>
-                   <li class="nav-item">
-                        <a class="nav-link" href="{{ route('canchas.index') }}">Convenio</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('contactenos') }}">Contactanos</a>
-                    </li>
+        @if ($errors->any())
+            <div class="alert alert-danger rounded-3">
+                <ul class="mb-0">
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
                 </ul>
-
-                {{-- Botón de login --}}
-                <a href="{{ url('login') }}" class="btn btn-login">
-                    Ingresar
-                </a>
-
             </div>
-        </div>
-    </nav>
+        @endif
 
-    <!-- =========================================== -->
-    <div class="wrap">
-        <h1 class="hero-title">CONTACTENOS</h1>
-
-        <br>
-
-        {{-- FORMULARIO FUNCIONAL --}}
-        <form action="{{ route('contactenos.store') }}" method="POST">
-            @csrf
-
-            <div class="card" role="form" aria-label="Formulario reservar cita">
+        <section class="contact-shell">
+            <form action="{{ route('contactenos.store') }}" method="POST" novalidate>
+                @csrf
 
                 <h3 class="section-title">Informacion de contacto</h3>
-
                 <div class="form-grid">
-
                     <div class="field">
                         <label for="tipo">Tipo de solicitante</label>
                         <select id="tipo" name="tipo" required>
-                            <option value="" disabled selected hidden>Seleccione tipo...</option>
-                            <option value="natural">Persona Natural</option>
-                            <option value="empresa">Empresa</option>
-                            <option value="escuela">Escuela Deportiva</option>
+                            <option value="" disabled {{ old('tipo') ? '' : 'selected' }} hidden>Seleccione tipo...</option>
+                            <option value="natural" {{ old('tipo') === 'natural' ? 'selected' : '' }}>Persona Natural</option>
+                            <option value="empresa" {{ old('tipo') === 'empresa' ? 'selected' : '' }}>Empresa</option>
+                            <option value="escuela" {{ old('tipo') === 'escuela' ? 'selected' : '' }}>Escuela Deportiva</option>
                         </select>
                     </div>
 
                     <div class="field">
                         <label for="nombre_completo">Nombres y apellidos</label>
-                        <input id="nombre_completo" type="text" name="nombre_completo"
+                        <input id="nombre_completo" type="text" name="nombre_completo" value="{{ old('nombre_completo') }}"
                                placeholder="Ej: Juan Perez" autocomplete="name" required>
                     </div>
 
                     <div class="field">
                         <label for="documento">Documento de identidad</label>
-                        <input id="documento" type="text" name="documento"
+                        <input id="documento" type="text" name="documento" value="{{ old('documento') }}"
                                placeholder="Ej: 1023456789" autocomplete="off" required>
                     </div>
 
                     <div class="field">
                         <label for="telefono_natural">Telefono</label>
-                        <input id="telefono_natural" type="text" name="telefono_natural"
+                        <input id="telefono_natural" type="text" name="telefono_natural" value="{{ old('telefono_natural') }}"
                                placeholder="Ej: +57 300 123 4567" autocomplete="tel">
                     </div>
 
                     <div class="field">
                         <label for="correo_electronico">Correo electronico</label>
-                        <input id="correo_electronico" type="email" name="correo_electronico"
-                               class="input-email" placeholder="ejemplo@correo.com"
-                               autocomplete="email" required>
+                        <input id="correo_electronico" type="email" name="correo_electronico" value="{{ old('correo_electronico') }}"
+                               placeholder="ejemplo@correo.com" autocomplete="email" required>
                     </div>
 
                     <div class="field">
                         <label for="razon_social">Nombre de la entidad</label>
-                        <input id="razon_social" type="text" name="razon_social"
-                               placeholder="Si aplica, nombre de la entidad"
-                               autocomplete="organization">
+                        <input id="razon_social" type="text" name="razon_social" value="{{ old('razon_social') }}"
+                               placeholder="Si aplica, nombre de la entidad" autocomplete="organization">
                     </div>
-
                 </div>
 
-                <h3 class="section-title">Informacion del evento</h3>
-
+                <h3 class="section-title mt-4">Informacion del evento</h3>
                 <div class="form-grid">
-
                     <div class="field">
                         <label for="evento_nombre">Nombre del evento</label>
-                        <input id="evento_nombre" type="text" name="evento_nombre"
+                        <input id="evento_nombre" type="text" name="evento_nombre" value="{{ old('evento_nombre') }}"
                                placeholder="Ej: Torneo Intercolegial 2026">
                     </div>
 
                     <div class="field">
                         <label for="categoria">Categoria</label>
                         <select id="categoria" name="categoria" required>
-                            <option value="" disabled selected hidden>Seleccione categoria...</option>
-                            <option value="hombres">Hombres</option>
-                            <option value="mujeres">Mujeres</option>
-                            <option value="infantil">Infantil</option>
-                            <option value="mixto_adultos">Mixto adultos</option>
-                            <option value="mixto_infantil">Mixto infantil</option>
+                            <option value="" disabled {{ old('categoria') ? '' : 'selected' }} hidden>Seleccione categoria...</option>
+                            <option value="hombres" {{ old('categoria') === 'hombres' ? 'selected' : '' }}>Hombres</option>
+                            <option value="mujeres" {{ old('categoria') === 'mujeres' ? 'selected' : '' }}>Mujeres</option>
+                            <option value="infantil" {{ old('categoria') === 'infantil' ? 'selected' : '' }}>Infantil</option>
+                            <option value="mixto_adultos" {{ old('categoria') === 'mixto_adultos' ? 'selected' : '' }}>Mixto adultos</option>
+                            <option value="mixto_infantil" {{ old('categoria') === 'mixto_infantil' ? 'selected' : '' }}>Mixto infantil</option>
                         </select>
                     </div>
 
                     <div class="field full">
                         <label for="descripcion">Descripcion del evento</label>
                         <textarea id="descripcion" name="descripcion" rows="5"
-                                  placeholder="Describe brevemente el objetivo, numero de participantes, edad aproximada, necesidades (cancha, arbitros, seguridad), etc."></textarea>
+                                  placeholder="Describe brevemente el objetivo, numero de participantes, edad aproximada y necesidades logísticas.">{{ old('descripcion') }}</textarea>
                     </div>
 
                     <div class="field">
                         <label for="fecha_inicial">Fecha inicial del evento</label>
-                        <input id="fecha_inicial" type="date" name="fecha_inicial">
+                        <input id="fecha_inicial" type="date" name="fecha_inicial" value="{{ old('fecha_inicial') }}">
                     </div>
 
                     <div class="field">
                         <label for="fecha_final">Fecha final del evento</label>
-                        <input id="fecha_final" type="date" name="fecha_final">
+                        <input id="fecha_final" type="date" name="fecha_final" value="{{ old('fecha_final') }}">
                     </div>
-
                 </div>
 
-                <button class="btn" type="submit">ENVIAR</button>
-
-            </div>
-        </form>
-        <br>
-        <br>
+                <button class="btn btn-brand w-100 mt-4" type="submit">Enviar solicitud</button>
+            </form>
+        </section>
     </div>
+</div>
+@endsection
 
+@push('scripts')
 <script>
+    const telInput = document.getElementById('telefono_natural');
+    const docInput = document.getElementById('documento');
 
-    const telInput = document.getElementById("telefono_natural");
-    telInput.addEventListener("input", function () {
-        const original = this.value;
-        const soloNumeros = original.replace(/[^0-9+\-() ]/g, "");
-        if (original !== soloNumeros) {
-            alert("Solo se permiten numeros en este campo");
-            this.value = soloNumeros;
-        }
+    telInput?.addEventListener('input', function () {
+        this.value = this.value.replace(/[^0-9+\-() ]/g, '');
     });
 
-    const telInput2 = document.getElementById("documento");
-    telInput2.addEventListener("input", function () {
-        const original = this.value;
-        const soloNumeros = original.replace(/[^0-9]/g, "");
-        if (original !== soloNumeros) {
-            alert("Solo se permiten numeros en este campo");
-            this.value = soloNumeros;
-        }
-    });
-
-    // === VALIDACION DEL CORREO ===
-    const emailInput = document.getElementById("correo_electronico");
-
-    emailInput.addEventListener("input", function () {
-        const original = this.value;
-        const permitido = original.replace(/[^a-zA-Z0-9@._-]/g, "");
-        if (original !== permitido) {
-            alert("En el campo Correo solo se permiten caracteres v�lidos.");
-            this.value = permitido;
-        }
-    });
-
-    emailInput.addEventListener("blur", function () {
-        const correo = this.value.trim();
-        const regexCorreo = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (correo !== "" && !regexCorreo.test(correo)) {
-            alert("El correo ingresado no es v�lido. Ejemplo: usuario@correo.com");
-        }
-    });
-
-</script>
-
-@if (session('success'))
-<script>
-    Swal.fire({
-        icon: 'success',
-        title: 'Registro exitoso!',
-        text: "{{ session('success') }}",
-        confirmButtonColor: '#3f61ff',
-        timer: 3000,
-        timerProgressBar: true
+    docInput?.addEventListener('input', function () {
+        this.value = this.value.replace(/[^0-9]/g, '');
     });
 </script>
-@endif
-
-   @yield('content')
-
-    @include('components.footer')
-</body>
-</html>
+@endpush

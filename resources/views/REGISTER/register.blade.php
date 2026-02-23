@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
@@ -8,7 +8,7 @@
   <!-- Bootstrap -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
 
-  <!-- ✅ FontAwesome (para lupa, campana y sobre) -->
+  <!-- âœ… FontAwesome (para lupa, campana y sobre) -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 
   <!-- Fonts -->
@@ -259,7 +259,7 @@
     .divider{ border-color: rgba(148,163,184,.2); }
     .muted{ color:var(--muted); }
 
-    /* ================== ✅ SOLO LO QUE PEDISTE ================== */
+    /* ================== âœ… SOLO LO QUE PEDISTE ================== */
 
     /* Buscador topbar */
     .search-pro{
@@ -367,7 +367,7 @@
     <div class="container py-2">
       <a class="navbar-brand text-white d-flex align-items-center gap-3" href="{{ route('principal') }}">
         <div class="brand d-flex align-items-center gap-2">
-          <span class="brand-badge">🏆 SPORT EVENTS</span>
+          <span class="brand-badge">ðŸ† SPORT EVENTS</span>
           <span class="d-none d-md-inline">PRO</span>
         </div>
       </a>
@@ -378,7 +378,7 @@
 
       <div class="collapse navbar-collapse" id="navMain">
 
-        <!-- ✅ BUSCADOR -->
+        <!-- âœ… BUSCADOR -->
         <form class="search-pro me-lg-auto my-2 my-lg-0" role="search">
           <input type="text" class="form-control" placeholder="Buscar eventos, participantes...">
           <button class="btn-search" type="button" aria-label="Buscar">
@@ -393,7 +393,7 @@
           <li class="nav-item"><a class="nav-link" href="#">Reportes</a></li>
           <li class="nav-item"><a class="nav-link" href="{{ route('crear_usuario') }}">Admins</a></li>
 
-          <!-- 🔔 NOTIFICACIONES -->
+          <!-- ðŸ”” NOTIFICACIONES -->
           <li class="nav-item dropdown ms-lg-2">
             <a class="top-icon-btn dropdown-toggle"
                href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -411,7 +411,7 @@
                   </div>
                   <div>
                     <div class="small-muted">{{ $n['fecha'] ?? '' }}</div>
-                    <div class="fw-bold">{{ $n['texto'] ?? 'Notificación nueva' }}</div>
+                    <div class="fw-bold">{{ $n['texto'] ?? 'NotificaciÃ³n nueva' }}</div>
                   </div>
                 </a>
               @empty
@@ -426,7 +426,7 @@
             </div>
           </li>
 
-          <!-- 💬 MENSAJES -->
+          <!-- ðŸ’¬ MENSAJES -->
           <li class="nav-item dropdown ms-lg-2">
             <a class="top-icon-btn dropdown-toggle"
                href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -445,7 +445,7 @@
                   <div class="flex-grow-1">
                     <div class="fw-bold text-truncate">{{ $m['texto'] ?? 'Mensaje nuevo' }}</div>
                     <div class="small-muted">
-                      {{ $m['nombre'] ?? 'Usuario' }} · {{ $m['fecha'] ?? '' }}
+                      {{ $m['nombre'] ?? 'Usuario' }} Â· {{ $m['fecha'] ?? '' }}
                     </div>
                   </div>
                 </a>
@@ -474,17 +474,17 @@
         <div>
           <div class="d-inline-flex align-items-center gap-2 px-3 py-2 rounded-pill mb-2"
                style="background:rgba(34,211,238,.08);border:1px solid rgba(34,211,238,.35);font-weight:800;">
-            🏟️ Panel del Organizador
+            ðŸŸï¸ Panel del Organizador
           </div>
           <h1 class="hero-title">Registro de Eventos Deportivos</h1>
           <p class="hero-sub mt-2">
-            Gestiona torneos, inscripciones y administración con estilo profesional.
+            Gestiona torneos, inscripciones y administraciÃ³n con estilo profesional.
           </p>
         </div>
 
         <div class="text-md-end">
           <div class="muted small">Estado</div>
-          <div class="fw-bold text-light">Operativo ✅</div>
+          <div class="fw-bold text-light">Operativo âœ…</div>
           <div class="muted small mt-2">Hoy</div>
           <div class="small text-light">
             {{ now()->timezone('America/Bogota')->locale('es')->translatedFormat('d M Y, H:i') }}
@@ -514,7 +514,7 @@
       <div class="col-md-4">
         <div class="stat pro-card p-3 p-md-4">
           <div class="glow" style="background:radial-gradient(circle, rgba(168,85,247,.5), transparent 60%);"></div>
-          <div class="label mb-1">Próximos torneos</div>
+          <div class="label mb-1">PrÃ³ximos torneos</div>
           <div class="value">5</div>
           <div class="fw-bold small" style="color:#e9d5ff;">2 confirmados</div>
         </div>
@@ -529,8 +529,8 @@
 
           <div class="d-flex align-items-center justify-content-between">
             <div>
-              <h3 class="mb-1" style="font-family:Oswald;">👋 Bienvenido</h3>
-              <p class="muted mb-0">Acciones rápidas para operar tu sistema.</p>
+              <h3 class="mb-1" style="font-family:Oswald;">ðŸ‘‹ Bienvenido</h3>
+              <p class="muted mb-0">Acciones rÃ¡pidas para operar tu sistema.</p>
             </div>
           </div>
 
@@ -539,11 +539,11 @@
 
             <div class="col-md-4">
               <div class="action cyan p-3">
-                <div class="icon-box mb-3">🏟️</div>
+                <div class="icon-box mb-3">ðŸŸï¸</div>
                 <h5>Crear evento</h5>
-                <p>Registra competencias con calendario, sede y categorías.</p>
+                <p>Registra competencias con calendario, sede y categorÃ­as.</p>
 
-                <!-- ✅ CAMBIO AQUÍ: ahora sí te lleva a tu vista nueva -->
+                <!-- âœ… CAMBIO AQUÃ: ahora sÃ­ te lleva a tu vista nueva -->
                 <a href="{{ route('events.crear-evento-developer') }}" class="btn btn-brand w-100">
                   Nuevo evento
                 </a>
@@ -552,7 +552,7 @@
 
             <div class="col-md-4">
               <div class="action blue p-3">
-                <div class="icon-box mb-3">📅</div>
+                <div class="icon-box mb-3">ðŸ“…</div>
                 <h5>Calendario</h5>
                 <p>Visualiza agenda y estado de inscripciones por fecha.</p>
                 <a href="{{ route('events.index') }}" class="btn btn-soft w-100">Ver eventos</a>
@@ -561,7 +561,7 @@
 
             <div class="col-md-4">
               <div class="action green p-3">
-                <div class="icon-box mb-3">👥</div>
+                <div class="icon-box mb-3">ðŸ‘¥</div>
                 <h5>Participantes</h5>
                 <p>Administra equipos, atletas, edades y divisiones.</p>
 
@@ -574,7 +574,7 @@
 
             <div class="col-md-4">
               <div class="action purple p-3">
-                <div class="icon-box mb-3">🛡️</div>
+                <div class="icon-box mb-3">ðŸ›¡ï¸</div>
                 <h5>Usuarios admin</h5>
                 <p>Crea personal autorizado para operar el sistema contigo.</p>
                 <a href="{{ route('crear_usuario') }}" class="btn btn-soft w-100"
@@ -583,14 +583,93 @@
                 </a>
               </div>
             </div>
-
+            <div class="col-md-4">
+              <div class="action cyan p-3">
+                <div class="icon-box mb-3">🏟️</div>
+                <h5>Agregar canchas</h5>
+                <p>Crea nuevas canchas y define cuantas internas maneja cada sede.</p>
+                <button type="button" class="btn btn-brand w-100"
+                        data-bs-toggle="collapse" data-bs-target="#formNuevaCancha"
+                        aria-expanded="false" aria-controls="formNuevaCancha">
+                  Nueva cancha
+                </button>
+              </div>
+            </div>
           </div>
 
+
+          <div class="collapse mt-4 {{ $errors->any() || session('success') ? 'show' : '' }}" id="formNuevaCancha">
+            <div class="pro-card p-4">
+              <h4 class="mb-3" style="font-family:Oswald;">Nueva cancha</h4>
+
+              @if(session('success'))
+                <div class="alert alert-success">{{ session('success') }}</div>
+              @endif
+
+              @if ($errors->any())
+                <div class="alert alert-danger">
+                  <ul class="mb-0">
+                    @foreach ($errors->all() as $error)
+                      <li>{{ $error }}</li>
+                    @endforeach
+                  </ul>
+                </div>
+              @endif
+
+              <form action="{{ route('canchas.store') }}" method="POST" class="row g-3">
+                @csrf
+                <input type="hidden" name="redirect_to" value="{{ route('register') }}">
+
+                <div class="col-md-6">
+                  <label class="form-label">Nombre de la cancha</label>
+                  <input type="text" name="nombre" class="form-control" value="{{ old('nombre') }}" required>
+                </div>
+
+                <div class="col-md-6">
+                  <label class="form-label">Numero de canchas internas</label>
+                  <select name="num_canchas" class="form-select" required>
+                    @for ($i = 1; $i <= 4; $i++)
+                      <option value="{{ $i }}" {{ old('num_canchas',1)==$i ? 'selected' : '' }}>{{ $i }}</option>
+                    @endfor
+                  </select>
+                </div>
+
+                <div class="col-12">
+                  <label class="form-label">Descripcion</label>
+                  <textarea name="descripcion" class="form-control" rows="2">{{ old('descripcion') }}</textarea>
+                </div>
+
+                <div class="col-md-6">
+                  <label class="form-label">Ubicacion</label>
+                  <input type="text" name="ubicacion" class="form-control" value="{{ old('ubicacion') }}" required>
+                </div>
+
+                <div class="col-md-6">
+                  <label class="form-label">Telefono de contacto</label>
+                  <input type="text" name="telefono_contacto" class="form-control" value="{{ old('telefono_contacto') }}" required>
+                </div>
+
+                <div class="col-md-6">
+                  <label class="form-label">Hora apertura</label>
+                  <input type="time" name="hora_apertura" class="form-control" value="{{ old('hora_apertura') }}" required>
+                </div>
+
+                <div class="col-md-6">
+                  <label class="form-label">Hora cierre</label>
+                  <input type="time" name="hora_cierre" class="form-control" value="{{ old('hora_cierre') }}" required>
+                </div>
+
+                <div class="col-12">
+                  <button class="btn btn-brand">Guardar cancha</button>
+                </div>
+              </form>
+            </div>
+          </div>
           <!-- Table -->
           <hr class="my-5 divider">
 
           <div class="d-flex align-items-center justify-content-between mb-3">
-            <h4 class="mb-0" style="font-family:Oswald;">Próximos eventos</h4>
+            <h4 class="mb-0" style="font-family:Oswald;">PrÃ³ximos eventos</h4>
             <div class="d-flex gap-2">
               <input class="form-control form-control-sm bg-transparent text-light"
                      style="border-color:rgba(148,163,184,.35);border-radius:.8rem;"
@@ -611,7 +690,7 @@
               </thead>
               <tbody>
                 <tr>
-                  <td class="fw-semibold">Torneo Regional de Fútbol</td>
+                  <td class="fw-semibold">Torneo Regional de FÃºtbol</td>
                   <td>12 Dic 2025</td>
                   <td>Estadio Central</td>
                   <td><span class="badge badge-open rounded-pill px-3 py-2">Inscripciones abiertas</span></td>
@@ -620,13 +699,13 @@
                   <td class="fw-semibold">Carrera 10K Ciudad</td>
                   <td>20 Ene 2026</td>
                   <td>Parque Principal</td>
-                  <td><span class="badge badge-soon rounded-pill px-3 py-2">Próximo</span></td>
+                  <td><span class="badge badge-soon rounded-pill px-3 py-2">PrÃ³ximo</span></td>
                 </tr>
                 <tr>
                   <td class="fw-semibold">Liga de Baloncesto</td>
                   <td>05 Feb 2026</td>
                   <td>Coliseo Norte</td>
-                  <td><span class="badge badge-prep rounded-pill px-3 py-2">En preparación</span></td>
+                  <td><span class="badge badge-prep rounded-pill px-3 py-2">En preparaciÃ³n</span></td>
                 </tr>
               </tbody>
             </table>
@@ -651,20 +730,20 @@
           <hr class="my-4 divider">
 
           <div class="d-grid gap-2">
-            <a href="#" class="btn btn-soft">⚙️ Configuración</a>
-            <a href="#" class="btn btn-soft">📊 Reportes</a>
+            <a href="#" class="btn btn-soft">âš™ï¸ ConfiguraciÃ³n</a>
+            <a href="#" class="btn btn-soft">ðŸ“Š Reportes</a>
           </div>
 
           <form method="POST" action="{{ route('logout') }}" class="mt-3">
             @csrf
             <button type="submit" class="btn w-100"
               style="background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.6);color:#fecaca;border-radius:.95rem;font-weight:800;padding:.75rem 1rem;">
-              Cerrar sesión
+              Cerrar sesiÃ³n
             </button>
           </form>
 
           <p class="small muted mt-3 mb-0">
-            Sistema de administración de eventos deportivos v1.0
+            Sistema de administraciÃ³n de eventos deportivos v1.0
           </p>
         </div>
       </div>
@@ -675,3 +754,5 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+
+
