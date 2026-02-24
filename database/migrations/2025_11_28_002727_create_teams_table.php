@@ -12,6 +12,8 @@ class CreateTeamsTable extends Migration
             $table->id();
             $table->string('name');
             $table->unsignedBigInteger('group_id')->nullable();
+            $table->unsignedBigInteger('grupo_id')->nullable();
+            $table->integer('puntos')->default(0);
             $table->timestamps();
         });
     }

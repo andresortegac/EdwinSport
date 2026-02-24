@@ -9,6 +9,7 @@ return new class extends Migration {
         Schema::create('reservas', function (Blueprint $table) {
             $table->id();
             $table->foreignId('cancha_id')->constrained('canchas')->onDelete('cascade');
+            $table->unsignedBigInteger('subcancha_id')->nullable();
             $table->unsignedBigInteger('usuario_id')->nullable();
             $table->date('fecha');
             $table->time('hora_inicio');
@@ -17,6 +18,7 @@ return new class extends Migration {
             $table->timestamps();
 
             $table->unique(['cancha_id','fecha','hora_inicio']);
+            $table->unique(['subcancha_id', 'fecha', 'hora_inicio'], 'unique_reserva_subcancha_fecha_hora');
         });
     }
 

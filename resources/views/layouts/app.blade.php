@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="es">
 <head>
   <meta charset="utf-8">
@@ -41,8 +41,9 @@
     }
   </style>
 
-  {{-- 👇 NUEVO: estilos extra por vista --}}
+  {{-- ðŸ‘‡ NUEVO: estilos extra por vista --}}
   @stack('styles')
+  <link rel="stylesheet" href="{{ asset('CSS/unified-font.css') }}">
 </head>
 <body>
   @include('partials.navbar')
@@ -56,7 +57,8 @@
   {{-- (Opcional) JS de Bootstrap si no lo cargas en otro lado --}}
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
-  {{-- 👇 NUEVO: scripts extra por vista (si algún día los necesitas) --}}
+  {{-- ðŸ‘‡ NUEVO: scripts extra por vista (si algÃºn dÃ­a los necesitas) --}}
   @stack('scripts')
 </body>
 </html>
+

@@ -13,6 +13,14 @@ return new class extends Migration
     {
         Schema::create('equipos', function (Blueprint $table) {
             $table->id();
+            $table->string('evento');
+            $table->string('nombre_equipo')->nullable();
+            $table->string('nit')->nullable();
+            $table->string('direccion')->nullable();
+            $table->string('telefono_equipo')->nullable();
+            $table->string('email_equipo')->nullable();
+            $table->integer('valor_inscripcion')->nullable();
+            $table->string('nombre_dt')->nullable();
             $table->timestamps();
         });
     }

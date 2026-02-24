@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
@@ -184,6 +184,7 @@
       .sticky-lg-top { position: static !important; top:auto !important; }
     }
   </style>
+  <link rel="stylesheet" href="{{ asset('CSS/unified-font.css') }}">
 </head>
 
 <body>
@@ -193,15 +194,15 @@
     <div class="hero mb-4">
       <div class="d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-3">
         <div>
-          <div class="pill mb-2">🏟️ Panel de Control · Eventos Deportivos</div>
-          <h1 class="hero-title">Gestión de Usuarios Administradores</h1>
+          <div class="pill mb-2">ðŸŸï¸ Panel de Control Â· Eventos Deportivos</div>
+          <h1 class="hero-title">GestiÃ³n de Usuarios Administradores</h1>
           <p class="hero-sub">
             Crea, organiza y controla el acceso de tu equipo administrativo con seguridad y estilo.
           </p>
         </div>
         <div class="text-md-end">
           <a href="{{ route('register') }}" class="btn btn-ghost">
-            ⬅ Volver al panel principal
+            â¬… Volver al panel principal
           </a>
         </div>
       </div>
@@ -240,25 +241,25 @@
 
             <div class="mb-3">
               <label class="form-label">Nombre completo</label>
-              <input type="text" name="name" class="form-control" placeholder="Ej: Camila Pérez" required>
-              <div class="helper">Este nombre será visible en el panel.</div>
+              <input type="text" name="name" class="form-control" placeholder="Ej: Camila PÃ©rez" required>
+              <div class="helper">Este nombre serÃ¡ visible en el panel.</div>
             </div>
 
             <div class="mb-3">
-              <label class="form-label">Correo electrónico</label>
+              <label class="form-label">Correo electrÃ³nico</label>
               <input type="email" name="email" class="form-control" placeholder="admin@tuevento.com" required>
               <div class="helper">Usa un email corporativo si es posible.</div>
             </div>
 
             <div class="mb-3">
-              <label class="form-label">Contraseña</label>
-              <input type="password" name="password" class="form-control" placeholder="Mínimo 6 caracteres" minlength="6" required>
-              <div class="helper">Recomendado: letras + números + símbolo.</div>
+              <label class="form-label">ContraseÃ±a</label>
+              <input type="password" name="password" class="form-control" placeholder="MÃ­nimo 6 caracteres" minlength="6" required>
+              <div class="helper">Recomendado: letras + nÃºmeros + sÃ­mbolo.</div>
             </div>
 
             <div class="mb-3">
-              <label class="form-label">Confirmar contraseña</label>
-              <input type="password" name="password_confirmation" class="form-control" placeholder="Repite la contraseña" minlength="6" required>
+              <label class="form-label">Confirmar contraseÃ±a</label>
+              <input type="password" name="password_confirmation" class="form-control" placeholder="Repite la contraseÃ±a" minlength="6" required>
             </div>
 
             <button class="btn btn-brand w-100 mt-2">
@@ -313,11 +314,11 @@
                       </span>
                     </td>
 
-                    <!-- ✅ ACCIONES LIMPIAS (SIN MODAL AQUÍ) -->
+                    <!-- âœ… ACCIONES LIMPIAS (SIN MODAL AQUÃ) -->
                     <td class="text-end">
                       <div class="d-flex justify-content-end align-items-center gap-2 flex-wrap">
 
-                        <!-- Botón abrir modal -->
+                        <!-- BotÃ³n abrir modal -->
                         <button
                           type="button"
                           class="btn btn-sm btn-outline-light"
@@ -325,7 +326,7 @@
                           data-bs-toggle="modal"
                           data-bs-target="#modalPassword{{ $a->id }}"
                         >
-                          🔑 Cambiar
+                          ðŸ”‘ Cambiar
                         </button>
 
                         <!-- Eliminar -->
@@ -335,9 +336,9 @@
                           <button
                             class="btn btn-sm btn-outline-light"
                             style="border-radius:.7rem;border-color:rgba(239,68,68,.6);color:#fecaca;"
-                            onclick="return confirm('¿Eliminar este usuario?')"
+                            onclick="return confirm('Â¿Eliminar este usuario?')"
                           >
-                            🗑️ Eliminar
+                            ðŸ—‘ï¸ Eliminar
                           </button>
                         </form>
 
@@ -351,8 +352,8 @@
             </div>
           @else
             <div class="text-center py-5">
-              <div class="display-6 mb-2">👤</div>
-              <p class="text-muted mb-0">No hay administradores aún.</p>
+              <div class="display-6 mb-2">ðŸ‘¤</div>
+              <p class="text-muted mb-0">No hay administradores aÃºn.</p>
               <p class="text-muted small">Crea el primero desde el formulario.</p>
             </div>
           @endif
@@ -363,13 +364,13 @@
     </div>
   </div>
 
-  <!-- ✅ MODALES FUERA DE LA TABLA (ARREGLO DEFINITIVO) -->
+  <!-- âœ… MODALES FUERA DE LA TABLA (ARREGLO DEFINITIVO) -->
   @foreach($admins as $a)
     <div class="modal fade" id="modalPassword{{ $a->id }}" tabindex="-1" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content pro-card p-3">
           <div class="modal-header border-0">
-            <h5 class="modal-title text-light">Cambiar contraseña</h5>
+            <h5 class="modal-title text-light">Cambiar contraseÃ±a</h5>
             <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
           </div>
 
@@ -378,17 +379,17 @@
             @method('PATCH')
 
             <div class="modal-body">
-              <label class="form-label">Nueva contraseña para {{ $a->name }}</label>
+              <label class="form-label">Nueva contraseÃ±a para {{ $a->name }}</label>
               <input
                 type="password"
                 name="password"
                 class="form-control"
-                placeholder="Nueva contraseña"
+                placeholder="Nueva contraseÃ±a"
                 minlength="6"
                 required
                 autofocus
               >
-              <div class="helper">Mínimo 6 caracteres.</div>
+              <div class="helper">MÃ­nimo 6 caracteres.</div>
             </div>
 
             <div class="modal-footer border-0">
@@ -407,3 +408,4 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+

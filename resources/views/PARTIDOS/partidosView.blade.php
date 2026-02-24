@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -7,11 +7,12 @@
 
     <!-- CSS independiente -->
     <link rel="stylesheet" href="{{ asset('css/partidos.css') }}">
+  <link rel="stylesheet" href="{{ asset('CSS/unified-font.css') }}">
 </head>
 <body>
 
     <div class="top-bar">
-        <a href="{{ route('principal') }}" class="btn-back">←</a>
+        <a href="{{ route('principal') }}" class="btn-back">â†</a>
     </div>
 
     <!-- Imagen superior -->
@@ -23,7 +24,7 @@
     <div class="menu">
         <a href="{{ route('competicion') }}"
            class="{{ request()->routeIs('competicion') ? 'active' : '' }}">
-            Competición
+            CompeticiÃ³n
         </a>
 
         <a href="{{ route('partidos') }}"
@@ -36,8 +37,9 @@
     <div class="content">
         <h1>Pantalla de Partidos</h1>
 
-        <p>Aquí puedes mostrar la lista de partidos, calendario o próximos encuentros.</p>
+        <p>AquÃ­ puedes mostrar la lista de partidos, calendario o prÃ³ximos encuentros.</p>
     </div>
 
 </body>
 </html>
+

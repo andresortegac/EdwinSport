@@ -1,4 +1,4 @@
-
+﻿
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -77,14 +77,15 @@
             min-width: 200px;
         }
     </style>
+  <link rel="stylesheet" href="{{ asset('CSS/unified-font.css') }}">
 </head>
 <body>
 
     {{-- ENCABEZADO --}}
-    <div class="title-main">PLANILLA OFICIAL DE INSCRIPCIÓN TORNEO</div>
-    <div class="sub-title">FÚTBOL SALA MASCULINO</div>
+    <div class="title-main">PLANILLA OFICIAL DE INSCRIPCIÃ“N TORNEO</div>
+    <div class="sub-title">FÃšTBOL SALA MASCULINO</div>
 
-    {{-- DATOS DEL EQUIPO / NIT / TELÉFONO / VALOR --}}
+    {{-- DATOS DEL EQUIPO / NIT / TELÃ‰FONO / VALOR --}}
     <table class="mt-10">
         <tr>
             <td style="width: 15%; font-weight:bold;">NOMBRE EQUIPO</td>
@@ -95,13 +96,13 @@
             <td style="width: 15%;">
                 {{ $equipo->nit }}
             </td>
-            <td style="width: 10%; font-weight:bold;">TELÉFONO</td>
+            <td style="width: 10%; font-weight:bold;">TELÃ‰FONO</td>
             <td style="width: 15%;">
                 {{ $equipo->telefono_equipo }}
             </td>
         </tr>
         <tr>
-            <td style="font-weight:bold;">DIRECCIÓN</td>
+            <td style="font-weight:bold;">DIRECCIÃ“N</td>
             <td>
                 {{ mb_strtoupper($equipo->direccion) }}
             </td>
@@ -126,11 +127,11 @@
     <table class="mt-10">
         <thead>
             <tr>
-                <th style="width: 4%;">N°</th>
+                <th style="width: 4%;">NÂ°</th>
                 <th>NOMBRE Y APELLIDO DEL JUGADOR</th>
-                <th style="width: 10%;">N° DE LA CAMISA</th>
-                <th style="width: 15%;">N° DE CELULAR</th>
-                <th style="width: 18%;">N° DOCUMENTO DE IDENTIDAD</th>
+                <th style="width: 10%;">NÂ° DE LA CAMISA</th>
+                <th style="width: 15%;">NÂ° DE CELULAR</th>
+                <th style="width: 18%;">NÂ° DOCUMENTO DE IDENTIDAD</th>
                 <th style="width: 8%;">EDAD</th>
             </tr>
         </thead>
@@ -151,7 +152,7 @@
                         {{ $jug?->telefono ?? '' }}
                     </td>
                     <td class="center">
-                        {{-- Si tu modelo tiene documento, cámbialo aquí --}}
+                        {{-- Si tu modelo tiene documento, cÃ¡mbialo aquÃ­ --}}
                     </td>
                     <td class="center">
                         {{ $jug?->edad ?? '' }}
@@ -181,7 +182,7 @@
         </tr>
         <tr>
             <td colspan="2"></td>
-            <td style="font-weight:bold;">CELULAR N°</td>
+            <td style="font-weight:bold;">CELULAR NÂ°</td>
             <td>
                 {{ $equipo->telefono_equipo }}
             </td>
@@ -198,8 +199,8 @@
         <tr>
             <td style="width: 5%;" class="center">1</td>
             <td style="width: 45%;">
-                {{-- Si tienes campo de entrenador, cámbialo aquí.
-                     Por ahora usamos también nombre_dt --}}
+                {{-- Si tienes campo de entrenador, cÃ¡mbialo aquÃ­.
+                     Por ahora usamos tambiÃ©n nombre_dt --}}
                 {{ mb_strtoupper($equipo->nombre_dt) }}
             </td>
             <td style="width: 15%; font-weight:bold;">E-MAIL</td>
@@ -209,7 +210,7 @@
         </tr>
         <tr>
             <td colspan="2"></td>
-            <td style="font-weight:bold;">CELULAR N°</td>
+            <td style="font-weight:bold;">CELULAR NÂ°</td>
             <td>
                 {{ $equipo->telefono_equipo }}
             </td>
@@ -221,7 +222,7 @@
         <tr>
             <td class="small" style="text-align:justify;">
                 LOS PARTICIPANTES DE CADA EQUIPO NO DEBEN ESTAR INSCRITOS EN OTROS EQUIPOS
-                QUE SE RELACIONEN CON LA ACTIVIDAD QUE SE ESTÁ LLEVANDO A CABO. RECUERDEN
+                QUE SE RELACIONEN CON LA ACTIVIDAD QUE SE ESTÃ LLEVANDO A CABO. RECUERDEN
                 QUE LOS EQUIPOS DEBEN TENER SU COLOR GRUPAL QUE SE PUEDAN IDENTIFICAR.
                 <br>
                 "PARTICIPAN BAJO SU PROPIA RESPONSABILIDAD".
@@ -236,3 +237,4 @@
 
 </body>
 </html>
+

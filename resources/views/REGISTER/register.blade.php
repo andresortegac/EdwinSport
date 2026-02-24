@@ -8,7 +8,7 @@
   <!-- Bootstrap -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
 
-  <!-- âœ… FontAwesome (para lupa, campana y sobre) -->
+  <!-- FontAwesome (para lupa, campana y sobre) -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 
   <!-- Fonts -->
@@ -259,7 +259,7 @@
     .divider{ border-color: rgba(148,163,184,.2); }
     .muted{ color:var(--muted); }
 
-    /* ================== âœ… SOLO LO QUE PEDISTE ================== */
+    /* ================== SOLO LO QUE PEDISTE ================== */
 
     /* Buscador topbar */
     .search-pro{
@@ -358,6 +358,7 @@
       flex-shrink:0;
     }
   </style>
+  <link rel="stylesheet" href="{{ asset('CSS/unified-font.css') }}">
 </head>
 
 <body>
@@ -367,7 +368,7 @@
     <div class="container py-2">
       <a class="navbar-brand text-white d-flex align-items-center gap-3" href="{{ route('principal') }}">
         <div class="brand d-flex align-items-center gap-2">
-          <span class="brand-badge">ðŸ† SPORT EVENTS</span>
+          <span class="brand-badge"><i class="fas fa-trophy me-1"></i>SPORT EVENTS</span>
           <span class="d-none d-md-inline">PRO</span>
         </div>
       </a>
@@ -378,7 +379,7 @@
 
       <div class="collapse navbar-collapse" id="navMain">
 
-        <!-- âœ… BUSCADOR -->
+        <!-- BUSCADOR -->
         <form class="search-pro me-lg-auto my-2 my-lg-0" role="search">
           <input type="text" class="form-control" placeholder="Buscar eventos, participantes...">
           <button class="btn-search" type="button" aria-label="Buscar">
@@ -387,13 +388,7 @@
         </form>
 
         <ul class="navbar-nav ms-auto gap-lg-2 align-items-lg-center">
-          <li class="nav-item"><a class="nav-link" href="{{ route('principal') }}">Dashboard</a></li>
-          <li class="nav-item"><a class="nav-link" href="{{ route('events.index') }}">Eventos</a></li>
-          <li class="nav-item"><a class="nav-link" href="{{ route('participantes.index') }}">Participantes</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">Reportes</a></li>
-          <li class="nav-item"><a class="nav-link" href="{{ route('crear_usuario') }}">Admins</a></li>
-
-          <!-- ðŸ”” NOTIFICACIONES -->
+          <!-- NOTIFICACIONES -->
           <li class="nav-item dropdown ms-lg-2">
             <a class="top-icon-btn dropdown-toggle"
                href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -411,7 +406,7 @@
                   </div>
                   <div>
                     <div class="small-muted">{{ $n['fecha'] ?? '' }}</div>
-                    <div class="fw-bold">{{ $n['texto'] ?? 'NotificaciÃ³n nueva' }}</div>
+                    <div class="fw-bold">{{ $n['texto'] ?? 'Notificacion nueva' }}</div>
                   </div>
                 </a>
               @empty
@@ -426,7 +421,7 @@
             </div>
           </li>
 
-          <!-- ðŸ’¬ MENSAJES -->
+          <!-- MENSAJES -->
           <li class="nav-item dropdown ms-lg-2">
             <a class="top-icon-btn dropdown-toggle"
                href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -445,7 +440,7 @@
                   <div class="flex-grow-1">
                     <div class="fw-bold text-truncate">{{ $m['texto'] ?? 'Mensaje nuevo' }}</div>
                     <div class="small-muted">
-                      {{ $m['nombre'] ?? 'Usuario' }} Â· {{ $m['fecha'] ?? '' }}
+                      {{ $m['nombre'] ?? 'Usuario' }} &middot; {{ $m['fecha'] ?? '' }}
                     </div>
                   </div>
                 </a>
@@ -474,17 +469,17 @@
         <div>
           <div class="d-inline-flex align-items-center gap-2 px-3 py-2 rounded-pill mb-2"
                style="background:rgba(34,211,238,.08);border:1px solid rgba(34,211,238,.35);font-weight:800;">
-            ðŸŸï¸ Panel del Organizador
+            <i class="fas fa-landmark me-1"></i>Panel del Organizador
           </div>
           <h1 class="hero-title">Registro de Eventos Deportivos</h1>
           <p class="hero-sub mt-2">
-            Gestiona torneos, inscripciones y administraciÃ³n con estilo profesional.
+            Gestiona torneos, inscripciones y administracion con estilo profesional.
           </p>
         </div>
 
         <div class="text-md-end">
           <div class="muted small">Estado</div>
-          <div class="fw-bold text-light">Operativo âœ…</div>
+          <div class="fw-bold text-light">Operativo</div>
           <div class="muted small mt-2">Hoy</div>
           <div class="small text-light">
             {{ now()->timezone('America/Bogota')->locale('es')->translatedFormat('d M Y, H:i') }}
@@ -514,7 +509,7 @@
       <div class="col-md-4">
         <div class="stat pro-card p-3 p-md-4">
           <div class="glow" style="background:radial-gradient(circle, rgba(168,85,247,.5), transparent 60%);"></div>
-          <div class="label mb-1">PrÃ³ximos torneos</div>
+          <div class="label mb-1">Proximos torneos</div>
           <div class="value">5</div>
           <div class="fw-bold small" style="color:#e9d5ff;">2 confirmados</div>
         </div>
@@ -529,8 +524,8 @@
 
           <div class="d-flex align-items-center justify-content-between">
             <div>
-              <h3 class="mb-1" style="font-family:Oswald;">ðŸ‘‹ Bienvenido</h3>
-              <p class="muted mb-0">Acciones rÃ¡pidas para operar tu sistema.</p>
+              <h3 class="mb-1" style="font-family:Oswald;"><i class="fas fa-hand-sparkles me-1"></i>Bienvenido</h3>
+              <p class="muted mb-0">Acciones rapidas para operar tu sistema.</p>
             </div>
           </div>
 
@@ -539,11 +534,11 @@
 
             <div class="col-md-4">
               <div class="action cyan p-3">
-                <div class="icon-box mb-3">ðŸŸï¸</div>
+                <div class="icon-box mb-3"><i class="fas fa-landmark"></i></div>
                 <h5>Crear evento</h5>
-                <p>Registra competencias con calendario, sede y categorÃ­as.</p>
+                <p>Registra competencias con calendario, sede y categorias.</p>
 
-                <!-- âœ… CAMBIO AQUÃ: ahora sÃ­ te lleva a tu vista nueva -->
+                <!-- CAMBIO AQUI: ahora si te lleva a tu vista nueva -->
                 <a href="{{ route('events.crear-evento-developer') }}" class="btn btn-brand w-100">
                   Nuevo evento
                 </a>
@@ -552,7 +547,7 @@
 
             <div class="col-md-4">
               <div class="action blue p-3">
-                <div class="icon-box mb-3">ðŸ“…</div>
+                <div class="icon-box mb-3"><i class="fas fa-calendar-alt"></i></div>
                 <h5>Calendario</h5>
                 <p>Visualiza agenda y estado de inscripciones por fecha.</p>
                 <a href="{{ route('events.index') }}" class="btn btn-soft w-100">Ver eventos</a>
@@ -561,7 +556,7 @@
 
             <div class="col-md-4">
               <div class="action green p-3">
-                <div class="icon-box mb-3">ðŸ‘¥</div>
+                <div class="icon-box mb-3"><i class="fas fa-users"></i></div>
                 <h5>Participantes</h5>
                 <p>Administra equipos, atletas, edades y divisiones.</p>
 
@@ -574,7 +569,7 @@
 
             <div class="col-md-4">
               <div class="action purple p-3">
-                <div class="icon-box mb-3">ðŸ›¡ï¸</div>
+                <div class="icon-box mb-3"><i class="fas fa-user-shield"></i></div>
                 <h5>Usuarios admin</h5>
                 <p>Crea personal autorizado para operar el sistema contigo.</p>
                 <a href="{{ route('crear_usuario') }}" class="btn btn-soft w-100"
@@ -669,7 +664,7 @@
           <hr class="my-5 divider">
 
           <div class="d-flex align-items-center justify-content-between mb-3">
-            <h4 class="mb-0" style="font-family:Oswald;">PrÃ³ximos eventos</h4>
+            <h4 class="mb-0" style="font-family:Oswald;">Proximos eventos</h4>
             <div class="d-flex gap-2">
               <input class="form-control form-control-sm bg-transparent text-light"
                      style="border-color:rgba(148,163,184,.35);border-radius:.8rem;"
@@ -690,7 +685,7 @@
               </thead>
               <tbody>
                 <tr>
-                  <td class="fw-semibold">Torneo Regional de FÃºtbol</td>
+                  <td class="fw-semibold">Torneo Regional de Futbol</td>
                   <td>12 Dic 2025</td>
                   <td>Estadio Central</td>
                   <td><span class="badge badge-open rounded-pill px-3 py-2">Inscripciones abiertas</span></td>
@@ -699,13 +694,13 @@
                   <td class="fw-semibold">Carrera 10K Ciudad</td>
                   <td>20 Ene 2026</td>
                   <td>Parque Principal</td>
-                  <td><span class="badge badge-soon rounded-pill px-3 py-2">PrÃ³ximo</span></td>
+                  <td><span class="badge badge-soon rounded-pill px-3 py-2">Proximo</span></td>
                 </tr>
                 <tr>
                   <td class="fw-semibold">Liga de Baloncesto</td>
                   <td>05 Feb 2026</td>
                   <td>Coliseo Norte</td>
-                  <td><span class="badge badge-prep rounded-pill px-3 py-2">En preparaciÃ³n</span></td>
+                  <td><span class="badge badge-prep rounded-pill px-3 py-2">En preparacion</span></td>
                 </tr>
               </tbody>
             </table>
@@ -730,20 +725,20 @@
           <hr class="my-4 divider">
 
           <div class="d-grid gap-2">
-            <a href="#" class="btn btn-soft">âš™ï¸ ConfiguraciÃ³n</a>
-            <a href="#" class="btn btn-soft">ðŸ“Š Reportes</a>
+            <a href="#" class="btn btn-soft"><i class="fas fa-cog me-1"></i>Configuracion</a>
+            <a href="#" class="btn btn-soft"><i class="fas fa-chart-line me-1"></i>Reportes</a>
           </div>
 
           <form method="POST" action="{{ route('logout') }}" class="mt-3">
             @csrf
             <button type="submit" class="btn w-100"
               style="background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.6);color:#fecaca;border-radius:.95rem;font-weight:800;padding:.75rem 1rem;">
-              Cerrar sesiÃ³n
+              Cerrar sesion
             </button>
           </form>
 
           <p class="small muted mt-3 mb-0">
-            Sistema de administraciÃ³n de eventos deportivos v1.0
+            Sistema de administracion de eventos deportivos v1.0
           </p>
         </div>
       </div>
@@ -754,5 +749,6 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+
 
 

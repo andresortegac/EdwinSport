@@ -13,7 +13,11 @@ return new class extends Migration
     {
         Schema::create('competiciones', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('evento');
+            $table->string('estado')->default('creada');
             $table->timestamps();
+
+            $table->index('evento');
         });
     }
 

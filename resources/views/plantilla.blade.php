@@ -1,15 +1,16 @@
-<!DOCTYPE html>
+ï»¿<!DOCTYPE html>
 
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>@yield('title')</title>
+Â  Â  <meta charset="UTF-8">
+Â  Â  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+Â  Â  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+Â  Â  <title>@yield('title')</title>
+  <link rel="stylesheet" href="{{ asset('CSS/unified-font.css') }}">
 </head>
 <body>
 
-    @yield('content')
+Â  Â  @yield('content')
 
 </body>
 </html>

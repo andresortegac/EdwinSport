@@ -1,0 +1,10 @@
+/* Fuente unica global para toda la app web */
+:root {
+    --app-font-family: "Inter", sans-serif;
+}
+
+html,
+body,
+body *:not(i):not(.fa):not(.fas):not(.far):not(.fal):not(.fab):not([class^="fa-"]):not([class*=" fa-"]):not(.bi):not([class^="bi-"]):not([class*=" bi-"]) {
+    font-family: var(--app-font-family) !important;
+}

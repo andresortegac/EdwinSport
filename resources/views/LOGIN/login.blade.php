@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
@@ -84,13 +84,13 @@
       pointer-events:none;
     }
 
-    /* ✅ BADGE MÁS GRANDE */
+    /* âœ… BADGE MÃS GRANDE */
     .brand-badge{
       display:inline-flex; 
       align-items:center; 
       gap:.65rem;
 
-      padding:.55rem 1.15rem;          /* más alto y ancho */
+      padding:.55rem 1.15rem;          /* mÃ¡s alto y ancho */
       border-radius:999px;
 
       font-weight:900; 
@@ -99,7 +99,7 @@
 
       color:#e6fbff;
       background:linear-gradient(135deg, rgba(34,211,238,.14), rgba(37,99,235,.14));
-      border:1.5px solid rgba(34,211,238,.75);  /* más grueso */
+      border:1.5px solid rgba(34,211,238,.75);  /* mÃ¡s grueso */
 
       box-shadow:
         0 0 6px rgba(34,211,238,.8),
@@ -160,7 +160,7 @@
     }
     .btn-brand:hover{ filter: brightness(1.08); transform: translateY(-1px); }
 
-    /* ✅ BOTÓN VOLVER NEÓN CIAN/AZUL */
+    /* âœ… BOTÃ“N VOLVER NEÃ“N CIAN/AZUL */
     .btn-soft{
       display:inline-flex;
       align-items:center;
@@ -210,6 +210,7 @@
       to{ opacity:1; transform: translateY(0) scale(1); }
     }
   </style>
+  <link rel="stylesheet" href="{{ asset('CSS/unified-font.css') }}">
 </head>
 
 <body>
@@ -217,10 +218,10 @@
   <div class="login-card">
 
     <div class="text-center mb-4 position-relative" style="z-index:2;">
-      <div class="brand-badge">🏆 EDWIN SPORT · PRO</div>
+      <div class="brand-badge">ðŸ† EDWIN SPORT Â· PRO</div>
       <div class="brand-title">Ingresar al Sistema</div>
       <div class="brand-sub">
-        Acceso exclusivo para gestión de eventos deportivos
+        Acceso exclusivo para gestiÃ³n de eventos deportivos
       </div>
     </div>
 
@@ -239,7 +240,7 @@
       <div class="mb-3">
         <label class="form-label">Correo</label>
         <div class="input-wrap">
-          <span class="input-icon">📧</span>
+          <span class="input-icon">ðŸ“§</span>
           <input
             type="email"
             name="email"
@@ -253,14 +254,14 @@
       </div>
 
       <div class="mb-3">
-        <label class="form-label">Contraseña / Código</label>
+        <label class="form-label">ContraseÃ±a / CÃ³digo</label>
         <div class="input-wrap">
-          <span class="input-icon">🔒</span>
+          <span class="input-icon">ðŸ”’</span>
           <input
             type="password"
             name="password"
             class="form-control"
-            placeholder="Ingresa tu contraseña"
+            placeholder="Ingresa tu contraseÃ±a"
             required
           />
         </div>
@@ -270,16 +271,16 @@
         Entrar
       </button>
 
-      <!-- ✅ VOLVER DEBAJO DE ENTRAR -->
+      <!-- âœ… VOLVER DEBAJO DE ENTRAR -->
     <a href="{{ url('/') }}" class="btn-soft w-100 mt-3">
-  ← Volver
+  â† Volver
 </a>
 
 
     </form>
 
     <div class="small-note">
-      Sistema de eventos deportivos ⚽🏀🏐
+      Sistema de eventos deportivos âš½ðŸ€ðŸ
     </div>
   </div>
 
@@ -287,3 +288,4 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+

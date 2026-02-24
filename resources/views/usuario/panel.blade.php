@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
 
@@ -39,7 +39,7 @@
       min-height:100vh;
     }
 
-    /* textos “muted” más claros para que se vean sobre el fondo oscuro */
+    /* textos â€œmutedâ€ mÃ¡s claros para que se vean sobre el fondo oscuro */
     .text-muted{
       color: var(--muted) !important;
     }
@@ -206,7 +206,7 @@
       color:#f9fafb !important;
     }
 
-    /* Evita texto blanco “apagado” dentro de cards */
+    /* Evita texto blanco â€œapagadoâ€ dentro de cards */
     #content .card .text-white{
       color: #f9fafb !important;
     }
@@ -305,9 +305,9 @@
 
     /* =========================================================
        *****  ARREGLO DURO PARA QUE LAS TABLAS SE VEAN  *****
-       Cualquier tabla .table quedará con fondo claro
+       Cualquier tabla .table quedarÃ¡ con fondo claro
        y texto oscuro, sin opacidades.
-       Esto afecta tu tabla de “Equipos Registrados”.
+       Esto afecta tu tabla de â€œEquipos Registradosâ€.
        ========================================================= */
 
     .table{
@@ -351,6 +351,7 @@
 
   </style>
 
+  <link rel="stylesheet" href="{{ asset('CSS/unified-font.css') }}">
 </head>
 
 <body id="page-top">
@@ -369,7 +370,7 @@
 
     <hr class="sidebar-divider my-0">
 
-    <div class="sidebar-heading mt-3">Administración</div>
+    <div class="sidebar-heading mt-3">AdministraciÃ³n</div>
 
     <!-- Eventos -->
     <li class="nav-item active">
@@ -486,7 +487,7 @@
                   </div>
                   <div>
                     <div class="small text-gray-500">{{ $n['fecha'] ?? '' }}</div>
-                    <span class="font-weight-bold">{{ $n['texto'] ?? 'Notificación nueva' }}</span>
+                    <span class="font-weight-bold">{{ $n['texto'] ?? 'NotificaciÃ³n nueva' }}</span>
                   </div>
                 </a>
               @empty
@@ -526,7 +527,7 @@
                   <div class="font-weight-bold">
                     <div class="text-truncate">{{ $m['texto'] ?? 'Mensaje nuevo' }}</div>
                     <div class="small text-gray-500">
-                      {{ $m['nombre'] ?? 'Usuario' }} · {{ $m['fecha'] ?? '' }}
+                      {{ $m['nombre'] ?? 'Usuario' }} Â· {{ $m['fecha'] ?? '' }}
                     </div>
                   </div>
                 </a>
@@ -557,10 +558,10 @@
             </a>
             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in">
               <a class="dropdown-item" href="#"><i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> Perfil</a>
-              <a class="dropdown-item" href="#"><i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i> Configuración</a>
+              <a class="dropdown-item" href="#"><i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i> ConfiguraciÃ³n</a>
               <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i> Cerrar sesión
+                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i> Cerrar sesiÃ³n
               </a>
             </div>
           </li>
@@ -616,15 +617,15 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">¿Deseas cerrar sesión?</h5>
-        <button class="close" type="button" data-dismiss="modal"><span aria-hidden="true">×</span></button>
+        <h5 class="modal-title">Â¿Deseas cerrar sesiÃ³n?</h5>
+        <button class="close" type="button" data-dismiss="modal"><span aria-hidden="true">Ã—</span></button>
       </div>
-      <div class="modal-body">Selecciona "Cerrar sesión" para finalizar tu sesión actual.</div>
+      <div class="modal-body">Selecciona "Cerrar sesiÃ³n" para finalizar tu sesiÃ³n actual.</div>
       <div class="modal-footer">
         <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
         <form method="POST" action="{{ route('logout') }}">
           @csrf
-          <button type="submit" class="btn btn-primary">Cerrar sesión</button>
+          <button type="submit" class="btn btn-primary">Cerrar sesiÃ³n</button>
         </form>
       </div>
     </div>
@@ -663,3 +664,4 @@ document.getElementById('btn-registrar-participante').addEventListener('click', 
 
 </body>
 </html>
+

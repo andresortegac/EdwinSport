@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 
 <head>
@@ -42,7 +42,7 @@
       min-height:100vh;
     }
 
-    /* textos “muted” más claros para que se vean sobre el fondo oscuro */
+    /* textos â€œmutedâ€ mÃ¡s claros para que se vean sobre el fondo oscuro */
     .text-muted{
       color: var(--muted) !important;
     }
@@ -209,7 +209,7 @@
       color:#f9fafb !important;
     }
 
-    /* Evita texto blanco “apagado” dentro de cards */
+    /* Evita texto blanco â€œapagadoâ€ dentro de cards */
     #content .card .text-white{
       color: #f9fafb !important;
     }
@@ -308,9 +308,9 @@
 
     /* =========================================================
        *****  ARREGLO DURO PARA QUE LAS TABLAS SE VEAN  *****
-       Cualquier tabla .table quedará con fondo claro
+       Cualquier tabla .table quedarÃ¡ con fondo claro
        y texto oscuro, sin opacidades.
-       Esto afecta tu tabla de “Equipos Registrados”.
+       Esto afecta tu tabla de â€œEquipos Registradosâ€.
        ========================================================= */
 
     .table{
@@ -353,19 +353,19 @@
     }
 
     /* =========================================================
-       ✅ SOLO LO QUE PEDISTE (SOLO ESTILO):
+       âœ… SOLO LO QUE PEDISTE (SOLO ESTILO):
        1) Centrar el formulario desde donde termina la sidebar
        2) Textbox blancos
        3) Labels blancas
        ========================================================= */
 
-    /* 1) CENTRAR EL FORMULARIO EN EL ÁREA DE CONTENIDO (sin contar la sidebar)
+    /* 1) CENTRAR EL FORMULARIO EN EL ÃREA DE CONTENIDO (sin contar la sidebar)
        - No toca JS ni botones.
        - Centra el "include" aunque no tenga clase .formulario-evento.
        - Usa margin auto + max-width (no rompe el display block/none del JS). */
     #contenedor-formulario > *{
       width: 100%;
-      max-width: 900px;     /* mismo ancho que tu diseño */
+      max-width: 900px;     /* mismo ancho que tu diseÃ±o */
       margin-left: auto;    /* centra horizontal */
       margin-right: auto;   /* centra horizontal */
     }
@@ -398,12 +398,13 @@
     }
   </style>
 
+  <link rel="stylesheet" href="{{ asset('CSS/unified-font.css') }}">
 </head>
 
 <body id="page-top">
   <div id="wrapper">
 
-    <!-- ✅ Sidebar -->
+    <!-- âœ… Sidebar -->
     <ul class="navbar-nav sidebar sidebar-dark accordion" id="accordionSidebar">
       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
         <div class="sidebar-brand-icon rotate-n-15">
@@ -430,7 +431,7 @@
         </button>
       </li>
 
-      <!-- 🧩 Patrocinadores -->
+      <!-- ðŸ§© Patrocinadores -->
       <li class="nav-item">
         <a href="{{ route('sponsors.index') }}" class="nav-link text-left w-100">
           <i class="fas fa-image"></i>
@@ -475,7 +476,7 @@
           </form>
 
           <ul class="navbar-nav ml-auto">
-            <!-- 🔔 Notificaciones -->
+            <!-- ðŸ”” Notificaciones -->
             <li class="nav-item dropdown no-arrow mx-1">
               <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-bell fa-fw"></i>
@@ -494,7 +495,7 @@
                     </div>
                     <div>
                       <div class="small text-gray-500">{{ $n['fecha'] ?? '' }}</div>
-                      <span class="font-weight-bold">{{ $n['texto'] ?? 'Notificación nueva' }}</span>
+                      <span class="font-weight-bold">{{ $n['texto'] ?? 'NotificaciÃ³n nueva' }}</span>
                     </div>
                   </a>
                 @empty
@@ -507,7 +508,7 @@
               </div>
             </li>
 
-            <!-- 💬 Mensajes -->
+            <!-- ðŸ’¬ Mensajes -->
             <li class="nav-item dropdown no-arrow mx-1">
               <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-envelope fa-fw"></i>
@@ -525,7 +526,7 @@
                     </div>
                     <div class="font-weight-bold">
                       <div class="text-truncate">{{ $m['texto'] ?? 'Mensaje nuevo' }}</div>
-                      <div class="small text-gray-500">{{ $m['nombre'] ?? 'Usuario' }} · {{ $m['fecha'] ?? '' }}</div>
+                      <div class="small text-gray-500">{{ $m['nombre'] ?? 'Usuario' }} Â· {{ $m['fecha'] ?? '' }}</div>
                     </div>
                   </a>
                 @empty
@@ -540,7 +541,7 @@
 
             <div class="topbar-divider d-none d-sm-block"></div>
 
-            <!-- 👤 Usuario -->
+            <!-- ðŸ‘¤ Usuario -->
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle d-flex align-items-center gap-2 px-2" href="#" id="userDropdown" role="button" data-toggle="dropdown">
                 <span class="d-none d-lg-inline fw-semibold">
@@ -554,11 +555,11 @@
                   <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> Perfil
                 </a>
                 <a class="dropdown-item" href="#">
-                  <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i> Configuración
+                  <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i> ConfiguraciÃ³n
                 </a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                  <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i> Cerrar sesión
+                  <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i> Cerrar sesiÃ³n
                 </a>
               </div>
             </li>
@@ -582,7 +583,7 @@
             </div>
           </div>
 
-          <!-- ✅ ELIMINADO: bloque "NUEVO PATROCINADOR" (ya no se renderiza aquí) -->
+          <!-- âœ… ELIMINADO: bloque "NUEVO PATROCINADOR" (ya no se renderiza aquÃ­) -->
         </div>
       </div>
 
@@ -606,15 +607,15 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">¿Deseas cerrar sesión?</h5>
-          <button class="close" type="button" data-dismiss="modal"><span aria-hidden="true">×</span></button>
+          <h5 class="modal-title">Â¿Deseas cerrar sesiÃ³n?</h5>
+          <button class="close" type="button" data-dismiss="modal"><span aria-hidden="true">Ã—</span></button>
         </div>
-        <div class="modal-body">Selecciona "Cerrar sesión" para finalizar tu sesión actual.</div>
+        <div class="modal-body">Selecciona "Cerrar sesiÃ³n" para finalizar tu sesiÃ³n actual.</div>
         <div class="modal-footer">
           <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
           <form method="POST" action="{{ route('logout') }}">
             @csrf
-            <button type="submit" class="btn btn-primary">Cerrar sesión</button>
+            <button type="submit" class="btn btn-primary">Cerrar sesiÃ³n</button>
           </form>
         </div>
       </div>
@@ -627,7 +628,7 @@
   <script src="{{ asset('vendor/jquery-easing/jquery.easing.min.js') }}"></script>
   <script src="{{ asset('js/sb-admin-2.min.js') }}"></script>
 
-  <!-- ✅ JS personalizado (sin jQuery extra) -->
+  <!-- âœ… JS personalizado (sin jQuery extra) -->
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       const form = document.getElementById("contenedor-formulario");
@@ -669,7 +670,7 @@
         }
       });
 
-      // Sidebar toggle simple (persistencia básica usando localStorage)
+      // Sidebar toggle simple (persistencia bÃ¡sica usando localStorage)
       const sidebar = document.getElementById('accordionSidebar');
       const toggleBtn = document.getElementById('sidebarToggle');
 
@@ -690,3 +691,4 @@
 </body>
 
 </html>
+

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
@@ -62,6 +62,7 @@
       to { opacity:1; transform: translateY(0) scale(1); }
     }
   </style>
+  <link rel="stylesheet" href="{{ asset('CSS/unified-font.css') }}">
 </head>
 
 <body>
@@ -73,7 +74,7 @@
 
         <div class="text-center mb-4">
           <div class="brand-title">Ingresar al Sistema</div>
-          <div class="brand-sub">Acceso exclusivo para gestión de eventos deportivos</div>
+          <div class="brand-sub">Acceso exclusivo para gestiÃ³n de eventos deportivos</div>
         </div>
 
         {{-- ERRORES --}}
@@ -98,24 +99,24 @@
         </div>
 
         <div class="form-group">
-          <label class="font-weight-bold">Contraseña / Código</label>
+          <label class="font-weight-bold">ContraseÃ±a / CÃ³digo</label>
           <input
             type="password"
             name="password"
             class="form-control"
-            placeholder="Ingresa tu contraseña"
+            placeholder="Ingresa tu contraseÃ±a"
             required
           />
         </div>
 
-        {{-- BOTÓN QUE VA A REGISTER.register --}}
+        {{-- BOTÃ“N QUE VA A REGISTER.register --}}
         <a href="{{ route('REGISTER.register') }}" class="btn btn-primary btn-block">
   Entrar
 </a>
 
 
         <div class="small-note">
-          Sistema de eventos deportivos ⚽🏀🏐
+          Sistema de eventos deportivos âš½ðŸ€ðŸ
         </div>
       </div>
     </div>
@@ -126,8 +127,8 @@
         <div>
           <h1>Crea y organiza tus partidos</h1>
           <p>
-            Publica eventos de fútbol, voleibol, basket o desafíos.<br>
-            Administra cupos, fechas y lugares fácilmente.
+            Publica eventos de fÃºtbol, voleibol, basket o desafÃ­os.<br>
+            Administra cupos, fechas y lugares fÃ¡cilmente.
           </p>
         </div>
       </div>
@@ -136,3 +137,4 @@
   </div>
 </body>
 </html>
+

@@ -1,17 +1,18 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Competición</title>
+    <title>CompeticiÃ³n</title>
 
     <!-- CSS independiente -->
     <link rel="stylesheet" href="{{ asset('css/competicion.css') }}">
+  <link rel="stylesheet" href="{{ asset('CSS/unified-font.css') }}">
 </head>
 <body>
 
     <div class="top-bar">
-        <a href="{{ route('usuario.panel') }}" class="btn-back">←</a>
+        <a href="{{ route('usuario.panel') }}" class="btn-back">â†</a>
     </div>
 
     <!-- Imagen superior -->
@@ -23,7 +24,7 @@
     <div class="menu">
         <a href="{{ route('competicion') }}"
            class="{{ request()->routeIs('competicion') ? 'active' : '' }}">
-            Competición
+            CompeticiÃ³n
         </a>
 
         <a href="{{ route('partidos') }}"
@@ -39,3 +40,4 @@
 
 </body>
 </html>
+
