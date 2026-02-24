@@ -357,6 +357,30 @@
       color:#fff;
       flex-shrink:0;
     }
+
+    /* Ventana flotante de perfil */
+    .floating-user-panel{
+      position: sticky;
+      top: 6rem;
+      max-height: calc(100vh - 7rem);
+      overflow-y: auto;
+      z-index: 10;
+    }
+    .floating-user-panel::-webkit-scrollbar{
+      width: 8px;
+    }
+    .floating-user-panel::-webkit-scrollbar-thumb{
+      background: rgba(148,163,184,.35);
+      border-radius: 999px;
+    }
+    @media (max-width: 991.98px){
+      .floating-user-panel{
+        position: static;
+        top: auto;
+        max-height: none;
+        overflow: visible;
+      }
+    }
   </style>
   <link rel="stylesheet" href="{{ asset('CSS/unified-font.css') }}">
 </head>
@@ -710,8 +734,8 @@
       </div>
 
       <!-- Side user -->
-      <div class="col-lg-4">
-        <div class="pro-card p-4 text-center sticky-lg-top" style="top:1rem;">
+      <div class="col-lg-4 align-self-start">
+        <div class="pro-card p-4 text-center floating-user-panel">
 
           <img
             src="https://ui-avatars.com/api/?name={{ urlencode(auth()->user()->name ?? 'Usuario Deportivo') }}&background=0D6EFD&color=fff"
@@ -749,6 +773,5 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
-
 
 
