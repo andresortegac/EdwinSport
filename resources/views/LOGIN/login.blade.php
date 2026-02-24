@@ -84,13 +84,13 @@
       pointer-events:none;
     }
 
-    /* âœ… BADGE MÃS GRANDE */
+    /* BADGE MAS GRANDE */
     .brand-badge{
       display:inline-flex; 
       align-items:center; 
       gap:.65rem;
 
-      padding:.55rem 1.15rem;          /* mÃ¡s alto y ancho */
+      padding:.55rem 1.15rem;          /* mas alto y ancho */
       border-radius:999px;
 
       font-weight:900; 
@@ -99,7 +99,7 @@
 
       color:#e6fbff;
       background:linear-gradient(135deg, rgba(34,211,238,.14), rgba(37,99,235,.14));
-      border:1.5px solid rgba(34,211,238,.75);  /* mÃ¡s grueso */
+      border:1.5px solid rgba(34,211,238,.75);  /* mas grueso */
 
       box-shadow:
         0 0 6px rgba(34,211,238,.8),
@@ -160,7 +160,7 @@
     }
     .btn-brand:hover{ filter: brightness(1.08); transform: translateY(-1px); }
 
-    /* âœ… BOTÃ“N VOLVER NEÃ“N CIAN/AZUL */
+    /* BOTON VOLVER NEON CIAN/AZUL */
     .btn-soft{
       display:inline-flex;
       align-items:center;
@@ -218,10 +218,10 @@
   <div class="login-card">
 
     <div class="text-center mb-4 position-relative" style="z-index:2;">
-      <div class="brand-badge">ðŸ† EDWIN SPORT Â· PRO</div>
+      <div class="brand-badge">EDWIN SPORT · PRO</div>
       <div class="brand-title">Ingresar al Sistema</div>
       <div class="brand-sub">
-        Acceso exclusivo para gestiÃ³n de eventos deportivos
+        Acceso exclusivo para gestion de eventos deportivos
       </div>
     </div>
 
@@ -240,7 +240,7 @@
       <div class="mb-3">
         <label class="form-label">Correo</label>
         <div class="input-wrap">
-          <span class="input-icon">ðŸ“§</span>
+          <span class="input-icon">@</span>
           <input
             type="email"
             name="email"
@@ -254,14 +254,14 @@
       </div>
 
       <div class="mb-3">
-        <label class="form-label">ContraseÃ±a / CÃ³digo</label>
+        <label class="form-label">Contrasena / Codigo</label>
         <div class="input-wrap">
-          <span class="input-icon">ðŸ”’</span>
+          <span class="input-icon">*</span>
           <input
             type="password"
             name="password"
             class="form-control"
-            placeholder="Ingresa tu contraseÃ±a"
+            placeholder="Ingresa tu contrasena"
             required
           />
         </div>
@@ -271,16 +271,16 @@
         Entrar
       </button>
 
-      <!-- âœ… VOLVER DEBAJO DE ENTRAR -->
+      <!-- VOLVER DEBAJO DE ENTRAR -->
     <a href="{{ url('/') }}" class="btn-soft w-100 mt-3">
-  â† Volver
+  Volver
 </a>
 
 
     </form>
 
     <div class="small-note">
-      Sistema de eventos deportivos âš½ðŸ€ðŸ
+      Sistema de eventos deportivos
     </div>
   </div>
 
