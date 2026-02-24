@@ -6,15 +6,20 @@ use Illuminate\Database\Eloquent\Model;
 
 class Grupo extends Model
 {
-    protected $table = 'grupos'; // ← importante si la tabla NO se llama "groups"
+    protected $table = 'grupos';
 
-    protected $fillable = ['nombre'];
+    protected $fillable = [
+        'competicion_id',
+        'nombre_grupo'
+    ];
 
     public function equipos()
     {
         return $this->belongsToMany(Equipo::class, 'grupo_equipo');
     }
 
-
-    
+    public function competicion()
+    {
+        return $this->belongsTo(Competicion::class);
+    }
 }

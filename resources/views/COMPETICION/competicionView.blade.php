@@ -34,7 +34,7 @@
 
     <!-- Contenido debajo -->
     <div class="content">
-        <h1>Pantalla de Competición</h1>
+        <h1>Pantalla de Competicion</h1>
     </div>
 
 </body>

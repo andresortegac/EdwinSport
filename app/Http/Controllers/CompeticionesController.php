@@ -6,29 +6,34 @@ use App\Models\Competicion;
 use App\Models\Event;
 use App\Models\Equipo;
 use App\Models\Grupo;
-
-
 use Illuminate\Http\Request;
-
 
 class CompeticionesController extends Controller
 {
-
     public function show($eventoId)
     {
         $evento = Event::findOrFail($eventoId);
 
-        // ?? USAMOS EL MISMO VALOR QUE GUARDAS EN equipos.evento
-        $equipos = Equipo::where('evento', $evento->title)->get();
+        // ?? STRING EXACTO
+        $nombreEvento = trim($evento->title);
 
-        $competicion = Competicion::where('evento', $eventoId)->first();
+        $equipos = Equipo::where('evento', $nombreEvento)->get();
+
+        $competicion = Competicion::where('evento', $nombreEvento)->first();
+
+        $grupos = $competicion
+            ? $competicion->grupos()->with('equipos')->get()
+            : collect();
 
         return view('COMPETICION.show', compact(
             'evento',
             'competicion',
-            'equipos'
+            'equipos',
+            'grupos'
         ));
     }
+
+
 
     public function competicion()
     {
@@ -39,45 +44,36 @@ class CompeticionesController extends Controller
     {
         return view('PARTIDOS.partidosView'); 
     }
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
-    }
 
     /**
-     * Show the form for creating a new resource.
+     * Crear competicion
      */
-    public function create()
+    public function store($eventoId)
     {
-        //
-    }
+        $evento = Event::findOrFail($eventoId);
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store($evento)
-    {
-        if (Competicion::where('evento', $evento)->exists()) {
-            return back()->with('error', 'Este evento ya tiene una competición');
+        if (Competicion::where('evento', $evento->title)->exists()) {
+            return back()->with('error', 'Este evento ya tiene una competiciï¿½n');
         }
 
         Competicion::create([
-            'evento' => $evento,
+            'evento' => $evento->title, // ? "Prueba"
             'estado' => 'creada'
         ]);
 
-        return back()->with('success', 'Competición creada correctamente');
+        return back()->with('success', 'Competicion creada correctamente');
     }
 
+
+
+    /**
+     * Generar grupos automaticamente
+     */
     public function generarGrupos($competicionId)
     {
         $competicion = Competicion::findOrFail($competicionId);
 
-        // evitar regenerar
-        if (Grupo::where('competicion_id', $competicion->id)->exists()) {
+        if ($competicion->grupos()->exists()) {
             return back()->with('error', 'Los grupos ya fueron generados');
         }
 
@@ -93,8 +89,7 @@ class CompeticionesController extends Controller
         $letra = 'A';
 
         foreach ($grupos as $chunk) {
-            $grupo = Grupo::create([
-                'competicion_id' => $competicion->id,
+            $grupo = $competicion->grupos()->create([
                 'nombre_grupo' => 'Grupo ' . $letra++
             ]);
 
@@ -103,34 +98,11 @@ class CompeticionesController extends Controller
 
         $competicion->update(['estado' => 'grupos_generados']);
 
-        return back()->with('success', 'Grupos creados correctamente');
+        $evento = Event::where('title', $competicion->evento)->firstOrFail();
+
+        return redirect()
+            ->route('competicion.show', $evento->id)
+            ->with('success', 'Grupos creados correctamente');
     }
 
-
-
-
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Competicion $competicion)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Competicion $competicion)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Competicion $competicion)
-    {
-        //
-    }
 }
