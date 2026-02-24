@@ -82,7 +82,7 @@
 <div class="container py-5">
   <div class="pro-card">
 
-    {{-- âœ… MENSAJES DE Ã‰XITO (equipos y participantes) --}}
+    {{-- MENSAJES DE EXITO (equipos y participantes) --}}
     @if(session('success'))
       <div class="alert alert-success alert-dismissible fade show" role="alert">
         {{ session('success') }}
@@ -97,7 +97,7 @@
       </div>
     @endif
 
-    {{-- âœ… NUEVO: mensajes que vienen como "ok" (store/update/destroy/import) --}}
+    {{-- NUEVO: mensajes que vienen como "ok" (store/update/destroy/import) --}}
     @if(session('ok'))
       <div class="alert alert-success alert-dismissible fade show" role="alert">
         {{ session('ok') }}
@@ -111,14 +111,14 @@
        ========================= --}}
     <div class="d-flex align-items-center justify-content-between mb-3">
       <div>
-        <h1 class="mb-1" style="font-family: Oswald;">ðŸ·ï¸ Crear / Editar Equipo</h1>
+        <h1 class="mb-1" style="font-family: Oswald;">Crear / Editar Equipo</h1>
         <p class="muted mb-0">Registra el equipo primero, luego agrega jugadores.</p>
       </div>
 
-      {{-- âœ… ESTE botÃ³n vuelve al register
+      {{-- ESTE boton vuelve al register
            Se oculta SOLO cuando $hideBackButton == true (desde usuario.panel) --}}
       @if (! $hideBackButton)
-        <a href="{{ route('register') }}" class="btn btn-soft">â† Volver</a>
+        <a href="{{ route('register') }}" class="btn btn-soft">Volver</a>
       @endif
     </div>
 
@@ -132,7 +132,7 @@
         @method('PUT')
       @endif
 
-      {{-- âœ… EVENTO ahora es SELECT --}}
+      {{-- EVENTO ahora es SELECT --}}
       <div class="col-md-6">
         <label class="form-label">Evento *</label>
         <select name="evento" class="form-select" required>
@@ -162,14 +162,14 @@
       </div>
 
       <div class="col-md-6">
-        <label class="form-label">DirecciÃ³n *</label>
+        <label class="form-label">Direccion *</label>
         <input type="text" name="direccion" class="form-control" required
                value="{{ old('direccion', $isEditEquipo ? $equipo->direccion : '') }}">
         @error('direccion') <small class="text-danger">{{ $message }}</small> @enderror
       </div>
 
       <div class="col-md-6">
-        <label class="form-label">TelÃ©fono (Equipo) *</label>
+        <label class="form-label">Telefono (Equipo) *</label>
         <input type="text" name="telefono_equipo" class="form-control" required
                value="{{ old('telefono_equipo', $isEditEquipo ? $equipo->telefono_equipo : '') }}">
         @error('telefono_equipo') <small class="text-danger">{{ $message }}</small> @enderror
@@ -183,7 +183,7 @@
       </div>
 
       <div class="col-md-3">
-        <label class="form-label">Valor de inscripciÃ³n *</label>
+        <label class="form-label">Valor de inscripcion *</label>
         <input type="number" name="valor_inscripcion" class="form-control" required
                value="{{ old('valor_inscripcion', $isEditEquipo ? $equipo->valor_inscripcion : '') }}">
         @error('valor_inscripcion') <small class="text-danger">{{ $message }}</small> @enderror
@@ -196,10 +196,10 @@
         @error('nombre_dt') <small class="text-danger">{{ $message }}</small> @enderror
       </div>
 
-      {{-- âœ… BOTÃ“N AZUL SEPARADOR --}}
+      {{-- BOTON AZUL SEPARADOR --}}
       <div class="col-12 mt-2">
         <button type="submit" class="btn-sep">
-          ðŸ’¾ Guardar Equipo
+          Guardar Equipo
         </button>
       </div>
     </form>
@@ -210,7 +210,7 @@
          2) FORMULARIO JUGADORES
        ========================= --}}
     <div class="mb-3">
-      <h2 style="font-family: Oswald;" class="mb-1">ðŸ‘¤ Agregar Jugadores / Participantes</h2>
+      <h2 style="font-family: Oswald;" class="mb-1">Agregar Jugadores / Participantes</h2>
       <p class="muted mb-0">Selecciona un equipo ya creado y registra jugadores.</p>
     </div>
 
@@ -245,15 +245,15 @@
         @error('nombre') <small class="text-danger">{{ $message }}</small> @enderror
       </div>
 
-      {{-- âœ… NUMERO CAMISA --}}
+      {{-- NUMERO CAMISA --}}
       <div class="col-md-2">
-        <label class="form-label">NÂ° Camisa</label>
+        <label class="form-label">N° Camisa</label>
         <input type="text" name="numero_camisa" class="form-control"
                value="{{ old('numero_camisa', $isEditPart ? $participante->numero_camisa : '') }}">
         @error('numero_camisa') <small class="text-danger">{{ $message }}</small> @enderror
       </div>
 
-      {{-- âŒ EVENTO ELIMINADO DE PARTICIPANTES --}}
+      {{-- EVENTO ELIMINADO DE PARTICIPANTES --}}
 
       <div class="col-md-2">
         <label class="form-label">Edad</label>
@@ -263,7 +263,7 @@
       </div>
 
       <div class="col-md-4">
-        <label class="form-label">DivisiÃ³n</label>
+        <label class="form-label">Division</label>
         <input type="text" name="division" class="form-control"
                value="{{ old('division', $isEditPart ? $participante->division : '') }}">
         @error('division') <small class="text-danger">{{ $message }}</small> @enderror
@@ -277,7 +277,7 @@
       </div>
 
       <div class="col-md-6">
-        <label class="form-label">TelÃ©fono</label>
+        <label class="form-label">Telefono</label>
         <input type="text" name="telefono" class="form-control"
                value="{{ old('telefono', $isEditPart ? $participante->telefono : '') }}">
         @error('telefono') <small class="text-danger">{{ $message }}</small> @enderror
@@ -296,9 +296,9 @@
     <div class="divider"></div>
 
     {{-- =========================
-         3) TABLA EQUIPOS + EDITAR + ELIMINAR âœ…
+         3) TABLA EQUIPOS + EDITAR + ELIMINAR
        ========================= --}}
-    <h3 style="font-family: Oswald;" class="mb-3">ðŸ† Equipos Registrados</h3>
+    <h3 style="font-family: Oswald;" class="mb-3">Equipos Registrados</h3>
 
     @if(isset($equipos) && $equipos->count())
       <div class="table-responsive mb-4">
@@ -308,10 +308,10 @@
               <th>Evento</th>
               <th>Nombre Equipo</th>
               <th>NIT</th>
-              <th>DirecciÃ³n</th>
-              <th>TelÃ©fono</th>
+              <th>Direccion</th>
+              <th>Telefono</th>
               <th>E-mail</th>
-              <th>Valor InscripciÃ³n</th>
+              <th>Valor Inscripcion</th>
               <th>Nombre DT</th>
               <th class="text-end">Acciones</th>
             </tr>
@@ -336,7 +336,7 @@
 
                   <form action="{{ route('equipos.destroy', $e->id) }}"
                         method="POST"
-                        onsubmit="return confirm('Â¿Eliminar equipo?')">
+                        onsubmit="return confirm('¿Eliminar equipo?')">
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="btn btn-sm btn-danger">Eliminar</button>
@@ -348,16 +348,16 @@
         </table>
       </div>
     @else
-      <p class="muted">AÃºn no hay equipos registrados.</p>
+      <p class="muted">Aun no hay equipos registrados.</p>
     @endif
 
 
     {{-- =========================
-         4) TABLA JUGADORES + IMPORT/EXPORT âœ…
+         4) TABLA JUGADORES + IMPORT/EXPORT
        ========================= --}}
-    <h3 style="font-family: Oswald;" class="mb-3">ðŸ“‹ Jugadores / Participantes</h3>
+    <h3 style="font-family: Oswald;" class="mb-3">Jugadores / Participantes</h3>
 
-    {{-- âœ… EXPORTAR PLANILLA POR EQUIPO (EXCEL o PDF) --}}
+    {{-- EXPORTAR PLANILLA POR EQUIPO (EXCEL o PDF) --}}
     <div class="d-flex flex-wrap gap-2 mb-3">
       <form method="GET" class="d-flex flex-wrap gap-2">
         <select name="equipo_id" class="form-select form-select-sm w-auto" required>
@@ -368,20 +368,20 @@
         </select>
 
         <button formaction="{{ route('participantes.planilla.excel') }}" class="btn btn-brand">
-          ðŸ“¤ Exportar Excel
+          Exportar Excel
         </button>
 
         <button formaction="{{ route('participantes.planilla.pdf') }}" class="btn btn-soft">
-          ðŸ“„ Exportar PDF
+          Exportar PDF
         </button>
       </form>
 
-      {{-- importaciÃ³n sigue igual --}}
+      {{-- importacion sigue igual --}}
       <form action="{{ route('participantes.import') }}" method="POST" enctype="multipart/form-data" class="d-flex gap-2">
         @csrf
         <input type="file" name="file" class="form-control form-control-sm" required>
         <button class="btn btn-soft" type="submit">
-          ðŸ“¥ Importar Excel
+          Importar Excel
         </button>
       </form>
     </div>
@@ -392,12 +392,12 @@
           <thead>
             <tr>
               <th>Jugador</th>
-              <th>NÂ° Camisa</th>
+              <th>N° Camisa</th>
               <th>Equipo</th>
               <th>Edad</th>
-              <th>DivisiÃ³n</th>
+              <th>Division</th>
               <th>Email</th>
-              <th>TelÃ©fono</th>
+              <th>Telefono</th>
               <th class="text-end">Acciones</th>
             </tr>
           </thead>
@@ -420,7 +420,7 @@
 
                   <form action="{{ route('participantes.destroy', $p->id) }}"
                         method="POST"
-                        onsubmit="return confirm('Â¿Eliminar jugador?')">
+                        onsubmit="return confirm('¿Eliminar jugador?')">
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="btn btn-sm btn-danger">Eliminar</button>
@@ -432,7 +432,7 @@
         </table>
       </div>
     @else
-      <p class="muted">AÃºn no hay jugadores registrados.</p>
+      <p class="muted">Aun no hay jugadores registrados.</p>
     @endif
 
   </div>
