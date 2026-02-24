@@ -36,7 +36,7 @@
       font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif !important;
       color: var(--text);
       background:
-        radial-gradient(1200px 600px at 5% -10%, rgba(212,160,23,.30), transparent 60%),
+        radial-gradient(1200px 600px at 5% -10%, rgba(18, 5, 73, 0.3), transparent 60%),
         radial-gradient(900px 600px at 110% 0%, rgba(30,64,175,.40), transparent 55%),
         linear-gradient(180deg, #020617, #020617);
       min-height:100vh;
@@ -57,7 +57,7 @@
 
     .sidebar .sidebar-brand{
       padding: 1rem 1rem;
-      background: linear-gradient(135deg, rgba(212,160,23,.25), rgba(30,64,175,.25));
+      background: linear-gradient(135deg, rgba(13, 8, 78, 0.25), rgba(30,64,175,.25));
       border-bottom:1px solid var(--white-line);
     }
 
@@ -96,9 +96,9 @@
     }
 
     .sidebar .nav-item.active .nav-link{
-      background: rgba(212,160,23,.15) !important;
+      background: rgba(13, 4, 70, 0.15) !important;
       color:#fff !important;
-      box-shadow: inset 0 0 0 1px rgba(212,160,23,.45);
+      box-shadow: inset 0 0 0 1px rgba(7, 3, 71, 0.45);
     }
     .sidebar .nav-item.active .nav-link::before{
       content:"";
@@ -109,7 +109,7 @@
       width:4px;
       border-radius:999px;
       background: var(--primary);
-      box-shadow: 0 0 10px rgba(212,160,23,.9);
+      box-shadow: 0 0 10px rgba(35, 10, 128, 0.9);
     }
 
     .sidebar .nav-item .nav-link:hover{
@@ -138,7 +138,7 @@
       padding: .55rem .8rem !important;
     }
     .collapse-item:hover{
-      background: rgba(212,160,23,.18) !important;
+      background: rgba(14, 8, 97, 0.18) !important;
       color:#f9fafb !important;
     }
 
@@ -224,9 +224,9 @@
     }
 
     .scroll-to-top{
-      background: linear-gradient(135deg, var(--primary), #b8890f) !important;
+      background: linear-gradient(135deg, var(--primary), #10054bff) !important;
       color:#fff !important;
-      box-shadow: 0 10px 22px rgba(212,160,23,.35);
+      box-shadow: 0 10px 22px rgba(36, 14, 160, 0.35);
     }
 
     /* ================= FORMULARIO CREAR EVENTO ================= */
@@ -350,6 +350,51 @@
     .table .btn{
       border-radius:.8rem !important;
       font-weight:600 !important;
+    }
+
+    /* =========================================================
+       ✅ SOLO LO QUE PEDISTE (SOLO ESTILO):
+       1) Centrar el formulario desde donde termina la sidebar
+       2) Textbox blancos
+       3) Labels blancas
+       ========================================================= */
+
+    /* 1) CENTRAR EL FORMULARIO EN EL ÁREA DE CONTENIDO (sin contar la sidebar)
+       - No toca JS ni botones.
+       - Centra el "include" aunque no tenga clase .formulario-evento.
+       - Usa margin auto + max-width (no rompe el display block/none del JS). */
+    #contenedor-formulario > *{
+      width: 100%;
+      max-width: 900px;     /* mismo ancho que tu diseño */
+      margin-left: auto;    /* centra horizontal */
+      margin-right: auto;   /* centra horizontal */
+    }
+
+    /* Por si dentro del include viene una .card como contenedor principal */
+    #contenedor-formulario .card{
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* 2) TEXTBOX BLANCOS (solo en el formulario) */
+    #contenedor-formulario input,
+    #contenedor-formulario select,
+    #contenedor-formulario textarea{
+      background: #ffffff !important; /* fondo blanco */
+      color: #0f172a !important;      /* texto oscuro */
+      border: 1px solid rgba(148,163,184,.9) !important;
+    }
+
+    /* Placeholder gris para que se lea en blanco */
+    #contenedor-formulario input::placeholder,
+    #contenedor-formulario textarea::placeholder{
+      color: #64748b !important;
+    }
+
+    /* 3) LABELS BLANCAS (solo en el formulario) */
+    #contenedor-formulario label{
+      color: #ffffff !important;
     }
   </style>
 

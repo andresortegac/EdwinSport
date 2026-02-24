@@ -12,12 +12,18 @@
     box-shadow: 0 4px 14px rgba(0,0,0,0.08);
 }
 
-/* Títulos de la sección */
+/* ✅ Títulos de la sección (AQUÍ cambia el color de "CREAR EVENTO") */
 .wrap.participantes .section-title {
-    color: #eaf0ff;
+    color: #ffffff; /* ✅ CAMBIO: antes #eaf0ff */
     font-weight: 700;
     margin-bottom: 10px;
     border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+/* ✅ Labels blancas (por si usas <label> dentro de .field) */
+.wrap.participantes .field label {
+    color: #ffffff; /* ✅ CAMBIO */
+    font-weight: 700;
 }
 
 /* Estilo de los campos dentro de "Agregar Jugadores / Participantes" */
@@ -33,16 +39,16 @@
     gap: 8px;
 }
 
-/* input y select */
+/* ✅ input y select (blancos) */
 .wrap.participantes .field input,
 .wrap.participantes .field select,
 .wrap.participantes .field textarea {
     width: 100%;
     padding: 12px;
     border-radius: 8px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    background: rgba(8, 16, 32, 0.7);
-    color: #eaf0ff;
+    border: 1px solid rgba(148,163,184,0.9); /* ✅ CAMBIO: borde más visible */
+    background: #ffffff; /* ✅ CAMBIO: antes rgba(8, 16, 32, 0.7) */
+    color: #0f172a;      /* ✅ CAMBIO: antes #eaf0ff */
     outline: none;
     transition: border-color 0.15s ease, box-shadow 0.15s ease;
 }
@@ -113,6 +119,7 @@
     }
 }
 </style>
+
 
 
 
@@ -205,7 +212,7 @@
                 </div>
 
                 {{-- ESTADO --}}
-                <div class="field">
+                <div class="field">z
                     <label for="status">Estado</label>
                     <select id="status" name="status" required>
                         <option value="" hidden selected>Seleccione estado...</option>
