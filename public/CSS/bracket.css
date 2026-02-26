@@ -1,107 +1,135 @@
-/* ==== CONTENEDOR GENERAL ==== */
 .bracket-container {
-    max-width: 900px;
-    margin: auto;
-    padding: 30px;
-    background: #f5f8ff;
-    border-radius: 15px;
+    max-width: 980px;
+    margin: 2.2rem auto;
+    padding: 1.4rem;
+    border-radius: 20px;
+    border: 1px solid #d8e3ef;
+    background: linear-gradient(170deg, #ffffff, #f7fbff);
+    box-shadow: 0 18px 32px rgba(16, 35, 55, 0.1);
 }
 
-/* ==== TÍTULO PRINCIPAL ==== */
 .title-main {
     text-align: center;
-    font-weight: 800;
-    font-size: 40px;
-    margin-bottom: 50px;
-    color: #1b1f3b;
+    color: #173d62;
+    font-size: clamp(2rem, 4.5vw, 2.6rem);
+    margin-bottom: 1.8rem;
 }
 
-/* ==== BLOQUES DE RONDAS ==== */
 .round-block {
-    margin-bottom: 60px;
+    margin-bottom: 1.9rem;
 }
 
 .round-title {
-    font-size: 28px;
-    font-weight: 700;
-    margin-bottom: 20px;
+    font-size: 1.5rem;
+    margin-bottom: 0.75rem;
 }
 
-.round-title.quarter { color: #2463eb; }
-.round-title.semi    { color: #0ea5e9; }
-.round-title.final   { color: #d97706; }
+.round-title.quarter {
+    color: #1f5e98;
+}
 
-/* ==== TARJETAS DE PARTIDOS ==== */
+.round-title.semi {
+    color: #20708e;
+}
+
+.round-title.final {
+    color: #a8751f;
+}
+
 .matches {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
 }
 
 .match-card {
-    background: white;
-    padding: 20px;
-    border-radius: 15px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-    transition: transform .2s;
-}
-
-.match-card:hover {
-    transform: scale(1.03);
+    border-radius: 14px;
+    border: 1px solid #d8e3ef;
+    background: #ffffff;
+    box-shadow: 0 10px 24px rgba(16, 35, 55, 0.08);
+    padding: 1rem;
 }
 
 .match-number {
+    color: #304963;
     font-weight: 700;
-    margin-bottom: 10px;
-    color: #334155;
+    margin-bottom: 0.45rem;
 }
 
 .team-row {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-size: 20px;
+    color: #173d62;
+    font-size: 1.08rem;
 }
 
 .team-name {
-    font-weight: 600;
+    font-weight: 700;
 }
 
 .vs {
-    font-weight: 900;
-    color: #ef4444;
-    font-size: 22px;
+    font-weight: 800;
+    color: #be4859;
 }
 
-/* ==== PLACEHOLDER PARA SEMIS / FINAL ==== */
 .placeholder {
-    background: #e2e8f0;
-    padding: 20px;
-    border-radius: 10px;
-    text-align: center;
-    color: #475569;
+    border-radius: 12px;
+    border: 1px dashed #cad9ec;
+    background: #f7fbff;
+    color: #5f738e;
+    padding: 1rem;
 }
 
-/* ==== CAMPEÓN ==== */
 .champion-block {
-    margin-top: 80px;
     text-align: center;
+    margin-top: 2rem;
 }
 
 .champion-title {
-    font-size: 32px;
-    font-weight: 800;
-    color: #10b981;
+    color: #1f7e65;
+    font-size: 1.9rem;
 }
 
 .champion-name {
-    margin-top: 10px;
-    font-size: 28px;
-    font-weight: 700;
-    color: #0f172a;
-    background: white;
-    padding: 15px 40px;
-    border-radius: 12px;
     display: inline-block;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    margin-top: 0.6rem;
+    border-radius: 12px;
+    border: 1px solid #d8e3ef;
+    background: #ffffff;
+    box-shadow: 0 10px 24px rgba(16, 35, 55, 0.08);
+    color: #173d62;
+    padding: 0.7rem 1.4rem;
+    font-size: 1.45rem;
+    font-weight: 700;
+}
+
+/* Compatibilidad con la vista actual resources/views/tournament/bracket.blade.php */
+.container.mt-5 > h1.text-center.mb-5 {
+    color: #173d62;
+    font-size: clamp(2rem, 4.4vw, 2.5rem);
+}
+
+.container.mt-5 .row.mb-4 .card {
+    border-radius: 14px;
+    border: 1px solid #d8e3ef;
+    box-shadow: 0 10px 24px rgba(16, 35, 55, 0.08);
+}
+
+.container.mt-5 h3.text-primary {
+    color: #1f5e98 !important;
+}
+
+.container.mt-5 h3.text-info {
+    color: #20708e !important;
+}
+
+.container.mt-5 h3.text-warning {
+    color: #a8751f !important;
+}
+
+@media (max-width: 768px) {
+    .matches {
+        grid-template-columns: 1fr;
+    }
 }

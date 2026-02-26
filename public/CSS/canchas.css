@@ -1,96 +1,62 @@
-/* CONTENEDOR GENERAL */
-.container {
-    margin-top: 30px;
+.reserva-container {
+    max-width: 960px;
+    margin: 2.2rem auto;
+    padding: 1.6rem;
+    border-radius: 20px;
+    border: 1px solid #d8e3ef;
+    background: linear-gradient(170deg, #ffffff, #f7fbff);
+    box-shadow: 0 18px 32px rgba(16, 35, 55, 0.1);
 }
 
-/* TÍTULOS */
-h1 {
-    font-weight: bold;
-    color: #1a1a1a;
+.reserva-container h1,
+.reserva-container h2 {
+    color: #15375b;
 }
 
-h3 {
-    margin-top: 25px;
+.reserva-card {
+    border-radius: 16px;
+    border: 1px solid #d8e3ef;
+    background: #ffffff;
+    box-shadow: 0 10px 24px rgba(16, 35, 55, 0.07);
+    padding: 1.25rem;
+}
+
+.reserva-card img,
+.cancha-img {
+    width: 100%;
+    max-width: 320px;
+    border-radius: 14px;
+    object-fit: cover;
+}
+
+.reserva-card label {
+    color: #244260;
     font-weight: 700;
-    color: #0d6efd;
+    font-size: 0.9rem;
+    margin-top: 0.55rem;
 }
 
-/* TABLA DE AGENDA */
-.table {
-    background: white;
+.reserva-card .form-control,
+.reserva-card .form-select {
     border-radius: 10px;
-    overflow: hidden;
+    border: 1px solid #ccd9e8;
+    background: #f9fbff;
 }
 
-.table th {
-    background: #0d6efd;
-    color: white;
-    text-align: center;
-    font-size: 15px;
+.reserva-card .form-control:focus,
+.reserva-card .form-select:focus {
+    border-color: #6ba1dd;
+    box-shadow: 0 0 0 3px rgba(64, 110, 173, 0.14);
+    background: #ffffff;
 }
 
-.table td {
-    text-align: center;
-    vertical-align: middle;
-    background: #f8f9fa;
-    font-size: 14px;
-    position: relative;
+.reserva-card .btn-success {
+    border: none;
+    border-radius: 11px;
+    font-weight: 700;
+    background: linear-gradient(135deg, #238269, #1b6b56);
 }
 
-/* ESTADO OCUPADA */
-.badge.bg-danger {
-    display: block;
-    padding: 6px 8px;
-    border-radius: 6px;
-    font-size: 13px;
-}
-
-/* CUADROS LIBRES (hover) */
-.table td:not(:has(.badge)):hover {
-    background: #e0f1ff;
-    cursor: pointer;
-    transition: 0.2s;
-}
-
-/* FORMULARIO DENTRO DE LAS CELDAS */
-.table td form {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-}
-
-.table td .form-control {
-    font-size: 13px;
-    padding: 4px 6px;
-    height: 32px;
-}
-
-.table td button {
-    padding: 4px 6px;
-    font-size: 13px;
-}
-
-/* RESPONSIVE PARA CELULAR */
-@media (max-width: 768px) {
-    th, td {
-        font-size: 11px;
-        padding: 4px;
-    }
-
-    .table td form .form-control {
-        height: 28px;
-    }
-
-    .table td button {
-        font-size: 11px;
-        padding: 2px;
-    }
-
-    h1 {
-        font-size: 22px;
-    }
-
-    h3 {
-        font-size: 18px;
-    }
+.reserva-card .btn-success:hover {
+    background: linear-gradient(135deg, #1f755f, #165746);
 }

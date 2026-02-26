@@ -1,8 +1,47 @@
-/* Imagen superior */
+ï»¿.competicion-page,
+.partidos-page,
+body {
+    margin: 0;
+    background:
+        radial-gradient(circle at 8% -10%, rgba(31, 143, 154, 0.16), transparent 30%),
+        radial-gradient(circle at 96% -12%, rgba(57, 112, 187, 0.14), transparent 34%),
+        linear-gradient(165deg, #f3f6fb, #e8eff8);
+}
+
+.top-bar {
+    position: fixed;
+    top: 14px;
+    left: 14px;
+    z-index: 20;
+}
+
+.btn-back {
+    width: 42px;
+    height: 42px;
+    display: grid;
+    place-items: center;
+    border-radius: 12px;
+    border: 1px solid #c6d5e7;
+    background: rgba(255, 255, 255, 0.92);
+    color: #173b61;
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: 800;
+    box-shadow: 0 8px 18px rgba(16, 34, 53, 0.1);
+}
+
+.btn-back:hover {
+    color: #ffffff;
+    border-color: transparent;
+    background: linear-gradient(135deg, #1f8f9a, #156d75);
+}
+
 .header-image {
     width: 100%;
-    height: 40vh;
+    height: min(44vh, 360px);
     overflow: hidden;
+    border-bottom: 1px solid #d8e3ef;
+    box-shadow: 0 10px 26px rgba(16, 35, 55, 0.1);
 }
 
 .header-image img {
@@ -11,48 +50,66 @@
     object-fit: cover;
 }
 
-/* Menú */
 .menu {
     display: flex;
     justify-content: center;
-    gap: 40px;
-    padding: 15px 0;
-    background: #fff;
-    border-bottom: 1px solid #ddd;
-    font-size: 20px;
-    font-weight: bold;
+    gap: 1.5rem;
+    padding: 1rem 0;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.9);
+    border-bottom: 1px solid #d8e3ef;
+    backdrop-filter: blur(8px);
 }
 
 .menu a {
     text-decoration: none;
-    color: #333;
+    color: #2b4a69;
+    font-size: 1rem;
+    font-weight: 700;
+    padding: 0.4rem 0.8rem;
+    border-radius: 999px;
+    border: 1px solid transparent;
+}
+
+.menu a:hover {
+    color: #14656f;
 }
 
 .menu a.active {
-    color: #007bff;
-    border-bottom: 2px solid #007bff;
+    color: #14656f;
+    border-color: rgba(20, 101, 111, 0.35);
+    background: rgba(20, 101, 111, 0.12);
 }
 
-/* Contenido */
 .content {
-    padding: 20px;
-    text-align: center;
+    max-width: 980px;
+    margin: 2rem auto;
+    padding: 1.2rem;
 }
 
-.top-bar {
-    position: absolute;
-    top: 15px;
-    left: 15px;
-    z-index: 10; /* Para que quede arriba de la imagen */
+.content h1 {
+    color: #173d62;
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    margin-bottom: 0.7rem;
 }
 
-.top-bar button {
-    background: rgba(0, 0, 0, 0.5);
-    color: white;
-    border: none;
-    padding: 8px 12px;
-    border-radius: 6px;
-    font-size: 20px;
-    cursor: pointer;
+.content p {
+    color: #5f738e;
+    font-size: 1rem;
 }
 
+@media (max-width: 768px) {
+    .menu {
+        flex-wrap: wrap;
+        gap: 0.7rem;
+        padding: 0.8rem 0.5rem;
+    }
+
+    .header-image {
+        height: 250px;
+    }
+
+    .content {
+        margin-top: 1.4rem;
+    }
+}

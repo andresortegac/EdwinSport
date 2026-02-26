@@ -6,7 +6,7 @@
     <title>Partidos</title>
 
     <!-- CSS independiente -->
-    <link rel="stylesheet" href="{{ asset('css/partidos.css') }}">
+    <link rel="stylesheet" href="{{ asset('CSS/partidos.css') }}">
   <link rel="stylesheet" href="{{ asset('CSS/unified-font.css') }}">
 </head>
 <body>

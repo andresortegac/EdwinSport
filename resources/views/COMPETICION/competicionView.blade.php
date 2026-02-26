@@ -6,7 +6,7 @@
     <title>CompeticiÃ³n</title>
 
     <!-- CSS independiente -->
-    <link rel="stylesheet" href="{{ asset('css/competicion.css') }}">
+    <link rel="stylesheet" href="{{ asset('CSS/competicion.css') }}">
   <link rel="stylesheet" href="{{ asset('CSS/unified-font.css') }}">
 </head>
 <body>

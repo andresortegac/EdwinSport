@@ -1,107 +1,99 @@
-/* ===== CONTENEDOR ===== */
 .calendar-container {
     width: 100%;
     overflow-x: auto;
-    margin-top: 25px;
+    margin-top: 1.2rem;
 }
 
-/* ===== TABLA ===== */
 .calendar-table {
     width: 100%;
-    border-collapse: collapse;
-    background: #ffffff;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 0 20px rgba(0,0,0,0.08);
+    min-width: 960px;
+    border-collapse: separate;
+    border-spacing: 4px;
 }
 
-/* ===== HEADER ===== */
 .calendar-table thead th {
-    background: #0984e3;
-    color: #fff;
-    padding: 14px;
     text-align: center;
-    font-size: 15px;
-    font-weight: bold;
-    border-right: 1px solid rgba(255,255,255,0.2);
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: #edf7ff;
+    border: 0;
+    border-radius: 10px;
+    padding: 0.66rem 0.48rem;
+    background: linear-gradient(130deg, #123155, #16527f);
 }
 
-.calendar-table thead th:first-child {
-    background: #065a9d;
-}
-
-/* ===== CELDAS ===== */
 .calendar-table td {
-    border: 1px solid #e0e0e0;
-    padding: 8px;
-    vertical-align: middle;
-    min-width: 130px;
+    padding: 0.1rem;
+    border: 0;
+    vertical-align: top;
+    min-width: 128px;
 }
 
-/* ===== HORAS ===== */
 .hour-cell {
-    background: #f1f2f6;
-    font-weight: bold;
     text-align: center;
-    color: #2d3436;
+    font-weight: 800;
+    color: #1f4166;
+    border-radius: 10px;
+    border: 1px solid #d0dceb;
+    background: linear-gradient(160deg, #eef4fb, #e6edf8);
 }
 
-/* ===== CELDA OCUPADA ===== */
 .cell-ocupada {
-    background: #ff7675;
-    color: white;
-    padding: 6px;
-    text-align: center;
-    border-radius: 6px;
-    font-size: 13px;
-    font-weight: bold;
+    min-height: 84px;
+    display: grid;
+    gap: 0.12rem;
+    border-radius: 12px;
+    border: 1px solid #efb4bf;
+    background: linear-gradient(165deg, #ffe7ec, #ffdce4);
+    padding: 0.52rem;
 }
 
-/* ===== FORMULARIO DE RESERVA ===== */
 .reserva-form {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
+    min-height: 84px;
+    display: grid;
+    gap: 0.42rem;
+    border-radius: 12px;
+    border: 1px solid #b5ddc8;
+    background: linear-gradient(165deg, #e8f7ef, #dff2e8);
+    padding: 0.5rem 0.42rem;
 }
 
 .reserva-form input {
-    font-size: 13px;
-    padding: 6px;
-    border: 1px solid #dcdde1;
-    border-radius: 6px;
+    font-size: 0.82rem;
+    border-radius: 8px;
+    border: 1px solid #c9d9e8;
+    padding: 0.34rem 0.44rem;
 }
 
 .reserva-form input:focus {
-    border-color: #0984e3;
     outline: none;
+    border-color: #6ba1dd;
+    box-shadow: 0 0 0 2px rgba(64, 110, 173, 0.14);
 }
 
-/* ===== BOTÓN RESERVAR ===== */
 .btn-reservar {
-    background: #00b894;
-    color: white;
-    border: none;
-    padding: 6px 0;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 14px;
-    transition: 0.2s;
     width: 100%;
+    border: 0;
+    border-radius: 8px;
+    color: #ffffff;
+    font-size: 0.83rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, #238269, #1b6b56);
+    padding: 0.36rem 0;
 }
 
 .btn-reservar:hover {
-    background: #009f7a;
+    background: linear-gradient(135deg, #1f755f, #165746);
 }
 
-/* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
     .calendar-table thead th,
     .calendar-table td {
-        font-size: 12px;
-        min-width: 100px;
+        font-size: 0.74rem;
+        min-width: 108px;
     }
 
     .reserva-form input {
-        font-size: 12px;
+        font-size: 0.75rem;
     }
 }

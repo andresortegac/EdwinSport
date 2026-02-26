@@ -1,121 +1,187 @@
-body {
-    background-color: #EFFEFB;
-    font-family: sans-serif;
+:root {
+    --corp-bg: #f3f6fb;
+    --corp-bg-alt: #ebf1f8;
+    --corp-surface: #ffffff;
+    --corp-surface-soft: #f7f9fc;
+    --corp-text: #13243b;
+    --corp-muted: #5d6f86;
+    --corp-line: #d8e2ee;
+    --corp-brand: #1f8f9a;
+    --corp-brand-strong: #176f78;
+    --corp-shadow-sm: 0 10px 24px rgba(16, 33, 52, 0.06);
+    --corp-shadow-md: 0 20px 40px rgba(16, 33, 52, 0.1);
 }
 
-/* Marca */
-.brand {
-    color: #00A198 !important;
+body {
+    margin: 0;
+    color: var(--corp-text);
+    background:
+        radial-gradient(circle at 8% -8%, rgba(31, 143, 154, 0.16), transparent 35%),
+        radial-gradient(circle at 95% -18%, rgba(31, 111, 168, 0.14), transparent 42%),
+        linear-gradient(165deg, var(--corp-bg), var(--corp-bg-alt));
+}
+
+main.py-4 {
+    min-height: calc(100vh - 230px);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: var(--corp-text);
+    font-weight: 800;
+    letter-spacing: 0.1px;
+}
+
+p,
+li,
+small,
+label {
+    color: var(--corp-muted);
+}
+
+a {
+    color: var(--corp-brand-strong);
+}
+
+a:hover {
+    color: #0f5c63;
+}
+
+.container-fluid,
+.container {
+    position: relative;
+    z-index: 1;
+}
+
+.card {
+    border: 1px solid var(--corp-line);
+    border-radius: 16px;
+    background: var(--corp-surface);
+    box-shadow: var(--corp-shadow-sm);
+}
+
+.card-header {
+    background: linear-gradient(145deg, #f7fbff, #f0f5fb);
+    border-bottom: 1px solid var(--corp-line);
     font-weight: 700;
 }
 
-/* Botón login */
-.btn-login {
-    background-color: #00A198;
-    color: white;
-    padding: 10px 25px;
+.table {
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid var(--corp-line);
+    background: var(--corp-surface);
+}
+
+.table thead th {
+    color: #133355;
+    font-weight: 700;
+    border-bottom: 1px solid var(--corp-line);
+    background: #f5f9ff;
+}
+
+.table tbody td {
+    color: #344962;
+    border-color: #e1e9f3;
+}
+
+.table tbody tr:hover td {
+    background: #f7fbff;
+}
+
+.form-label {
+    color: #203b5d;
+    font-weight: 700;
+}
+
+.form-control,
+.form-select,
+textarea.form-control {
+    border-radius: 11px;
+    border: 1px solid #cfdcec;
+    background: #fbfdff;
+    min-height: 42px;
+}
+
+.form-control:focus,
+.form-select:focus,
+textarea.form-control:focus {
+    border-color: #6ea5e2;
+    box-shadow: 0 0 0 3px rgba(75, 124, 191, 0.14);
+    background: #ffffff;
+}
+
+.alert {
     border-radius: 12px;
-    text-decoration: none;
+    border-width: 1px;
 }
 
-.btn-login:hover {
-    opacity: .9;
+.btn {
+    border-radius: 11px;
+    font-weight: 700;
 }
 
-/* HERO */
-.hero-section {
-    padding: 80px 0;
+.btn-primary {
+    background: linear-gradient(135deg, #2563a8, #1a4f8e);
+    border: none;
 }
 
-.hero-title {
-    color: #003233;
+.btn-primary:hover {
+    background: linear-gradient(135deg, #20558f, #17447a);
 }
 
-/* Botón explorar */
-.btn-explorar {
-    background-color: #1DE4D1;
-    color: #003233;
-    font-size: 1.2rem;
-    padding: 15px 40px;
-    border-radius: 15px;
-    text-decoration: none;
+.btn-secondary {
+    border: none;
+    background: linear-gradient(135deg, #67758a, #525f73);
 }
 
-.btn-explorar:hover {
-    opacity: .9;
+.btn-secondary:hover {
+    background: linear-gradient(135deg, #5b687b, #465264);
 }
 
-/* FEATURES */
-.feature-card {
-    border-top-width: 6px;
-    border-radius: 20px;
+.btn-warning {
+    border: none;
+    background: linear-gradient(135deg, #d89a2d, #c78319);
+    color: #1c170f;
 }
 
-.feature-1 {
-    border-top-color: #00A198;
+.btn-warning:hover {
+    color: #1c170f;
+    background: linear-gradient(135deg, #ca8f2a, #b77714);
 }
 
-.feature-2 {
-    border-top-color: #1DE4D1;
+.btn-success {
+    border: none;
+    background: linear-gradient(135deg, #238269, #1b6b56);
 }
 
-.feature-3 {
-    border-top-color: #003233;
-}
-.logo{
-    width: 60px;
-    height: 60px;
-
-}
-/*------------css login--------------------------------*/
-/* Fondo con degradado */
-body {
-    background: linear-gradient(113deg, rgba(13, 110, 253, 0.25), #eff3ff);      
-    height: 100vh;
+.btn-success:hover {
+    background: linear-gradient(135deg, #1f755f, #165746);
 }
 
-/* Card */
-.login-card {
-    width: 100%;
-    max-width: 420px;
-    border-radius: 15px;
+.ad-box {
+    background: linear-gradient(160deg, #ffffff, #f7fbff);
+    border: 1px solid var(--corp-line);
+    border-radius: 14px;
+    box-shadow: var(--corp-shadow-sm);
 }
 
-/* Ojito */
-.toggle-password {
-    position: absolute;
-    right: 15px;
-    top: 50%;
-    transform: translateY(-5px);
-    cursor: pointer;
-    font-size: 20px;
-    user-select: none;
-}
-/*funcion hover*/
-.card-hover {
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    cursor: pointer;
+.pagination {
+    gap: 0.3rem;
 }
 
-.card-hover:hover {
-    transform: translateY(-10px) scale(1.03);
-    box-shadow: 0 15px 25px rgba(0,0,0,0.15);
+.pagination .page-link {
+    border-radius: 10px;
+    border: 1px solid #d2deec;
+    color: #1f5a87;
 }
 
-.custom-card {
-    background: white;
-    border-radius: 15px;
-    padding: 25px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-    transition: transform .3s ease, box-shadow .3s ease;
+.pagination .page-item.active .page-link {
+    border-color: #1f8f9a;
+    background: #1f8f9a;
+    color: #ffffff;
 }
-
-.custom-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 30px rgba(0,0,0,0.15);
-}
-
-
-
-
-

@@ -1,0 +1,24 @@
+:root {
+    --panel-surface: #ffffff;
+    --panel-line: #d8e2ee;
+    --panel-text: #1a2940;
+    --panel-muted: #5d6f86;
+}
+
+.panel-shell {
+    background: var(--panel-surface);
+    border: 1px solid var(--panel-line);
+    border-radius: 16px;
+    padding: 1.2rem;
+    box-shadow: 0 16px 28px rgba(17, 32, 50, 0.08);
+}
+
+.panel-shell h1,
+.panel-shell h2,
+.panel-shell h3 {
+    color: var(--panel-text);
+}
+
+.panel-shell p {
+    color: var(--panel-muted);
+}

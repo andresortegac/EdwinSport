@@ -1,68 +1,121 @@
-
-/* Contenedor general */
 .import-container {
-    max-width: 1100px;
-    margin: 40px auto;
-    padding: 30px;
-    background: #ffffff;
+    max-width: 1080px;
+    margin: 2rem auto;
+    padding: 1.4rem;
     border-radius: 18px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    border: 1px solid #d8e3ef;
+    background: #ffffff;
+    box-shadow: 0 16px 30px rgba(16, 35, 55, 0.08);
 }
 
-/* Título */
 .import-title {
-    font-size: 32px;
-    font-weight: 700;
     text-align: center;
-    margin-bottom: 25px;
-    color: #1b4e8c;
+    color: #163b60;
+    font-size: clamp(1.8rem, 3.6vw, 2.4rem);
+    margin-bottom: 1.2rem;
 }
 
-/* Etiquetas */
-label {
-    font-weight: 600;
-    margin-bottom: 6px;
-    color: #333;
-}
-
-/* Inputs */
 .import-row {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
-    gap: 15px;
-    margin-bottom: 20px;
+    gap: 0.8rem;
+    margin-bottom: 0.92rem;
 }
 
 .import-row input[type="file"],
 .import-row select,
 .import-row input[type="number"] {
-    padding: 10px 14px;
-    border-radius: 8px;
-    border: 1px solid #ccc;
-    width: 260px;
+    min-height: 42px;
+    border-radius: 10px;
+    border: 1px solid #ccd9e8;
+    background: #f9fbff;
+    padding: 0.56rem 0.7rem;
 }
 
-/* Botón */
 .btn-importar {
-    background: #198754;
     border: none;
-    padding: 10px 22px;
-    color: #fff;
-    font-weight: 600;
-    border-radius: 8px;
-    transition: 0.3s;
+    border-radius: 11px;
+    color: #ffffff;
+    font-weight: 700;
+    padding: 0.58rem 1rem;
+    background: linear-gradient(135deg, #238269, #1b6b56);
 }
 
 .btn-importar:hover {
-    background: #157347;
-    transform: scale(1.03);
+    background: linear-gradient(135deg, #1f755f, #165746);
 }
 
-/* Footer */
 .import-footer {
-    margin-top: 50px;
+    margin-top: 1.5rem;
     text-align: center;
-    font-size: 14px;
-    color: #666;
+    color: #67809b;
 }
 
+/* Utility classes usadas en vistas de importacion */
+.max-w-xl {
+    max-width: 720px;
+}
+
+.mx-auto {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.mt-10 {
+    margin-top: 2.5rem;
+}
+
+.p-6 {
+    padding: 1.5rem;
+}
+
+.bg-white {
+    background: #ffffff;
+}
+
+.rounded {
+    border-radius: 14px;
+}
+
+.shadow {
+    box-shadow: 0 14px 26px rgba(16, 35, 55, 0.08);
+}
+
+.text-2xl {
+    font-size: 1.5rem;
+}
+
+.font-bold {
+    font-weight: 800;
+}
+
+.font-semibold {
+    font-weight: 700;
+}
+
+.mb-4 {
+    margin-bottom: 1rem;
+}
+
+.w-full {
+    width: 100%;
+}
+
+.border {
+    border: 1px solid #d4dfec;
+}
+
+.p-2 {
+    padding: 0.5rem;
+}
+
+.px-4 {
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+.py-2 {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+}

@@ -1,8 +1,8 @@
-﻿.cancha-show-page {
+.cancha-show-page {
     background:
-        radial-gradient(circle at 15% 15%, rgba(67, 125, 255, 0.12), transparent 28%),
-        radial-gradient(circle at 85% 5%, rgba(18, 167, 153, 0.1), transparent 26%),
-        linear-gradient(160deg, #f3f6fb, #e7edf6);
+        radial-gradient(circle at 12% 14%, rgba(76, 123, 205, 0.16), transparent 27%),
+        radial-gradient(circle at 88% 6%, rgba(31, 143, 154, 0.14), transparent 24%),
+        linear-gradient(165deg, #f2f6fc, #e9f0f9);
 }
 
 .cancha-show-page .container {
@@ -10,82 +10,80 @@
 }
 
 .cancha-hero h1 {
-    font-size: clamp(1.9rem, 4.3vw, 2.95rem);
-    font-weight: 800;
-    color: #102b4c;
-    margin-bottom: 0.55rem;
+    color: #113152;
+    font-size: clamp(1.9rem, 4.2vw, 2.9rem);
+    margin-bottom: 0.52rem;
 }
 
 .hero-copy {
-    color: #4e5f77;
     max-width: 760px;
+    color: #546982;
 }
 
 .hero-meta span {
     display: inline-flex;
     align-items: center;
-    gap: 0.4rem;
-    padding: 0.4rem 0.75rem;
+    gap: 0.35rem;
+    padding: 0.38rem 0.72rem;
     border-radius: 999px;
-    background: rgba(255, 255, 255, 0.82);
-    border: 1px solid #d2ddeb;
-    color: #274260;
-    font-size: 0.88rem;
-    box-shadow: 0 4px 10px rgba(20, 40, 62, 0.05);
+    border: 1px solid #d0ddec;
+    background: rgba(255, 255, 255, 0.85);
+    color: #2a4664;
+    font-size: 0.86rem;
+    box-shadow: 0 5px 12px rgba(16, 34, 53, 0.05);
 }
 
 .hero-meta i {
-    color: #0b6d67;
+    color: #1f8f9a;
 }
 
 .quick-actions {
-    background: linear-gradient(165deg, #102f54, #0c4068);
-    border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 18px;
     padding: 1rem;
-    box-shadow: 0 14px 28px rgba(15, 31, 55, 0.28);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    background: linear-gradient(165deg, #113257, #15527f);
+    box-shadow: 0 16px 30px rgba(11, 28, 49, 0.25);
 }
 
 .quick-actions h4 {
-    font-size: 1.06rem;
-    font-weight: 800;
-    color: #eef7ff;
+    color: #edf7ff;
+    font-size: 1.03rem;
 }
 
 .status-legend {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.8rem;
-    background: rgba(255, 255, 255, 0.86);
-    border: 1px solid #dbe4ef;
+    gap: 0.7rem;
     border-radius: 12px;
-    padding: 0.8rem;
-    color: #43566e;
-    font-size: 0.88rem;
+    border: 1px solid #d8e3ef;
+    background: rgba(255, 255, 255, 0.92);
+    color: #4f647d;
+    font-size: 0.87rem;
+    padding: 0.72rem;
 }
 
 .calendar-shell {
-    background: rgba(255, 255, 255, 0.95);
-    border: 1px solid #d5e0ed;
     border-radius: 18px;
+    border: 1px solid #d3dfed;
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 16px 34px rgba(16, 34, 53, 0.1);
     padding: 1rem;
-    box-shadow: 0 16px 34px rgba(20, 38, 60, 0.1);
 }
 
 .calendar-head {
-    padding: 0.4rem 0.25rem 0.85rem;
-    border-bottom: 1px solid #e4ebf4;
+    padding: 0.34rem 0.25rem 0.82rem;
+    border-bottom: 1px solid #e2eaf4;
 }
 
 .calendar-head h2 {
-    font-size: 1.4rem;
-    font-weight: 800;
-    color: #15365c;
+    color: #173d62;
+    font-size: 1.34rem;
 }
 
 .calendar-head p {
-    color: #5a6b82;
-    font-size: 0.92rem;
+    margin: 0;
+    color: #59708a;
+    font-size: 0.9rem;
     font-weight: 600;
 }
 
@@ -103,12 +101,13 @@
 }
 
 .calendar-table thead th {
-    background: linear-gradient(130deg, #112f54, #144a77);
-    color: #f2f8ff;
-    font-weight: 700;
-    padding: 0.7rem 0.55rem;
     text-align: center;
     border: 0;
+    color: #f3f8ff;
+    font-size: 0.9rem;
+    font-weight: 700;
+    padding: 0.67rem 0.5rem;
+    background: linear-gradient(130deg, #123155, #16527f);
     position: sticky;
     top: 0;
     z-index: 1;
@@ -125,14 +124,14 @@
 }
 
 .hour-cell {
-    background: linear-gradient(165deg, #eef4fb, #e6edf8);
-    color: #18395f;
-    font-weight: 800;
-    text-align: center;
-    border: 1px solid #d2ddec;
-    padding: 0.7rem 0.45rem;
     width: 88px;
+    text-align: center;
+    font-weight: 800;
+    color: #1f4166;
     border-radius: 10px;
+    border: 1px solid #d0dceb;
+    background: linear-gradient(160deg, #eef4fb, #e6edf8);
+    padding: 0.67rem 0.42rem;
     position: sticky;
     left: 0;
     z-index: 1;
@@ -140,49 +139,48 @@
 
 .slot-cell {
     border: 0;
-    background: transparent;
-    vertical-align: top;
     padding: 0.1rem;
+    background: transparent;
     min-width: 140px;
+    vertical-align: top;
 }
 
 .cell-ocupada {
-    background: linear-gradient(165deg, #ffe7eb, #ffdbe2);
-    border: 1px solid #f2b8c2;
-    border-radius: 12px;
-    padding: 0.55rem;
+    min-height: 84px;
     display: grid;
     gap: 0.12rem;
-    min-height: 84px;
+    border-radius: 12px;
+    border: 1px solid #efb4bf;
+    background: linear-gradient(165deg, #ffe7ec, #ffdce4);
     box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.45);
+    padding: 0.52rem;
 }
 
 .cell-ocupada strong {
-    color: #8f1d2c;
-    font-size: 0.86rem;
+    color: #8b1f2d;
+    font-size: 0.84rem;
 }
 
 .cell-ocupada small {
-    color: #7a4850;
-    font-size: 0.73rem;
+    color: #7a4a52;
+    font-size: 0.72rem;
     line-height: 1.22;
 }
 
 .reserva-form {
-    background: linear-gradient(165deg, #e8f7ef, #dcf1e6);
-    border: 1px solid #b6dfc8;
-    border-radius: 12px;
-    padding: 0.55rem 0.4rem;
     min-height: 84px;
     display: grid;
     place-items: center;
+    border-radius: 12px;
+    border: 1px solid #b5ddc8;
+    background: linear-gradient(165deg, #e8f7ef, #dff2e8);
+    padding: 0.5rem 0.38rem;
 }
 
 .reserva-form small {
-    color: #1f6950;
-    font-size: 0.78rem;
+    color: #1c6950;
+    font-size: 0.77rem;
     font-weight: 700;
-    letter-spacing: 0.2px;
 }
 
 .cancha-show-page .footer-premium {
@@ -191,7 +189,7 @@
 
 @media (max-width: 992px) {
     .calendar-shell {
-        padding: 0.85rem;
+        padding: 0.84rem;
     }
 
     .calendar-table {
@@ -202,10 +200,10 @@
 @media (max-width: 768px) {
     .status-legend {
         gap: 0.5rem;
-        font-size: 0.83rem;
+        font-size: 0.82rem;
     }
 
     .calendar-head h2 {
-        font-size: 1.2rem;
+        font-size: 1.18rem;
     }
 }
