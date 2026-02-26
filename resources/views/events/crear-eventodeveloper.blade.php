@@ -24,7 +24,7 @@
       --card: #020924;
       --sidebar: #020617;
       --primary: #D4A017;
-      --secondary: #1E3A8A;
+      --secondary: #0F766E;
       --text: #E5E7EB;        /* texto claro para fondo oscuro */
       --muted: #CBD5F5;
 
@@ -37,7 +37,7 @@
       color: var(--text);
       background:
         radial-gradient(1200px 600px at 5% -10%, rgba(18, 5, 73, 0.3), transparent 60%),
-        radial-gradient(900px 600px at 110% 0%, rgba(30,64,175,.40), transparent 55%),
+        radial-gradient(900px 600px at 110% 0%, rgba(15,118,110,.36), transparent 55%),
         linear-gradient(180deg, #020617, #020617);
       min-height:100vh;
     }
@@ -57,7 +57,7 @@
 
     .sidebar .sidebar-brand{
       padding: 1rem 1rem;
-      background: linear-gradient(135deg, rgba(13, 8, 78, 0.25), rgba(30,64,175,.25));
+      background: linear-gradient(135deg, rgba(13, 8, 78, 0.2), rgba(15,118,110,.28));
       border-bottom:1px solid var(--white-line);
     }
 
@@ -164,10 +164,10 @@
     .topbar .navbar-search .btn{
       border-radius: 999px !important;
       font-weight:800;
-      background: linear-gradient(135deg, var(--secondary), #0f245f) !important;
+      background: linear-gradient(135deg, var(--secondary), #0b5d56) !important;
       border:none !important;
       color: #fff !important;
-      box-shadow: 0 8px 18px rgba(30,64,175,.60);
+      box-shadow: 0 8px 18px rgba(15,118,110,.55);
     }
 
     .topbar .dropdown-toggle span{
@@ -288,18 +288,18 @@
 
     .formulario-evento button[type="submit"] {
       border: 0 !important;
-      background: linear-gradient(90deg,#2563eb,#22c55e) !important;
+      background: linear-gradient(90deg,#0f766e,#14b8a6) !important;
       color: #f9fafb !important;
       font-weight: 800;
       border-radius: 999px !important;
       padding: 12px 26px;
       transition: 0.2s ease;
-      box-shadow: 0 14px 30px rgba(37,99,235,.55);
+      box-shadow: 0 14px 30px rgba(15,118,110,.45);
     }
 
     .formulario-evento button[type="submit"]:hover {
       transform: translateY(-2px);
-      box-shadow: 0 18px 40px rgba(37,99,235,.75);
+      box-shadow: 0 18px 40px rgba(15,118,110,.65);
     }
 
     #menu-principal-top {
@@ -344,7 +344,7 @@
     }
 
     .table-hover tbody tr:hover{
-      background-color:#E0ECFF !important;
+      background-color:#E6FFFA !important;
     }
 
     .table .btn{
@@ -395,6 +395,108 @@
     /* 3) LABELS BLANCAS (solo en el formulario) */
     #contenedor-formulario label{
       color: #ffffff !important;
+    }
+
+    /* Reajuste visual general */
+    .container-fluid{
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+
+    .panel-hero{
+      border: 1px solid var(--white-line);
+      border-radius: 1rem;
+      padding: 1rem 1.15rem;
+      margin-bottom: 1.2rem;
+      background: linear-gradient(135deg, rgba(15,23,42,.95), rgba(15,118,110,.24));
+      box-shadow: 0 14px 34px rgba(0,0,0,.45);
+    }
+
+    .panel-hero .hero-title{
+      margin: 0;
+      font-size: 1.65rem;
+      line-height: 1.2;
+      color: #f8fafc;
+    }
+
+    .panel-hero .hero-subtitle{
+      margin: .35rem 0 0 0;
+      color: #cbd5e1 !important;
+      font-size: .95rem;
+    }
+
+    #contenedor-formulario,
+    #contenedor-listado{
+      animation: revealUp .18s ease-out;
+    }
+
+    #contenedor-listado .container-fluid{
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    .dropdown-menu{
+      border-radius: .9rem !important;
+      border: 1px solid rgba(148,163,184,.35) !important;
+      background: #0b1220 !important;
+      box-shadow: 0 16px 36px rgba(0,0,0,.55) !important;
+    }
+
+    .dropdown-menu .dropdown-header{
+      color: #e2e8f0 !important;
+      background: rgba(15,118,110,.22);
+    }
+
+    .dropdown-item{
+      color: #e2e8f0 !important;
+    }
+
+    .dropdown-item:hover{
+      background: rgba(15,118,110,.2) !important;
+      color: #fff !important;
+    }
+
+    .topbar .badge-counter{
+      border: 1px solid rgba(255,255,255,.4);
+      box-shadow: 0 6px 14px rgba(239,68,68,.45);
+    }
+
+    .icon-circle.bg-primary{
+      background-color: #0f766e !important;
+    }
+
+    @keyframes revealUp{
+      from{
+        opacity: 0;
+        transform: translateY(8px);
+      }
+      to{
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 991px){
+      .topbar{
+        margin: .8rem .7rem 1rem .7rem !important;
+      }
+
+      .container-fluid{
+        padding: 0 .8rem 1.2rem .8rem;
+      }
+
+      .panel-hero{
+        padding: .85rem .9rem;
+      }
+
+      .panel-hero .hero-title{
+        font-size: 1.35rem;
+      }
+
+      #contenedor-formulario > *,
+      #contenedor-formulario .card{
+        max-width: 100%;
+      }
     }
   </style>
 
@@ -495,7 +597,7 @@
                     </div>
                     <div>
                       <div class="small text-gray-500">{{ $n['fecha'] ?? '' }}</div>
-                      <span class="font-weight-bold">{{ $n['texto'] ?? 'NotificaciÃ³n nueva' }}</span>
+                      <span class="font-weight-bold">{{ $n['texto'] ?? 'Notificaci&oacute;n nueva' }}</span>
                     </div>
                   </a>
                 @empty
@@ -521,12 +623,12 @@
                 @forelse($mensajes ?? [] as $m)
                   <a class="dropdown-item d-flex align-items-center" href="{{ $m['url'] ?? '#' }}">
                     <div class="dropdown-list-image mr-3">
-                      <img class="rounded-circle" src="{{ $m['avatar'] ?? asset('img/undraw_profile.svg') }}" style="width:40px;height:40px;object-fit:cover;">
+                      <img class="rounded-circle" src="{{ $m['avatar'] ?? asset('img2/undraw_profile.svg') }}" style="width:40px;height:40px;object-fit:cover;">
                       <div class="status-indicator bg-success"></div>
                     </div>
                     <div class="font-weight-bold">
                       <div class="text-truncate">{{ $m['texto'] ?? 'Mensaje nuevo' }}</div>
-                      <div class="small text-gray-500">{{ $m['nombre'] ?? 'Usuario' }} Â· {{ $m['fecha'] ?? '' }}</div>
+                      <div class="small text-gray-500">{{ $m['nombre'] ?? 'Usuario' }} &middot; {{ $m['fecha'] ?? '' }}</div>
                     </div>
                   </a>
                 @empty
@@ -547,7 +649,7 @@
                 <span class="d-none d-lg-inline fw-semibold">
                   {{ auth()->user()->name ?? auth()->user()->email ?? 'Usuario' }}
                 </span>
-                <img class="img-profile rounded-circle" src="{{ asset('img/undraw_profile.svg') }}">
+                <img class="img-profile rounded-circle" src="{{ asset('img2/undraw_profile.svg') }}">
               </a>
 
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in">
@@ -555,11 +657,11 @@
                   <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> Perfil
                 </a>
                 <a class="dropdown-item" href="#">
-                  <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i> ConfiguraciÃ³n
+                  <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i> Configuraci&oacute;n
                 </a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                  <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i> Cerrar sesiÃ³n
+                  <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i> Cerrar sesi&oacute;n
                 </a>
               </div>
             </li>
@@ -568,8 +670,10 @@
 
         <!-- Content -->
         <div class="container-fluid">
-          <h1 class="h3 mb-4">Panel del Usuario</h1>
-          <p class="text-muted">Bienvenido: {{ auth()->user()->email ?? '' }}</p>
+          <section class="panel-hero">
+            <h1 class="hero-title">Panel del Usuario</h1>
+            <p class="hero-subtitle">Bienvenido: {{ auth()->user()->email ?? '' }}</p>
+          </section>
 
           <div class="row">
             <!-- FORMULARIO -->
@@ -607,15 +711,15 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">Â¿Deseas cerrar sesiÃ³n?</h5>
-          <button class="close" type="button" data-dismiss="modal"><span aria-hidden="true">Ã—</span></button>
+          <h5 class="modal-title">&iquest;Deseas cerrar sesi&oacute;n?</h5>
+          <button class="close" type="button" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
         </div>
-        <div class="modal-body">Selecciona "Cerrar sesiÃ³n" para finalizar tu sesiÃ³n actual.</div>
+        <div class="modal-body">Selecciona "Cerrar sesi&oacute;n" para finalizar tu sesi&oacute;n actual.</div>
         <div class="modal-footer">
           <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
           <form method="POST" action="{{ route('logout') }}">
             @csrf
-            <button type="submit" class="btn btn-primary">Cerrar sesiÃ³n</button>
+            <button type="submit" class="btn btn-primary">Cerrar sesi&oacute;n</button>
           </form>
         </div>
       </div>

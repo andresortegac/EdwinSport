@@ -10,6 +10,22 @@ use Illuminate\Support\Facades\Storage;
 
 class EventController extends Controller
 {
+    public function media(string $path)
+    {
+        $path = ltrim($path, '/');
+
+        // Evita path traversal y rutas inválidas.
+        if ($path === '' || str_contains($path, '..')) {
+            abort(404);
+        }
+
+        if (!Storage::disk('public')->exists($path)) {
+            abort(404);
+        }
+
+        return response()->file(Storage::disk('public')->path($path));
+    }
+
     public function index(Request $request)
     {
         // Ahora filtramos por category (porque sport NO existe en tu tabla)

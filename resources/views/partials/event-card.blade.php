@@ -1,9 +1,21 @@
-﻿<div class="event-card h-100">
+<div class="event-card h-100">
+    @php
+        $imageUrl = null;
+        if (!empty($event->image)) {
+            $imageUrl = \Illuminate\Support\Str::startsWith($event->image, ['http://', 'https://'])
+                ? $event->image
+                : route('events.media', ['path' => ltrim($event->image, '/')]);
+        }
+        $fallbackImage = asset('img/slider/slider0.png');
+    @endphp
+
     <div class="event-image-wrap">
         <img
-            src="{{ $event->image ? asset('storage/'.$event->image) : asset('img/slider/slider0.png') }}"
+            src="{{ $imageUrl ?: $fallbackImage }}"
             class="event-image"
             alt="{{ $event->title }}"
+            loading="lazy"
+            onerror="this.onerror=null; this.src='{{ $fallbackImage }}';"
         >
         <span class="event-category">{{ ucfirst(str_replace('_', ' ', $event->category ?? 'general')) }}</span>
     </div>

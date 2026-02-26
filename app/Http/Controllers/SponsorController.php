@@ -4,9 +4,25 @@ namespace App\Http\Controllers;
 
 use App\Models\Sponsor;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class SponsorController extends Controller
 {
+    public function media(string $path)
+    {
+        $path = ltrim($path, '/');
+
+        if ($path === '' || str_contains($path, '..')) {
+            abort(404);
+        }
+
+        if (!Storage::disk('public')->exists($path)) {
+            abort(404);
+        }
+
+        return response()->file(Storage::disk('public')->path($path));
+    }
+
     /**
      * Listado de patrocinadores
      * Vista: resources/views/events/sponsors.blade.php
@@ -42,10 +58,10 @@ class SponsorController extends Controller
         // Guardar imagen en storage/app/public/sponsors
         $path = $request->file('logo')->store('sponsors', 'public');
 
-        // Crear sponsor
+        // Crear sponsor (name + image son columnas reales en BD)
         Sponsor::create([
             'nombre' => $data['nombre'],
-            'logo'   => $path,               // columna "logo" en la tabla
+            'image'  => $path,
             'url'    => $data['url'] ?? null,
         ]);
 

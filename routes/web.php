@@ -76,6 +76,14 @@ Route::controller(LoginController::class)->group(function () {
 Route::get('/eventos/crear-evento-developer', [CrearEventoDeveloperController::class, 'index'])
     ->name('events.crear-evento-developer');
 
+Route::get('/media/eventos/{path}', [EventController::class, 'media'])
+    ->where('path', '.*')
+    ->name('events.media');
+
+Route::get('/media/sponsors/{path}', [SponsorController::class, 'media'])
+    ->where('path', '.*')
+    ->name('sponsors.media');
+
 // ✅ Listado (filtrado por category vía query string: /eventos?category=futbol)
 Route::get('/eventos', [EventController::class, 'index'])->name('events.index');
 

@@ -7,7 +7,6 @@
    LISTADO DE EVENTOS - MEJORAS UI
    =============================== */
 
-/* card más bonita */
 .card.accent-gold{
     border: none;
     box-shadow: 0 6px 18px rgba(0,0,0,0.08);
@@ -18,7 +17,6 @@
     box-shadow: 0 10px 24px rgba(0,0,0,0.12);
 }
 
-/* badge más compacto */
 .card .badge{
     font-size: 12px;
     font-weight: 700;
@@ -26,25 +24,19 @@
     border-radius: 999px;
 }
 
-/* ==========================
-   BOTONES EDITAR / ELIMINAR
-   ========================== */
-
-/* contenedor de acciones */
 .event-actions{
     display: flex;
     justify-content: flex-end;
-    gap: 10px;              /* separación bonita */
+    gap: 10px;
     margin-top: 12px;
 }
 
-/* botón base para ambos */
 .event-actions a,
 .event-actions button{
     display: inline-flex !important;
     align-items: center;
     justify-content: center;
-    height: 36px;           /* ? tamaño elegante */
+    height: 36px;
     padding: 0 16px !important;
     font-size: 14px;
     font-weight: 700;
@@ -56,9 +48,8 @@
     box-shadow: 0 2px 6px rgba(0,0,0,0.12);
 }
 
-/* EDITAR */
 .event-actions .btn-editar-evento{
-    min-width: 100px;       /* ? evita que sea gigante */
+    min-width: 100px;
     background: #ffc107 !important;
     color: #111 !important;
 }
@@ -67,7 +58,6 @@
     transform: translateY(-1px);
 }
 
-/* ELIMINAR */
 .event-actions .btn-eliminar-evento{
     min-width: 90px;
     background: #e74c3c !important;
@@ -78,12 +68,38 @@
     transform: translateY(-1px);
 }
 
-/* para que el form no rompa el flex */
 .event-actions form{
     margin: 0;
 }
-</style>
 
+.event-image-wrap{
+    position: relative;
+    height: 180px;
+    background: #0f172a;
+}
+
+.event-image-wrap img{
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    display: block;
+}
+
+.event-image-fallback{
+    position: absolute;
+    inset: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    color: #9ca3af;
+    background: linear-gradient(135deg, #111827, #1f2937);
+    font-weight: 600;
+}
+
+.event-image-wrap.is-broken .event-image-fallback{
+    display: flex;
+}
+</style>
 
 <div class="container-fluid">
 
@@ -101,18 +117,22 @@
                     data-url="{{ route('competicion', $evento->id) }}"
                     onclick="goToEvento(this)">
 
-
-
-
                     {{-- Imagen del evento --}}
                     @if($evento->image)
-                        <img src="{{ asset('storage/' . $evento->image) }}"
-                            class="img-fluid"
-                            alt="{{ $evento->title }}"
-                            style="height: 180px; object-fit: cover;">
+                        @php
+                            $imageUrl = \Illuminate\Support\Str::startsWith($evento->image, ['http://', 'https://'])
+                                ? $evento->image
+                                : route('events.media', ['path' => ltrim($evento->image, '/')]);
+                        @endphp
+                        <div class="event-image-wrap">
+                            <img src="{{ $imageUrl }}"
+                                 alt="{{ $evento->title }}"
+                                 onerror="this.closest('.event-image-wrap').classList.add('is-broken'); this.remove();">
+                            <div class="event-image-fallback">Sin imagen</div>
+                        </div>
                     @else
-                        <div style="height:180px; background:#eee; display:flex; align-items:center; justify-content:center;">
-                            <span style="color:#999;">Sin imagen</span>
+                        <div class="event-image-wrap is-broken">
+                            <div class="event-image-fallback">Sin imagen</div>
                         </div>
                     @endif
 
@@ -126,8 +146,8 @@
                             {{ Str::limit($evento->description, 70) }}
                         </p>
 
-                        <p><strong>Categoría:</strong> {{ ucfirst($evento->category) }}</p>
-                        <p><strong>Ubicación:</strong> {{ $evento->location }}</p>
+                        <p><strong>Categor&iacute;a:</strong> {{ ucfirst($evento->category) }}</p>
+                        <p><strong>Ubicaci&oacute;n:</strong> {{ $evento->location }}</p>
 
                         <p>
                             <strong>Inicio:</strong>
@@ -145,10 +165,7 @@
                             {{ strtoupper($evento->status) }}
                         </span>
 
-                        {{-- ? BOTONES BONITOS --}}
                         <div class="event-actions">
-
-                            {{-- Boton Editar --}}
                             <a id="btn-listado-eventos"
                                href="{{ route('editar-evento.edit', $evento->id) }}"
                                class="btn btn-warning btn-sm btn-editar-evento"
@@ -157,18 +174,16 @@
                                 Editar
                             </a>
 
-                            {{-- Botón Eliminar --}}
                             <form action="{{ route('eliminar-evento.destroy', $evento->id) }}"
                                   method="POST"
-                                  onsubmit="event.stopPropagation(); return confirm('¿Seguro que deseas eliminar este evento?');">
+                                  onsubmit="event.stopPropagation(); return confirm('&iquest;Seguro que deseas eliminar este evento?');">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger btn-sm btn-eliminar-evento"
-                                    onclick="event.stopPropagation();">>
+                                    onclick="event.stopPropagation();">
                                     Eliminar
                                 </button>
                             </form>
-
                         </div>
 
                     </div>

@@ -74,7 +74,7 @@
             <label class="form-label">Imagen Actual</label><br>
 
             @if($evento->image)
-                <img src="{{ asset('storage/' . $evento->image) }}" alt="" class="img-thumbnail mb-3" width="220">
+                <img src="{{ route('events.media', ['path' => ltrim($evento->image, '/')]) }}" alt="" class="img-thumbnail mb-3" width="220">
             @else
                 <p>No tiene imagen asignada.</p>
             @endif

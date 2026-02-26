@@ -18,9 +18,9 @@
       --brand-900:#0b1020;
       --brand-800:#111936;
       --brand-700:#172554;
-      --accent-500:#22d3ee;   /* cyan */
-      --accent-600:#0ea5e9;   /* sky */
-      --accent-700:#2563eb;   /* blue */
+      --accent-500:#2dd4bf;
+      --accent-600:#0f766e;
+      --accent-700:#14b8a6;
       --success-500:#22c55e;
       --danger-500:#ef4444;
       --muted-400:#94a3b8;
@@ -30,8 +30,8 @@
     body{
       font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
       background:
-        radial-gradient(1200px 600px at 10% -10%, rgba(34,211,238,.18), transparent 60%),
-        radial-gradient(900px 500px at 110% 0%, rgba(37,99,235,.18), transparent 55%),
+        radial-gradient(1200px 600px at 10% -10%, rgba(45,212,191,.20), transparent 60%),
+        radial-gradient(900px 500px at 110% 0%, rgba(15,118,110,.20), transparent 55%),
         linear-gradient(180deg, #0a0f1d 0%, #0f172a 40%, #0b1020 100%);
       color: var(--text);
       min-height: 100vh;
@@ -39,7 +39,7 @@
 
     .hero{
       background:
-        linear-gradient(135deg, rgba(34,211,238,.12), rgba(37,99,235,.12)),
+        linear-gradient(135deg, rgba(45,212,191,.14), rgba(15,118,110,.16)),
         linear-gradient(180deg, var(--brand-900), var(--brand-800));
       border: 1px solid rgba(148,163,184,.15);
       border-radius: 1.25rem;
@@ -62,8 +62,8 @@
       display:inline-flex;
       align-items:center;
       gap:.5rem;
-      background: rgba(34,211,238,.08);
-      border: 1px solid rgba(34,211,238,.35);
+      background: rgba(20,184,166,.10);
+      border: 1px solid rgba(20,184,166,.38);
       color:#dff9ff;
       padding:.35rem .7rem;
       border-radius: 999px;
@@ -114,7 +114,7 @@
       letter-spacing:.3px;
       border-radius: .95rem;
       padding:.8rem 1rem;
-      box-shadow: 0 8px 18px rgba(14,165,233,.35);
+      box-shadow: 0 8px 18px rgba(20,184,166,.32);
       transition: transform .08s ease, filter .12s ease;
     }
     .btn-brand:hover{ filter: brightness(1.05); transform: translateY(-1px); }
@@ -131,7 +131,7 @@
     .table-pro{
       --bs-table-bg: rgba(2,6,23,.78);
       --bs-table-color: var(--text);
-      --bs-table-hover-bg: rgba(34,211,238,.10);
+      --bs-table-hover-bg: rgba(45,212,191,.10);
       --bs-table-border-color: rgba(148,163,184,.18);
       color: var(--text) !important;
       border-color: rgba(148,163,184,.12);
@@ -153,7 +153,7 @@
       font-weight:600 !important;
     }
     .table-pro tbody tr:hover > *{
-      background-color: rgba(34,211,238,.12) !important;
+      background-color: rgba(45,212,191,.12) !important;
       color:#fff !important;
     }
 
@@ -178,6 +178,54 @@
     .section-title{
       display:flex; align-items:center; justify-content:space-between;
       gap:1rem; margin-bottom:1rem;
+    }
+
+    .avatar-chip{
+      width:40px;
+      height:40px;
+      background: rgba(20,184,166,.14);
+      border:1px solid rgba(20,184,166,.45);
+      font-weight:800;
+    }
+
+    .role-chip{
+      border-radius: 999px;
+      padding: .15rem .5rem;
+      font-size: .7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .4px;
+      border: 1px solid transparent;
+    }
+
+    .role-admin{
+      background: rgba(45,212,191,.14);
+      border-color: rgba(45,212,191,.38);
+      color: #99f6e4;
+    }
+
+    .role-superadmin{
+      background: rgba(250,204,21,.14);
+      border-color: rgba(250,204,21,.45);
+      color: #fde68a;
+    }
+
+    .role-developer{
+      background: rgba(59,130,246,.14);
+      border-color: rgba(59,130,246,.45);
+      color: #bfdbfe;
+    }
+
+    .btn-action-safe{
+      border-radius:.7rem;
+      border-color:rgba(45,212,191,.6);
+      color:#99f6e4;
+    }
+
+    .btn-action-danger{
+      border-radius:.7rem;
+      border-color:rgba(239,68,68,.6);
+      color:#fecaca;
     }
 
     @media (max-width: 991px){
@@ -296,12 +344,20 @@
                     <td>
                       <div class="d-flex align-items-center gap-2">
                         <div class="rounded-circle d-flex align-items-center justify-content-center"
-                             style="width:40px;height:40px;background:rgba(37,99,235,.18);border:1px solid rgba(37,99,235,.45);font-weight:800;">
+                             class="avatar-chip">
                           {{ strtoupper(substr($a->name,0,1)) }}
                         </div>
                         <div>
                           <div class="fw-semibold text-light">{{ $a->name }}</div>
-                          <div class="small text-muted">Administrador</div>
+                          <div class="small">
+                            @if($a->role === 'superadmin')
+                              <span class="role-chip role-superadmin">Superadmin</span>
+                            @elseif($a->role === 'developer')
+                              <span class="role-chip role-developer">Developer</span>
+                            @else
+                              <span class="role-chip role-admin">Admin</span>
+                            @endif
+                          </div>
                         </div>
                       </div>
                     </td>
@@ -321,8 +377,7 @@
                         <!-- Boton abrir modal -->
                         <button
                           type="button"
-                          class="btn btn-sm btn-outline-light"
-                          style="border-radius:.7rem;border-color:rgba(34,197,94,.6);color:#bbf7d0;"
+                          class="btn btn-sm btn-outline-light btn-action-safe"
                           data-bs-toggle="modal"
                           data-bs-target="#modalPassword{{ $a->id }}"
                         >
@@ -330,17 +385,22 @@
                         </button>
 
                         <!-- Eliminar -->
-                        <form action="{{ route('crear_usuario.destroy', $a->id) }}" method="POST" style="display:inline;">
-                          @csrf
-                          @method('DELETE')
-                          <button
-                            class="btn btn-sm btn-outline-light"
-                            style="border-radius:.7rem;border-color:rgba(239,68,68,.6);color:#fecaca;"
-                            onclick="return confirm('¿Eliminar este usuario?')"
-                          >
-                            Eliminar
+                        @if(in_array($a->role, ['superadmin', 'developer']))
+                          <button class="btn btn-sm btn-outline-light btn-action-danger" disabled title="Cuenta protegida">
+                            Protegido
                           </button>
-                        </form>
+                        @else
+                          <form action="{{ route('crear_usuario.destroy', $a->id) }}" method="POST" style="display:inline;">
+                            @csrf
+                            @method('DELETE')
+                            <button
+                              class="btn btn-sm btn-outline-light btn-action-danger"
+                              onclick="return confirm('¿Eliminar este usuario?')"
+                            >
+                              Eliminar
+                            </button>
+                          </form>
+                        @endif
 
                       </div>
                     </td>

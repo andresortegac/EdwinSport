@@ -137,7 +137,12 @@
                     @forelse($sponsors as $sponsor)
                         <article class="sponsor-item">
                             @if($sponsor->logo)
-                                <img src="{{ asset('storage/'.$sponsor->logo) }}" alt="{{ $sponsor->nombre }}">
+                                <img
+                                    src="{{ route('sponsors.media', ['path' => ltrim($sponsor->logo, '/')]) }}"
+                                    alt="{{ $sponsor->nombre }}"
+                                    loading="lazy"
+                                    onerror="this.style.display='none'; this.parentElement.insertAdjacentHTML('afterbegin','<div class=&quot;sponsor-placeholder&quot;>Sin logo</div>');"
+                                >
                             @else
                                 <div class="sponsor-placeholder">Sin logo</div>
                             @endif
