@@ -90,6 +90,8 @@ Route::get('/eventos', [EventController::class, 'index'])->name('events.index');
 
 // ✅ Detalle
 Route::get('/eventos/{event}', [EventController::class, 'show'])->name('events.show');
+Route::get('/eventos/{event}/fixture/{grupo}/{jornada}/{partido}', [EventController::class, 'fixtureDetail'])
+    ->name('events.fixture.detail');
 
 // ✅ Crear y guardar (mantengo tus rutas actuales)
 Route::controller(EventController::class)->group(function () {
@@ -269,5 +271,11 @@ Route::controller(CompeticionesController::class)->group(function () {
     // Generar grupos automáticamente
     Route::post('/competicion/{competicion}/grupos', 'generarGrupos')
         ->name('competicion.grupos');
+
+    Route::post('/competicion/{competicion}/resultado', 'registrarResultado')
+        ->name('competicion.resultado');
+
+    Route::post('/competicion/{competicion}/eliminacion/{partido}/resultado', 'registrarResultadoEliminacion')
+        ->name('competicion.eliminacion.resultado');
 
 });

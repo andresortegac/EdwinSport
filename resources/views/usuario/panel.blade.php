@@ -583,7 +583,7 @@
 
           <!-- LISTADO EVENTOS -->
           <div id="contenedor-listado" class="col-12" style="display:none;">
-            @include('events.listado-eventos')
+            @include('events.partials.listado-eventos-content', ['eventos' => $eventos])
           </div>
 
           <!-- PARTICIPANTES -->
@@ -664,4 +664,3 @@ document.getElementById('btn-registrar-participante').addEventListener('click', 
 
 </body>
 </html>
-

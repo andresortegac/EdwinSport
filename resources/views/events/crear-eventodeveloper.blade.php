@@ -32,6 +32,10 @@
       --white-line: rgba(255,255,255,.08);
     }
 
+    html, body{
+      height: 100%;
+    }
+
     body{
       font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif !important;
       color: var(--text);
@@ -40,6 +44,10 @@
         radial-gradient(900px 600px at 110% 0%, rgba(15,118,110,.36), transparent 55%),
         linear-gradient(180deg, #020617, #020617);
       min-height:100vh;
+    }
+
+    #wrapper{
+      min-height: 100vh;
     }
 
     /* textos â€œmutedâ€ mÃ¡s claros para que se vean sobre el fondo oscuro */
@@ -181,7 +189,13 @@
     }
 
     /* ================= CONTENIDO ================= */
-    #content-wrapper{ background: transparent !important; }
+    #content-wrapper{
+      background: transparent !important;
+      min-height: 100vh;
+    }
+    #content{
+      flex: 1 0 auto;
+    }
     .container-fluid{
       padding: 0 1.4rem 1.6rem 1.4rem;
     }
@@ -221,6 +235,8 @@
       background: #020617 !important;
       color:#9ca3af !important;
       border-top:1px solid rgba(15,23,42,.9);
+      margin-top: auto;
+      flex-shrink: 0;
     }
 
     .scroll-to-top{
@@ -683,7 +699,7 @@
 
             <!-- LISTADO -->
             <div id="contenedor-listado" class="col-12">
-              @include('events.listado-eventos', ['eventos' => $eventos])
+              @include('events.partials.listado-eventos-content', ['eventos' => $eventos])
             </div>
           </div>
 
@@ -795,4 +811,3 @@
 </body>
 
 </html>
-
