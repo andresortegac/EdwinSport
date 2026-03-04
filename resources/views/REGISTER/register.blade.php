@@ -687,13 +687,17 @@
           <!-- Table -->
           <hr class="my-5 divider">
 
-          <div class="d-flex align-items-center justify-content-between mb-3">
+          <div class="d-flex align-items-center justify-content-between mb-3" id="tabla-eventos">
             <h4 class="mb-0" style="font-family:Oswald;">Proximos eventos</h4>
             <div class="d-flex gap-2">
               <input class="form-control form-control-sm bg-transparent text-light"
                      style="border-color:rgba(148,163,184,.35);border-radius:.8rem;"
                      placeholder="Buscar evento..." />
-              <a href="{{ route('events.index') }}" class="btn btn-soft btn-sm">Ver todos</a>
+              @if(($verTodos ?? false))
+                <a href="{{ route('register') }}#tabla-eventos" class="btn btn-soft btn-sm">Ver menos</a>
+              @else
+                <a href="{{ route('register', ['ver_todos' => 1]) }}#tabla-eventos" class="btn btn-soft btn-sm">Ver todos</a>
+              @endif
             </div>
           </div>
 
@@ -708,24 +712,34 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td class="fw-semibold">Torneo Regional de Futbol</td>
-                  <td>12 Dic 2025</td>
-                  <td>Estadio Central</td>
-                  <td><span class="badge badge-open rounded-pill px-3 py-2">Inscripciones abiertas</span></td>
-                </tr>
-                <tr>
-                  <td class="fw-semibold">Carrera 10K Ciudad</td>
-                  <td>20 Ene 2026</td>
-                  <td>Parque Principal</td>
-                  <td><span class="badge badge-soon rounded-pill px-3 py-2">Proximo</span></td>
-                </tr>
-                <tr>
-                  <td class="fw-semibold">Liga de Baloncesto</td>
-                  <td>05 Feb 2026</td>
-                  <td>Coliseo Norte</td>
-                  <td><span class="badge badge-prep rounded-pill px-3 py-2">En preparacion</span></td>
-                </tr>
+                @forelse(($eventosPanel ?? collect()) as $evento)
+                  @php
+                    $status = strtolower((string) ($evento->status ?? ''));
+                    $statusClass = 'badge-prep';
+                    $statusText = 'En preparacion';
+
+                    if ($status === 'activo') {
+                        $statusClass = 'badge-open';
+                        $statusText = 'Inscripciones abiertas';
+                    } elseif ($status === 'cerrado') {
+                        $statusClass = 'badge-soon';
+                        $statusText = 'Cerrado';
+                    } elseif ($status === 'inactivo') {
+                        $statusClass = 'badge-prep';
+                        $statusText = 'Inactivo';
+                    }
+                  @endphp
+                  <tr>
+                    <td class="fw-semibold">{{ $evento->title ?: 'Evento sin titulo' }}</td>
+                    <td>{{ $evento->start_at ? $evento->start_at->timezone('America/Bogota')->translatedFormat('d M Y') : 'Por definir' }}</td>
+                    <td>{{ $evento->location ?: 'Sede por definir' }}</td>
+                    <td><span class="badge {{ $statusClass }} rounded-pill px-3 py-2">{{ $statusText }}</span></td>
+                  </tr>
+                @empty
+                  <tr>
+                    <td colspan="4" class="text-center muted">No hay eventos registrados.</td>
+                  </tr>
+                @endforelse
               </tbody>
             </table>
           </div>
@@ -773,5 +787,4 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
-
 

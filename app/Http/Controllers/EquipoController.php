@@ -45,15 +45,11 @@ class EquipoController extends Controller
 
     public function edit(Equipo $equipo)
     {
-        $equipos = Equipo::orderBy('id', 'desc')->get();
+        $equipo->load(['participantes' => function ($query) {
+            $query->orderBy('id');
+        }]);
 
-        $participantes = Participante::with('equipo')
-            ->orderBy('id', 'desc')
-            ->get();
-
-        $eventos = Event::orderBy('start_at', 'desc')->get();
-
-        return view('REGISTER.participantes', compact('equipos', 'participantes', 'equipo', 'eventos'));
+        return view('equipos.edit_planilla', compact('equipo'));
     }
 
     public function update(Request $request, Equipo $equipo)
@@ -72,7 +68,9 @@ class EquipoController extends Controller
         $equipo->update($data);
         $this->generarGruposAutomaticamenteParaEvento($data['evento']);
 
-        return back()->with('success', 'Equipo actualizado');
+        return redirect()
+            ->route('equipos.edit', $equipo)
+            ->with('success', 'Equipo actualizado');
     }
 
     public function destroy(Equipo $equipo)
@@ -80,6 +78,67 @@ class EquipoController extends Controller
         $equipo->delete();
 
         return back()->with('success', 'Equipo eliminado');
+    }
+
+    public function updateJugadorNombre(Request $request, Equipo $equipo, Participante $participante)
+    {
+        if ((int) $participante->equipo_id !== (int) $equipo->id) {
+            abort(404);
+        }
+
+        $data = $request->validate([
+            'nombre' => 'required|string|max:255',
+        ]);
+
+        $participante->update([
+            'nombre' => $data['nombre'],
+        ]);
+
+        return redirect()
+            ->route('equipos.edit', $equipo)
+            ->with('success', 'Nombre del jugador actualizado');
+    }
+
+    public function destroyJugador(Equipo $equipo, Participante $participante)
+    {
+        if ((int) $participante->equipo_id !== (int) $equipo->id) {
+            abort(404);
+        }
+
+        $participante->delete();
+
+        return redirect()
+            ->route('equipos.edit', $equipo)
+            ->with('success', 'Jugador eliminado del equipo');
+    }
+
+    public function storeJugador(Request $request, Equipo $equipo)
+    {
+        if ($equipo->participantes()->count() >= 20) {
+            return redirect()
+                ->route('equipos.edit', $equipo)
+                ->withErrors(['nombre' => 'Este equipo ya tiene 20 jugadores registrados.']);
+        }
+
+        $data = $request->validate([
+            'nombre' => 'required|string|max:255',
+            'numero_camisa' => 'nullable|string|max:10',
+            'edad' => 'nullable|integer|min:1|max:120',
+            'division' => 'nullable|string|max:255',
+        ]);
+
+        Participante::create([
+            'equipo_id' => $equipo->id,
+            'evento' => $equipo->evento,
+            'nombre' => $data['nombre'],
+            'numero_camisa' => $data['numero_camisa'] ?? null,
+            'edad' => $data['edad'] ?? null,
+            'division' => $data['division'] ?? null,
+        ]);
+
+        return redirect()
+            ->route('equipos.edit', $equipo)
+            ->with('success', 'Jugador agregado al equipo');
     }
 
     private function generarGruposAutomaticamenteParaEvento(string $nombreEvento): void

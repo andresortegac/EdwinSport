@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Models\Event;
 
 use App\Http\Controllers\PasswordsController;
 use App\Http\Controllers\PrincipalController;
@@ -53,7 +54,13 @@ Route::get('/about/valores', fn () => view('about.valores'))->name('about.valore
 // REGISTER (VISTA)
 // =======================
 Route::get('/register', function () {
-    return view('REGISTER.register');
+    $verTodos = request()->boolean('ver_todos');
+
+    $eventosPanel = Event::orderBy('start_at', 'asc')
+        ->when(!$verTodos, fn ($q) => $q->limit(3))
+        ->get();
+
+    return view('REGISTER.register', compact('eventosPanel', 'verTodos'));
 })->name('register');
 
 
@@ -174,6 +181,14 @@ Route::get('/sorteo/ver', [GrupoController::class, 'index'])->name('torneo.ver')
 // =======================
 // Debe ir DESPUÉS de /equipos/import para evitar choque con /equipos/{equipo}
 Route::resource('equipos', EquipoController::class)->middleware('auth');
+Route::middleware('auth')->group(function () {
+    Route::post('/equipos/{equipo}/jugadores', [EquipoController::class, 'storeJugador'])
+        ->name('equipos.jugadores.store');
+    Route::patch('/equipos/{equipo}/jugadores/{participante}', [EquipoController::class, 'updateJugadorNombre'])
+        ->name('equipos.jugadores.update');
+    Route::delete('/equipos/{equipo}/jugadores/{participante}', [EquipoController::class, 'destroyJugador'])
+        ->name('equipos.jugadores.destroy');
+});
 
 
 // =======================
