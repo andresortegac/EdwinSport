@@ -542,10 +542,6 @@
                         <i class="bi bi-arrow-left-circle"></i>
                         Volver a eventos
                     </a>
-                    <a href="{{ route('competicion', $event->id) }}" class="btn-hero primary">
-                        <i class="bi bi-trophy"></i>
-                        Ir a competicion
-                    </a>
                 </div>
             </div>
         </header>

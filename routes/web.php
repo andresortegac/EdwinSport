@@ -99,6 +99,12 @@ Route::get('/eventos', [EventController::class, 'index'])->name('events.index');
 Route::get('/eventos/{event}', [EventController::class, 'show'])->name('events.show');
 Route::get('/eventos/{event}/fixture/{grupo}/{jornada}/{partido}', [EventController::class, 'fixtureDetail'])
     ->name('events.fixture.detail');
+Route::post('/transmisiones-en-vivo', [EventController::class, 'storeFixtureStream'])
+    ->middleware(['auth', 'admin'])
+    ->name('events.fixture.stream.store');
+Route::post('/tecnicos-imagen', [EventController::class, 'storeFixtureTecnico'])
+    ->middleware(['auth', 'admin'])
+    ->name('events.fixture.tecnico.store');
 
 // ✅ Crear y guardar (mantengo tus rutas actuales)
 Route::controller(EventController::class)->group(function () {

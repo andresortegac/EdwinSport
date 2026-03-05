@@ -614,6 +614,31 @@
                 </button>
               </div>
             </div>
+            <div class="col-md-4">
+              <div class="action cyan p-3">
+                <div class="icon-box mb-3"><i class="fas fa-broadcast-tower"></i></div>
+                <h5>Ingresar en vivos</h5>
+                <p>Carga enlaces por partido para que todos vean la transmision oficial.</p>
+                <button type="button" class="btn btn-brand w-100"
+                        data-bs-toggle="collapse" data-bs-target="#formEnVivo"
+                        aria-expanded="false" aria-controls="formEnVivo">
+                  Ingresar en vivo
+                </button>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="action purple p-3">
+                <div class="icon-box mb-3"><i class="fas fa-user-tie"></i></div>
+                <h5>Imagenes VS</h5>
+                <p>Sube una imagen para local y otra para visitante en el VS.</p>
+                <button type="button" class="btn btn-soft w-100"
+                        style="border-color:rgba(168,85,247,.65);color:#e9d5ff;"
+                        data-bs-toggle="collapse" data-bs-target="#formImagenTecnico"
+                        aria-expanded="false" aria-controls="formImagenTecnico">
+                  Subir imagenes
+                </button>
+              </div>
+            </div>
           </div>
 
 
@@ -680,6 +705,147 @@
 
                 <div class="col-12">
                   <button class="btn btn-brand">Guardar cancha</button>
+                </div>
+              </form>
+            </div>
+          </div>
+
+          <div class="collapse mt-4 {{ $errors->liveStream->any() || session('live_success') ? 'show' : '' }}" id="formEnVivo">
+            <div class="pro-card p-4">
+              <h4 class="mb-3" style="font-family:Oswald;">Cargar transmision en vivo</h4>
+
+              @if(session('live_success'))
+                <div class="alert alert-success">
+                  {{ session('live_success') }}
+                  @if(session('live_fixture_url'))
+                    <a href="{{ session('live_fixture_url') }}" class="ms-2">Ver partido</a>
+                  @endif
+                </div>
+              @endif
+
+              @if ($errors->liveStream->any())
+                <div class="alert alert-danger">
+                  <ul class="mb-0">
+                    @foreach ($errors->liveStream->all() as $error)
+                      <li>{{ $error }}</li>
+                    @endforeach
+                  </ul>
+                </div>
+              @endif
+
+              <form action="{{ route('events.fixture.stream.store') }}" method="POST" class="row g-3">
+                @csrf
+
+                <div class="col-md-3">
+                  <label class="form-label">Evento (ID)</label>
+                  <input type="number" name="event_id" class="form-control" min="1" value="{{ old('event_id') }}" required>
+                </div>
+
+                <div class="col-md-3">
+                  <label class="form-label">Grupo (ID)</label>
+                  <input type="number" name="grupo_id" class="form-control" min="1" value="{{ old('grupo_id') }}" required>
+                </div>
+
+                <div class="col-md-3">
+                  <label class="form-label">Jornada</label>
+                  <input type="number" name="jornada" class="form-control" min="1" value="{{ old('jornada') }}" required>
+                </div>
+
+                <div class="col-md-3">
+                  <label class="form-label">Partido (URL)</label>
+                  <input type="number" name="partido_numero" class="form-control" min="0" value="{{ old('partido_numero') }}" required>
+                </div>
+
+                <div class="col-12">
+                  <label class="form-label">Link del en vivo</label>
+                  <input type="url" name="live_url" class="form-control" value="{{ old('live_url') }}"
+                         placeholder="https://www.youtube.com/watch?v=..."
+                         required>
+                  <small class="muted d-block mt-2">
+                    Soporta YouTube, Facebook, Instagram y TikTok.
+                  </small>
+                  <small class="muted d-block mt-1">
+                    Usa el mismo numero de partido que aparece al final de la URL `.../fixture/grupo/jornada/partido`.
+                  </small>
+                </div>
+
+                <div class="col-12">
+                  <button class="btn btn-brand">Guardar transmision</button>
+                </div>
+              </form>
+            </div>
+          </div>
+
+          <div class="collapse mt-4 {{ $errors->tecnicoImage->any() || session('tecnico_success') ? 'show' : '' }}" id="formImagenTecnico">
+            <div class="pro-card p-4">
+              <h4 class="mb-3" style="font-family:Oswald;">Subir imagenes de los equipos</h4>
+
+              @if(session('tecnico_success'))
+                <div class="alert alert-success">
+                  {{ session('tecnico_success') }}
+                  @if(session('tecnico_fixture_url'))
+                    <a href="{{ session('tecnico_fixture_url') }}" class="ms-2">Ver partido</a>
+                  @endif
+                </div>
+              @endif
+
+              @if ($errors->tecnicoImage->any())
+                <div class="alert alert-danger">
+                  <ul class="mb-0">
+                    @foreach ($errors->tecnicoImage->all() as $error)
+                      <li>{{ $error }}</li>
+                    @endforeach
+                  </ul>
+                </div>
+              @endif
+
+              <form action="{{ route('events.fixture.tecnico.store') }}" method="POST" class="row g-3" enctype="multipart/form-data">
+                @csrf
+
+                <div class="col-md-3">
+                  <label class="form-label">Evento (ID)</label>
+                  <input type="number" name="event_id" class="form-control" min="1" value="{{ old('event_id') }}" required>
+                </div>
+
+                <div class="col-md-3">
+                  <label class="form-label">Grupo (ID)</label>
+                  <input type="number" name="grupo_id" class="form-control" min="1" value="{{ old('grupo_id') }}" required>
+                </div>
+
+                <div class="col-md-3">
+                  <label class="form-label">Jornada</label>
+                  <input type="number" name="jornada" class="form-control" min="1" value="{{ old('jornada') }}" required>
+                </div>
+
+                <div class="col-md-3">
+                  <label class="form-label">Partido (URL)</label>
+                  <input type="number" name="partido_numero" class="form-control" min="0" value="{{ old('partido_numero') }}" required>
+                </div>
+
+                <div class="col-md-6">
+                  <label class="form-label">Imagen equipo local</label>
+                  <input type="file" name="tecnico_image_local" class="form-control" accept=".jpg,.jpeg,.png,.webp" required>
+                </div>
+
+                <div class="col-md-6">
+                  <label class="form-label">Imagen equipo visitante</label>
+                  <input type="file" name="tecnico_image_visitante" class="form-control" accept=".jpg,.jpeg,.png,.webp" required>
+                </div>
+
+                <div class="col-12">
+                  <small class="muted d-block mt-2">
+                    Formatos: JPG, PNG o WEBP. Maximo 5MB.
+                  </small>
+                  <small class="muted d-block mt-1">
+                    Debes subir ambas imagenes: una para el local y otra para el visitante.
+                  </small>
+                  <small class="muted d-block mt-1">
+                    Usa el mismo numero de partido de la URL `.../fixture/grupo/jornada/partido`.
+                  </small>
+                </div>
+
+                <div class="col-12">
+                  <button class="btn btn-brand">Guardar imagenes</button>
                 </div>
               </form>
             </div>
@@ -787,4 +953,7 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+<<<<<<< HEAD
 
+=======
+>>>>>>> c776156 (ajustar)

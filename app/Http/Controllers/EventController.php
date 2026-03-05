@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Competicion;
 use App\Models\Event;
+use App\Models\FixtureStream;
+use App\Models\FixtureTecnico;
 use App\Models\Sponsor;
 use App\Models\TablaPosicion;
 use Carbon\Carbon;
@@ -182,50 +184,161 @@ class EventController extends Controller
         $jornadaNum = (int) $jornada;
         $partidoIndex = (int) $partido;
 
-        $competicion = Competicion::where('evento', $event->id)
-            ->with(['grupos.equipos'])
-            ->firstOrFail();
-
-        $grupos = $competicion->grupos->sortBy('nombre_grupo')->values();
-        $grupoModel = $grupos->firstWhere('id', $grupoId);
-
-        if (!$grupoModel) {
+        $fixtureContext = $this->resolveFixtureContext($event, $grupoId, $jornadaNum, $partidoIndex);
+        if (!$fixtureContext) {
             abort(404);
         }
 
-        $groupIndex = $grupos->search(fn ($item) => (int) $item->id === (int) $grupoModel->id);
-        $baseStart = $event->start_at ? $event->start_at->copy() : Carbon::now();
+        $partidoNumero = $partidoIndex + 1;
+        $liveStream = FixtureStream::query()
+            ->where('event_id', $event->id)
+            ->where('grupo_id', $grupoId)
+            ->where('jornada', $jornadaNum)
+            ->where('partido_numero', $partidoIndex)
+            ->first();
 
-        $teamNames = $grupoModel->equipos
-            ->sortBy('id')
-            ->pluck('nombre_equipo')
-            ->filter()
-            ->values()
-            ->all();
-
-        $fixture = $this->buildRoundRobinFixtures(
-            $teamNames,
-            $baseStart,
-            (int) $groupIndex,
-            (string) $event->location
-        );
-
-        $roundData = collect($fixture)->firstWhere('round', $jornadaNum);
-
-        if (!$roundData || !isset($roundData['matches'][$partidoIndex])) {
-            abort(404);
-        }
-
-        $match = $roundData['matches'][$partidoIndex];
+        $fixtureTecnico = FixtureTecnico::query()
+            ->where('event_id', $event->id)
+            ->where('grupo_id', $grupoId)
+            ->where('jornada', $jornadaNum)
+            ->where('partido_numero', $partidoIndex)
+            ->first();
 
         return view('events.fixture-detail', [
             'event' => $event,
-            'grupo' => $grupoModel,
+            'grupo' => $fixtureContext['grupo'],
             'jornada' => $jornadaNum,
-            'match' => $match,
-            'partidoNumero' => $partidoIndex + 1,
-            'totalPartidosJornada' => count($roundData['matches']),
+            'match' => $fixtureContext['match'],
+            'partidoNumero' => $partidoNumero,
+            'partidoIndex' => $partidoIndex,
+            'totalPartidosJornada' => $fixtureContext['totalPartidosJornada'],
+            'liveStream' => $liveStream,
+            'fixtureTecnico' => $fixtureTecnico,
         ]);
+    }
+
+    public function storeFixtureStream(Request $request)
+    {
+        $data = $request->validateWithBag('liveStream', [
+            'event_id' => 'required|integer|exists:events,id',
+            'grupo_id' => 'required|integer|exists:grupos,id',
+            'jornada' => 'required|integer|min:1',
+            'partido_numero' => 'required|integer|min:0',
+            'live_url' => 'required|url|max:2048',
+        ]);
+
+        $event = Event::findOrFail((int) $data['event_id']);
+        $grupoId = (int) $data['grupo_id'];
+        $jornada = (int) $data['jornada'];
+        $partidoIndex = (int) $data['partido_numero'];
+
+        $fixtureContext = $this->resolveFixtureContext($event, $grupoId, $jornada, $partidoIndex);
+        if (!$fixtureContext) {
+            return back()
+                ->withErrors([
+                    'partido_numero' => 'No encontramos ese partido para el evento/grupo/jornada indicados.',
+                ], 'liveStream')
+                ->withInput();
+        }
+
+        $platform = $this->detectLivePlatform((string) $data['live_url']);
+        if (!$platform) {
+            return back()
+                ->withErrors([
+                    'live_url' => 'Solo se aceptan enlaces de YouTube, Facebook, Instagram o TikTok.',
+                ], 'liveStream')
+                ->withInput();
+        }
+
+        FixtureStream::updateOrCreate(
+            [
+                'event_id' => $event->id,
+                'grupo_id' => $grupoId,
+                'jornada' => $jornada,
+                'partido_numero' => $partidoIndex,
+            ],
+            [
+                'live_url' => (string) $data['live_url'],
+                'platform' => $platform,
+                'updated_by' => auth()->id(),
+            ]
+        );
+
+        return redirect()
+            ->back()
+            ->with('live_success', 'Transmision en vivo guardada correctamente.')
+            ->with('live_fixture_url', route('events.fixture.detail', [$event->id, $grupoId, $jornada, $partidoIndex]));
+    }
+
+    public function storeFixtureTecnico(Request $request)
+    {
+        $data = $request->validateWithBag('tecnicoImage', [
+            'event_id' => 'required|integer|exists:events,id',
+            'grupo_id' => 'required|integer|exists:grupos,id',
+            'jornada' => 'required|integer|min:1',
+            'partido_numero' => 'required|integer|min:0',
+            'tecnico_image_local' => 'required|image|mimes:jpg,jpeg,png,webp|max:5120',
+            'tecnico_image_visitante' => 'required|image|mimes:jpg,jpeg,png,webp|max:5120',
+        ]);
+
+        $event = Event::findOrFail((int) $data['event_id']);
+        $grupoId = (int) $data['grupo_id'];
+        $jornada = (int) $data['jornada'];
+        $partidoIndex = (int) $data['partido_numero'];
+
+        $fixtureContext = $this->resolveFixtureContext($event, $grupoId, $jornada, $partidoIndex);
+        if (!$fixtureContext) {
+            return back()
+                ->withErrors([
+                    'partido_numero' => 'No encontramos ese partido para el evento/grupo/jornada indicados.',
+                ], 'tecnicoImage')
+                ->withInput();
+        }
+
+        $existing = FixtureTecnico::query()
+            ->where('event_id', $event->id)
+            ->where('grupo_id', $grupoId)
+            ->where('jornada', $jornada)
+            ->where('partido_numero', $partidoIndex)
+            ->first();
+
+        $localImagePath = $request->file('tecnico_image_local')->store('eventos/tecnicos', 'public');
+        $visitanteImagePath = $request->file('tecnico_image_visitante')->store('eventos/tecnicos', 'public');
+
+        if ($existing) {
+            $oldPaths = array_filter(array_unique([
+                $existing->image_path,
+                $existing->local_image_path,
+                $existing->visitante_image_path,
+            ]));
+
+            foreach ($oldPaths as $oldPath) {
+                if (Storage::disk('public')->exists($oldPath)) {
+                    Storage::disk('public')->delete($oldPath);
+                }
+            }
+        }
+
+        FixtureTecnico::updateOrCreate(
+            [
+                'event_id' => $event->id,
+                'grupo_id' => $grupoId,
+                'jornada' => $jornada,
+                'partido_numero' => $partidoIndex,
+            ],
+            [
+                // Mantenemos image_path por compatibilidad con registros anteriores.
+                'image_path' => $localImagePath,
+                'local_image_path' => $localImagePath,
+                'visitante_image_path' => $visitanteImagePath,
+                'updated_by' => auth()->id(),
+            ]
+        );
+
+        return redirect()
+            ->back()
+            ->with('tecnico_success', 'Imagenes de ambos equipos guardadas correctamente.')
+            ->with('tecnico_fixture_url', route('events.fixture.detail', [$event->id, $grupoId, $jornada, $partidoIndex]));
     }
 
     public function listado()
@@ -376,6 +489,76 @@ class EventController extends Controller
         }
 
         return $fixture;
+    }
+
+    private function resolveFixtureContext(Event $event, int $grupoId, int $jornadaNum, int $partidoIndex): ?array
+    {
+        $competicion = Competicion::where('evento', $event->id)
+            ->with(['grupos.equipos'])
+            ->first();
+
+        if (!$competicion) {
+            return null;
+        }
+
+        $grupos = $competicion->grupos->sortBy('nombre_grupo')->values();
+        $grupoModel = $grupos->firstWhere('id', $grupoId);
+
+        if (!$grupoModel) {
+            return null;
+        }
+
+        $groupIndex = $grupos->search(fn ($item) => (int) $item->id === (int) $grupoModel->id);
+        $baseStart = $event->start_at ? $event->start_at->copy() : Carbon::now();
+
+        $teamNames = $grupoModel->equipos
+            ->sortBy('id')
+            ->pluck('nombre_equipo')
+            ->filter()
+            ->values()
+            ->all();
+
+        $fixture = $this->buildRoundRobinFixtures(
+            $teamNames,
+            $baseStart,
+            (int) $groupIndex,
+            (string) $event->location
+        );
+
+        $roundData = collect($fixture)->firstWhere('round', $jornadaNum);
+        if (!$roundData || !isset($roundData['matches'][$partidoIndex])) {
+            return null;
+        }
+
+        return [
+            'grupo' => $grupoModel,
+            'match' => $roundData['matches'][$partidoIndex],
+            'totalPartidosJornada' => count($roundData['matches']),
+        ];
+    }
+
+    private function detectLivePlatform(string $url): ?string
+    {
+        $host = strtolower((string) parse_url(trim($url), PHP_URL_HOST));
+        $host = preg_replace('/^www\./', '', $host);
+
+        if ($host === 'youtu.be' || str_contains($host, 'youtube.com')) {
+            return 'YouTube';
+        }
+
+        if ($host === 'fb.watch' || str_contains($host, 'facebook.com')) {
+            return 'Facebook';
+        }
+
+        if (str_contains($host, 'instagram.com')) {
+            return 'Instagram';
+        }
+
+        if (str_contains($host, 'tiktok.com')) {
+            return 'TikTok';
+        }
+
+        return null;
     }
 
     private function buildGroupDuels(array $groups): array
