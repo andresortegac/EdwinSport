@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
         // 1) Crear usuarios fijos (admin y developer)
         $this->call([
             FixedUsersSeeder::class,
+            CanchaSeeder::class,
         ]);
 
         // 2) Crear usuario de prueba con password conocido

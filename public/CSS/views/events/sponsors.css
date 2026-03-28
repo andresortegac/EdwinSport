@@ -1,0 +1,229 @@
+﻿nav.navbar { display: none !important; }
+  body { padding-top: 0 !important; background: #020617; }
+  main.py-4 { padding-top: 0 !important; }
+
+  .sponsors-page {
+    min-height: 100vh;
+    padding: 2rem 0 2.6rem;
+    color: #e5e7eb;
+    background:
+      radial-gradient(1000px 420px at 10% -5%, rgba(15,118,110,.22), transparent 55%),
+      radial-gradient(900px 400px at 95% 0%, rgba(13,148,136,.15), transparent 50%),
+      linear-gradient(180deg, #030712, #020617);
+  }
+
+  .page-container { max-width: 1180px; }
+
+  .sponsors-header {
+    border-radius: 1.25rem;
+    padding: 1.35rem 1.5rem;
+    border: 1px solid rgba(45,212,191,.26);
+    background: linear-gradient(125deg, rgba(15,118,110,.35), rgba(15,23,42,.95) 55%);
+    box-shadow: 0 24px 55px rgba(2, 6, 23, .7);
+  }
+
+  .sponsors-badge {
+    background: rgba(248,250,252,.92);
+    color: #0f172a;
+    border-radius: 999px;
+    padding: .28rem .78rem;
+    font-size: .78rem;
+    font-weight: 700;
+  }
+
+  .sponsors-header-title {
+    color: #f8fafc;
+    font-size: 2rem;
+    margin-bottom: .25rem;
+    font-weight: 700;
+    letter-spacing: .02em;
+  }
+
+  .sponsors-header p { margin: 0; color: #cbd5e1; }
+
+  .updated-label {
+    color: #94a3b8;
+    font-size: .72rem;
+    text-transform: uppercase;
+    letter-spacing: .12em;
+  }
+
+  .updated-date { color: #f8fafc; font-weight: 700; font-size: .92rem; }
+
+  .back-btn {
+    border-radius: 999px;
+    border: 1px solid rgba(148,163,184,.7);
+    color: #e5e7eb;
+    font-size: .84rem;
+    padding: .42rem .9rem;
+  }
+
+  .back-btn:hover {
+    border-color: #14b8a6;
+    background: rgba(20,184,166,.14);
+    color: #fff;
+  }
+
+  .sponsors-main-card {
+    border-radius: 1.25rem;
+    border: 1px solid rgba(45,212,191,.2);
+    background: linear-gradient(180deg, #030b18, #030712);
+    box-shadow: 0 24px 80px rgba(2, 6, 23, .86);
+  }
+
+  .sponsor-form-card {
+    border-radius: 1rem;
+    border: 1px solid rgba(55,65,81,.85);
+    background: rgba(2, 6, 23, .65);
+  }
+
+  .sponsor-form-card h5,
+  .sponsors-list-title {
+    font-size: .92rem;
+    text-transform: uppercase;
+    letter-spacing: .11em;
+    color: #9ca3af;
+    margin-bottom: 1rem;
+  }
+
+  .sponsors-page .form-label {
+    font-size: .8rem;
+    color: #94a3b8;
+    text-transform: uppercase;
+    letter-spacing: .11em;
+  }
+
+  .sponsors-page .form-control {
+    background: #020617;
+    border: 1px solid #374151;
+    color: #f8fafc;
+    border-radius: .75rem;
+    padding: .58rem .85rem;
+  }
+
+  .sponsors-page .form-control:focus {
+    background: #020617;
+    border-color: #14b8a6;
+    box-shadow: 0 0 0 1px rgba(20,184,166,.55);
+    color: #f8fafc;
+  }
+
+  .sponsors-page .form-control::placeholder { color: #6b7280; }
+
+  .upload-box {
+    border: 1px dashed rgba(148,163,184,.65);
+    border-radius: 12px;
+    background: rgba(15,23,42,.55);
+    padding: 12px;
+  }
+
+  .upload-input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .upload-trigger {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border-radius: 999px;
+    padding: .46rem .9rem;
+    background: linear-gradient(90deg, #0f766e, #14b8a6);
+    color: #fff;
+    font-weight: 700;
+    font-size: .84rem;
+    margin-bottom: 0;
+    cursor: pointer;
+  }
+
+  .upload-name {
+    margin: 10px 0 0;
+    color: #cbd5e1;
+    font-size: .84rem;
+  }
+
+  .upload-preview {
+    width: 100%;
+    max-height: 130px;
+    object-fit: contain;
+    border-radius: 10px;
+    border: 1px solid rgba(148,163,184,.5);
+    background: #0b1120;
+    margin-top: 10px;
+    display: none;
+  }
+
+  .upload-box.has-file .upload-preview { display: block; }
+
+  .sponsor-submit-btn {
+    border: 0;
+    border-radius: 999px;
+    padding: .62rem 1rem;
+    font-weight: 700;
+    background: linear-gradient(90deg, #0f766e, #14b8a6);
+    box-shadow: 0 12px 28px rgba(20,184,166,.35);
+  }
+
+  .sponsor-submit-btn:hover {
+    transform: translateY(-1px);
+    background: linear-gradient(90deg, #0d5f59, #0f766e);
+  }
+
+  .sponsors-count {
+    font-size: .78rem;
+    color: #e5e7eb;
+    border: 1px solid rgba(148,163,184,.6);
+    border-radius: 999px;
+    padding: .24rem .72rem;
+  }
+
+  .sponsor-card {
+    border-radius: 1rem;
+    border: 1px solid rgba(55,65,81,.9);
+    background: linear-gradient(180deg, #0b1120, #020617);
+    box-shadow: 0 16px 36px rgba(2, 6, 23, .75);
+    transition: transform .18s ease, border-color .18s ease;
+  }
+
+  .sponsor-card:hover {
+    transform: translateY(-3px);
+    border-color: #14b8a6;
+  }
+
+  .sponsor-logo-wrapper {
+    height: 94px;
+    border-radius: .8rem;
+    border: 1px solid rgba(55,65,81,.85);
+    background: #070f1f;
+  }
+
+  .sponsor-name {
+    color: #f8fafc;
+    font-size: .95rem;
+    font-weight: 700;
+  }
+
+  .sponsor-link-btn {
+    border: 1px solid rgba(148,163,184,.8);
+    color: #e5e7eb;
+    border-radius: 999px;
+    font-size: .8rem;
+    padding: .35rem .72rem;
+  }
+
+  .sponsor-link-btn:hover {
+    border-color: #14b8a6;
+    background: rgba(20,184,166,.12);
+    color: #fff;
+  }
+
+  .empty-text { color: #94a3b8; font-size: .92rem; }
+
+  @media (max-width: 991.98px) {
+    .sponsors-header-title { font-size: 1.62rem; }
+    .sponsors-page { padding-top: 1.4rem; }
+  }
+

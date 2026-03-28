@@ -41,7 +41,9 @@ class LoginController extends Controller
 
             // ✅ Admins a usuario-panel
             if (in_array(Auth::user()->role, ['admin', 'superadmin'])) {
-                return redirect()->route('usuario.panel');
+                return redirect()
+                    ->route('usuario.panel')
+                    ->with('welcome_message', 'Bienvenido al panel de Edwin Sport, '.(Auth::user()->name ?? Auth::user()->email).'.');
             }
 
             // ✅ Developers (y cualquier otro) a register

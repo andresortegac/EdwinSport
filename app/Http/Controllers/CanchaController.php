@@ -12,13 +12,23 @@ class CanchaController extends Controller
     // LISTAR TODAS LAS CANCHAS (Página del convenio)
     public function index()
     {
-        $canchas = Cancha::all();
+        $canchas = Cancha::query()
+            ->whereNotNull('integration_identifier')
+            ->whereNotNull('api_base_url')
+            ->whereNotNull('integration_token')
+            ->get();
+
         return view('canchas.index', compact('canchas'));
     }
 
     // MOSTRAR UNA CANCHA + AGENDA + RESERVAS + SUBCANCHAS
     public function show(Cancha $cancha)
     {
+        abort_unless(
+            filled($cancha->integration_identifier) && filled($cancha->api_base_url) && filled($cancha->integration_token),
+            404
+        );
+
         // Obtener subcanchas de la cancha
         $subcanchas = $cancha->subcanchas;  // ← relación belongsTo
 

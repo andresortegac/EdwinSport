@@ -20,6 +20,7 @@ use App\Http\Controllers\PanelController;
 use App\Http\Controllers\ParticipanteController;
 use App\Http\Controllers\UserReservaController;
 use App\Http\Controllers\CompeticionesController;
+use App\Http\Controllers\ReservaExternaController;
 
 // ✅ IMPORT DEL CONTROLADOR NUEVO
 use App\Http\Controllers\CrearEventoDeveloperController;
@@ -255,6 +256,16 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
     Route::delete('/admins/{id}', [AdminUserController::class, 'destroy'])->name('crear_usuario.destroy');
     Route::patch('/admins/{id}/password', [AdminUserController::class, 'updatePassword'])->name('crear_usuario.updatePassword');
+});
+
+Route::middleware(['auth', 'admin'])->prefix('reservas-externas')->name('reservas_externas.')->group(function () {
+    Route::get('/', [ReservaExternaController::class, 'index'])->name('index');
+    Route::get('/historial', [ReservaExternaController::class, 'history'])->name('history');
+    Route::get('/create', [ReservaExternaController::class, 'create'])->name('create');
+    Route::post('/', [ReservaExternaController::class, 'store'])->name('store');
+    Route::get('/{reservas_externa}/edit', [ReservaExternaController::class, 'edit'])->name('edit');
+    Route::match(['put', 'patch'], '/{reservas_externa}', [ReservaExternaController::class, 'update'])->name('update');
+    Route::delete('/{reservas_externa}', [ReservaExternaController::class, 'destroy'])->name('destroy');
 });
 
 

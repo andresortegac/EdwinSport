@@ -1,8 +1,7 @@
 ﻿@extends('layouts.app')
 
 @push('styles')
-<link rel="stylesheet" href="{{ asset('CSS/principal-home.css') }}">
-<link rel="stylesheet" href="{{ asset('CSS/canchas-index.css') }}">
+<link rel="stylesheet" href="{{ asset('CSS/views/canchas/index.css') }}">
 @endpush
 
 @section('content')
@@ -10,6 +9,7 @@
     $totalComplejos = $canchas->count();
     $totalEspacios = $canchas->sum(fn($c) => (int)($c->num_canchas ?? 1));
     $ubicaciones = $canchas->pluck('ubicacion')->filter()->unique()->count();
+    $ciudades = $canchas->pluck('ciudad')->filter()->unique()->count();
     $gallery = [
         'img/cancha.jpg',
         'img/cancha vertical.jpg',
@@ -47,6 +47,10 @@
                             <div class="stat-line">
                                 <span>{{ $ubicaciones }}</span>
                                 <p>Ubicaciones activas</p>
+                            </div>
+                            <div class="stat-line">
+                                <span>{{ $ciudades }}</span>
+                                <p>Ciudades integradas</p>
                             </div>
                         </div>
                     </div>
@@ -102,8 +106,10 @@
 
                                 <ul class="cancha-meta list-unstyled mb-3">
                                     <li><i class="bi bi-geo"></i> {{ $cancha->ubicacion ?: 'Ubicacion por definir' }}</li>
+                                    <li><i class="bi bi-building"></i> {{ $cancha->ciudad ?: 'Ciudad por definir' }}</li>
                                     <li><i class="bi bi-clock"></i> {{ $cancha->hora_apertura }} - {{ $cancha->hora_cierre }}</li>
                                     <li><i class="bi bi-grid"></i> {{ $cancha->num_canchas ?? 1 }} espacios</li>
+                                    <li><i class="bi bi-link-45deg"></i> Integrada con {{ $cancha->subdominio ?: 'tenant configurado' }}</li>
                                 </ul>
 
                                 <div class="mt-auto d-flex flex-wrap gap-2">

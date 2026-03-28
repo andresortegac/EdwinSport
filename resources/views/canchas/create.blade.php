@@ -1,7 +1,7 @@
 ﻿@extends('layouts.app')
 
 @push('styles')
-<link rel="stylesheet" href="{{ asset('CSS/canchas-create.css') }}">
+<link rel="stylesheet" href="{{ asset('CSS/views/canchas/create.css') }}">
 @endpush
 
 @push('scripts')
@@ -113,6 +113,31 @@
                     <div class="col-md-6">
                         <label for="ubicacion" class="form-label">Ubicacion</label>
                         <input id="ubicacion" type="text" name="ubicacion" class="form-control" value="{{ old('ubicacion') }}" required>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="ciudad" class="form-label">Ciudad</label>
+                        <input id="ciudad" type="text" name="ciudad" class="form-control" value="{{ old('ciudad') }}" required>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="subdominio" class="form-label">Subdominio</label>
+                        <input id="subdominio" type="text" name="subdominio" class="form-control" value="{{ old('subdominio') }}" placeholder="bombonera" required>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="integration_identifier" class="form-label">Identificador de integracion</label>
+                        <input id="integration_identifier" type="text" name="integration_identifier" class="form-control" value="{{ old('integration_identifier') }}" required>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="api_base_url" class="form-label">URL base API ReservasSport</label>
+                        <input id="api_base_url" type="url" name="api_base_url" class="form-control" value="{{ old('api_base_url') }}" placeholder="http://127.0.0.1:8000">
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="integration_token" class="form-label">Token de integracion</label>
+                        <input id="integration_token" type="text" name="integration_token" class="form-control" value="{{ old('integration_token') }}">
                     </div>
 
                     <div class="col-md-6">

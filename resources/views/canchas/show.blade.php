@@ -1,8 +1,7 @@
 ﻿@extends('layouts.app')
 
 @push('styles')
-<link rel="stylesheet" href="{{ asset('CSS/principal-home.css') }}">
-<link rel="stylesheet" href="{{ asset('CSS/canchas-show.css') }}">
+<link rel="stylesheet" href="{{ asset('CSS/views/canchas/show.css') }}">
 @endpush
 
 @section('content')

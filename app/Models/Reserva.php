@@ -8,6 +8,7 @@ class Reserva extends Model
 {
     protected $fillable = [
         'cancha_id',
+        'subcancha_id',
         'usuario_id',
         'fecha',
         'hora_inicio',

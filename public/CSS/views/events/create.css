@@ -1,0 +1,180 @@
+﻿/* Estilo de la sección de "Agregar Jugadores / Participantes" */
+.wrap.participantes {
+    width: 100%;
+    max-width: 950px;
+    margin: 0 auto;
+    padding: 24px;
+    background: #1c2331;
+    border-radius: 12px;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+}
+
+/* ✅ Títulos de la sección (AQUÍ cambia el color de "CREAR EVENTO") */
+.wrap.participantes .section-title {
+    color: #ffffff; /* ✅ CAMBIO: antes #eaf0ff */
+    font-weight: 700;
+    margin-bottom: 10px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+/* Título principal del formulario con alto contraste */
+.wrap.formulario-evento .hero-title {
+    color: #f8fafc !important;
+    text-align: center;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-shadow: 0 8px 24px rgba(2, 6, 23, 0.55);
+    margin-bottom: 10px;
+}
+
+/* ✅ Labels blancas (por si usas <label> dentro de .field) */
+.wrap.participantes .field label {
+    color: #ffffff; /* ✅ CAMBIO */
+    font-weight: 700;
+}
+
+/* Estilo de los campos dentro de "Agregar Jugadores / Participantes" */
+.wrap.participantes .form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+}
+
+.wrap.participantes .field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+/* ✅ input y select (blancos) */
+.wrap.participantes .field input,
+.wrap.participantes .field select,
+.wrap.participantes .field textarea {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid rgba(148,163,184,0.9); /* ✅ CAMBIO: borde más visible */
+    background: #ffffff; /* ✅ CAMBIO: antes rgba(8, 16, 32, 0.7) */
+    color: #0f172a;      /* ✅ CAMBIO: antes #eaf0ff */
+    outline: none;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+/* inputs on focus */
+.wrap.participantes .field input:focus,
+.wrap.participantes .field select:focus,
+.wrap.participantes .field textarea:focus {
+    border-color: rgba(20,184,166,0.75);
+    box-shadow: 0 0 0 2px rgba(20,184,166,0.18);
+}
+
+/* Botón de guardar jugador */
+.wrap.participantes .btn {
+    margin-top: 20px;
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(180deg, #0f766e 0%, #0d5f59 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 700;
+    letter-spacing: 0.4px;
+    box-shadow: 0 10px 24px rgba(15,118,110,0.28);
+}
+
+.wrap.participantes .btn:hover {
+    filter: brightness(1.1);
+    box-shadow: 0 12px 26px rgba(15,118,110,0.34);
+}
+
+.wrap.participantes .btn:active {
+    transform: translateY(1px);
+}
+
+/* Estilo de la sección de equipos registrados */
+.wrap.participantes .table {
+    width: 100%;
+    margin-top: 20px;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.wrap.participantes .table th, .wrap.participantes .table td {
+    padding: 12px 16px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    text-align: left;
+}
+
+.wrap.participantes .table th {
+    background-color: #2b3746;
+    color: #eaf0ff;
+    font-weight: bold;
+}
+
+.wrap.participantes .table tr:hover {
+    background-color: rgba(20, 184, 166, 0.12);
+}
+
+/* Uploader moderno */
+.file-upload {
+    border: 1px dashed rgba(148,163,184,0.65);
+    border-radius: 12px;
+    background: rgba(15, 23, 42, 0.45);
+    padding: 14px;
+}
+
+.file-input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.file-upload-trigger {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: fit-content;
+    background: linear-gradient(180deg, #0f766e 0%, #0d5f59 100%);
+    color: #ffffff;
+    font-weight: 700;
+    border-radius: 999px;
+    padding: 10px 14px;
+    cursor: pointer;
+    margin: 0;
+    box-shadow: 0 8px 18px rgba(15,118,110,0.3);
+}
+
+.file-upload-name {
+    margin: 10px 0 0;
+    color: #cbd5e1;
+    font-size: .95rem;
+}
+
+.file-upload-preview {
+    margin-top: 12px;
+    width: 100%;
+    max-height: 220px;
+    border-radius: 10px;
+    object-fit: cover;
+    border: 1px solid rgba(148,163,184,0.6);
+    display: none;
+}
+
+.file-upload.has-file .file-upload-preview {
+    display: block;
+}
+
+/* Ajuste para dispositivos móviles */
+@media (max-width: 768px) {
+    .wrap.participantes .form-grid {
+        grid-template-columns: 1fr;
+    }
+    .wrap.participantes .btn {
+        width: 100%;
+    }
+}
+

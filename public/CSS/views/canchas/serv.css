@@ -1,0 +1,100 @@
+.reserva-container {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 30px;
+    border-radius: 24px;
+    border: 1px solid #d8e3ef;
+    background: linear-gradient(165deg, #f8fbff, #eef4fb);
+    box-shadow: 0 18px 36px rgba(16, 35, 55, 0.08);
+}
+
+.reserva-container h2 {
+    color: #113152;
+    font-size: clamp(1.9rem, 4vw, 2.6rem);
+    font-weight: 800;
+}
+
+.reserva-card {
+    height: 100%;
+    border-radius: 20px;
+    border: 1px solid #dce5f0;
+    background: #ffffff;
+    padding: 25px;
+    box-shadow: 0 12px 24px rgba(16, 35, 55, 0.06);
+}
+
+.reserva-card h1,
+.reserva-card h4,
+.reserva-card label,
+.reserva-card th {
+    color: #173d62;
+}
+
+.reserva-card p,
+.reserva-card td,
+.reserva-card small,
+.reserva-card .text-muted {
+    color: #5b6f88;
+}
+
+.reserva-card label {
+    display: block;
+    margin-top: 0.85rem;
+    margin-bottom: 0.35rem;
+    font-weight: 700;
+}
+
+.reserva-card .form-control,
+.reserva-card .form-select {
+    min-height: 44px;
+    border-radius: 10px;
+    border-color: #cfdcec;
+    background: #f9fbff;
+}
+
+.reserva-card .form-control:focus,
+.reserva-card .form-select:focus {
+    background: #ffffff;
+    border-color: #6ba1dd;
+    box-shadow: 0 0 0 3px rgba(64, 110, 173, 0.14);
+}
+
+.cancha-img {
+    width: 100%;
+    max-width: 280px;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 16px;
+    display: block;
+    margin-bottom: 1rem;
+}
+
+.estado-table th {
+    font-size: 0.9rem;
+    font-weight: 700;
+}
+
+.estado-table td {
+    vertical-align: middle;
+}
+
+.badge.bg-warning.text-dark {
+    color: #5b4300 !important;
+    background: #ffe28a !important;
+}
+
+@media (max-width: 768px) {
+    .reserva-container {
+        padding: 18px;
+        border-radius: 18px;
+    }
+
+    .reserva-card {
+        padding: 18px;
+    }
+
+    .cancha-img {
+        max-width: 100%;
+        height: 210px;
+    }
+}

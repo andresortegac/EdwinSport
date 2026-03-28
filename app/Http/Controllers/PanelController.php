@@ -2,62 +2,87 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Panel;
+use App\Models\Equipo;
 use App\Models\Event;
-use App\Models\Equipo;              // 👈 IMPORTANTE: para poder usar Equipo
+use App\Models\UserReserva;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 class PanelController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        // Todos los eventos (puedes cambiar a ->paginate(10) si quieres paginación)
         $eventos = Event::all();
-
-        // ✅ Cargar todos los equipos para el formulario de participantes
         $equipos = Equipo::all();
+        $now = Carbon::now();
 
-        // Enviamos ambas variables a la vista usuario.panel
-        return view('usuario.panel', compact('eventos', 'equipos'));
+        $reservas = UserReserva::with('cancha')
+            ->orderBy('fecha')
+            ->orderBy('hora')
+            ->get();
+
+        $proximasReservas = $reservas
+            ->filter(fn (UserReserva $reserva) => Carbon::parse("{$reserva->fecha} {$reserva->hora}") >= $now)
+            ->groupBy('cancha_id')
+            ->map(function ($items) {
+                $items = $items->values();
+
+                return [
+                    'cancha' => $items->first()?->cancha,
+                    'reservas' => $items,
+                    'total' => $items->count(),
+                ];
+            })
+            ->values();
+
+        $historialReservas = $reservas
+            ->filter(fn (UserReserva $reserva) => Carbon::parse("{$reserva->fecha} {$reserva->hora}") < $now)
+            ->groupBy('cancha_id')
+            ->map(function ($items) {
+                $items = $items->values();
+
+                return [
+                    'cancha' => $items->first()?->cancha,
+                    'reservas' => $items,
+                    'total' => $items->count(),
+                ];
+            })
+            ->values();
+
+        return view('usuario.panel', compact(
+            'eventos',
+            'equipos',
+            'proximasReservas',
+            'historialReservas',
+        ));
     }
 
     public function destroy($id)
     {
-        // Buscar el evento
         $evento = Event::findOrFail($id);
 
-        // Si tiene imagen, eliminarla físicamente del storage
         if ($evento->image && Storage::exists('public/' . $evento->image)) {
             Storage::delete('public/' . $evento->image);
         }
 
-        // Eliminar el evento
         $evento->delete();
 
-        // Redirigir con mensaje de exito
         return redirect()->route('usuario.panel')
-                         ->with('success', 'Evento eliminado correctamente.');
+            ->with('success', 'Evento eliminado correctamente.');
     }
 
     public function edit($id)
     {
-        // Buscar el evento
         $evento = Event::findOrFail($id);
 
-        // Retornar la vista de edición con los datos del evento
         return view('events.editar-evento', compact('evento'));
     }
 
     public function update(Request $request, $id)
     {
-        // Buscar el evento
         $evento = Event::findOrFail($id);
 
-        // Validación
         $request->validate([
             'title'       => 'required|string|max:255',
             'description' => 'required|string',
@@ -69,33 +94,25 @@ class PanelController extends Controller
             'image'       => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
         ]);
 
-        // Actualizar datos del evento
-        $evento->title       = $request->title;
+        $evento->title = $request->title;
         $evento->description = $request->description;
-        $evento->category    = $request->category;
-        $evento->location    = $request->location;
-        $evento->start_at    = $request->start_at;
-        $evento->end_at      = $request->end_at;
-        $evento->status      = $request->status;
+        $evento->category = $request->category;
+        $evento->location = $request->location;
+        $evento->start_at = $request->start_at;
+        $evento->end_at = $request->end_at;
+        $evento->status = $request->status;
 
-        // Si se sube nueva imagen
         if ($request->hasFile('image')) {
-
-            // Eliminar imagen anterior
             if ($evento->image && Storage::exists('public/' . $evento->image)) {
                 Storage::delete('public/' . $evento->image);
             }
 
-            // Guardar nueva imagen
-            $path = $request->file('image')->store('eventos', 'public');
-            $evento->image = $path;
+            $evento->image = $request->file('image')->store('eventos', 'public');
         }
 
-        // Guardar cambios
         $evento->save();
 
-        // Redirigir con mensaje de éxito
         return redirect()->route('usuario.panel')
-                         ->with('success', 'Evento actualizado correctamente.');
+            ->with('success', 'Evento actualizado correctamente.');
     }
 }

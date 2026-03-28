@@ -12,6 +12,20 @@ class UserReserva extends Model
         'telefono_cliente',
         'fecha',
         'hora',
-        'numero_subcancha'
+        'numero_subcancha',
+        'estado_solicitud',
+        'external_reference',
+        'external_sync_status',
+        'external_sync_message',
+        'external_sent_at',
     ];
+
+    protected $casts = [
+        'external_sent_at' => 'datetime',
+    ];
+
+    public function cancha()
+    {
+        return $this->belongsTo(Cancha::class);
+    }
 }

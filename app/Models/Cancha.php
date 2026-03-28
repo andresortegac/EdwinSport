@@ -10,6 +10,11 @@ class Cancha extends Model
         'nombre',
         'descripcion',
         'ubicacion',
+        'ciudad',
+        'subdominio',
+        'integration_identifier',
+        'api_base_url',
+        'integration_token',
         'telefono_contacto',
         'hora_apertura',
         'hora_cierre',
@@ -28,5 +33,4 @@ public function reservas()
 
 
 }
-
 
