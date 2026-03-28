@@ -12,10 +12,11 @@
     <div class="event-image-wrap">
         <img
             src="{{ $imageUrl ?: $fallbackImage }}"
+            data-event-card-image
+            data-fallback-src="{{ $fallbackImage }}"
             class="event-image"
             alt="{{ $event->title }}"
             loading="lazy"
-            onerror="this.onerror=null; this.src='{{ $fallbackImage }}';"
         >
         <span class="event-category">{{ ucfirst(str_replace('_', ' ', $event->category ?? 'general')) }}</span>
     </div>

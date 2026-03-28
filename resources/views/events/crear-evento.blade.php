@@ -17,7 +17,7 @@
   </div>
 @endif
 
-<div class="wrap formulario-evento">
+<div class="wrap formulario-evento" data-event-create data-success-message="{{ session('success') }}">
 
     <h1 class="hero-title">CREAR EVENTO</h1>
     <br>
@@ -124,43 +124,6 @@
 
 </div>
 
-@if (session('success'))
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-  <script>
-      Swal.fire({
-          icon: 'success',
-          title: 'Operación exitosa',
-          text: "{{ session('success') }}",
-          confirmButtonColor: '#0f766e',
-          timer: 3000,
-          timerProgressBar: true
-      });
-  </script>
-@endif
-
-<script>
-  document.addEventListener('DOMContentLoaded', function () {
-    const input = document.getElementById('image');
-    const name = document.getElementById('image-file-name');
-    const preview = document.getElementById('image-preview');
-    const upload = document.getElementById('image-upload');
-
-    if (!input || !name || !preview || !upload) return;
-
-    input.addEventListener('change', function () {
-      const file = this.files && this.files[0] ? this.files[0] : null;
-
-      if (!file) {
-        name.textContent = 'Ningun archivo seleccionado';
-        preview.removeAttribute('src');
-        upload.classList.remove('has-file');
-        return;
-      }
-
-      name.textContent = file.name;
-      upload.classList.add('has-file');
-      preview.src = URL.createObjectURL(file);
-    });
-  });
-</script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="{{ asset('js/views/events/create.js') }}"></script>
 

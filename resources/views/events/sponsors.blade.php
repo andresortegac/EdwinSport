@@ -107,10 +107,10 @@
                           @if ($sponsor->logo)
                             <img
                               src="{{ route('sponsors.media', ['path' => ltrim($sponsor->logo, '/')]) }}"
+                              data-sponsor-logo
                               class="img-fluid"
                               alt="{{ $sponsor->nombre }}"
                               style="max-height:72px; object-fit:contain;"
-                              onerror="this.closest('.sponsor-logo-wrapper').innerHTML = '<span class=&quot;text-muted small&quot;>Sin logo</span>'"
                             >
                           @else
                             <span class="text-muted small">Sin logo</span>
@@ -139,29 +139,8 @@
   </div>
 </div>
 
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-  const input = document.getElementById('logo');
-  const name = document.getElementById('logo-file-name');
-  const preview = document.getElementById('logo-preview');
-  const box = document.getElementById('logo-upload');
-
-  if (!input || !name || !preview || !box) return;
-
-  input.addEventListener('change', function () {
-    const file = this.files && this.files[0] ? this.files[0] : null;
-    if (!file) {
-      name.textContent = 'Ningun archivo seleccionado';
-      preview.removeAttribute('src');
-      box.classList.remove('has-file');
-      return;
-    }
-
-    name.textContent = file.name;
-    box.classList.add('has-file');
-    preview.src = URL.createObjectURL(file);
-  });
-});
-</script>
+@push('scripts')
+<script src="{{ asset('js/views/events/sponsors.js') }}"></script>
+@endpush
 @endsection
 

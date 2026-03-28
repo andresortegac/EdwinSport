@@ -249,66 +249,7 @@
   <script src="{{ asset('vendor/jquery-easing/jquery.easing.min.js') }}"></script>
   <script src="{{ asset('js/sb-admin-2.min.js') }}"></script>
 
-  <!-- âœ… JS personalizado (sin jQuery extra) -->
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const form = document.getElementById("contenedor-formulario");
-      const list = document.getElementById("contenedor-listado");
-
-      function activar(idBtn) {
-        document.querySelectorAll(".sidebar .nav-item")
-          .forEach(li => li.classList.remove("active"));
-        const btn = document.getElementById(idBtn);
-        if (btn) btn.closest(".nav-item").classList.add("active");
-      }
-
-      function mostrarFormulario() {
-        if (form) form.style.display = "block";
-        if (list) list.style.display = "none";
-        activar("btn-crear-evento");
-      }
-
-      function mostrarListado() {
-        if (form) form.style.display = "none";
-        if (list) list.style.display = "block";
-        activar("btn-listado-eventos");
-      }
-
-      // Mostrar formulario al entrar
-      mostrarFormulario();
-
-      document.addEventListener("click", function (e) {
-        const crear = e.target.closest("#btn-crear-evento");
-        const listado = e.target.closest("#btn-listado-eventos");
-
-        if (crear) {
-          e.preventDefault();
-          mostrarFormulario();
-        }
-        if (listado) {
-          e.preventDefault();
-          mostrarListado();
-        }
-      });
-
-      // Sidebar toggle simple (persistencia bÃ¡sica usando localStorage)
-      const sidebar = document.getElementById('accordionSidebar');
-      const toggleBtn = document.getElementById('sidebarToggle');
-
-      if (toggleBtn && sidebar) {
-        toggleBtn.addEventListener('click', () => {
-          sidebar.classList.toggle('toggled');
-          try {
-            localStorage.setItem('sidebarToggled', sidebar.classList.contains('toggled'));
-          } catch (e) {}
-        });
-
-        try {
-          if (localStorage.getItem('sidebarToggled') === 'true') sidebar.classList.add('toggled');
-        } catch (e) {}
-      }
-    });
-  </script>
+  <script src="{{ asset('js/views/events/create-developer.js') }}"></script>
 </body>
 
 </html>

@@ -129,16 +129,5 @@
 @endsection
 
 @push('scripts')
-<script>
-    const telInput = document.getElementById('telefono_natural');
-    const docInput = document.getElementById('documento');
-
-    telInput?.addEventListener('input', function () {
-        this.value = this.value.replace(/[^0-9+\-() ]/g, '');
-    });
-
-    docInput?.addEventListener('input', function () {
-        this.value = this.value.replace(/[^0-9]/g, '');
-    });
-</script>
+<script src="{{ asset('js/views/contactenos/index.js') }}"></script>
 @endpush

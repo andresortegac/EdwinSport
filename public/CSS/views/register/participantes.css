@@ -1,0 +1,61 @@
+﻿:root{ --bg:#070b16; --bg-2:#0b1020; --bg-3:#0f172a; --line:rgba(148,163,184,.14);
+      --text:#e2e8f0; --muted:#94a3b8; --c2:#0ea5e9; --c3:#2563eb; }
+    body{
+      font-family: Inter, system-ui, sans-serif; color:var(--text);
+      background: linear-gradient(180deg, var(--bg), var(--bg-2) 45%, var(--bg-3) 100%);
+      min-height:100vh;
+    }
+    .pro-card{
+      background: linear-gradient(180deg, rgba(15,23,42,.9), rgba(11,18,38,.95));
+      border:1px solid var(--line); border-radius:1.3rem; box-shadow:0 12px 30px rgba(0,0,0,.45);
+      padding:1.5rem;
+    }
+    .muted{ color:var(--muted); }
+
+    .btn-brand{
+      background: linear-gradient(135deg, var(--c2), var(--c3));
+      border:none;color:white;font-weight:800;letter-spacing:.3px;
+      border-radius: .95rem; padding:.6rem 1rem;
+      box-shadow: 0 10px 24px rgba(14,165,233,.35);
+    }
+    .btn-soft{
+      border-radius:.95rem;font-weight:700;padding:.55rem 1rem;
+      border:1px solid rgba(148,163,184,.35); color:var(--text); background:transparent;
+      text-decoration:none;
+    }
+    .btn-sep{
+      background: linear-gradient(135deg,#2563eb,#0ea5e9);
+      border:none;color:white;font-weight:900;letter-spacing:.4px;
+      border-radius: 1.1rem; padding:.8rem 1.2rem;
+      width: 100%;
+      box-shadow: 0 12px 28px rgba(37,99,235,.45);
+      text-transform: uppercase;
+    }
+
+    .form-label{ font-weight:600; }
+    .form-control, .form-select{
+      background:#0b1020; border:1px solid var(--line); color:var(--text);
+    }
+    .form-control:focus, .form-select:focus{
+      background:#0b1020; color:var(--text); border-color:rgba(14,165,233,.6);
+      box-shadow:0 0 0 .2rem rgba(14,165,233,.15);
+    }
+
+    .divider{
+      height:1px; background:var(--line); margin:1.2rem 0;
+    }
+
+    .table-dark{
+      --bs-table-bg: transparent;
+      --bs-table-striped-bg: rgba(255,255,255,.03);
+      --bs-table-hover-bg: rgba(255,255,255,.05);
+      color: var(--text);
+      border-color: var(--line);
+    }
+    .table thead th{
+      color:#cbd5e1; font-weight:700; border-bottom:1px solid var(--line);
+    }
+    .table td, .table th{
+      border-top:1px solid var(--line);
+    }
+

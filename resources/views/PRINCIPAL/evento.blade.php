@@ -139,9 +139,9 @@
                             @if($sponsor->logo)
                                 <img
                                     src="{{ route('sponsors.media', ['path' => ltrim($sponsor->logo, '/')]) }}"
+                                    data-sponsor-image
                                     alt="{{ $sponsor->nombre }}"
                                     loading="lazy"
-                                    onerror="this.style.display='none'; this.parentElement.insertAdjacentHTML('afterbegin','<div class=&quot;sponsor-placeholder&quot;>Sin logo</div>');"
                                 >
                             @else
                                 <div class="sponsor-placeholder">Sin logo</div>
@@ -200,6 +200,6 @@
     @include('components.footer')
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ asset('js/views/principal/evento.js') }}"></script>
 </body>
 </html>
-

@@ -317,30 +317,6 @@
 @endsection
 
 @push('scripts')
-<script>
-(() => {
-    const REFRESH_MS = 30000;
-    let timerId = null;
-
-    const schedule = () => {
-        clearTimeout(timerId);
-        timerId = setTimeout(() => {
-            if (document.visibilityState === 'visible') {
-                window.location.reload();
-                return;
-            }
-            schedule();
-        }, REFRESH_MS);
-    };
-
-    document.addEventListener('visibilitychange', () => {
-        if (document.visibilityState === 'visible') {
-            schedule();
-        }
-    });
-
-    schedule();
-})();
-</script>
+<script src="{{ asset('js/views/events/show.js') }}"></script>
 @endpush
 

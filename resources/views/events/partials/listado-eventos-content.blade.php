@@ -10,8 +10,8 @@
             <div class="col-md-6 col-xl-4">
                 <article
                     class="event-card"
-                    data-url="{{ route('competicion', $evento->id) }}"
-                    onclick="goToEvento(this, event)">
+                    data-event-card
+                    data-url="{{ route('competicion', $evento->id) }}">
 
                     @if($evento->image)
                         @php
@@ -21,8 +21,9 @@
                         @endphp
                         <div class="event-image-wrap">
                             <img src="{{ $imageUrl }}"
+                                 data-event-image
                                  alt="{{ $evento->title }}"
-                                 onerror="this.closest('.event-image-wrap').classList.add('is-broken'); this.remove();">
+                                 >
                             <div class="event-image-fallback">Sin imagen</div>
                         </div>
                     @else
@@ -56,19 +57,20 @@
                         </span>
 
                         <div class="event-actions">
-                            <a href="{{ route('editar-evento.edit', $evento->id) }}"
+                               <a href="{{ route('editar-evento.edit', $evento->id) }}"
                                class="btn btn-sm btn-editar-evento"
                                data-id="{{ $evento->id }}"
-                               onclick="event.stopPropagation();">
+                               data-stop-card-nav>
                                 Editar
                             </a>
 
                             <form action="{{ route('eliminar-evento.destroy', $evento->id) }}"
                                   method="POST"
-                                  onsubmit="event.stopPropagation(); return confirm('&iquest;Seguro que deseas eliminar este evento?');">
+                                  data-delete-confirm
+                                  data-stop-card-nav>
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-sm btn-eliminar-evento" onclick="event.stopPropagation();">
+                                <button type="submit" class="btn btn-sm btn-eliminar-evento" data-stop-card-nav>
                                     Eliminar
                                 </button>
                             </form>
@@ -85,10 +87,5 @@
     </div>
 </div>
 
-<script>
-function goToEvento(element, ev) {
-    if (ev) ev.stopPropagation();
-    window.location.href = element.getAttribute('data-url');
-}
-</script>
+<script src="{{ asset('js/views/events/listado-content.js') }}"></script>
 

@@ -60,7 +60,7 @@
                     @endif
                 </div>
 
-                <button onclick="window.print()" class="mt-4 w-full bg-yellow-400 text-black py-2 rounded-lg font-bold">
+                <button type="button" data-print-tournament class="mt-4 w-full bg-yellow-400 text-black py-2 rounded-lg font-bold">
                     Imprimir
                 </button>
             </div>
@@ -73,5 +73,5 @@
     </div>
 </div>
 <script src="{{ asset('js/tournament-navidad.js') }}"></script>
-<script>window.createSnow(20)</script>
+<script src="{{ asset('js/views/tournament/show.js') }}"></script>
 @endsection

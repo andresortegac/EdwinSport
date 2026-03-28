@@ -53,11 +53,12 @@
                     @endif
                 </div>
 
-                <button onclick="window.print()" class="mt-4 w-full bg-yellow-400 text-black py-2 rounded-lg font-bold">Imprimir</button>
+                <button type="button" data-print-tournament class="mt-4 w-full bg-yellow-400 text-black py-2 rounded-lg font-bold">Imprimir</button>
             </div>
         </div>
 
         <div class="text-xs text-gray-400">El orden en grupos es aleatorio según sorteo. Los estilos cambian según la selección en la vista previa.</div>
     </div>
 </div>
+<script src="{{ asset('js/views/tournament/show.js') }}"></script>
 @endsection

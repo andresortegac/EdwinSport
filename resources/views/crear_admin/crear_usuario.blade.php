@@ -13,225 +13,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
-  <style>
-    :root{
-      --brand-900:#0b1020;
-      --brand-800:#111936;
-      --brand-700:#172554;
-      --accent-500:#2dd4bf;
-      --accent-600:#0f766e;
-      --accent-700:#14b8a6;
-      --success-500:#22c55e;
-      --danger-500:#ef4444;
-      --muted-400:#94a3b8;
-      --text:#e2e8f0;
-    }
-
-    body{
-      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      background:
-        radial-gradient(1200px 600px at 10% -10%, rgba(45,212,191,.20), transparent 60%),
-        radial-gradient(900px 500px at 110% 0%, rgba(15,118,110,.20), transparent 55%),
-        linear-gradient(180deg, #0a0f1d 0%, #0f172a 40%, #0b1020 100%);
-      color: var(--text);
-      min-height: 100vh;
-    }
-
-    .hero{
-      background:
-        linear-gradient(135deg, rgba(45,212,191,.14), rgba(15,118,110,.16)),
-        linear-gradient(180deg, var(--brand-900), var(--brand-800));
-      border: 1px solid rgba(148,163,184,.15);
-      border-radius: 1.25rem;
-      padding: 1.5rem 1.75rem;
-      box-shadow: 0 10px 30px rgba(0,0,0,.35);
-    }
-    .hero-title{
-      font-family: Oswald, Inter, sans-serif;
-      letter-spacing: .5px;
-      font-weight: 600;
-      font-size: clamp(1.6rem, 2.4vw, 2.2rem);
-      margin: 0;
-    }
-    .hero-sub{
-      color: var(--muted-400);
-      margin-top: .35rem;
-      font-size: .98rem;
-    }
-    .pill{
-      display:inline-flex;
-      align-items:center;
-      gap:.5rem;
-      background: rgba(20,184,166,.10);
-      border: 1px solid rgba(20,184,166,.38);
-      color:#dff9ff;
-      padding:.35rem .7rem;
-      border-radius: 999px;
-      font-size:.85rem;
-      font-weight:600;
-      letter-spacing:.2px;
-    }
-
-    .pro-card{
-      background: linear-gradient(180deg, rgba(17,25,54,.9), rgba(11,16,32,.95));
-      border: 1px solid rgba(148,163,184,.12);
-      border-radius: 1.25rem;
-      box-shadow: 0 10px 30px rgba(0,0,0,.35);
-      backdrop-filter: blur(6px);
-    }
-    .pro-card h4{
-      font-family: Oswald, Inter, sans-serif;
-      font-weight: 600;
-      letter-spacing: .4px;
-      color: #f8fafc;
-    }
-
-    .form-label{ color:#cbd5e1; font-weight:600; }
-    .form-control{
-      background: rgba(2,6,23,.6);
-      border: 1px solid rgba(148,163,184,.25);
-      color:#e2e8f0;
-      border-radius: .9rem;
-      padding:.8rem .9rem;
-    }
-    .form-control:focus{
-      border-color: var(--accent-500);
-      box-shadow: 0 0 0 .2rem rgba(34,211,238,.15);
-      background: rgba(2,6,23,.9);
-      color:#fff;
-    }
-    .helper{
-      color: var(--muted-400);
-      font-size:.85rem;
-      margin-top:.35rem;
-    }
-
-    .btn-brand{
-      background: linear-gradient(135deg, var(--accent-600), var(--accent-700));
-      border: none;
-      color:white;
-      font-weight:700;
-      letter-spacing:.3px;
-      border-radius: .95rem;
-      padding:.8rem 1rem;
-      box-shadow: 0 8px 18px rgba(20,184,166,.32);
-      transition: transform .08s ease, filter .12s ease;
-    }
-    .btn-brand:hover{ filter: brightness(1.05); transform: translateY(-1px); }
-    .btn-ghost{
-      background: transparent;
-      border:1px solid rgba(148,163,184,.35);
-      color:#e2e8f0;
-      border-radius:.95rem;
-      padding:.75rem 1rem;
-      font-weight:600;
-    }
-    .btn-ghost:hover{ border-color:#e2e8f0; color:#fff; }
-
-    .table-pro{
-      --bs-table-bg: rgba(2,6,23,.78);
-      --bs-table-color: var(--text);
-      --bs-table-hover-bg: rgba(45,212,191,.10);
-      --bs-table-border-color: rgba(148,163,184,.18);
-      color: var(--text) !important;
-      border-color: rgba(148,163,184,.12);
-      margin:0;
-    }
-    .table-pro thead th{
-      color:#e2e8f0 !important;
-      font-weight:800;
-      text-transform: uppercase;
-      font-size:.8rem;
-      letter-spacing:.6px;
-      background: rgba(15,23,42,.95) !important;
-      border-bottom:1px solid rgba(148,163,184,.2) !important;
-    }
-    .table-pro > :not(caption) > * > *{
-      background-color: rgba(2,6,23,.78) !important;
-      color: var(--text) !important;
-      border-color: rgba(148,163,184,.18) !important;
-      font-weight:600 !important;
-    }
-    .table-pro tbody tr:hover > *{
-      background-color: rgba(45,212,191,.12) !important;
-      color:#fff !important;
-    }
-
-    .badge-role{
-      background: rgba(34,197,94,.12);
-      border:1px solid rgba(34,197,94,.35);
-      color:#bbf7d0;
-      font-weight:700;
-      letter-spacing:.3px;
-    }
-
-    .alert{
-      border-radius: .9rem;
-      border:1px solid transparent;
-      background: rgba(2,6,23,.6);
-      color:#e2e8f0;
-    }
-    .alert-success{ border-color: rgba(34,197,94,.5); }
-    .alert-danger{ border-color: rgba(239,68,68,.5); }
-    .alert-warning{ border-color: rgba(250,204,21,.5); }
-
-    .section-title{
-      display:flex; align-items:center; justify-content:space-between;
-      gap:1rem; margin-bottom:1rem;
-    }
-
-    .avatar-chip{
-      width:40px;
-      height:40px;
-      background: rgba(20,184,166,.14);
-      border:1px solid rgba(20,184,166,.45);
-      font-weight:800;
-    }
-
-    .role-chip{
-      border-radius: 999px;
-      padding: .15rem .5rem;
-      font-size: .7rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: .4px;
-      border: 1px solid transparent;
-    }
-
-    .role-admin{
-      background: rgba(45,212,191,.14);
-      border-color: rgba(45,212,191,.38);
-      color: #99f6e4;
-    }
-
-    .role-superadmin{
-      background: rgba(250,204,21,.14);
-      border-color: rgba(250,204,21,.45);
-      color: #fde68a;
-    }
-
-    .role-developer{
-      background: rgba(59,130,246,.14);
-      border-color: rgba(59,130,246,.45);
-      color: #bfdbfe;
-    }
-
-    .btn-action-safe{
-      border-radius:.7rem;
-      border-color:rgba(45,212,191,.6);
-      color:#99f6e4;
-    }
-
-    .btn-action-danger{
-      border-radius:.7rem;
-      border-color:rgba(239,68,68,.6);
-      color:#fecaca;
-    }
-
-    @media (max-width: 991px){
-      .sticky-lg-top { position: static !important; top:auto !important; }
-    }
-  </style>
+    <link rel="stylesheet" href="{{ asset('CSS/views/crear_admin/crear_usuario.css') }}">
   <link rel="stylesheet" href="{{ asset('CSS/unified-font.css') }}">
 </head>
 
@@ -390,12 +172,11 @@
                             Protegido
                           </button>
                         @else
-                          <form action="{{ route('crear_usuario.destroy', $a->id) }}" method="POST" style="display:inline;">
+                          <form action="{{ route('crear_usuario.destroy', $a->id) }}" method="POST" style="display:inline;" data-delete-admin-form>
                             @csrf
                             @method('DELETE')
                             <button
                               class="btn btn-sm btn-outline-light btn-action-danger"
-                              onclick="return confirm('¿Eliminar este usuario?')"
                             >
                               Eliminar
                             </button>
@@ -466,6 +247,8 @@
 
   <!-- Bootstrap JS (NECESARIO PARA EL MODAL) -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="{{ asset('js/views/crear_admin/crear_usuario.js') }}"></script>
 </body>
 </html>
+
 

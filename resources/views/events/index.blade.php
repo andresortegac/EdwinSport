@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@push('scripts')
+<script src="{{ asset('js/views/events/index.js') }}"></script>
+@endpush
+
 @section('content')
 <div class="container my-5">
   <div class="row">

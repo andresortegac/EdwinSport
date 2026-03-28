@@ -5,44 +5,7 @@
 @endpush
 
 @push('scripts')
-<script>
-    (function () {
-        const form = document.querySelector('form[action="{{ route('canchas.store') }}"]');
-        const apertura = document.getElementById('hora_apertura');
-        const cierre = document.getElementById('hora_cierre');
-
-        if (!form || !apertura || !cierre) return;
-
-        function validarHoras() {
-            const ha = apertura.value;
-            const hc = cierre.value;
-
-            apertura.classList.remove('is-invalid');
-            cierre.classList.remove('is-invalid');
-
-            if (!ha || !hc) return true;
-
-            if (hc <= ha) {
-                cierre.classList.add('is-invalid');
-                cierre.setCustomValidity('La hora de cierre debe ser mayor que la hora de apertura.');
-                return false;
-            }
-
-            cierre.setCustomValidity('');
-            return true;
-        }
-
-        apertura.addEventListener('change', validarHoras);
-        cierre.addEventListener('change', validarHoras);
-
-        form.addEventListener('submit', function (e) {
-            if (!validarHoras()) {
-                e.preventDefault();
-                cierre.reportValidity();
-            }
-        });
-    })();
-</script>
+<script src="{{ asset('js/views/canchas/create.js') }}"></script>
 @endpush
 
 @section('content')
@@ -87,7 +50,7 @@
         @endif
 
         <section class="form-shell">
-            <form action="{{ route('canchas.store') }}" method="POST">
+            <form action="{{ route('canchas.store') }}" method="POST" data-cancha-create-form>
                 @csrf
 
                 <div class="row g-3">
