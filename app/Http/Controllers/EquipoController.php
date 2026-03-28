@@ -21,7 +21,7 @@ class EquipoController extends Controller
 
         $eventos = Event::orderBy('start_at', 'desc')->get();
 
-        return view('REGISTER.participantes', compact('equipos', 'participantes', 'eventos'));
+        return view('register.participantes', compact('equipos', 'participantes', 'eventos'));
     }
 
     public function store(Request $request)

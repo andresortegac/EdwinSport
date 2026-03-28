@@ -32,12 +32,12 @@ class ParticipanteController extends Controller
 
     public function index()
     {
-        return view('REGISTER.participantes', $this->getDatosFormulario());
+        return view('register.participantes', $this->getDatosFormulario());
     }
 
     public function create()
     {
-        return view('REGISTER.participantes', $this->getDatosFormulario());
+        return view('register.participantes', $this->getDatosFormulario());
     }
 
     public function store(Request $request)
@@ -62,7 +62,7 @@ class ParticipanteController extends Controller
 
     public function edit(Participante $participante)
     {
-        return view('REGISTER.participantes', $this->getDatosFormulario($participante));
+        return view('register.participantes', $this->getDatosFormulario($participante));
     }
 
     public function update(Request $request, Participante $participante)

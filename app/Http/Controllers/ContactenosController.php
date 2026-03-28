@@ -11,7 +11,7 @@ class ContactenosController extends Controller
 {
     public function contactenos()
     {
-        return view('CONTACTENOS.contactenos');
+        return view('contactenos.contactenos');
     }
 
     /**

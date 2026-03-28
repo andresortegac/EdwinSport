@@ -61,7 +61,7 @@ Route::get('/register', function () {
         ->when(!$verTodos, fn ($q) => $q->limit(3))
         ->get();
 
-    return view('REGISTER.register', compact('eventosPanel', 'verTodos'));
+    return view('register.register', compact('eventosPanel', 'verTodos'));
 })->name('register');
 
 

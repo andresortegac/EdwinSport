@@ -109,8 +109,8 @@
           />
         </div>
 
-        {{-- BOTÃ“N QUE VA A REGISTER.register --}}
-        <a href="{{ route('REGISTER.register') }}" class="btn btn-primary btn-block">
+        {{-- BOTON QUE VA A register --}}
+        <a href="{{ route('register') }}" class="btn btn-primary btn-block">
   Entrar
 </a>
 
@@ -137,4 +137,3 @@
   </div>
 </body>
 </html>
-

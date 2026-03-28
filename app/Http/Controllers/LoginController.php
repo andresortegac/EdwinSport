@@ -23,7 +23,7 @@ class LoginController extends Controller
         }
 
         // Si no está logueado muestra login
-        return view('LOGIN.login');
+        return view('auth.login');
     }
 
     // ✅ Procesa login

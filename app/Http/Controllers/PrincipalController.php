@@ -6,11 +6,11 @@ class PrincipalController extends Controller
 {
     public function index()
     {
-        return view('PRINCIPAL.principalView');
+        return view('principal.principalView');
     }
 
     public function about()
     {
-        return view('PRINCIPAL.about');
+        return view('principal.about');
     }
 }

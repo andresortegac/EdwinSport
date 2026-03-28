@@ -55,7 +55,7 @@ class CompeticionesController extends Controller
             );
         }
 
-        return view('COMPETICION.show', [
+        return view('competicion.show', [
             'evento' => $evento,
             'competicion' => $competicion,
             'equipos' => $equipos,
@@ -68,12 +68,12 @@ class CompeticionesController extends Controller
 
     public function competicion()
     {
-        return view('COMPETICION.competicionView');
+        return view('competicion.competicionView');
     }
 
     public function partidos()
     {
-        return view('PARTIDOS.partidosView');
+        return view('partidos.partidosView');
     }
 
     /**
