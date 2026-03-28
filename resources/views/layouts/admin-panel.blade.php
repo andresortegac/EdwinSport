@@ -19,6 +19,7 @@
   $isDashboard = request()->routeIs('usuario.panel');
   $isReservasExternas = request()->routeIs('reservas_externas.index') || request()->routeIs('reservas_externas.create') || request()->routeIs('reservas_externas.edit');
   $isHistorialReservas = request()->routeIs('reservas_externas.history');
+  $isReservasSection = $isReservasExternas || $isHistorialReservas;
 @endphp
 
 <div id="wrapper">
@@ -35,58 +36,59 @@
     <div class="sidebar-heading mt-3">Administracion</div>
 
     <li class="nav-item {{ $isDashboard ? 'active' : '' }}">
-      <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseEventos" aria-expanded="{{ $isDashboard ? 'true' : 'false' }}">
+      <a class="nav-link collapsed {{ $isDashboard ? 'active' : '' }}" href="#" data-toggle="collapse" data-target="#collapsePanel" aria-expanded="{{ $isDashboard ? 'true' : 'false' }}" data-toggle-tooltip="tooltip" data-placement="right" title="Panel principal">
         <i class="fas fa-fw fa-trophy"></i>
-        <span>Panel</span>
+        <span>Panel principal</span>
       </a>
-      <div id="collapseEventos" class="collapse {{ $isDashboard ? 'show' : '' }}">
+      <div id="collapsePanel" class="collapse {{ $isDashboard ? 'show' : '' }}">
         <div class="py-2 collapse-inner rounded">
-          <h6 class="collapse-header">Gestion de eventos</h6>
+          <a class="collapse-item {{ $isDashboard ? 'active' : '' }}" href="{{ route('usuario.panel') }}">Inicio del panel</a>
           <a id="btn-crear-evento" class="collapse-item" href="{{ $isDashboard ? '#' : route('usuario.panel') }}">Crear evento</a>
           <a id="btn-listado-eventos" class="collapse-item" href="{{ $isDashboard ? '#' : route('usuario.panel') }}">Listado de eventos</a>
-          <a class="collapse-item" href="{{ route('usuario.panel') }}">Resumen</a>
         </div>
       </div>
     </li>
 
-    <li class="nav-item {{ $isDashboard ? '' : '' }}">
-      <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseParticipantes">
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseParticipantes" aria-expanded="false" data-toggle-tooltip="tooltip" data-placement="right" title="Participantes">
         <i class="fas fa-fw fa-users"></i>
         <span>Participantes</span>
       </a>
       <div id="collapseParticipantes" class="collapse">
         <div class="py-2 collapse-inner rounded">
-          <h6 class="collapse-header">Equipos y atletas</h6>
-          <a class="collapse-item" href="{{ $isDashboard ? '#' : route('usuario.panel') }}" id="btn-registrar-participante">
+          <a id="btn-registrar-participante" class="collapse-item" href="{{ $isDashboard ? '#' : route('usuario.panel') }}">
             Registrar participantes
           </a>
         </div>
       </div>
     </li>
 
-    <li class="nav-item {{ $isReservasExternas ? 'active' : '' }}">
-      <a class="nav-link" href="{{ route('reservas_externas.index') }}">
+    <li class="nav-item {{ $isReservasSection ? 'active' : '' }}">
+      <a class="nav-link collapsed {{ $isReservasSection ? 'active' : '' }}" href="#" data-toggle="collapse" data-target="#collapseReservasExternas" aria-expanded="{{ $isReservasSection ? 'true' : 'false' }}" data-toggle-tooltip="tooltip" data-placement="right" title="Reservas externas">
         <i class="fas fa-fw fa-calendar-alt"></i>
         <span>Reservas externas</span>
       </a>
-    </li>
-
-    <li class="nav-item {{ $isHistorialReservas ? 'active' : '' }}">
-      <a class="nav-link" href="{{ route('reservas_externas.history') }}">
-        <i class="fas fa-fw fa-history"></i>
-        <span>Historial reservas</span>
-      </a>
+      <div id="collapseReservasExternas" class="collapse {{ $isReservasSection ? 'show' : '' }}">
+        <div class="py-2 collapse-inner rounded">
+          <a class="collapse-item {{ $isReservasExternas ? 'active' : '' }}" href="{{ route('reservas_externas.index') }}">
+            Proximas reservas
+          </a>
+          <a class="collapse-item {{ $isHistorialReservas ? 'active' : '' }}" href="{{ route('reservas_externas.history') }}">
+            Historial
+          </a>
+        </div>
+      </div>
     </li>
 
     <li class="nav-item">
-      <a class="nav-link" href="#">
+      <a class="nav-link" href="#" data-toggle-tooltip="tooltip" data-placement="right" title="Inscripciones">
         <i class="fas fa-fw fa-ticket-alt"></i>
         <span>Inscripciones</span>
       </a>
     </li>
 
     <li class="nav-item">
-      <a class="nav-link" href="#">
+      <a class="nav-link" href="#" data-toggle-tooltip="tooltip" data-placement="right" title="Reportes">
         <i class="fas fa-fw fa-chart-line"></i>
         <span>Reportes</span>
       </a>
@@ -123,7 +125,6 @@
               <i class="fas fa-bell fa-fw"></i>
               <span class="badge badge-danger badge-counter">{{ $notificacionesCount ?? 0 }}</span>
             </a>
-
             <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
               <h6 class="dropdown-header">Notificaciones</h6>
               @forelse($notificaciones ?? [] as $n)
@@ -149,7 +150,6 @@
               <i class="fas fa-envelope fa-fw"></i>
               <span class="badge badge-danger badge-counter">{{ $mensajesCount ?? 0 }}</span>
             </a>
-
             <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="messagesDropdown">
               <h6 class="dropdown-header">Mensajes</h6>
               @forelse($mensajes ?? [] as $m)
@@ -230,6 +230,148 @@
 <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 <script src="{{ asset('vendor/jquery-easing/jquery.easing.min.js') }}"></script>
 <script src="{{ asset('js/sb-admin-2.min.js') }}"></script>
+<script>
+  (function () {
+    var storageKey = 'edwinsport-admin-sidebar-toggled';
+    var collapseSelector = '.sidebar .collapse';
+
+    function applySidebarState() {
+      if (window.innerWidth < 768) {
+        return;
+      }
+
+      var shouldBeToggled = localStorage.getItem(storageKey) === 'true';
+      var body = document.body;
+      var sidebar = document.querySelector('.sidebar');
+
+      if (!sidebar) {
+        return;
+      }
+
+      if (shouldBeToggled) {
+        body.classList.add('sidebar-toggled');
+        sidebar.classList.add('toggled');
+      } else {
+        body.classList.remove('sidebar-toggled');
+        sidebar.classList.remove('toggled');
+      }
+    }
+
+    function isDesktopCollapsed() {
+      var sidebar = document.querySelector('.sidebar');
+      return window.innerWidth >= 768 && sidebar && sidebar.classList.contains('toggled');
+    }
+
+    function hideFloatingSubmenus() {
+      document.querySelectorAll(collapseSelector).forEach(function (collapse) {
+        collapse.classList.remove('show');
+      });
+    }
+
+    function syncSidebarTooltips() {
+      var collapsed = isDesktopCollapsed();
+
+      $('[data-toggle-tooltip="tooltip"]').each(function () {
+        var $element = $(this);
+
+        if (collapsed) {
+          if (!$element.data('bs.tooltip')) {
+            $element.tooltip({
+              trigger: 'hover',
+              container: 'body'
+            });
+          }
+          return;
+        }
+
+        $element.tooltip('hide');
+        if ($element.data('bs.tooltip')) {
+          $element.tooltip('dispose');
+        }
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+      applySidebarState();
+
+      if (isDesktopCollapsed()) {
+        hideFloatingSubmenus();
+      }
+      syncSidebarTooltips();
+
+      var toggleButton = document.getElementById('sidebarToggle');
+      if (toggleButton) {
+        toggleButton.addEventListener('click', function () {
+          window.setTimeout(function () {
+            var sidebar = document.querySelector('.sidebar');
+            var isToggled = sidebar && sidebar.classList.contains('toggled');
+            localStorage.setItem(storageKey, isToggled ? 'true' : 'false');
+            if (isToggled) {
+              hideFloatingSubmenus();
+            }
+            syncSidebarTooltips();
+          }, 0);
+        });
+      }
+
+      document.querySelectorAll('.sidebar .nav-link[data-toggle="collapse"]').forEach(function (trigger) {
+        trigger.addEventListener('click', function () {
+          if (!isDesktopCollapsed()) {
+            return;
+          }
+
+          var targetSelector = trigger.getAttribute('data-target');
+          window.setTimeout(function () {
+            document.querySelectorAll(collapseSelector).forEach(function (collapse) {
+              if (collapse.matches(targetSelector)) {
+                return;
+              }
+              collapse.classList.remove('show');
+            });
+          }, 0);
+        });
+      });
+
+      document.querySelectorAll('.sidebar .collapse-item').forEach(function (item) {
+        item.addEventListener('click', function () {
+          if (isDesktopCollapsed()) {
+            hideFloatingSubmenus();
+          }
+        });
+      });
+
+      document.addEventListener('click', function (event) {
+        if (!isDesktopCollapsed()) {
+          return;
+        }
+
+        var clickedInsideSidebar = event.target.closest('.sidebar');
+        if (!clickedInsideSidebar) {
+          hideFloatingSubmenus();
+        }
+      });
+
+      window.addEventListener('resize', function () {
+        if (window.innerWidth < 768) {
+          localStorage.removeItem(storageKey);
+          document.body.classList.remove('sidebar-toggled');
+          var sidebar = document.querySelector('.sidebar');
+          if (sidebar) {
+            sidebar.classList.remove('toggled');
+          }
+          syncSidebarTooltips();
+          return;
+        }
+
+        applySidebarState();
+        if (isDesktopCollapsed()) {
+          hideFloatingSubmenus();
+        }
+        syncSidebarTooltips();
+      });
+    });
+  })();
+</script>
 @stack('scripts')
 </body>
 </html>
