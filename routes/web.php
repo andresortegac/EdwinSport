@@ -22,13 +22,13 @@ use App\Http\Controllers\UserReservaController;
 use App\Http\Controllers\CompeticionesController;
 use App\Http\Controllers\ReservaExternaController;
 
-// ✅ IMPORT DEL CONTROLADOR NUEVO
+// IMPORT DEL CONTROLADOR NUEVO
 use App\Http\Controllers\CrearEventoDeveloperController;
 
-// ✅ IMPORT PARA EQUIPOS (CRUD)
+// IMPORT PARA EQUIPOS (CRUD)
 use App\Http\Controllers\EquipoController;
 
-// ✅ IMPORT PARA PATROCINADORES
+// IMPORT PARA PATROCINADORES
 use App\Http\Controllers\SponsorController;
 
 
@@ -79,7 +79,7 @@ Route::controller(LoginController::class)->group(function () {
 // EVENTOS
 // =======================
 
-// ✅ RUTA NUEVA PARA TU VISTA VACÍA
+// RUTA NUEVA PARA TU VISTA VACIA
 // IMPORTANTE: VA ANTES DE /eventos/{event}
 Route::get('/eventos/crear-evento-developer', [CrearEventoDeveloperController::class, 'index'])
     ->name('events.crear-evento-developer');
@@ -92,15 +92,15 @@ Route::get('/media/sponsors/{path}', [SponsorController::class, 'media'])
     ->where('path', '.*')
     ->name('sponsors.media');
 
-// ✅ Listado (filtrado por category vía query string: /eventos?category=futbol)
+// Listado (filtrado por category via query string: /eventos?category=futbol)
 Route::get('/eventos', [EventController::class, 'index'])->name('events.index');
 
-// ✅ Agenda de calendario (filtros por fecha y estado)
+// Agenda de calendario (filtros por fecha y estado)
 // IMPORTANTE: va antes de /eventos/{event}
 Route::get('/eventos/calendario', [EventController::class, 'calendar'])->name('events.calendar');
 
 
-// ✅ Detalle
+// Detalle
 Route::get('/eventos/{event}', [EventController::class, 'show'])->name('events.show');
 Route::get('/eventos/{event}/fixture/{grupo}/{jornada}/{partido}', [EventController::class, 'fixtureDetail'])
     ->name('events.fixture.detail');
@@ -114,13 +114,13 @@ Route::post('/fixture-reporte', [EventController::class, 'storeFixtureReport'])
     ->middleware(['auth', 'admin'])
     ->name('events.fixture.report.store');
 
-// ✅ Crear y guardar (mantengo tus rutas actuales)
+// Crear y guardar (mantengo tus rutas actuales)
 Route::controller(EventController::class)->group(function () {
     Route::get('crear-evento', 'create')->name('crear-evento.create');
     Route::post('crear-evento/guardar', 'store')->name('crear-evento.store');
 });
 
-// ✅ Editar / Actualizar / Eliminar con nombres events.*
+// Editar / Actualizar / Eliminar con nombres events.*
 Route::get('/eventos/{event}/edit', [EventController::class, 'edit'])->name('events.edit');
 Route::put('/eventos/{event}', [EventController::class, 'update'])->name('events.update');
 Route::delete('/eventos/{event}', [EventController::class, 'destroy'])->name('events.destroy');
@@ -139,12 +139,12 @@ Route::get('/contactos/{id}', [ContactenosController::class, 'show'])->name('con
 
 
 // =======================
-// PANEL USUARIO  ✅ (CORREGIDO PARA EVITAR INTERFERENCIA)
+// PANEL USUARIO (CORREGIDO PARA EVITAR INTERFERENCIA)
 // =======================
 Route::middleware('auth')->controller(PanelController::class)->group(function () {
     Route::get('/usuario-panel', 'index')->name('usuario.panel');
 
-    // ✅ Antes estaban en "/{id}/editar-evento" (riesgo de choque en la raíz)
+    // Antes estaban en "/{id}/editar-evento" (riesgo de choque en la raiz)
     Route::get('/usuario-panel/eventos/{id}/editar', 'edit')->name('editar-evento.edit');
     Route::put('/usuario-panel/eventos/{id}/actualizar', 'update')->name('actualizar-evento.update');
     Route::delete('/usuario-panel/eventos/{id}/eliminar', 'destroy')->name('eliminar-evento.destroy');
@@ -169,7 +169,7 @@ Route::delete('/canchas/{cancha}', [CanchaController::class, 'destroy'])->name('
 // Reservas usuario
 Route::get('/separar/{cancha}', [UserReservaController::class, 'create'])->name('user_reservas.create');
 
-// ⚠️ Ojo: "/sepaarweb" parece typo. No lo cambio para no romper tu front.
+// Ojo: "/sepaarweb" parece typo. No lo cambio para no romper tu front.
 Route::post('/sepaarweb', [UserReservaController::class, 'store'])->name('user_reservas.store');
 
 
@@ -191,9 +191,9 @@ Route::get('/sorteo/ver', [GrupoController::class, 'index'])->name('torneo.ver')
 
 
 // =======================
-// ✅ EQUIPOS (CRUD)
+// EQUIPOS (CRUD)
 // =======================
-// Debe ir DESPUÉS de /equipos/import para evitar choque con /equipos/{equipo}
+// Debe ir DESPUES de /equipos/import para evitar choque con /equipos/{equipo}
 Route::resource('equipos', EquipoController::class)->middleware('auth');
 Route::middleware('auth')->group(function () {
     Route::post('/equipos/{equipo}/jugadores', [EquipoController::class, 'storeJugador'])
@@ -206,7 +206,7 @@ Route::middleware('auth')->group(function () {
 
 
 // =======================
-// ✅ EXPORT / IMPORT PARTICIPANTES
+// EXPORT / IMPORT PARTICIPANTES
 // =======================
 
 // Export general
@@ -214,12 +214,12 @@ Route::get('/participantes/export', [ParticipanteController::class, 'exportExcel
     ->middleware('auth')
     ->name('participantes.export');
 
-// ✅ NUEVO: Planilla por equipo (Excel)
+// NUEVO: Planilla por equipo (Excel)
 Route::get('/participantes/planilla-excel', [ParticipanteController::class, 'exportPlanillaExcel'])
     ->middleware('auth')
     ->name('participantes.planilla.excel');
 
-// ✅ NUEVO: Planilla por equipo (PDF)
+// NUEVO: Planilla por equipo (PDF)
 Route::get('/participantes/planilla-pdf', [ParticipanteController::class, 'exportPlanillaPdf'])
     ->middleware('auth')
     ->name('participantes.planilla.pdf');
@@ -277,7 +277,7 @@ Route::middleware(['auth', 'admin'])->prefix('reservas-externas')->name('reserva
 
 
 // =======================
-// ✅ PATROCINADORES / SPONSORS
+// PATROCINADORES / SPONSORS
 // =======================
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/sponsors', [SponsorController::class, 'index'])->name('sponsors.index');
@@ -299,15 +299,15 @@ Route::post('/password/update', [PasswordsController::class, 'update'])
 // =======================
 Route::controller(CompeticionesController::class)->group(function () {
 
-    // Ver competición de un evento
+    // Ver competicion de un evento
     Route::get('/competicion/{evento}', 'show')
         ->name('competicion');
 
-    // Crear competición (una por evento)
+    // Crear competicion (una por evento)
     Route::post('/competicion/{evento}/crear', 'store')
         ->name('competicion.crear');
 
-    // Generar grupos automáticamente
+    // Generar grupos automaticamente
     Route::post('/competicion/{competicion}/grupos', 'generarGrupos')
         ->name('competicion.grupos');
 
