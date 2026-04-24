@@ -95,6 +95,10 @@ Route::get('/media/sponsors/{path}', [SponsorController::class, 'media'])
 // ✅ Listado (filtrado por category vía query string: /eventos?category=futbol)
 Route::get('/eventos', [EventController::class, 'index'])->name('events.index');
 
+// ✅ Agenda de calendario (filtros por fecha y estado)
+// IMPORTANTE: va antes de /eventos/{event}
+Route::get('/eventos/calendario', [EventController::class, 'calendar'])->name('events.calendar');
+
 
 // ✅ Detalle
 Route::get('/eventos/{event}', [EventController::class, 'show'])->name('events.show');
@@ -106,6 +110,9 @@ Route::post('/transmisiones-en-vivo', [EventController::class, 'storeFixtureStre
 Route::post('/tecnicos-imagen', [EventController::class, 'storeFixtureTecnico'])
     ->middleware(['auth', 'admin'])
     ->name('events.fixture.tecnico.store');
+Route::post('/fixture-reporte', [EventController::class, 'storeFixtureReport'])
+    ->middleware(['auth', 'admin'])
+    ->name('events.fixture.report.store');
 
 // ✅ Crear y guardar (mantengo tus rutas actuales)
 Route::controller(EventController::class)->group(function () {

@@ -21,9 +21,13 @@
             'futbol' => 'Futbol',
             'futbol_salon' => 'Futbol de salon',
             'baloncesto' => 'Baloncesto',
+            'voleibol' => 'Voleibol',
             'ciclismo' => 'Ciclismo',
             'natacion' => 'Natacion',
+            'crossfit' => 'Crossfit',
             'patinaje' => 'Patinaje',
+            'atletismo' => 'Atletismo',
+            'tenis' => 'Tenis',
         ];
 
         $currentLabel = !empty($category) && isset($categoryLabels[$category])

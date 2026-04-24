@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
 class Event extends Model
 {
@@ -16,6 +16,7 @@ class Event extends Model
         'slug',
         'description',
         'category',
+        'discipline_payload',
         'location',
         'start_at',
         'end_at',
@@ -23,13 +24,13 @@ class Event extends Model
         'status',
     ];
 
-    // Castear las fechas a datetime (Carbon)
     protected $casts = [
         'start_at' => 'datetime',
-        'end_at'   => 'datetime',
+        'end_at' => 'datetime',
+        'discipline_payload' => 'array',
     ];
 
-        /**
+    /**
      * Equipos inscritos en el evento
      * campo FK: equipos.evento
      */
@@ -39,7 +40,7 @@ class Event extends Model
     }
 
     /**
-     * Competición del evento (UNA sola)
+     * Competicion del evento (una sola)
      * campo FK: competiciones.evento
      */
     public function competicion()
