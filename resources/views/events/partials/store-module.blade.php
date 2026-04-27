@@ -467,103 +467,168 @@
                                 </div>
                             </article>
 
-                            <div class="modal fade" id="store-company-modal-{{ $item->id }}" tabindex="-1" role="dialog" aria-hidden="true">
-                                <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                            <div class="modal fade store-company-modal" id="store-company-modal-{{ $item->id }}" tabindex="-1" role="dialog" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-scrollable store-modal-dialog" role="document">
                                     <div class="modal-content store-modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title">Informacion de empresa y catalogo</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <div class="modal-header store-modal-header">
+                                            <div class="store-modal-heading">
+                                                <p class="store-modal-kicker mb-1">Ficha completa</p>
+                                                <h5 class="modal-title mb-1">Informacion de empresa y catalogo</h5>
+                                                <p class="store-modal-subtitle mb-0">{{ $item->name }}</p>
+                                            </div>
+                                            <button type="button" class="close store-modal-close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
                                         </div>
-                                        <div class="modal-body">
-                                            <div class="store-company-header">
-                                                <div class="store-company-logo {{ $companyLogo ? '' : 'is-empty' }}">
-                                                    @if($companyLogo)
+                                        <div class="modal-body store-modal-body">
+                                            <section class="store-modal-product">
+                                                <div class="store-modal-product-media {{ $cardImage ? '' : 'is-fallback' }}">
+                                                    @if($cardImage)
                                                         <img
-                                                            src="{{ $companyLogo }}"
-                                                            alt="Logo de {{ $item->company_name ?: $item->name }}"
+                                                            src="{{ $cardImage }}"
+                                                            alt="{{ $item->name }}"
                                                             loading="lazy"
                                                             referrerpolicy="no-referrer"
-                                                            onerror="this.style.display='none'; this.parentElement.classList.add('is-empty');"
+                                                            onerror="this.style.display='none'; this.parentElement.classList.add('is-fallback');"
                                                         >
                                                     @endif
-                                                    <span>Logo</span>
+                                                    <div class="store-modal-product-fallback">
+                                                        <i class="fas fa-image"></i>
+                                                        <span>Imagen no disponible</span>
+                                                    </div>
                                                 </div>
-                                                <div>
-                                                    <h6 class="mb-1">{{ $item->company_name ?: 'Empresa no registrada' }}</h6>
-                                                    <p class="mb-0 text-muted">{{ $item->name }}</p>
-                                                </div>
-                                            </div>
-
-                                            <ul class="store-company-list mt-3">
-                                                <li><span>Telefono</span><strong>{{ $item->company_phone ?: 'Sin dato' }}</strong></li>
-                                                <li><span>Correo</span><strong>{{ $item->company_email ?: 'Sin dato' }}</strong></li>
-                                                <li><span>Lugar</span><strong>{{ $item->company_location ?: 'Sin dato' }}</strong></li>
-                                                <li><span>Sitio web</span><strong>{{ $item->company_website ?: 'Sin dato' }}</strong></li>
-                                            </ul>
-
-                                            @if($item->catalog_summary)
-                                                <div class="store-catalog-summary">
-                                                    {{ $item->catalog_summary }}
-                                                </div>
-                                            @endif
-
-                                            @if($catalogImages->count() > 0)
-                                                <div
-                                                    id="store-catalog-carousel-{{ $item->id }}"
-                                                    class="carousel slide store-catalog-carousel mt-3"
-                                                    data-ride="carousel"
-                                                    data-interval="4200"
-                                                >
-                                                    @if($catalogImages->count() > 1)
-                                                        <ol class="carousel-indicators">
-                                                            @foreach($catalogImages as $catalogIndex => $catalogImage)
-                                                                <li
-                                                                    data-target="#store-catalog-carousel-{{ $item->id }}"
-                                                                    data-slide-to="{{ $catalogIndex }}"
-                                                                    class="{{ $catalogIndex === 0 ? 'active' : '' }}"
-                                                                ></li>
-                                                            @endforeach
-                                                        </ol>
+                                                <div class="store-modal-product-copy">
+                                                    <p class="store-modal-product-category">{{ $item->category ?: 'Producto' }}</p>
+                                                    <h3 class="store-modal-product-title">{{ $item->name }}</h3>
+                                                    @if(!empty($item->price))
+                                                        <p class="store-modal-product-price mb-2">${{ number_format((float) $item->price, 0, ',', '.') }} {{ $item->currency ?: 'COP' }}</p>
+                                                    @else
+                                                        <p class="store-modal-product-price mb-2">Precio por confirmar</p>
                                                     @endif
+                                                    <p class="store-modal-product-description">{{ $item->description ?: 'Sin descripcion.' }}</p>
+                                                </div>
+                                            </section>
 
-                                                    <div class="carousel-inner">
-                                                        @foreach($catalogImages as $catalogIndex => $catalogImage)
-                                                            <div class="carousel-item {{ $catalogIndex === 0 ? 'active' : '' }}">
+                                            <div class="store-modal-grid">
+                                                <section class="store-panel">
+                                                    <h6 class="store-panel-title">Empresa</h6>
+                                                    <div class="store-company-header">
+                                                        <div class="store-company-logo {{ $companyLogo ? '' : 'is-empty' }}">
+                                                            @if($companyLogo)
                                                                 <img
-                                                                    src="{{ $catalogImage }}"
-                                                                    class="d-block w-100"
-                                                                    alt="Catalogo {{ $item->name }} - {{ $catalogIndex + 1 }}"
+                                                                    src="{{ $companyLogo }}"
+                                                                    alt="Logo de {{ $item->company_name ?: $item->name }}"
                                                                     loading="lazy"
                                                                     referrerpolicy="no-referrer"
+                                                                    onerror="this.style.display='none'; this.parentElement.classList.add('is-empty');"
                                                                 >
-                                                            </div>
-                                                        @endforeach
+                                                            @endif
+                                                            <span>Logo</span>
+                                                        </div>
+                                                        <div>
+                                                            <h6 class="mb-1">{{ $item->company_name ?: 'Empresa no registrada' }}</h6>
+                                                            <p class="mb-0 text-muted">{{ $item->name }}</p>
+                                                        </div>
                                                     </div>
 
-                                                    @if($catalogImages->count() > 1)
-                                                        <a class="carousel-control-prev" href="#store-catalog-carousel-{{ $item->id }}" role="button" data-slide="prev">
-                                                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                                            <span class="sr-only">Anterior</span>
-                                                        </a>
-                                                        <a class="carousel-control-next" href="#store-catalog-carousel-{{ $item->id }}" role="button" data-slide="next">
-                                                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                                            <span class="sr-only">Siguiente</span>
-                                                        </a>
-                                                    @endif
-                                                </div>
-                                            @else
-                                                <div class="store-empty-catalog mt-3">
-                                                    Aun no hay fotos cargadas en el catalogo.
-                                                </div>
-                                            @endif
+                                                    <ul class="store-company-list mt-3">
+                                                        <li><span>Telefono</span><strong>{{ $item->company_phone ?: 'Sin dato' }}</strong></li>
+                                                        <li><span>Correo</span><strong>{{ $item->company_email ?: 'Sin dato' }}</strong></li>
+                                                        <li><span>Lugar</span><strong>{{ $item->company_location ?: 'Sin dato' }}</strong></li>
+                                                        <li>
+                                                            <span>Sitio web</span>
+                                                            <strong>
+                                                                @if($item->company_website)
+                                                                    <a href="{{ $item->company_website }}" target="_blank" rel="noopener noreferrer" class="store-inline-link">
+                                                                        Visitar sitio
+                                                                    </a>
+                                                                @else
+                                                                    Sin dato
+                                                                @endif
+                                                            </strong>
+                                                        </li>
+                                                    </ul>
 
+                                                    @if($item->catalog_summary)
+                                                        <div class="store-catalog-summary">
+                                                            {{ $item->catalog_summary }}
+                                                        </div>
+                                                    @endif
+                                                </section>
+
+                                                <section class="store-panel">
+                                                    <h6 class="store-panel-title">Galeria de catalogo</h6>
+                                                    @if($catalogImages->count() > 0)
+                                                        <div
+                                                            id="store-catalog-carousel-{{ $item->id }}"
+                                                            class="carousel slide store-catalog-carousel mt-3"
+                                                            data-ride="carousel"
+                                                            data-interval="4200"
+                                                        >
+                                                            @if($catalogImages->count() > 1)
+                                                                <ol class="carousel-indicators">
+                                                                    @foreach($catalogImages as $catalogIndex => $catalogImage)
+                                                                        <li
+                                                                            data-target="#store-catalog-carousel-{{ $item->id }}"
+                                                                            data-slide-to="{{ $catalogIndex }}"
+                                                                            class="{{ $catalogIndex === 0 ? 'active' : '' }}"
+                                                                        ></li>
+                                                                    @endforeach
+                                                                </ol>
+                                                            @endif
+
+                                                            <div class="carousel-inner">
+                                                                @foreach($catalogImages as $catalogIndex => $catalogImage)
+                                                                    <div class="carousel-item {{ $catalogIndex === 0 ? 'active' : '' }}">
+                                                                        <img
+                                                                            src="{{ $catalogImage }}"
+                                                                            class="d-block w-100"
+                                                                            alt="Catalogo {{ $item->name }} - {{ $catalogIndex + 1 }}"
+                                                                            loading="lazy"
+                                                                            referrerpolicy="no-referrer"
+                                                                        >
+                                                                    </div>
+                                                                @endforeach
+                                                            </div>
+
+                                                            @if($catalogImages->count() > 1)
+                                                                <a class="carousel-control-prev" href="#store-catalog-carousel-{{ $item->id }}" role="button" data-slide="prev">
+                                                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                                                    <span class="sr-only">Anterior</span>
+                                                                </a>
+                                                                <a class="carousel-control-next" href="#store-catalog-carousel-{{ $item->id }}" role="button" data-slide="next">
+                                                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                                                    <span class="sr-only">Siguiente</span>
+                                                                </a>
+                                                            @endif
+                                                        </div>
+                                                    @else
+                                                        <div class="store-empty-catalog mt-3">
+                                                            Aun no hay fotos cargadas en el catalogo.
+                                                        </div>
+                                                    @endif
+                                                </section>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer store-modal-footer">
                                             @if($item->company_website)
-                                                <a href="{{ $item->company_website }}" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-info mt-3">
+                                                <a href="{{ $item->company_website }}" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-info">
                                                     Abrir sitio web
                                                 </a>
                                             @endif
+                                            @if($item->purchase_url)
+                                                <a
+                                                    href="{{ $item->purchase_url }}"
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    class="btn btn-sm btn-outline-primary"
+                                                >
+                                                    Ir al enlace
+                                                </a>
+                                            @endif
+                                            <button type="button" class="btn btn-sm btn-outline-light" data-dismiss="modal">
+                                                Cerrar
+                                            </button>
                                         </div>
                                     </div>
                                 </div>

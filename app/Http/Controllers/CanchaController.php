@@ -13,9 +13,7 @@ class CanchaController extends Controller
     public function index()
     {
         $canchas = Cancha::query()
-            ->whereNotNull('integration_identifier')
-            ->whereNotNull('api_base_url')
-            ->whereNotNull('integration_token')
+            ->orderBy('created_at', 'desc')
             ->get();
 
         return view('canchas.index', compact('canchas'));
@@ -24,11 +22,6 @@ class CanchaController extends Controller
     // MOSTRAR UNA CANCHA + AGENDA + RESERVAS + SUBCANCHAS
     public function show(Cancha $cancha)
     {
-        abort_unless(
-            filled($cancha->integration_identifier) && filled($cancha->api_base_url) && filled($cancha->integration_token),
-            404
-        );
-
         // Obtener subcanchas de la cancha
         $subcanchas = $cancha->subcanchas;  // ← relación belongsTo
 

@@ -110,92 +110,149 @@
                             </div>
                         </article>
 
-                        <div class="modal fade" id="shop-info-modal-{{ $item->id }}" tabindex="-1" aria-hidden="true">
-                            <div class="modal-dialog modal-lg modal-dialog-centered">
+                        <div class="modal fade shop-info-modal" id="shop-info-modal-{{ $item->id }}" tabindex="-1" aria-hidden="true" data-bs-backdrop="true" data-bs-keyboard="true">
+                            <div class="modal-dialog modal-dialog-scrollable shop-modal-dialog">
                                 <div class="modal-content shop-modal-content">
-                                    <div class="modal-header border-0 pb-0">
-                                        <h5 class="modal-title">Informacion de empresa y catalogo</h5>
-                                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                                    <div class="modal-header shop-modal-header">
+                                        <div class="shop-modal-heading">
+                                            <p class="shop-modal-kicker mb-1">Ficha completa</p>
+                                            <h5 class="modal-title mb-1">Informacion de empresa y catalogo</h5>
+                                            <p class="shop-modal-subtitle mb-0">{{ $item->name }}</p>
+                                        </div>
+                                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" data-shop-close aria-label="Cerrar"></button>
                                     </div>
-                                    <div class="modal-body">
-                                        <div class="shop-company-header">
-                                            <div class="shop-company-logo {{ $companyLogo ? '' : 'is-empty' }}">
-                                                @if($companyLogo)
+                                    <div class="modal-body shop-modal-body">
+                                        <section class="shop-modal-product">
+                                            <div class="shop-modal-product-media {{ $image ? '' : 'is-fallback' }}">
+                                                @if($image)
                                                     <img
-                                                        src="{{ $companyLogo }}"
-                                                        alt="Logo de {{ $item->company_name ?: $item->name }}"
+                                                        src="{{ $image }}"
+                                                        alt="{{ $item->name }}"
                                                         loading="lazy"
                                                         referrerpolicy="no-referrer"
-                                                        onerror="this.style.display='none'; this.parentElement.classList.add('is-empty');"
+                                                        onerror="this.style.display='none'; this.parentElement.classList.add('is-fallback');"
                                                     >
                                                 @endif
-                                                <span>Logo</span>
+                                                <div class="shop-modal-product-fallback">
+                                                    <i class="bi bi-image"></i>
+                                                    <span>Imagen no disponible</span>
+                                                </div>
                                             </div>
-                                            <div>
-                                                <h6 class="mb-1">{{ $item->company_name ?: 'Empresa no registrada' }}</h6>
-                                                <p class="mb-0 text-muted">{{ $item->name }}</p>
+                                            <div class="shop-modal-product-copy">
+                                                <p class="shop-modal-product-category">{{ $item->category ?: 'Producto' }}</p>
+                                                <h3 class="shop-modal-product-title">{{ $item->name }}</h3>
+                                                <p class="shop-modal-product-price">{{ $priceText }}</p>
+                                                <p class="shop-modal-product-description">{{ $item->description ?: 'Sin descripcion cargada.' }}</p>
                                             </div>
-                                        </div>
+                                        </section>
 
-                                        <ul class="shop-company-list mt-3">
-                                            <li><span>Telefono</span><strong>{{ $item->company_phone ?: 'Sin dato' }}</strong></li>
-                                            <li><span>Correo</span><strong>{{ $item->company_email ?: 'Sin dato' }}</strong></li>
-                                            <li><span>Lugar</span><strong>{{ $item->company_location ?: 'Sin dato' }}</strong></li>
-                                            <li><span>Sitio web</span><strong>{{ $item->company_website ?: 'Sin dato' }}</strong></li>
-                                        </ul>
-
-                                        @if($item->catalog_summary)
-                                            <div class="shop-catalog-summary">
-                                                {{ $item->catalog_summary }}
-                                            </div>
-                                        @endif
-
-                                        @if($catalogImages->count() > 0)
-                                            <div id="shop-catalog-carousel-{{ $item->id }}" class="carousel slide shop-catalog-carousel mt-3">
-                                                @if($catalogImages->count() > 1)
-                                                    <div class="carousel-indicators">
-                                                        @foreach($catalogImages as $catalogIndex => $catalogImage)
-                                                            <button
-                                                                type="button"
-                                                                data-bs-target="#shop-catalog-carousel-{{ $item->id }}"
-                                                                data-bs-slide-to="{{ $catalogIndex }}"
-                                                                class="{{ $catalogIndex === 0 ? 'active' : '' }}"
-                                                                aria-label="Slide {{ $catalogIndex + 1 }}"
-                                                            ></button>
-                                                        @endforeach
-                                                    </div>
-                                                @endif
-
-                                                <div class="carousel-inner">
-                                                    @foreach($catalogImages as $catalogIndex => $catalogImage)
-                                                        <div class="carousel-item {{ $catalogIndex === 0 ? 'active' : '' }}">
+                                        <div class="shop-modal-grid">
+                                            <section class="shop-panel">
+                                                <h6 class="shop-panel-title">Empresa</h6>
+                                                <div class="shop-company-header">
+                                                    <div class="shop-company-logo {{ $companyLogo ? '' : 'is-empty' }}">
+                                                        @if($companyLogo)
                                                             <img
-                                                                src="{{ $catalogImage }}"
-                                                                class="d-block w-100"
-                                                                alt="Catalogo {{ $item->name }} - {{ $catalogIndex + 1 }}"
+                                                                src="{{ $companyLogo }}"
+                                                                alt="Logo de {{ $item->company_name ?: $item->name }}"
                                                                 loading="lazy"
                                                                 referrerpolicy="no-referrer"
+                                                                onerror="this.style.display='none'; this.parentElement.classList.add('is-empty');"
                                                             >
-                                                        </div>
-                                                    @endforeach
+                                                        @endif
+                                                        <span>Logo</span>
+                                                    </div>
+                                                    <div>
+                                                        <h6 class="mb-1">{{ $item->company_name ?: 'Empresa no registrada' }}</h6>
+                                                        <p class="mb-0 text-muted">{{ $item->name }}</p>
+                                                    </div>
                                                 </div>
 
-                                                @if($catalogImages->count() > 1)
-                                                    <button class="carousel-control-prev" type="button" data-bs-target="#shop-catalog-carousel-{{ $item->id }}" data-bs-slide="prev">
-                                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                                        <span class="visually-hidden">Anterior</span>
-                                                    </button>
-                                                    <button class="carousel-control-next" type="button" data-bs-target="#shop-catalog-carousel-{{ $item->id }}" data-bs-slide="next">
-                                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                                        <span class="visually-hidden">Siguiente</span>
-                                                    </button>
+                                                <ul class="shop-company-list mt-3">
+                                                    <li><span>Telefono</span><strong>{{ $item->company_phone ?: 'Sin dato' }}</strong></li>
+                                                    <li><span>Correo</span><strong>{{ $item->company_email ?: 'Sin dato' }}</strong></li>
+                                                    <li><span>Lugar</span><strong>{{ $item->company_location ?: 'Sin dato' }}</strong></li>
+                                                    <li>
+                                                        <span>Sitio web</span>
+                                                        <strong>
+                                                            @if($item->company_website)
+                                                                <a href="{{ $item->company_website }}" target="_blank" rel="noopener noreferrer" class="shop-inline-link">
+                                                                    Visitar sitio
+                                                                </a>
+                                                            @else
+                                                                Sin dato
+                                                            @endif
+                                                        </strong>
+                                                    </li>
+                                                </ul>
+
+                                                @if($item->catalog_summary)
+                                                    <div class="shop-catalog-summary">
+                                                        {{ $item->catalog_summary }}
+                                                    </div>
                                                 @endif
-                                            </div>
-                                        @else
-                                            <div class="shop-empty-catalog mt-3">
-                                                Aun no hay fotos de catalogo para este producto.
-                                            </div>
+                                            </section>
+
+                                            <section class="shop-panel">
+                                                <h6 class="shop-panel-title">Galeria de catalogo</h6>
+                                                @if($catalogImages->count() > 0)
+                                                    <div id="shop-catalog-carousel-{{ $item->id }}" class="carousel slide shop-catalog-carousel mt-3">
+                                                        @if($catalogImages->count() > 1)
+                                                            <div class="carousel-indicators">
+                                                                @foreach($catalogImages as $catalogIndex => $catalogImage)
+                                                                    <button
+                                                                        type="button"
+                                                                        data-bs-target="#shop-catalog-carousel-{{ $item->id }}"
+                                                                        data-bs-slide-to="{{ $catalogIndex }}"
+                                                                        class="{{ $catalogIndex === 0 ? 'active' : '' }}"
+                                                                        aria-label="Slide {{ $catalogIndex + 1 }}"
+                                                                    ></button>
+                                                                @endforeach
+                                                            </div>
+                                                        @endif
+
+                                                        <div class="carousel-inner">
+                                                            @foreach($catalogImages as $catalogIndex => $catalogImage)
+                                                                <div class="carousel-item {{ $catalogIndex === 0 ? 'active' : '' }}">
+                                                                    <img
+                                                                        src="{{ $catalogImage }}"
+                                                                        class="d-block w-100"
+                                                                        alt="Catalogo {{ $item->name }} - {{ $catalogIndex + 1 }}"
+                                                                        loading="lazy"
+                                                                        referrerpolicy="no-referrer"
+                                                                    >
+                                                                </div>
+                                                            @endforeach
+                                                        </div>
+
+                                                        @if($catalogImages->count() > 1)
+                                                            <button class="carousel-control-prev" type="button" data-bs-target="#shop-catalog-carousel-{{ $item->id }}" data-bs-slide="prev">
+                                                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                                                <span class="visually-hidden">Anterior</span>
+                                                            </button>
+                                                            <button class="carousel-control-next" type="button" data-bs-target="#shop-catalog-carousel-{{ $item->id }}" data-bs-slide="next">
+                                                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                                                <span class="visually-hidden">Siguiente</span>
+                                                            </button>
+                                                        @endif
+                                                    </div>
+                                                @else
+                                                    <div class="shop-empty-catalog mt-3">
+                                                        Aun no hay fotos de catalogo para este producto.
+                                                    </div>
+                                                @endif
+                                            </section>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer shop-modal-footer">
+                                        @if($item->purchase_url)
+                                            <a href="{{ $item->purchase_url }}" class="btn btn-sm btn-outline-info" target="_blank" rel="noopener noreferrer">
+                                                Ir al enlace
+                                            </a>
                                         @endif
+                                        <button type="button" class="btn btn-sm btn-outline-light" data-bs-dismiss="modal" data-shop-close>
+                                            Cerrar
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -257,3 +314,66 @@
     </div>
 </section>
 @endsection
+
+@push('scripts')
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const shopModals = document.querySelectorAll('.shop-info-modal');
+    if (!shopModals.length || typeof bootstrap === 'undefined') {
+        return;
+    }
+
+    // Avoid stacking-context issues from parent containers with z-index.
+    shopModals.forEach(function (modalEl) {
+        if (modalEl.parentElement !== document.body) {
+            document.body.appendChild(modalEl);
+        }
+    });
+
+    const clearModalLocks = function () {
+        if (document.querySelector('.modal.show')) {
+            return;
+        }
+
+        document.body.classList.remove('modal-open');
+        document.body.style.removeProperty('padding-right');
+        document.body.style.removeProperty('overflow');
+        document.documentElement.style.removeProperty('overflow');
+
+        document.querySelectorAll('.modal-backdrop').forEach(function (backdrop) {
+            backdrop.remove();
+        });
+    };
+
+    const hideModal = function (modalEl) {
+        const instance = bootstrap.Modal.getOrCreateInstance(modalEl);
+        instance.hide();
+    };
+
+    shopModals.forEach(function (modalEl) {
+        modalEl.querySelectorAll('[data-shop-close]').forEach(function (closeBtn) {
+            closeBtn.addEventListener('click', function () {
+                hideModal(modalEl);
+            });
+        });
+
+        modalEl.addEventListener('hidden.bs.modal', function () {
+            clearModalLocks();
+        });
+    });
+
+    document.addEventListener('keydown', function (event) {
+        if (event.key !== 'Escape') {
+            return;
+        }
+
+        const openedModal = document.querySelector('.shop-info-modal.show');
+        if (!openedModal) {
+            return;
+        }
+
+        hideModal(openedModal);
+    });
+});
+</script>
+@endpush

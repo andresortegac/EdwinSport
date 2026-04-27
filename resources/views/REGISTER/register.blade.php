@@ -381,6 +381,20 @@
         overflow: visible;
       }
     }
+
+    /* Fix modal layering/interactions inside dashboard cards */
+    .modal {
+      z-index: 2000 !important;
+    }
+
+    .modal-backdrop {
+      z-index: 1990 !important;
+    }
+
+    .modal-fullscreen .modal-content {
+      border-radius: 0 !important;
+      min-height: 100vh;
+    }
   </style>
   <link rel="stylesheet" href="{{ asset('CSS/unified-font.css') }}">
 </head>
@@ -608,8 +622,7 @@
                 <h5>Agregar canchas</h5>
                 <p>Crea nuevas canchas y define cuantas internas maneja cada sede.</p>
                 <button type="button" class="btn btn-brand w-100"
-                        data-bs-toggle="collapse" data-bs-target="#formNuevaCancha"
-                        aria-expanded="false" aria-controls="formNuevaCancha">
+                        data-bs-toggle="modal" data-bs-target="#modalNuevaCancha">
                   Nueva cancha
                 </button>
               </div>
@@ -620,8 +633,7 @@
                 <h5>Ingresar en vivos</h5>
                 <p>Carga enlaces por partido para que todos vean la transmision oficial.</p>
                 <button type="button" class="btn btn-brand w-100"
-                        data-bs-toggle="collapse" data-bs-target="#formEnVivo"
-                        aria-expanded="false" aria-controls="formEnVivo">
+                        data-bs-toggle="modal" data-bs-target="#modalEnVivo">
                   Ingresar en vivo
                 </button>
               </div>
@@ -633,8 +645,7 @@
                 <p>Sube una imagen para local y otra para visitante en el VS.</p>
                 <button type="button" class="btn btn-soft w-100"
                         style="border-color:rgba(168,85,247,.65);color:#e9d5ff;"
-                        data-bs-toggle="collapse" data-bs-target="#formImagenTecnico"
-                        aria-expanded="false" aria-controls="formImagenTecnico">
+                        data-bs-toggle="modal" data-bs-target="#modalImagenTecnico">
                   Subir imagenes
                 </button>
               </div>
@@ -642,212 +653,242 @@
           </div>
 
 
-          <div class="collapse mt-4 {{ $errors->any() || session('success') ? 'show' : '' }}" id="formNuevaCancha">
-            <div class="pro-card p-4">
-              <h4 class="mb-3" style="font-family:Oswald;">Nueva cancha</h4>
-
-              @if(session('success'))
-                <div class="alert alert-success">{{ session('success') }}</div>
-              @endif
-
-              @if ($errors->any())
-                <div class="alert alert-danger">
-                  <ul class="mb-0">
-                    @foreach ($errors->all() as $error)
-                      <li>{{ $error }}</li>
-                    @endforeach
-                  </ul>
-                </div>
-              @endif
-
-              <form action="{{ route('canchas.store') }}" method="POST" class="row g-3">
-                @csrf
-                <input type="hidden" name="redirect_to" value="{{ route('register') }}">
-
-                <div class="col-md-6">
-                  <label class="form-label">Nombre de la cancha</label>
-                  <input type="text" name="nombre" class="form-control" value="{{ old('nombre') }}" required>
+          <div class="modal fade" id="modalNuevaCancha" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-fullscreen modal-dialog-scrollable">
+              <div class="modal-content pro-card p-4 border-0">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                  <h4 class="mb-0" style="font-family:Oswald;">Nueva cancha</h4>
+                  <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
                 </div>
 
-                <div class="col-md-6">
-                  <label class="form-label">Numero de canchas internas</label>
-                  <select name="num_canchas" class="form-select" required>
-                    @for ($i = 1; $i <= 4; $i++)
-                      <option value="{{ $i }}" {{ old('num_canchas',1)==$i ? 'selected' : '' }}>{{ $i }}</option>
-                    @endfor
-                  </select>
-                </div>
+                @if(session('success'))
+                  <div class="alert alert-success">{{ session('success') }}</div>
+                @endif
 
-                <div class="col-12">
-                  <label class="form-label">Descripcion</label>
-                  <textarea name="descripcion" class="form-control" rows="2">{{ old('descripcion') }}</textarea>
-                </div>
+                @if ($errors->any())
+                  <div class="alert alert-danger">
+                    <ul class="mb-0">
+                      @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                      @endforeach
+                    </ul>
+                  </div>
+                @endif
 
-                <div class="col-md-6">
-                  <label class="form-label">Ubicacion</label>
-                  <input type="text" name="ubicacion" class="form-control" value="{{ old('ubicacion') }}" required>
-                </div>
+                <form action="{{ route('canchas.store') }}" method="POST" class="row g-3">
+                  @csrf
+                  <input type="hidden" name="redirect_to" value="{{ route('register') }}">
 
-                <div class="col-md-6">
-                  <label class="form-label">Telefono de contacto</label>
-                  <input type="text" name="telefono_contacto" class="form-control" value="{{ old('telefono_contacto') }}" required>
-                </div>
+                  <div class="col-md-6">
+                    <label class="form-label">Nombre de la cancha</label>
+                    <input type="text" name="nombre" class="form-control" value="{{ old('nombre') }}" required>
+                  </div>
 
-                <div class="col-md-6">
-                  <label class="form-label">Hora apertura</label>
-                  <input type="time" name="hora_apertura" class="form-control" value="{{ old('hora_apertura') }}" required>
-                </div>
+                  <div class="col-md-6">
+                    <label class="form-label">Numero de canchas internas</label>
+                    <select name="num_canchas" class="form-select" required>
+                      @for ($i = 1; $i <= 4; $i++)
+                        <option value="{{ $i }}" {{ old('num_canchas',1)==$i ? 'selected' : '' }}>{{ $i }}</option>
+                      @endfor
+                    </select>
+                  </div>
 
-                <div class="col-md-6">
-                  <label class="form-label">Hora cierre</label>
-                  <input type="time" name="hora_cierre" class="form-control" value="{{ old('hora_cierre') }}" required>
-                </div>
+                  <div class="col-12">
+                    <label class="form-label">Descripcion</label>
+                    <textarea name="descripcion" class="form-control" rows="2">{{ old('descripcion') }}</textarea>
+                  </div>
 
-                <div class="col-12">
-                  <button class="btn btn-brand">Guardar cancha</button>
-                </div>
-              </form>
+                  <div class="col-md-6">
+                    <label class="form-label">Ubicacion</label>
+                    <input type="text" name="ubicacion" class="form-control" value="{{ old('ubicacion') }}" required>
+                  </div>
+
+                  <div class="col-md-6">
+                    <label class="form-label">Ciudad</label>
+                    <input type="text" name="ciudad" class="form-control" value="{{ old('ciudad') }}" required>
+                  </div>
+
+                  <div class="col-md-6">
+                    <label class="form-label">Subdominio</label>
+                    <input type="text" name="subdominio" class="form-control" value="{{ old('subdominio') }}" placeholder="bombonera" required>
+                  </div>
+
+                  <div class="col-md-6">
+                    <label class="form-label">Identificador de integracion</label>
+                    <input type="text" name="integration_identifier" class="form-control" value="{{ old('integration_identifier') }}" required>
+                  </div>
+
+                  <div class="col-md-6">
+                    <label class="form-label">Telefono de contacto</label>
+                    <input type="text" name="telefono_contacto" class="form-control" value="{{ old('telefono_contacto') }}" required>
+                  </div>
+
+                  <div class="col-md-6">
+                    <label class="form-label">Hora apertura</label>
+                    <input type="time" name="hora_apertura" class="form-control" value="{{ old('hora_apertura') }}" required>
+                  </div>
+
+                  <div class="col-md-6">
+                    <label class="form-label">Hora cierre</label>
+                    <input type="time" name="hora_cierre" class="form-control" value="{{ old('hora_cierre') }}" required>
+                  </div>
+
+                  <div class="col-12">
+                    <button class="btn btn-brand">Guardar cancha</button>
+                  </div>
+                </form>
+              </div>
             </div>
           </div>
 
-          <div class="collapse mt-4 {{ $errors->liveStream->any() || session('live_success') ? 'show' : '' }}" id="formEnVivo">
-            <div class="pro-card p-4">
-              <h4 class="mb-3" style="font-family:Oswald;">Cargar transmision en vivo</h4>
-
-              @if(session('live_success'))
-                <div class="alert alert-success">
-                  {{ session('live_success') }}
-                  @if(session('live_fixture_url'))
-                    <a href="{{ session('live_fixture_url') }}" class="ms-2">Ver partido</a>
-                  @endif
-                </div>
-              @endif
-
-              @if ($errors->liveStream->any())
-                <div class="alert alert-danger">
-                  <ul class="mb-0">
-                    @foreach ($errors->liveStream->all() as $error)
-                      <li>{{ $error }}</li>
-                    @endforeach
-                  </ul>
-                </div>
-              @endif
-
-              <form action="{{ route('events.fixture.stream.store') }}" method="POST" class="row g-3">
-                @csrf
-
-                <div class="col-md-3">
-                  <label class="form-label">Evento (ID)</label>
-                  <input type="number" name="event_id" class="form-control" min="1" value="{{ old('event_id') }}" required>
+          <div class="modal fade" id="modalEnVivo" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-fullscreen modal-dialog-scrollable">
+              <div class="modal-content pro-card p-4 border-0">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                  <h4 class="mb-0" style="font-family:Oswald;">Cargar transmision en vivo</h4>
+                  <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
                 </div>
 
-                <div class="col-md-3">
-                  <label class="form-label">Grupo (ID)</label>
-                  <input type="number" name="grupo_id" class="form-control" min="1" value="{{ old('grupo_id') }}" required>
-                </div>
+                @if(session('live_success'))
+                  <div class="alert alert-success">
+                    {{ session('live_success') }}
+                    @if(session('live_fixture_url'))
+                      <a href="{{ session('live_fixture_url') }}" class="ms-2">Ver partido</a>
+                    @endif
+                  </div>
+                @endif
 
-                <div class="col-md-3">
-                  <label class="form-label">Jornada</label>
-                  <input type="number" name="jornada" class="form-control" min="1" value="{{ old('jornada') }}" required>
-                </div>
+                @if ($errors->liveStream->any())
+                  <div class="alert alert-danger">
+                    <ul class="mb-0">
+                      @foreach ($errors->liveStream->all() as $error)
+                        <li>{{ $error }}</li>
+                      @endforeach
+                    </ul>
+                  </div>
+                @endif
 
-                <div class="col-md-3">
-                  <label class="form-label">Partido (URL)</label>
-                  <input type="number" name="partido_numero" class="form-control" min="0" value="{{ old('partido_numero') }}" required>
-                </div>
+                <form action="{{ route('events.fixture.stream.store') }}" method="POST" class="row g-3">
+                  @csrf
 
-                <div class="col-12">
-                  <label class="form-label">Link del en vivo</label>
-                  <input type="url" name="live_url" class="form-control" value="{{ old('live_url') }}"
-                         placeholder="https://www.youtube.com/watch?v=..."
-                         required>
-                  <small class="muted d-block mt-2">
-                    Soporta YouTube, Facebook, Instagram y TikTok.
-                  </small>
-                  <small class="muted d-block mt-1">
-                    Usa el mismo numero de partido que aparece al final de la URL `.../fixture/grupo/jornada/partido`.
-                  </small>
-                </div>
+                  <div class="col-md-3">
+                    <label class="form-label">Evento (ID)</label>
+                    <input type="number" name="event_id" class="form-control" min="1" value="{{ old('event_id') }}" required>
+                  </div>
 
-                <div class="col-12">
-                  <button class="btn btn-brand">Guardar transmision</button>
-                </div>
-              </form>
+                  <div class="col-md-3">
+                    <label class="form-label">Grupo (ID)</label>
+                    <input type="number" name="grupo_id" class="form-control" min="1" value="{{ old('grupo_id') }}" required>
+                  </div>
+
+                  <div class="col-md-3">
+                    <label class="form-label">Jornada</label>
+                    <input type="number" name="jornada" class="form-control" min="1" value="{{ old('jornada') }}" required>
+                  </div>
+
+                  <div class="col-md-3">
+                    <label class="form-label">Partido (URL)</label>
+                    <input type="number" name="partido_numero" class="form-control" min="0" value="{{ old('partido_numero') }}" required>
+                  </div>
+
+                  <div class="col-12">
+                    <label class="form-label">Link del en vivo</label>
+                    <input type="url" name="live_url" class="form-control" value="{{ old('live_url') }}"
+                           placeholder="https://www.youtube.com/watch?v=..."
+                           required>
+                    <small class="muted d-block mt-2">
+                      Soporta YouTube, Facebook, Instagram y TikTok.
+                    </small>
+                    <small class="muted d-block mt-1">
+                      Usa el mismo numero de partido que aparece al final de la URL `.../fixture/grupo/jornada/partido`.
+                    </small>
+                  </div>
+
+                  <div class="col-12">
+                    <button class="btn btn-brand">Guardar transmision</button>
+                  </div>
+                </form>
+              </div>
             </div>
           </div>
 
-          <div class="collapse mt-4 {{ $errors->tecnicoImage->any() || session('tecnico_success') ? 'show' : '' }}" id="formImagenTecnico">
-            <div class="pro-card p-4">
-              <h4 class="mb-3" style="font-family:Oswald;">Subir imagenes de los equipos</h4>
-
-              @if(session('tecnico_success'))
-                <div class="alert alert-success">
-                  {{ session('tecnico_success') }}
-                  @if(session('tecnico_fixture_url'))
-                    <a href="{{ session('tecnico_fixture_url') }}" class="ms-2">Ver partido</a>
-                  @endif
-                </div>
-              @endif
-
-              @if ($errors->tecnicoImage->any())
-                <div class="alert alert-danger">
-                  <ul class="mb-0">
-                    @foreach ($errors->tecnicoImage->all() as $error)
-                      <li>{{ $error }}</li>
-                    @endforeach
-                  </ul>
-                </div>
-              @endif
-
-              <form action="{{ route('events.fixture.tecnico.store') }}" method="POST" class="row g-3" enctype="multipart/form-data">
-                @csrf
-
-                <div class="col-md-3">
-                  <label class="form-label">Evento (ID)</label>
-                  <input type="number" name="event_id" class="form-control" min="1" value="{{ old('event_id') }}" required>
+          <div class="modal fade" id="modalImagenTecnico" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-fullscreen modal-dialog-scrollable">
+              <div class="modal-content pro-card p-4 border-0">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                  <h4 class="mb-0" style="font-family:Oswald;">Subir imagenes de los equipos</h4>
+                  <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
                 </div>
 
-                <div class="col-md-3">
-                  <label class="form-label">Grupo (ID)</label>
-                  <input type="number" name="grupo_id" class="form-control" min="1" value="{{ old('grupo_id') }}" required>
-                </div>
+                @if(session('tecnico_success'))
+                  <div class="alert alert-success">
+                    {{ session('tecnico_success') }}
+                    @if(session('tecnico_fixture_url'))
+                      <a href="{{ session('tecnico_fixture_url') }}" class="ms-2">Ver partido</a>
+                    @endif
+                  </div>
+                @endif
 
-                <div class="col-md-3">
-                  <label class="form-label">Jornada</label>
-                  <input type="number" name="jornada" class="form-control" min="1" value="{{ old('jornada') }}" required>
-                </div>
+                @if ($errors->tecnicoImage->any())
+                  <div class="alert alert-danger">
+                    <ul class="mb-0">
+                      @foreach ($errors->tecnicoImage->all() as $error)
+                        <li>{{ $error }}</li>
+                      @endforeach
+                    </ul>
+                  </div>
+                @endif
 
-                <div class="col-md-3">
-                  <label class="form-label">Partido (URL)</label>
-                  <input type="number" name="partido_numero" class="form-control" min="0" value="{{ old('partido_numero') }}" required>
-                </div>
+                <form action="{{ route('events.fixture.tecnico.store') }}" method="POST" class="row g-3" enctype="multipart/form-data">
+                  @csrf
 
-                <div class="col-md-6">
-                  <label class="form-label">Imagen equipo local</label>
-                  <input type="file" name="tecnico_image_local" class="form-control" accept=".jpg,.jpeg,.png,.webp" required>
-                </div>
+                  <div class="col-md-3">
+                    <label class="form-label">Evento (ID)</label>
+                    <input type="number" name="event_id" class="form-control" min="1" value="{{ old('event_id') }}" required>
+                  </div>
 
-                <div class="col-md-6">
-                  <label class="form-label">Imagen equipo visitante</label>
-                  <input type="file" name="tecnico_image_visitante" class="form-control" accept=".jpg,.jpeg,.png,.webp" required>
-                </div>
+                  <div class="col-md-3">
+                    <label class="form-label">Grupo (ID)</label>
+                    <input type="number" name="grupo_id" class="form-control" min="1" value="{{ old('grupo_id') }}" required>
+                  </div>
 
-                <div class="col-12">
-                  <small class="muted d-block mt-2">
-                    Formatos: JPG, PNG o WEBP. Maximo 5MB.
-                  </small>
-                  <small class="muted d-block mt-1">
-                    Debes subir ambas imagenes: una para el local y otra para el visitante.
-                  </small>
-                  <small class="muted d-block mt-1">
-                    Usa el mismo numero de partido de la URL `.../fixture/grupo/jornada/partido`.
-                  </small>
-                </div>
+                  <div class="col-md-3">
+                    <label class="form-label">Jornada</label>
+                    <input type="number" name="jornada" class="form-control" min="1" value="{{ old('jornada') }}" required>
+                  </div>
 
-                <div class="col-12">
-                  <button class="btn btn-brand">Guardar imagenes</button>
-                </div>
-              </form>
+                  <div class="col-md-3">
+                    <label class="form-label">Partido (URL)</label>
+                    <input type="number" name="partido_numero" class="form-control" min="0" value="{{ old('partido_numero') }}" required>
+                  </div>
+
+                  <div class="col-md-6">
+                    <label class="form-label">Imagen equipo local</label>
+                    <input type="file" name="tecnico_image_local" class="form-control" accept=".jpg,.jpeg,.png,.webp" required>
+                  </div>
+
+                  <div class="col-md-6">
+                    <label class="form-label">Imagen equipo visitante</label>
+                    <input type="file" name="tecnico_image_visitante" class="form-control" accept=".jpg,.jpeg,.png,.webp" required>
+                  </div>
+
+                  <div class="col-12">
+                    <small class="muted d-block mt-2">
+                      Formatos: JPG, PNG o WEBP. Maximo 5MB.
+                    </small>
+                    <small class="muted d-block mt-1">
+                      Debes subir ambas imagenes: una para el local y otra para el visitante.
+                    </small>
+                    <small class="muted d-block mt-1">
+                      Usa el mismo numero de partido de la URL `.../fixture/grupo/jornada/partido`.
+                    </small>
+                  </div>
+
+                  <div class="col-12">
+                    <button class="btn btn-brand">Guardar imagenes</button>
+                  </div>
+                </form>
+              </div>
             </div>
           </div>
           <!-- Table -->
@@ -951,6 +992,70 @@
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      if (typeof bootstrap === 'undefined') return;
+
+      const modalIds = ['modalNuevaCancha', 'modalEnVivo', 'modalImagenTecnico'];
+      modalIds.forEach(function (id) {
+        const modalEl = document.getElementById(id);
+        if (!modalEl) return;
+        if (modalEl.parentElement !== document.body) {
+          document.body.appendChild(modalEl);
+        }
+      });
+
+      const normalizeBackdrops = function () {
+        const backdrops = Array.from(document.querySelectorAll('.modal-backdrop'));
+        backdrops.forEach(function (backdrop, index) {
+          backdrop.style.zIndex = '1990';
+          if (index < backdrops.length - 1) {
+            backdrop.remove();
+          }
+        });
+      };
+
+      modalIds.forEach(function (id) {
+        const modalEl = document.getElementById(id);
+        if (!modalEl) return;
+
+        modalEl.addEventListener('shown.bs.modal', function () {
+          normalizeBackdrops();
+        });
+
+        modalEl.addEventListener('hidden.bs.modal', function () {
+          const hasOpenModal = document.querySelector('.modal.show');
+          if (!hasOpenModal) {
+            document.querySelectorAll('.modal-backdrop').forEach(function (backdrop) {
+              backdrop.remove();
+            });
+            document.body.classList.remove('modal-open');
+            document.body.style.removeProperty('padding-right');
+          } else {
+            normalizeBackdrops();
+          }
+        });
+      });
+
+      const shouldOpenCancha = @json(session()->has('success') || $errors->any());
+      const shouldOpenLive = @json(session()->has('live_success') || $errors->liveStream->any());
+      const shouldOpenTecnico = @json(session()->has('tecnico_success') || $errors->tecnicoImage->any());
+
+      const openModal = function (id) {
+        const modalEl = document.getElementById(id);
+        if (!modalEl) return;
+        bootstrap.Modal.getOrCreateInstance(modalEl).show();
+      };
+
+      if (shouldOpenCancha) {
+        openModal('modalNuevaCancha');
+      } else if (shouldOpenLive) {
+        openModal('modalEnVivo');
+      } else if (shouldOpenTecnico) {
+        openModal('modalImagenTecnico');
+      }
+    });
+  </script>
 </body>
 </html>
  

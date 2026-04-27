@@ -3,6 +3,11 @@
     padding: 20px 0 50px;
 }
 
+.store-page .container {
+    position: static;
+    z-index: auto;
+}
+
 .store-head {
     border-radius: 18px;
     border: 1px solid rgba(148, 163, 184, 0.26);
@@ -132,12 +137,186 @@
     gap: 8px;
 }
 
+.shop-info-modal {
+    z-index: 1080;
+}
+
+.modal-backdrop.show {
+    z-index: 1070;
+}
+
+.shop-info-modal .shop-modal-dialog {
+    margin: 0;
+    width: 100vw;
+    max-width: 100vw;
+    height: 100vh;
+}
+
 .shop-modal-content {
-    border: 1px solid rgba(148, 163, 184, 0.34);
+    border: 0;
+    border-radius: 0;
+    min-height: 100vh;
     background:
-        radial-gradient(circle at 90% -20%, rgba(14, 165, 233, 0.22), transparent 48%),
-        linear-gradient(145deg, rgba(8, 21, 40, 0.95), rgba(4, 13, 28, 0.98));
+        radial-gradient(circle at 88% -18%, rgba(14, 165, 233, 0.24), transparent 46%),
+        linear-gradient(140deg, rgba(6, 20, 39, 0.98), rgba(2, 10, 24, 0.99));
     color: #e5eef8;
+}
+
+.shop-modal-header {
+    border-bottom: 1px solid rgba(148, 163, 184, 0.28);
+    padding: 1rem 1.25rem;
+    background: rgba(2, 10, 24, 0.88);
+    backdrop-filter: blur(4px);
+}
+
+.shop-modal-heading {
+    max-width: calc(100% - 48px);
+}
+
+.shop-modal-kicker {
+    margin: 0;
+    font-size: .74rem;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+    color: #93c5fd;
+    font-weight: 700;
+}
+
+.shop-modal-subtitle {
+    color: #b9d2e9;
+    font-size: .9rem;
+}
+
+.shop-modal-body {
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+    padding: 1.1rem 1.25rem 1.25rem;
+}
+
+.shop-modal-body::-webkit-scrollbar {
+    width: 8px;
+}
+
+.shop-modal-body::-webkit-scrollbar-track {
+    background: rgba(14, 25, 44, 0.45);
+    border-radius: 999px;
+}
+
+.shop-modal-body::-webkit-scrollbar-thumb {
+    background: rgba(148, 163, 184, 0.5);
+    border-radius: 999px;
+}
+
+.shop-modal-body::-webkit-scrollbar-thumb:hover {
+    background: rgba(148, 163, 184, 0.68);
+}
+
+.shop-modal-product {
+    display: grid;
+    grid-template-columns: minmax(220px, 320px) minmax(0, 1fr);
+    gap: 1rem;
+    border: 1px solid rgba(148, 163, 184, 0.25);
+    border-radius: 16px;
+    background: rgba(2, 10, 24, 0.56);
+    padding: 1rem;
+}
+
+.shop-modal-product-media {
+    position: relative;
+    min-height: 220px;
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid rgba(148, 163, 184, 0.3);
+    background: #020617;
+}
+
+.shop-modal-product-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    background: #020617;
+}
+
+.shop-modal-product-fallback {
+    display: none;
+    position: absolute;
+    inset: 0;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 8px;
+    color: #a8c3d9;
+    font-size: .82rem;
+    background:
+        radial-gradient(circle at 50% 30%, rgba(14, 165, 233, 0.24), transparent 50%),
+        linear-gradient(145deg, rgba(10, 18, 35, 0.96), rgba(4, 10, 24, 0.98));
+}
+
+.shop-modal-product-fallback i {
+    font-size: 1.5rem;
+    color: #93c5fd;
+}
+
+.shop-modal-product-media.is-fallback .shop-modal-product-fallback {
+    display: flex;
+}
+
+.shop-modal-product-copy {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    justify-content: center;
+}
+
+.shop-modal-product-category {
+    margin: 0;
+    color: #93c5fd;
+    font-size: .76rem;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+.shop-modal-product-title {
+    margin: 0;
+    color: #ffffff;
+    font-size: clamp(1.4rem, 2.2vw, 2rem);
+}
+
+.shop-modal-product-price {
+    margin: 0;
+    font-size: 1.02rem;
+    color: #86efac;
+    font-weight: 700;
+}
+
+.shop-modal-product-description {
+    margin: 0;
+    color: #c9d8e7;
+    font-size: .92rem;
+    line-height: 1.55;
+}
+
+.shop-modal-grid {
+    margin-top: 1rem;
+    display: grid;
+    grid-template-columns: minmax(260px, 370px) minmax(0, 1fr);
+    gap: 1rem;
+}
+
+.shop-panel {
+    border: 1px solid rgba(148, 163, 184, 0.25);
+    border-radius: 16px;
+    background: rgba(2, 10, 24, 0.6);
+    padding: 1rem;
+}
+
+.shop-panel-title {
+    margin: 0;
+    color: #f8fafc;
+    font-size: 1rem;
 }
 
 .shop-company-header {
@@ -146,13 +325,13 @@
     gap: 12px;
     border: 1px solid rgba(148, 163, 184, 0.28);
     border-radius: 12px;
-    background: rgba(2, 10, 24, 0.56);
+    background: rgba(2, 10, 24, 0.5);
     padding: 10px;
 }
 
 .shop-company-logo {
-    width: 66px;
-    height: 66px;
+    width: 68px;
+    height: 68px;
     border: 1px solid rgba(148, 163, 184, 0.35);
     border-radius: 12px;
     background: #020617;
@@ -204,9 +383,9 @@
 }
 
 .shop-company-list li span {
-    font-size: .76rem;
+    font-size: .74rem;
     text-transform: uppercase;
-    letter-spacing: .06em;
+    letter-spacing: .07em;
     color: #9fb8d0;
 }
 
@@ -215,6 +394,17 @@
     color: #e6f2ff;
     text-align: right;
     word-break: break-word;
+}
+
+.shop-inline-link {
+    color: #93c5fd;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(147, 197, 253, 0.45);
+}
+
+.shop-inline-link:hover {
+    color: #bfdbfe;
+    border-bottom-color: rgba(191, 219, 254, 0.75);
 }
 
 .shop-catalog-summary {
@@ -237,7 +427,7 @@
 
 .shop-catalog-carousel .carousel-item img {
     width: 100%;
-    height: 320px;
+    height: min(54vh, 520px);
     object-fit: cover;
     display: block;
     background: #020617;
@@ -263,13 +453,39 @@
     background: rgba(2, 10, 24, 0.42);
 }
 
+.shop-modal-footer {
+    border-top: 1px solid rgba(148, 163, 184, 0.25);
+    padding: 0.85rem 1.25rem;
+    background: rgba(2, 10, 24, 0.86);
+    gap: 8px;
+}
+
 @media (max-width: 991.98px) {
+    .shop-modal-product {
+        grid-template-columns: 1fr;
+    }
+
+    .shop-modal-product-media {
+        min-height: 210px;
+    }
+
+    .shop-modal-grid {
+        grid-template-columns: 1fr;
+    }
+
     .shop-catalog-carousel .carousel-item img {
-        height: 240px;
+        height: 320px;
     }
 }
 
 @media (max-width: 767.98px) {
+    .shop-modal-header,
+    .shop-modal-body,
+    .shop-modal-footer {
+        padding-left: .85rem;
+        padding-right: .85rem;
+    }
+
     .shop-company-list li {
         flex-direction: column;
         align-items: flex-start;
@@ -278,5 +494,9 @@
 
     .shop-company-list li strong {
         text-align: left;
+    }
+
+    .shop-catalog-carousel .carousel-item img {
+        height: 240px;
     }
 }
