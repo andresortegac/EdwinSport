@@ -489,6 +489,106 @@
     font: 600 0.84rem/1.35 "Exo 2", sans-serif;
 }
 
+.lineup-pitch {
+    position: relative;
+    border-radius: 14px;
+    border: 1px solid rgba(172, 214, 238, 0.35);
+    background:
+        radial-gradient(circle at 50% 52%, rgba(11, 44, 30, 0.8), rgba(4, 18, 27, 0.96)),
+        repeating-linear-gradient(
+            to bottom,
+            rgba(22, 91, 42, 0.28) 0px,
+            rgba(22, 91, 42, 0.28) 28px,
+            rgba(11, 58, 30, 0.2) 28px,
+            rgba(11, 58, 30, 0.2) 56px
+        );
+    overflow: hidden;
+    padding: 16px 12px 14px;
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.03), 0 14px 26px rgba(1, 8, 15, 0.45);
+}
+
+.lineup-pitch::before {
+    content: "";
+    position: absolute;
+    inset: 6px;
+    border: 1px solid rgba(72, 147, 84, 0.55);
+    border-radius: 10px;
+    pointer-events: none;
+}
+
+.lineup-pitch::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 18%;
+    transform: translateX(-50%);
+    width: 56px;
+    height: 56px;
+    border-radius: 999px;
+    border: 1px solid rgba(102, 170, 116, 0.35);
+    pointer-events: none;
+}
+
+.lineup-pitch.local {
+    --lineup-kit-color: #ff4646;
+    --lineup-keeper-color: #5aa7ff;
+}
+
+.lineup-pitch.away {
+    --lineup-kit-color: #3b82f6;
+    --lineup-keeper-color: #ffd166;
+}
+
+.lineup-stack {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    gap: 9px;
+}
+
+.lineup-row {
+    display: grid;
+    grid-template-columns: repeat(var(--players, 1), minmax(0, 1fr));
+    gap: 8px;
+    align-items: end;
+}
+
+.lineup-row.goalkeeper {
+    margin-top: 2px;
+}
+
+.lineup-player {
+    display: grid;
+    justify-items: center;
+    gap: 4px;
+    min-width: 0;
+}
+
+.lineup-kit {
+    width: 46px;
+    height: 38px;
+    background: var(--lineup-kit-color, #ff4646);
+    clip-path: polygon(20% 6%, 32% 0, 68% 0, 80% 6%, 100% 24%, 88% 46%, 78% 42%, 74% 100%, 26% 100%, 22% 42%, 12% 46%, 0 24%);
+    border-radius: 4px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.38);
+}
+
+.lineup-row.goalkeeper .lineup-kit {
+    background: var(--lineup-keeper-color, #5aa7ff);
+}
+
+.lineup-player-name {
+    display: block;
+    max-width: 105px;
+    color: #f4fbff;
+    font: 700 0.69rem/1.2 "Exo 2", sans-serif;
+    text-transform: uppercase;
+    text-align: center;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+    overflow-wrap: anywhere;
+}
+
 .cards-summary {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -613,6 +713,75 @@
     white-space: pre-line;
 }
 
+.match-gallery {
+    border-radius: 12px;
+    border: 1px solid rgba(190, 220, 246, 0.3);
+    background: rgba(8, 24, 42, 0.62);
+    padding: 10px;
+}
+
+.match-gallery-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.match-gallery h4 {
+    margin: 0;
+    color: #ffd988;
+    font: 700 0.74rem/1 "Exo 2", sans-serif;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+}
+
+.match-gallery-stats {
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.match-gallery-pill {
+    border-radius: 999px;
+    border: 1px solid rgba(191, 223, 255, 0.36);
+    padding: 4px 9px;
+    color: #d9ecff;
+    background: rgba(9, 28, 49, 0.72);
+    font: 700 0.68rem/1 "Exo 2", sans-serif;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+}
+
+.match-gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 8px;
+}
+
+.match-gallery-item {
+    display: block;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid rgba(190, 220, 246, 0.3);
+    background: rgba(6, 18, 31, 0.75);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.22);
+    transition: transform .12s ease, border-color .12s ease;
+}
+
+.match-gallery-item:hover {
+    transform: translateY(-2px);
+    border-color: rgba(255, 215, 124, 0.55);
+}
+
+.match-gallery-item img,
+.match-gallery-item video {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    display: block;
+}
+
 .editor-head {
     display: flex;
     align-items: center;
@@ -720,6 +889,135 @@
     gap: 8px;
 }
 
+.media-help {
+    margin: 0;
+    color: #587d99;
+    font: 600 0.74rem/1.45 "Exo 2", sans-serif;
+}
+
+.fixture-media-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+}
+
+.fixture-media-card {
+    border: 1px solid #d3e6f4;
+    border-radius: 12px;
+    background:
+        radial-gradient(circle at 94% -18%, rgba(59, 130, 246, 0.15), transparent 52%),
+        linear-gradient(170deg, #f9fcff, #f2f8fe);
+    padding: 11px;
+}
+
+.fixture-media-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.fixture-media-title {
+    margin: 0;
+    color: #1f5275;
+    font: 800 0.86rem/1 "Exo 2", sans-serif;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+    display: inline-flex;
+    align-items: center;
+    gap: .45rem;
+}
+
+.fixture-media-count {
+    border-radius: 999px;
+    border: 1px solid #bfdbf2;
+    background: #e9f4ff;
+    color: #255779;
+    font: 700 0.68rem/1 "Exo 2", sans-serif;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+    padding: 5px 9px;
+}
+
+.fixture-media-input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+    border: 0;
+    padding: 0;
+    margin: -1px;
+}
+
+.fixture-media-trigger {
+    display: inline-flex;
+    align-items: center;
+    gap: .45rem;
+    border-radius: 999px;
+    border: 1px solid #8ebde0;
+    color: #18517b;
+    background: #ffffff;
+    padding: 8px 12px;
+    font: 800 0.78rem/1 "Exo 2", sans-serif;
+    letter-spacing: .02em;
+    cursor: pointer;
+    transition: transform .12s ease, box-shadow .12s ease, border-color .12s ease;
+}
+
+.fixture-media-trigger:hover {
+    transform: translateY(-1px);
+    border-color: #4f9ad1;
+    box-shadow: 0 10px 20px rgba(79, 154, 209, 0.2);
+}
+
+.fixture-media-preview {
+    margin-top: 10px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(98px, 1fr));
+    gap: 7px;
+    min-height: 28px;
+}
+
+.fixture-media-empty {
+    grid-column: 1 / -1;
+    border-radius: 9px;
+    border: 1px dashed #c0d9ec;
+    color: #6b8ba4;
+    font: 600 0.75rem/1.4 "Exo 2", sans-serif;
+    text-align: center;
+    padding: 8px;
+    background: #f6fbff;
+}
+
+.fixture-media-thumb {
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid #c8dff0;
+    background: #ffffff;
+}
+
+.fixture-media-thumb img,
+.fixture-media-thumb video {
+    width: 100%;
+    height: 90px;
+    object-fit: cover;
+    display: block;
+}
+
+.fixture-media-thumb span {
+    display: block;
+    padding: 5px 6px;
+    color: #4f6f87;
+    font: 700 0.66rem/1.3 "Exo 2", sans-serif;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    border-top: 1px solid #d5e7f4;
+}
+
 @media (max-width: 576px) {
     .fixture-page {
         padding-top: 16px;
@@ -786,8 +1084,27 @@
         grid-template-columns: 1fr;
     }
 
+    .lineup-player-name {
+        font-size: 0.64rem;
+        max-width: 88px;
+    }
+
+    .lineup-kit {
+        width: 40px;
+        height: 33px;
+    }
+
     .report-grid {
         grid-template-columns: 1fr;
+    }
+
+    .fixture-media-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .match-gallery-head {
+        flex-direction: column;
+        align-items: flex-start;
     }
 }
 </style>
@@ -818,6 +1135,58 @@
     $localLineupLabel = !empty($localLineupRaw) ? 'Alineacion confirmada' : 'Plantel disponible';
     $visitanteLineupLabel = !empty($visitanteLineupRaw) ? 'Alineacion confirmada' : 'Plantel disponible';
 
+    $buildLineupFormation = static function (array $players): ?array {
+        $cleanPlayers = collect($players)
+            ->map(fn ($player) => trim((string) $player))
+            ->filter()
+            ->take(11)
+            ->values()
+            ->all();
+
+        if (count($cleanPlayers) === 0) {
+            return null;
+        }
+
+        $goalkeeper = array_shift($cleanPlayers);
+        if (count($cleanPlayers) === 0) {
+            return [
+                'goalkeeper' => $goalkeeper,
+                'rows' => [],
+            ];
+        }
+
+        $formationTemplates = [
+            10 => [1, 2, 3, 4],
+            9 => [1, 3, 2, 3],
+            8 => [1, 3, 4],
+            7 => [2, 2, 3],
+            6 => [2, 4],
+            5 => [2, 3],
+            4 => [4],
+            3 => [3],
+            2 => [2],
+            1 => [1],
+        ];
+
+        $outfieldCount = count($cleanPlayers);
+        $shape = $formationTemplates[$outfieldCount] ?? [$outfieldCount];
+
+        $rows = [];
+        $offset = 0;
+        foreach ($shape as $size) {
+            $rows[] = array_slice($cleanPlayers, $offset, $size);
+            $offset += $size;
+        }
+
+        return [
+            'goalkeeper' => $goalkeeper,
+            'rows' => $rows,
+        ];
+    };
+
+    $localFormation = $buildLineupFormation($localLineupDisplay);
+    $visitanteFormation = $buildLineupFormation($visitanteLineupDisplay);
+
     $localYellow = $fixtureReport?->local_yellow_cards ?? [];
     $localRed = $fixtureReport?->local_red_cards ?? [];
     $localBlue = $fixtureReport?->local_blue_cards ?? [];
@@ -840,6 +1209,17 @@
     $formVisitanteYellow = old('visitante_yellow_cards', implode("\n", $visitanteYellow));
     $formVisitanteRed = old('visitante_red_cards', implode("\n", $visitanteRed));
     $formVisitanteBlue = old('visitante_blue_cards', implode("\n", $visitanteBlue));
+
+    $mediaImages = collect($fixtureReport?->media_images ?? [])->filter()->values()->all();
+    $mediaVideos = collect($fixtureReport?->media_videos ?? [])->filter()->values()->all();
+    $toMediaUrl = static function (?string $path): ?string {
+        $cleanPath = trim((string) $path);
+        if ($cleanPath === '') {
+            return null;
+        }
+
+        return route('events.media', ['path' => ltrim($cleanPath, '/')]);
+    };
 @endphp
 <div class="fixture-page">
     <div class="container fixture-shell">
@@ -935,12 +1315,28 @@
 
                         <section class="insight-block">
                             <h4>Jugadores que van a jugar</h4>
-                            @if(!empty($localLineupDisplay))
-                                <ul class="lineup-list">
-                                    @foreach($localLineupDisplay as $player)
-                                        <li>{{ $player }}</li>
-                                    @endforeach
-                                </ul>
+                            @if($localFormation)
+                                <div class="lineup-pitch local">
+                                    <div class="lineup-stack">
+                                        @foreach($localFormation['rows'] as $rowPlayers)
+                                            <div class="lineup-row" style="--players: {{ max(count($rowPlayers), 1) }};">
+                                                @foreach($rowPlayers as $player)
+                                                    <article class="lineup-player">
+                                                        <span class="lineup-kit"></span>
+                                                        <span class="lineup-player-name">{{ $player }}</span>
+                                                    </article>
+                                                @endforeach
+                                            </div>
+                                        @endforeach
+
+                                        <div class="lineup-row goalkeeper" style="--players: 1;">
+                                            <article class="lineup-player">
+                                                <span class="lineup-kit"></span>
+                                                <span class="lineup-player-name">{{ $localFormation['goalkeeper'] }}</span>
+                                            </article>
+                                        </div>
+                                    </div>
+                                </div>
                             @else
                                 <p class="empty-mini">Sin alineacion registrada para este encuentro.</p>
                             @endif
@@ -1003,12 +1399,28 @@
 
                         <section class="insight-block">
                             <h4>Jugadores que van a jugar</h4>
-                            @if(!empty($visitanteLineupDisplay))
-                                <ul class="lineup-list">
-                                    @foreach($visitanteLineupDisplay as $player)
-                                        <li>{{ $player }}</li>
-                                    @endforeach
-                                </ul>
+                            @if($visitanteFormation)
+                                <div class="lineup-pitch away">
+                                    <div class="lineup-stack">
+                                        @foreach($visitanteFormation['rows'] as $rowPlayers)
+                                            <div class="lineup-row" style="--players: {{ max(count($rowPlayers), 1) }};">
+                                                @foreach($rowPlayers as $player)
+                                                    <article class="lineup-player">
+                                                        <span class="lineup-kit"></span>
+                                                        <span class="lineup-player-name">{{ $player }}</span>
+                                                    </article>
+                                                @endforeach
+                                            </div>
+                                        @endforeach
+
+                                        <div class="lineup-row goalkeeper" style="--players: 1;">
+                                            <article class="lineup-player">
+                                                <span class="lineup-kit"></span>
+                                                <span class="lineup-player-name">{{ $visitanteFormation['goalkeeper'] }}</span>
+                                            </article>
+                                        </div>
+                                    </div>
+                                </div>
                             @else
                                 <p class="empty-mini">Sin alineacion registrada para este encuentro.</p>
                             @endif
@@ -1070,8 +1482,54 @@
                         <p>{{ $fixtureReport?->highlights }}</p>
                     </article>
                 @endif
+
+                @if(!empty($mediaImages) || !empty($mediaVideos))
+                    <article class="match-gallery">
+                        <div class="match-gallery-head">
+                            <h4>Galeria del encuentro</h4>
+                            <div class="match-gallery-stats">
+                                @if(!empty($mediaImages))
+                                    <span class="match-gallery-pill">{{ count($mediaImages) }} fotos</span>
+                                @endif
+                                @if(!empty($mediaVideos))
+                                    <span class="match-gallery-pill">{{ count($mediaVideos) }} videos</span>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="match-gallery-grid">
+                            @foreach($mediaImages as $imagePath)
+                                @php
+                                    $imageUrl = $toMediaUrl($imagePath);
+                                @endphp
+                                @if($imageUrl)
+                                    <a class="match-gallery-item" href="{{ $imageUrl }}" target="_blank" rel="noopener noreferrer">
+                                        <img src="{{ $imageUrl }}" alt="Foto del encuentro">
+                                    </a>
+                                @endif
+                            @endforeach
+
+                            @foreach($mediaVideos as $videoPath)
+                                @php
+                                    $videoUrl = $toMediaUrl($videoPath);
+                                @endphp
+                                @if($videoUrl)
+                                    <div class="match-gallery-item">
+                                        <video controls preload="metadata">
+                                            <source src="{{ $videoUrl }}">
+                                        </video>
+                                    </div>
+                                @endif
+                            @endforeach
+                        </div>
+                    </article>
+                @endif
             </div>
         </section>
+
+        @php
+            $fixturePostMaxSize = (string) (ini_get('post_max_size') ?: '8M');
+            $fixtureUploadMaxSize = (string) (ini_get('upload_max_filesize') ?: '2M');
+        @endphp
 
         <section class="fixture-card fixture-card-actions">
             <div class="actions">
@@ -1185,246 +1643,132 @@
                 </div>
             @endif
 
-            @if(auth()->check() && auth()->user()->isAdmin())
-                <form method="POST" action="{{ route('events.fixture.report.store') }}" class="report-form">
-                    @csrf
-                    <input type="hidden" name="event_id" value="{{ $event->id }}">
-                    <input type="hidden" name="grupo_id" value="{{ $grupo->id }}">
-                    <input type="hidden" name="jornada" value="{{ $jornada }}">
-                    <input type="hidden" name="partido_numero" value="{{ $partidoIndex }}">
+            <div class="alert alert-info py-2 px-3 mb-3">
+                Este panel es solo lectura en esta vista del fixture.
+            </div>
 
-                    <div class="score-grid">
-                        <div class="input-row">
-                            <label for="score_local">Marcador local</label>
-                            <input
-                                id="score_local"
-                                name="score_local"
-                                type="number"
-                                min="0"
-                                max="99"
-                                value="{{ old('score_local', $fixtureReport?->score_local ?? ($matchScore['local'] ?? '')) }}"
-                                placeholder="Ej: 2"
-                            >
-                        </div>
-                        <div class="input-row">
-                            <label for="score_visitante">Marcador visitante</label>
-                            <input
-                                id="score_visitante"
-                                name="score_visitante"
-                                type="number"
-                                min="0"
-                                max="99"
-                                value="{{ old('score_visitante', $fixtureReport?->score_visitante ?? ($matchScore['visitante'] ?? '')) }}"
-                                placeholder="Ej: 1"
-                            >
-                        </div>
-                    </div>
-
-                    <div class="report-grid">
-                        <article class="report-col">
-                            <h4>{{ $match['home'] }} (Local)</h4>
-
-                            <div class="input-row">
-                                <label for="local_lineup">Jugadores que van a jugar</label>
-                                <textarea
-                                    id="local_lineup"
-                                    name="local_lineup"
-                                    placeholder="Un jugador por linea"
-                                >{{ $formLocalLineup }}</textarea>
-                                @if($localRosterText !== '')
-                                    <p class="roster-help">Plantel registrado: {{ $localRosterText }}</p>
-                                @endif
-                            </div>
-
-                            <div class="input-row">
-                                <label for="local_yellow_cards">Tarjetas amarillas</label>
-                                <textarea
-                                    id="local_yellow_cards"
-                                    name="local_yellow_cards"
-                                    placeholder="Jugadores con amarilla (uno por linea)"
-                                >{{ $formLocalYellow }}</textarea>
-                            </div>
-
-                            <div class="input-row">
-                                <label for="local_red_cards">Tarjetas rojas</label>
-                                <textarea
-                                    id="local_red_cards"
-                                    name="local_red_cards"
-                                    placeholder="Jugadores con roja (uno por linea)"
-                                >{{ $formLocalRed }}</textarea>
-                            </div>
-
-                            <div class="input-row">
-                                <label for="local_blue_cards">Tarjetas azules</label>
-                                <textarea
-                                    id="local_blue_cards"
-                                    name="local_blue_cards"
-                                    placeholder="Jugadores con azul (uno por linea)"
-                                >{{ $formLocalBlue }}</textarea>
-                            </div>
-
-                            <div class="input-row">
-                                <label for="local_top_scorer">Jugador con mas goles</label>
-                                <input
-                                    id="local_top_scorer"
-                                    name="local_top_scorer"
-                                    type="text"
-                                    value="{{ old('local_top_scorer', $fixtureReport?->local_top_scorer ?? '') }}"
-                                    placeholder="Nombre del goleador"
-                                >
-                            </div>
-
-                            <div class="input-row">
-                                <label for="local_top_scorer_goals">Goles del goleador</label>
-                                <input
-                                    id="local_top_scorer_goals"
-                                    name="local_top_scorer_goals"
-                                    type="number"
-                                    min="0"
-                                    max="99"
-                                    value="{{ old('local_top_scorer_goals', $fixtureReport?->local_top_scorer_goals ?? '') }}"
-                                    placeholder="Ej: 3"
-                                >
-                            </div>
-
-                            <div class="input-row">
-                                <label for="local_best_goalkeeper">Arquero con menor valla vencida</label>
-                                <input
-                                    id="local_best_goalkeeper"
-                                    name="local_best_goalkeeper"
-                                    type="text"
-                                    value="{{ old('local_best_goalkeeper', $fixtureReport?->local_best_goalkeeper ?? '') }}"
-                                    placeholder="Nombre del arquero"
-                                >
-                            </div>
-
-                            <div class="input-row">
-                                <label for="local_goalkeeper_goals_conceded">Goles recibidos del arquero</label>
-                                <input
-                                    id="local_goalkeeper_goals_conceded"
-                                    name="local_goalkeeper_goals_conceded"
-                                    type="number"
-                                    min="0"
-                                    max="99"
-                                    value="{{ old('local_goalkeeper_goals_conceded', $fixtureReport?->local_goalkeeper_goals_conceded ?? '') }}"
-                                    placeholder="Ej: 1"
-                                >
-                            </div>
-                        </article>
-
-                        <article class="report-col">
-                            <h4>{{ $match['away'] }} (Visitante)</h4>
-
-                            <div class="input-row">
-                                <label for="visitante_lineup">Jugadores que van a jugar</label>
-                                <textarea
-                                    id="visitante_lineup"
-                                    name="visitante_lineup"
-                                    placeholder="Un jugador por linea"
-                                >{{ $formVisitanteLineup }}</textarea>
-                                @if($visitanteRosterText !== '')
-                                    <p class="roster-help">Plantel registrado: {{ $visitanteRosterText }}</p>
-                                @endif
-                            </div>
-
-                            <div class="input-row">
-                                <label for="visitante_yellow_cards">Tarjetas amarillas</label>
-                                <textarea
-                                    id="visitante_yellow_cards"
-                                    name="visitante_yellow_cards"
-                                    placeholder="Jugadores con amarilla (uno por linea)"
-                                >{{ $formVisitanteYellow }}</textarea>
-                            </div>
-
-                            <div class="input-row">
-                                <label for="visitante_red_cards">Tarjetas rojas</label>
-                                <textarea
-                                    id="visitante_red_cards"
-                                    name="visitante_red_cards"
-                                    placeholder="Jugadores con roja (uno por linea)"
-                                >{{ $formVisitanteRed }}</textarea>
-                            </div>
-
-                            <div class="input-row">
-                                <label for="visitante_blue_cards">Tarjetas azules</label>
-                                <textarea
-                                    id="visitante_blue_cards"
-                                    name="visitante_blue_cards"
-                                    placeholder="Jugadores con azul (uno por linea)"
-                                >{{ $formVisitanteBlue }}</textarea>
-                            </div>
-
-                            <div class="input-row">
-                                <label for="visitante_top_scorer">Jugador con mas goles</label>
-                                <input
-                                    id="visitante_top_scorer"
-                                    name="visitante_top_scorer"
-                                    type="text"
-                                    value="{{ old('visitante_top_scorer', $fixtureReport?->visitante_top_scorer ?? '') }}"
-                                    placeholder="Nombre del goleador"
-                                >
-                            </div>
-
-                            <div class="input-row">
-                                <label for="visitante_top_scorer_goals">Goles del goleador</label>
-                                <input
-                                    id="visitante_top_scorer_goals"
-                                    name="visitante_top_scorer_goals"
-                                    type="number"
-                                    min="0"
-                                    max="99"
-                                    value="{{ old('visitante_top_scorer_goals', $fixtureReport?->visitante_top_scorer_goals ?? '') }}"
-                                    placeholder="Ej: 2"
-                                >
-                            </div>
-
-                            <div class="input-row">
-                                <label for="visitante_best_goalkeeper">Arquero con menor valla vencida</label>
-                                <input
-                                    id="visitante_best_goalkeeper"
-                                    name="visitante_best_goalkeeper"
-                                    type="text"
-                                    value="{{ old('visitante_best_goalkeeper', $fixtureReport?->visitante_best_goalkeeper ?? '') }}"
-                                    placeholder="Nombre del arquero"
-                                >
-                            </div>
-
-                            <div class="input-row">
-                                <label for="visitante_goalkeeper_goals_conceded">Goles recibidos del arquero</label>
-                                <input
-                                    id="visitante_goalkeeper_goals_conceded"
-                                    name="visitante_goalkeeper_goals_conceded"
-                                    type="number"
-                                    min="0"
-                                    max="99"
-                                    value="{{ old('visitante_goalkeeper_goals_conceded', $fixtureReport?->visitante_goalkeeper_goals_conceded ?? '') }}"
-                                    placeholder="Ej: 0"
-                                >
-                            </div>
-                        </article>
-                    </div>
-
+            <div id="fixture-report-form-detail" class="report-form">
+                <div class="score-grid">
                     <div class="input-row">
-                        <label for="highlights">Resumen del encuentro</label>
-                        <textarea
-                            id="highlights"
-                            name="highlights"
-                            placeholder="Resumen libre del partido"
-                        >{{ old('highlights', $fixtureReport?->highlights ?? '') }}</textarea>
+                        <label>Marcador local</label>
+                        <input
+                            type="text"
+                            value="{{ $fixtureReport?->score_local ?? ($matchScore['local'] ?? 'Sin dato') }}"
+                            readonly
+                            disabled
+                        >
                     </div>
+                    <div class="input-row">
+                        <label>Marcador visitante</label>
+                        <input
+                            type="text"
+                            value="{{ $fixtureReport?->score_visitante ?? ($matchScore['visitante'] ?? 'Sin dato') }}"
+                            readonly
+                            disabled
+                        >
+                    </div>
+                </div>
 
-                    <div class="report-actions">
-                        <button type="submit" class="btn-back primary">
-                            <i class="bi bi-save"></i>
-                            Guardar informacion del partido
-                        </button>
-                    </div>
-                </form>
-            @else
-                <p class="live-help mb-0">
-                    Solo un administrador puede editar la informacion avanzada del encuentro.
+                <div class="report-grid">
+                    <article class="report-col">
+                        <h4>{{ $match['home'] }} (Local)</h4>
+
+                        <div class="input-row">
+                            <label>Jugadores que jugaron</label>
+                            <textarea readonly disabled>{{ !empty($localLineupRaw) ? implode("\n", $localLineupRaw) : 'Sin dato' }}</textarea>
+                        </div>
+
+                        <div class="input-row">
+                            <label>Tarjetas amarillas</label>
+                            <textarea readonly disabled>{{ !empty($localYellow) ? implode("\n", $localYellow) : 'Sin dato' }}</textarea>
+                        </div>
+
+                        <div class="input-row">
+                            <label>Tarjetas rojas</label>
+                            <textarea readonly disabled>{{ !empty($localRed) ? implode("\n", $localRed) : 'Sin dato' }}</textarea>
+                        </div>
+
+                        <div class="input-row">
+                            <label>Tarjetas azules</label>
+                            <textarea readonly disabled>{{ !empty($localBlue) ? implode("\n", $localBlue) : 'Sin dato' }}</textarea>
+                        </div>
+
+                        <div class="input-row">
+                            <label>Jugador con mas goles</label>
+                            <input type="text" value="{{ $fixtureReport?->local_top_scorer ?? 'Sin dato' }}" readonly disabled>
+                        </div>
+
+                        <div class="input-row">
+                            <label>Goles del goleador</label>
+                            <input type="text" value="{{ $fixtureReport?->local_top_scorer_goals ?? 'Sin dato' }}" readonly disabled>
+                        </div>
+
+                        <div class="input-row">
+                            <label>Arquero con menor valla vencida</label>
+                            <input type="text" value="{{ $fixtureReport?->local_best_goalkeeper ?? 'Sin dato' }}" readonly disabled>
+                        </div>
+
+                        <div class="input-row">
+                            <label>Goles recibidos del arquero</label>
+                            <input type="text" value="{{ $fixtureReport?->local_goalkeeper_goals_conceded ?? 'Sin dato' }}" readonly disabled>
+                        </div>
+                    </article>
+
+                    <article class="report-col">
+                        <h4>{{ $match['away'] }} (Visitante)</h4>
+
+                        <div class="input-row">
+                            <label>Jugadores que jugaron</label>
+                            <textarea readonly disabled>{{ !empty($visitanteLineupRaw) ? implode("\n", $visitanteLineupRaw) : 'Sin dato' }}</textarea>
+                        </div>
+
+                        <div class="input-row">
+                            <label>Tarjetas amarillas</label>
+                            <textarea readonly disabled>{{ !empty($visitanteYellow) ? implode("\n", $visitanteYellow) : 'Sin dato' }}</textarea>
+                        </div>
+
+                        <div class="input-row">
+                            <label>Tarjetas rojas</label>
+                            <textarea readonly disabled>{{ !empty($visitanteRed) ? implode("\n", $visitanteRed) : 'Sin dato' }}</textarea>
+                        </div>
+
+                        <div class="input-row">
+                            <label>Tarjetas azules</label>
+                            <textarea readonly disabled>{{ !empty($visitanteBlue) ? implode("\n", $visitanteBlue) : 'Sin dato' }}</textarea>
+                        </div>
+
+                        <div class="input-row">
+                            <label>Jugador con mas goles</label>
+                            <input type="text" value="{{ $fixtureReport?->visitante_top_scorer ?? 'Sin dato' }}" readonly disabled>
+                        </div>
+
+                        <div class="input-row">
+                            <label>Goles del goleador</label>
+                            <input type="text" value="{{ $fixtureReport?->visitante_top_scorer_goals ?? 'Sin dato' }}" readonly disabled>
+                        </div>
+
+                        <div class="input-row">
+                            <label>Arquero con menor valla vencida</label>
+                            <input type="text" value="{{ $fixtureReport?->visitante_best_goalkeeper ?? 'Sin dato' }}" readonly disabled>
+                        </div>
+
+                        <div class="input-row">
+                            <label>Goles recibidos del arquero</label>
+                            <input type="text" value="{{ $fixtureReport?->visitante_goalkeeper_goals_conceded ?? 'Sin dato' }}" readonly disabled>
+                        </div>
+                    </article>
+                </div>
+
+                <div class="input-row">
+                    <label>Resumen del encuentro</label>
+                    <textarea readonly disabled>{{ $fixtureReport?->highlights ?? 'Sin dato' }}</textarea>
+                </div>
+
+                <p class="media-help mb-0">
+                    Fotos registradas: {{ count($mediaImages) }} | Videos registrados: {{ count($mediaVideos) }}.
+                    La galeria se muestra arriba en el detalle del partido.
                 </p>
-            @endif
+            </div>
         </section>
     </div>
 </div>
@@ -1610,6 +1954,196 @@ document.addEventListener('DOMContentLoaded', function () {
         hideLive();
         message.textContent = 'Aun no hay transmision en vivo disponible para este partido.';
     }
+});
+</script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    function formatBytes(size) {
+        if (!Number.isFinite(size) || size <= 0) return '';
+        if (size < 1024) return size + ' B';
+        if (size < 1024 * 1024) return (size / 1024).toFixed(1) + ' KB';
+        return (size / (1024 * 1024)).toFixed(1) + ' MB';
+    }
+
+    function renderEmpty(previewEl, text) {
+        if (!previewEl) return;
+        previewEl.innerHTML = '';
+        const empty = document.createElement('div');
+        empty.className = 'fixture-media-empty';
+        empty.textContent = text;
+        previewEl.appendChild(empty);
+    }
+
+    function parseIniSizeToBytes(rawValue) {
+        const value = String(rawValue || '').trim();
+        if (!value) return 0;
+
+        const match = value.match(/^(\d+(?:\.\d+)?)\s*([KMGTP]?)/i);
+        if (!match) return 0;
+
+        const amount = parseFloat(match[1]);
+        const unit = (match[2] || '').toUpperCase();
+        let multiplier = 1;
+
+        if (unit === 'K') multiplier = 1024;
+        if (unit === 'M') multiplier = 1024 * 1024;
+        if (unit === 'G') multiplier = 1024 * 1024 * 1024;
+        if (unit === 'T') multiplier = 1024 * 1024 * 1024 * 1024;
+        if (unit === 'P') multiplier = 1024 * 1024 * 1024 * 1024 * 1024;
+
+        return Math.floor(amount * multiplier);
+    }
+
+    function renderUploadGuardErrors(formEl, errors) {
+        if (!formEl) return;
+
+        let box = formEl.querySelector('[data-upload-guard-errors]');
+        if (!errors.length) {
+            if (box) box.remove();
+            return;
+        }
+
+        if (!box) {
+            box = document.createElement('div');
+            box.className = 'alert alert-danger py-2 px-3 mb-2';
+            box.setAttribute('data-upload-guard-errors', '1');
+            formEl.prepend(box);
+        }
+
+        box.innerHTML = '';
+        const listEl = document.createElement('ul');
+        listEl.className = 'mb-0';
+
+        errors.forEach(function (msg) {
+            const item = document.createElement('li');
+            item.textContent = msg;
+            listEl.appendChild(item);
+        });
+
+        box.appendChild(listEl);
+    }
+
+    function bindMediaInput(inputId, previewId, counterId, kind) {
+        const inputEl = document.getElementById(inputId);
+        const previewEl = document.getElementById(previewId);
+        const counterEl = document.getElementById(counterId);
+        if (!inputEl || !previewEl || !counterEl) return;
+
+        const emptyText = kind === 'video'
+            ? 'Aun no has seleccionado videos.'
+            : 'Aun no has seleccionado fotos.';
+
+        function updatePreview() {
+            const files = Array.from(inputEl.files || []);
+            const total = files.length;
+            const singularLabel = kind === 'video' ? 'seleccionado' : 'seleccionada';
+            const pluralLabel = kind === 'video' ? 'seleccionados' : 'seleccionadas';
+
+            counterEl.textContent = total === 1
+                ? '1 ' + singularLabel
+                : total + ' ' + pluralLabel;
+
+            if (!total) {
+                renderEmpty(previewEl, emptyText);
+                return;
+            }
+
+            previewEl.innerHTML = '';
+
+            files.forEach(function (file) {
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'fixture-media-thumb';
+
+                const mediaUrl = URL.createObjectURL(file);
+                let mediaNode;
+                if (kind === 'video') {
+                    mediaNode = document.createElement('video');
+                    mediaNode.preload = 'metadata';
+                    mediaNode.controls = true;
+                    mediaNode.muted = true;
+                    mediaNode.src = mediaUrl;
+                } else {
+                    mediaNode = document.createElement('img');
+                    mediaNode.loading = 'lazy';
+                    mediaNode.src = mediaUrl;
+                    mediaNode.alt = file.name || 'Archivo multimedia';
+                }
+
+                const caption = document.createElement('span');
+                caption.textContent = (file.name || 'Archivo') + (file.size ? ' - ' + formatBytes(file.size) : '');
+
+                wrapper.appendChild(mediaNode);
+                wrapper.appendChild(caption);
+                previewEl.appendChild(wrapper);
+            });
+        }
+
+        renderEmpty(previewEl, emptyText);
+        inputEl.addEventListener('change', updatePreview);
+    }
+
+    function attachUploadGuard() {
+        const reportForm = document.getElementById('fixture-report-form-detail');
+        const imagesInput = document.getElementById('media_images');
+        const videosInput = document.getElementById('media_videos');
+
+        if (!reportForm || !imagesInput || !videosInput) return;
+
+        const postLimitBytes = parseIniSizeToBytes(reportForm.getAttribute('data-post-max-size'));
+        const uploadLimitBytes = parseIniSizeToBytes(reportForm.getAttribute('data-upload-max-size'));
+        const imageRuleMaxBytes = 6 * 1024 * 1024;
+        const videoRuleMaxBytes = 50 * 1024 * 1024;
+        const effectiveImageMax = uploadLimitBytes > 0 ? Math.min(imageRuleMaxBytes, uploadLimitBytes) : imageRuleMaxBytes;
+        const effectiveVideoMax = uploadLimitBytes > 0 ? Math.min(videoRuleMaxBytes, uploadLimitBytes) : videoRuleMaxBytes;
+        const safePostLimitBytes = postLimitBytes > 0 ? Math.floor(postLimitBytes * 0.95) : 0;
+
+        reportForm.addEventListener('submit', function (event) {
+            const errors = [];
+            const imageFiles = Array.from(imagesInput.files || []);
+            const videoFiles = Array.from(videosInput.files || []);
+            const allFiles = imageFiles.concat(videoFiles);
+
+            if (imageFiles.length > 12) {
+                errors.push('Solo se permiten 12 fotos por guardado.');
+            }
+
+            if (videoFiles.length > 4) {
+                errors.push('Solo se permiten 4 videos por guardado.');
+            }
+
+            imageFiles.forEach(function (file) {
+                if (file && file.size > effectiveImageMax) {
+                    errors.push('La foto "' + (file.name || 'sin nombre') + '" supera el maximo permitido de ' + formatBytes(effectiveImageMax) + '.');
+                }
+            });
+
+            videoFiles.forEach(function (file) {
+                if (file && file.size > effectiveVideoMax) {
+                    errors.push('El video "' + (file.name || 'sin nombre') + '" supera el maximo permitido de ' + formatBytes(effectiveVideoMax) + '.');
+                }
+            });
+
+            const totalBytes = allFiles.reduce(function (sum, file) {
+                return sum + ((file && file.size) ? file.size : 0);
+            }, 0);
+
+            if (safePostLimitBytes > 0 && totalBytes > safePostLimitBytes) {
+                errors.push('El peso total seleccionado (' + formatBytes(totalBytes) + ') supera el limite de la solicitud del servidor (' + formatBytes(postLimitBytes) + ').');
+            }
+
+            if (errors.length) {
+                event.preventDefault();
+                renderUploadGuardErrors(reportForm, errors);
+                return;
+            }
+
+            renderUploadGuardErrors(reportForm, []);
+        });
+    }
+
+    bindMediaInput('media_images', 'media_images_preview', 'media_images_counter', 'image');
+    bindMediaInput('media_videos', 'media_videos_preview', 'media_videos_counter', 'video');
+    attachUploadGuard();
 });
 </script>
 @endpush

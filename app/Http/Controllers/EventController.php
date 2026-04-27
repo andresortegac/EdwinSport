@@ -435,6 +435,10 @@ class EventController extends Controller
             'visitante_best_goalkeeper' => 'nullable|string|max:120',
             'visitante_goalkeeper_goals_conceded' => 'nullable|integer|min:0|max:99',
             'highlights' => 'nullable|string|max:4000',
+            'media_images' => 'nullable|array|max:12',
+            'media_images.*' => 'nullable|image|mimes:jpg,jpeg,png,webp,gif|max:6144',
+            'media_videos' => 'nullable|array|max:4',
+            'media_videos.*' => 'nullable|file|mimetypes:video/mp4,video/quicktime,video/webm,video/x-msvideo,video/x-matroska|max:51200',
         ]);
 
         $scoreLocal = $data['score_local'] ?? null;
@@ -466,6 +470,42 @@ class EventController extends Controller
             return $text !== '' ? $text : null;
         };
 
+        $existingReport = FixtureReport::query()
+            ->where('event_id', $event->id)
+            ->where('grupo_id', $grupoId)
+            ->where('jornada', $jornada)
+            ->where('partido_numero', $partidoIndex)
+            ->first();
+
+        $storedImages = collect($existingReport?->media_images ?? [])->filter()->values()->all();
+        $storedVideos = collect($existingReport?->media_videos ?? [])->filter()->values()->all();
+
+        $newImageFiles = (array) $request->file('media_images', []);
+        foreach ($newImageFiles as $imageFile) {
+            if ($imageFile) {
+                $storedImages[] = $imageFile->store('eventos/fixture-media/imagenes', 'public');
+            }
+        }
+
+        $newVideoFiles = (array) $request->file('media_videos', []);
+        foreach ($newVideoFiles as $videoFile) {
+            if ($videoFile) {
+                $storedVideos[] = $videoFile->store('eventos/fixture-media/videos', 'public');
+            }
+        }
+
+        $storedImages = array_slice(
+            array_values(array_unique(array_filter($storedImages))),
+            0,
+            24
+        );
+
+        $storedVideos = array_slice(
+            array_values(array_unique(array_filter($storedVideos))),
+            0,
+            12
+        );
+
         FixtureReport::updateOrCreate(
             [
                 'event_id' => $event->id,
@@ -493,6 +533,8 @@ class EventController extends Controller
                 'visitante_best_goalkeeper' => $normalizeText($data['visitante_best_goalkeeper'] ?? null),
                 'visitante_goalkeeper_goals_conceded' => isset($data['visitante_goalkeeper_goals_conceded']) ? (int) $data['visitante_goalkeeper_goals_conceded'] : null,
                 'highlights' => $normalizeText($data['highlights'] ?? null),
+                'media_images' => count($storedImages) > 0 ? $storedImages : null,
+                'media_videos' => count($storedVideos) > 0 ? $storedVideos : null,
                 'updated_by' => auth()->id(),
             ]
         );
@@ -966,4 +1008,3 @@ class EventController extends Controller
         return $matches;
     }
 }
-

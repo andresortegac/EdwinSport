@@ -2,19 +2,30 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Event;   // ✅ tu modelo real
-use Illuminate\Http\Request;
+use App\Models\Event;
+use App\Models\StoreItem;
+use App\Support\ShopExternalCatalog;
+use Illuminate\Support\Facades\Schema;
 
 class CrearEventoDeveloperController extends Controller
 {
     public function index()
     {
-        // Traer todos los eventos ordenados por el más reciente
         $eventos = Event::latest()->get();
+        $storeItems = collect();
 
-        // Mandarlos a la vista con el nombre EXACTO: eventos
+        if (Schema::hasTable('store_items')) {
+            $storeItems = StoreItem::query()
+                ->orderByDesc('created_at')
+                ->limit(50)
+                ->get();
+        }
+
         return view('events.crear-eventodeveloper', [
-            'eventos' => $eventos
+            'eventos' => $eventos,
+            'storeItems' => $storeItems,
+            'externalStoreItems' => collect(ShopExternalCatalog::items()),
         ]);
     }
 }
+

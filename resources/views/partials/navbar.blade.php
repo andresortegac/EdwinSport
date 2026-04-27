@@ -26,6 +26,10 @@
                         href="{{ route('events.index') }}">Eventos</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link {{ request()->routeIs('shop.*') ? 'active' : '' }}"
+                        href="{{ route('shop.index') }}">Ver tienda</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link {{ request()->routeIs('canchas.*') || request()->routeIs('user_reservas.*') || request()->routeIs('reservas.*') ? 'active' : '' }}"
                         href="{{ route('canchas.index') }}">Convenios</a>
                 </li>

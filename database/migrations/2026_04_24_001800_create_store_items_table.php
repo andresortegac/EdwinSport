@@ -1,0 +1,31 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    public function up(): void
+    {
+        Schema::create('store_items', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->string('category')->nullable();
+            $table->text('description')->nullable();
+            $table->decimal('price', 12, 2)->nullable();
+            $table->string('currency', 8)->default('COP');
+            $table->string('purchase_url')->nullable();
+            $table->string('image_path')->nullable();
+            $table->string('image_url')->nullable();
+            $table->foreignId('created_by')->nullable()->constrained('users')->nullOnDelete();
+            $table->timestamps();
+        });
+    }
+
+    public function down(): void
+    {
+        Schema::dropIfExists('store_items');
+    }
+};
+

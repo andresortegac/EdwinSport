@@ -19,8 +19,17 @@
 
   <link rel="stylesheet" href="{{ asset('CSS/unified-font.css') }}">
 </head>
+@php
+  $initialPanel = 'crear-evento';
+  if ($errors->fixtureReport->any() || session('fixture_report_success') || session('fixture_report_url')) {
+      $initialPanel = 'info-encuentro';
+  }
+  if ($errors->storeItem->any() || session('store_success')) {
+      $initialPanel = 'modulo-tiendas';
+  }
+@endphp
 
-<body id="page-top">
+<body id="page-top" data-initial-panel="{{ $initialPanel }}">
   <div id="wrapper">
 
     <!-- âœ… Sidebar -->
@@ -47,6 +56,20 @@
         <button id="btn-listado-eventos" type="button" class="nav-link btn btn-link text-left w-100">
           <i class="fas fa-fw fa-list"></i>
           <span>Listado de eventos</span>
+        </button>
+      </li>
+
+      <li class="nav-item">
+        <button id="btn-info-encuentro" type="button" class="nav-link btn btn-link text-left w-100">
+          <i class="fas fa-fw fa-futbol"></i>
+          <span>Info de encuentros</span>
+        </button>
+      </li>
+
+      <li class="nav-item">
+        <button id="btn-modulo-tiendas" type="button" class="nav-link btn btn-link text-left w-100">
+          <i class="fas fa-fw fa-store"></i>
+          <span>Modulo tiendas</span>
         </button>
       </li>
 
@@ -199,8 +222,21 @@
             </div>
 
             <!-- LISTADO -->
-            <div id="contenedor-listado" class="col-12">
+            <div id="contenedor-listado" class="col-12" style="display:none;">
               @include('events.partials.listado-eventos-content', ['eventos' => $eventos])
+            </div>
+
+            <!-- MODULO INFO ENCUENTRO -->
+            <div id="contenedor-info-encuentro" class="col-12" style="display:none;">
+              @include('events.partials.fixture-info-module')
+            </div>
+
+            <!-- MODULO TIENDAS -->
+            <div id="contenedor-modulo-tiendas" class="col-12" style="display:none;">
+              @include('events.partials.store-module', [
+                'storeItems' => $storeItems ?? collect(),
+                'externalStoreItems' => $externalStoreItems ?? collect(),
+              ])
             </div>
           </div>
 
@@ -253,4 +289,3 @@
 </body>
 
 </html>
-

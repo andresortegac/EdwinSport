@@ -32,6 +32,8 @@ class FixtureReport extends Model
         'visitante_best_goalkeeper',
         'visitante_goalkeeper_goals_conceded',
         'highlights',
+        'media_images',
+        'media_videos',
         'updated_by',
     ];
 
@@ -44,6 +46,8 @@ class FixtureReport extends Model
         'visitante_yellow_cards' => 'array',
         'visitante_red_cards' => 'array',
         'visitante_blue_cards' => 'array',
+        'media_images' => 'array',
+        'media_videos' => 'array',
     ];
 
     public function event()
@@ -61,4 +65,3 @@ class FixtureReport extends Model
         return $this->belongsTo(User::class, 'updated_by');
     }
 }
-

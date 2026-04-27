@@ -129,6 +129,51 @@
         </div>
     </section>
 
+    <section class="py-5">
+        <div class="container">
+            <div class="section-head text-center mb-4">
+                <p class="eyebrow">VER TIENDA</p>
+                <h2>Productos deportivos destacados</h2>
+            </div>
+
+            <div class="row g-4">
+                @forelse(($storeHighlights ?? collect())->take(4) as $item)
+                    <div class="col-md-6 col-xl-3">
+                        <article class="service-card h-100">
+                            @if(!empty($item['image_url']))
+                                <img
+                                    src="{{ $item['image_url'] }}"
+                                    alt="{{ $item['name'] ?? 'Producto tienda' }}"
+                                    style="width:100%;height:170px;object-fit:cover;border-radius:14px;margin-bottom:12px;"
+                                >
+                            @endif
+                            <h3>{{ $item['name'] ?? 'Producto' }}</h3>
+                            <p class="mb-2">{{ $item['description'] ?? '' }}</p>
+                            @if(!empty($item['price']))
+                                <p class="mb-2 fw-bold">{{ $item['price'] }}</p>
+                            @endif
+                            @if(!empty($item['purchase_url']))
+                                <a href="{{ $item['purchase_url'] }}" target="_blank" rel="noopener noreferrer" class="btn btn-outline-brand btn-sm">
+                                    Ver producto
+                                </a>
+                            @endif
+                        </article>
+                    </div>
+                @empty
+                    <div class="col-12">
+                        <div class="service-card text-center">
+                            <p class="mb-0">Aun no hay productos en tienda.</p>
+                        </div>
+                    </div>
+                @endforelse
+            </div>
+
+            <div class="text-center mt-4">
+                <a href="{{ route('shop.index') }}" class="btn btn-brand btn-lg">Ir a Ver tienda</a>
+            </div>
+        </div>
+    </section>
+
     <section class="services-section py-5">
         <div class="container">
             <div class="section-head text-center mb-5">

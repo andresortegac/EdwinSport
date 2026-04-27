@@ -30,6 +30,7 @@ use App\Http\Controllers\EquipoController;
 
 // IMPORT PARA PATROCINADORES
 use App\Http\Controllers\SponsorController;
+use App\Http\Controllers\ShopController;
 
 
 // =======================
@@ -42,6 +43,8 @@ Route::controller(PrincipalController::class)->group(function () {
     // Alias opcional
     Route::get('/panel-principal', 'index')->name('panel_principal');
 });
+
+Route::get('/tienda', [ShopController::class, 'index'])->name('shop.index');
 
 // =======================
 // ABOUT: MISION / VISION / VALORES
@@ -91,6 +94,10 @@ Route::get('/media/eventos/{path}', [EventController::class, 'media'])
 Route::get('/media/sponsors/{path}', [SponsorController::class, 'media'])
     ->where('path', '.*')
     ->name('sponsors.media');
+
+Route::get('/media/tiendas/{path}', [ShopController::class, 'media'])
+    ->where('path', '.*')
+    ->name('shop.media');
 
 // Listado (filtrado por category via query string: /eventos?category=futbol)
 Route::get('/eventos', [EventController::class, 'index'])->name('events.index');
@@ -283,6 +290,8 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/sponsors', [SponsorController::class, 'index'])->name('sponsors.index');
     Route::get('/sponsors/create', [SponsorController::class, 'create'])->name('sponsors.create');
     Route::post('/sponsors', [SponsorController::class, 'store'])->name('sponsors.store');
+    Route::post('/tienda/guardar', [ShopController::class, 'store'])->name('shop.store');
+    Route::put('/tienda/{storeItem}', [ShopController::class, 'update'])->name('shop.update');
 });
 
 
